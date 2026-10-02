@@ -16,7 +16,12 @@ def edit_command(
 
     if command == "list_regions":
         return paginate(
-            [r for r in b.track(a)["regions"].values() if a["kind"] in {"all", r["kind"]}], a
+            [
+                {k: v for k, v in r.items() if k != "notes"}
+                for r in b.track(a)["regions"].values()
+                if a["kind"] in {"all", r["kind"]}
+            ],
+            a,
         )
     if command == "create_midi_region":
         t = b.track(a)

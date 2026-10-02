@@ -181,7 +181,8 @@ def plugin_command(
     if command in {"connect_ports", "disconnect_ports"}:
         connection = {"source": a["source"], "destination": a["destination"]}
         valid = plugin_command(b, "list_ports", {"limit": 100000}, options)
-        assert valid is not None
+        if valid is None:
+            raise DomainError(ErrorCode.BACKEND_ERROR, "Simulator port inventory unavailable.")
         port_map = {v["name"]: v for v in valid["items"]}
         if a["source"] not in port_map or a["destination"] not in port_map:
             raise DomainError(ErrorCode.OBJECT_NOT_FOUND, "Port not found.")

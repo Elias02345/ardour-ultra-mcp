@@ -115,7 +115,8 @@ class OSCBackend(asyncio.DatagramProtocol):
 
     async def query(self, path: str) -> list[Any]:
         await self.open()
-        assert self.transport is not None
+        if self.transport is None:
+            raise DomainError(ErrorCode.ARDOUR_NOT_CONNECTED, "OSC transport unavailable.")
         future: asyncio.Future[list[Any]] = asyncio.get_running_loop().create_future()
         self.pending[path] = future
         try:
@@ -177,7 +178,8 @@ class OSCBackend(asyncio.DatagramProtocol):
                 values = sample, 0
             if not options.dry_run:
                 await self.open()
-                assert self.transport is not None
+                if self.transport is None:
+                    raise DomainError(ErrorCode.ARDOUR_NOT_CONNECTED, "OSC transport unavailable.")
                 self.transport.sendto(encode(path, values), (self.host, self.port))
             return Result(
                 data={

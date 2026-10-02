@@ -74,7 +74,7 @@ function factory(params)
         while true do t[#t+1]=parse(depth+1);ws();local e=s:sub(i,i);i=i+1;if e==']' then break end;if e~=',' then fail("PROTOCOL_ERROR","Missing comma.") end end;return t
       end
       for word,v in pairs({['true']=true,['false']=false,['null']=NULL}) do if s:sub(i,i+#word-1)==word then i=i+#word;return v end end
-      local rest=s:sub(i);local token=rest:match('^%-?%d+%.?%d*[eE][%+%-]?%d+') or rest:match('^%-?%d+%.%d+') or rest:match('^%-?%d+')
+      local rest=s:sub(i);local token=rest:match('^%-?%d+%.%d+[eE][%+%-]?%d+') or rest:match('^%-?%d+[eE][%+%-]?%d+') or rest:match('^%-?%d+%.%d+') or rest:match('^%-?%d+')
       if not token or token:match('^%-?0%d') then fail("PROTOCOL_ERROR","Invalid JSON number.") end
       i=i+#token;local n=tonumber(token);number(n,-9007199254740991,9007199254740991,false);return n
     end
@@ -122,6 +122,7 @@ function factory(params)
   local function db(v) if v<=0 then return -193 end;return 20*math.log(v)/math.log(10) end
   local function gain(v) return 10^(number(v,-193,24,false)/20) end
   local function control_value(c) if not present(c) then return NULL end;return c:get_value() end
+  local function singleton(r) return r:is_master() or r:is_monitor() or r:is_auditioner() or (r.is_surround_master and r:is_surround_master()) end
   local function route_state(r)
     local t=r:to_track();local p=r:pan_azimuth_control();local kind='bus'
     if r:is_master() then kind='master' elseif present(t) then kind=t:data_type():to_string() end
@@ -226,14 +227,18 @@ function factory(params)
     else local c=ARDOUR.ChanCount(ARDOUR.DataType('midi'),1);routes=Session:new_midi_track(c,c,true,ARDOUR.PluginInfo(),nil,nil,1,a.name,-1,ARDOUR.TrackMode.Normal,true) end
     if routes:empty() then fail("BACKEND_ERROR","Ardour did not create route.") end;return route_state(routes:front())
   end)
-  register('delete_track',true,function(a,dry) local r=route(a.track_id);if r:is_singleton() then fail("PERMISSION_DENIED","Cannot delete singleton/master route.") end;if not dry then Session:remove_route(r) end;return {deleted_id=a.track_id,undoable=false} end,true)
+  register('delete_track',true,function(a,dry) local r=route(a.track_id);if singleton(r) then fail("PERMISSION_DENIED","Cannot delete singleton/master route.") end;if not dry then Session:remove_route(r) end;return {deleted_id=a.track_id,undoable=false} end,true)
   register('rename_track',true,function(a,dry) local r=route(a.track_id);name(a.name);local before=r:name();if not dry and not r:set_name(a.name) then fail("BACKEND_ERROR","Rename failed.") end;return {object_id=a.track_id,property='name',before=before,after=a.name,undoable=false} end,false,true)
   local function set_control(command, getter, key, validate, convert)
     register(command,true,function(a,dry)
       local r=route(a.track_id);local c=getter(r);if not present(c) then fail("OPERATION_NOT_SUPPORTED","Control not available on route.") end
       validate(a[key]);local value=convert(a[key]);number(value,c:lower(),c:upper(),false);local before=c:get_value()
       if not dry then c:set_value(value,PBD.GroupControlDisposition.NoGroup) end
-      return {object_id=a.track_id,property=key,before=before,after=dry and value or c:get_value(),unit='native_control',undoable=false}
+      local after=dry and value or c:get_value();local unit='boolean'
+      if key=='gain_db' then before=db(before);after=db(after);unit='dB'
+      elseif key=='pan' then before=2*before-1;after=2*after-1;unit='signed_normalized_azimuth'
+      else before=before>0;after=after>0 end
+      return {object_id=a.track_id,property=key,before=before,after=after,unit=unit,undoable=false}
     end,false,true)
   end
   set_control('set_track_gain',function(r) return r:gain_control() end,'gain_db',function(v) number(v,-193,6,false) end,gain)
@@ -277,7 +282,7 @@ function factory(params)
     if not Editor then fail("BACKEND_UNSUPPORTED","MIDI region creation requires Editor context.") end
     local s,e=pos(a.start),pos(a['end']);if e:samples()<=s:samples() then fail("INVALID_TIME_POSITION","Region end must follow start.") end
     if dry then return {start_samples=s:samples(),end_samples=e:samples()} end
-    local view=Editor:rtav_from_route(r):to_timeaxisview():to_midi_time_axis_view();local reg=view:add_region(s,s:distance(e),true)
+    local tv=Editor:rtav_from_route(r):to_timeaxisview();if not tv.to_midi_time_axis_view then fail("BACKEND_UNSUPPORTED","Ardour build lacks bound MIDI region creation (available in 9.8 source).","Use Ardour 9.8 and verify capability; existing-region note editing remains available.") end;local view=tv:to_midi_time_axis_view();local reg=view:add_region(s,s:distance(e),true)
     if not present(reg) then fail("BACKEND_ERROR","Ardour did not create region.") end;reg:set_name(a.name);return region_state(reg,t:playlist(),a.track_id)
   end)
   register('move_region',true,function(a,dry) local r,pl=region(a);if r:locked() then fail("PERMISSION_DENIED","Region locked.") end;local p=pos(a.position);local before=r:position():samples();if not dry then diff(r,'Ultra move region',function() r:set_position(p) end) end;return {object_id=a.region_id,property='position_samples',before=before,after=p:samples(),undoable=true} end)
@@ -384,12 +389,12 @@ function factory(params)
   local function sends(r)
     local values=array();local refs={};local i=0
     while true do local p=r:nth_send(i);if not present(p) then break end;local s=p:to_send();local internal=p:to_internalsend();local target=present(internal) and internal:target_route() or nil
-      values[#values+1]={id=oid(p),name=p:name(),target_id=present(target) and oid(target) or NULL,gain_db=db(s:amp():gain_control():get_value())};refs[oid(p)]=p;i=i+1
+      values[#values+1]={id=oid(p),name=p:name(),target_id=present(target) and oid(target) or NULL,gain_db=db(s:gain_control():get_value())};refs[oid(p)]=p;i=i+1
     end;return values,refs
   end
   local function send(a) local p,r=processor(a,'send_id');local s=p:to_send();if not present(s) then fail("OPERATION_NOT_SUPPORTED","Processor is not send.") end;return p,s,r end
   register('list_sends',false,function(a,dry) return page(sends(route(a.track_id)),a) end)
-  register('set_send_gain',true,function(a,dry) local p,s=send(a);number(a.gain_db,-193,6,false);local c=s:amp():gain_control();local before=db(c:get_value());if not dry then c:set_value(gain(a.gain_db),PBD.GroupControlDisposition.NoGroup) end;return {object_id=a.send_id,property='gain_db',before=before,after=a.gain_db,undoable=false} end,false,true)
+  register('set_send_gain',true,function(a,dry) local p,s=send(a);number(a.gain_db,-193,6,false);local c=s:gain_control();local before=db(c:get_value());if not dry then c:set_value(gain(a.gain_db),PBD.GroupControlDisposition.NoGroup) end;return {object_id=a.send_id,property='gain_db',before=before,after=a.gain_db,undoable=false} end,false,true)
   register('remove_send',true,function(a,dry) local p,s,r=send(a);if not dry and r:remove_processor(p,nil,false)~=0 then fail("BACKEND_ERROR","Send removal failed.") end;return {deleted_id=a.send_id,undoable=false} end,true)
   local function ports()
     local values=array();local by_name={};local engine=Session:engine()
@@ -416,12 +421,12 @@ function factory(params)
   end)
   register('create_send',true,function(a,dry)
     local r,target=route(a.track_id),route(a.target_id);number(a.gain_db,-193,6,false)
-    if r:is_singleton() or present(target:to_track()) then fail("PERMISSION_DENIED","Sends require a non-singleton source and bus target.") end
+    if singleton(r) or singleton(target) or present(target:to_track()) then fail("PERMISSION_DENIED","Sends require a non-singleton source and bus target.") end
     -- Include internal send and main output edges when checking for feedback.
-    local input_owner={};for x in Session:get_routes():iter() do local io=x:input();for i=0,io:n_ports()-1 do input_owner[io:nth(i):name()]=oid(x) end end
+    local input_owner={};for x in Session:get_routes():iter() do local io=x:input();for i=0,io:n_ports():n_total()-1 do input_owner[io:nth(i):name()]=oid(x) end end
     local graph={};local engine=Session:engine()
     for x in Session:get_routes():iter() do local edges={};local sv=sends(x);for _,s in ipairs(sv) do if s.target_id~=NULL then edges[#edges+1]=s.target_id end end
-      local io=x:output();for i=0,io:n_ports()-1 do local _,ct=engine:get_connections(io:nth(i):name(),C.StringVector());for p in ct[2]:iter() do if input_owner[p] then edges[#edges+1]=input_owner[p] end end end
+      local io=x:output();for i=0,io:n_ports():n_total()-1 do local _,ct=engine:get_connections(io:nth(i):name(),C.StringVector());for p in ct[2]:iter() do if input_owner[p] then edges[#edges+1]=input_owner[p] end end end
       graph[oid(x)]=edges
     end
     local visited={};local function reaches(v) if v==a.track_id then return true end;if visited[v] then return false end;visited[v]=true;for _,d in ipairs(graph[v] or {}) do if reaches(d) then return true end end;return false end
@@ -436,7 +441,7 @@ function factory(params)
     local r=route(a.track_id);local c;local unit
     if a.control=='gain' then c=r:gain_control();unit='linear_gain'
     elseif a.control=='pan' then c=r:pan_azimuth_control();unit='normalized_azimuth'
-    elseif a.control=='send' then local _,s=send({track_id=a.track_id,send_id=a.processor_id});c=s:amp():gain_control();unit='linear_gain'
+    elseif a.control=='send' then local _,s=send({track_id=a.track_id,send_id=a.processor_id});c=s:gain_control();unit='linear_gain'
     elseif a.control=='plugin' then local proc=plugin(a);number(a.parameter_index,0,65535,true);local _,p=plugin(a);param(p,a.parameter_index);local al,cl,pd=ARDOUR.LuaAPI.plugin_automation(proc,a.parameter_index);if not present(al) then fail("OPERATION_NOT_SUPPORTED","Plugin parameter has no automation.") end;return al,pd,'plugin_native'
     else fail("VALIDATION_ERROR","Invalid automation control.") end
     if not present(c) then fail("OPERATION_NOT_SUPPORTED","Control unavailable.") end;return c:alist(),c:desc(),unit,c
@@ -488,9 +493,9 @@ function factory(params)
   local function inverse(command,a,preview)
     local v={};for k,x in pairs(a) do v[k]=x end
     if command=='set_plugin_parameters' then v.parameters=array();for _,c in ipairs(preview.parameters) do v.parameters[#v.parameters+1]={parameter_index=c.parameter_index,value=c.before,unit='plugin_native'} end
-    elseif command=='set_track_gain' then v.gain_db=db(preview.before)
-    elseif command=='set_track_pan' then v.pan=2*preview.before-1
-    elseif command=='set_track_mute' or command=='set_track_solo' then v.enabled=preview.before>0
+    elseif command=='set_track_gain' then v.gain_db=preview.before
+    elseif command=='set_track_pan' then v.pan=preview.before
+    elseif command=='set_track_mute' or command=='set_track_solo' then v.enabled=preview.before
     elseif command=='set_plugin_enabled' then v.enabled=preview.before
     elseif command=='set_send_gain' then v.gain_db=preview.before
     elseif command=='rename_track' then v.name=preview.before
@@ -532,7 +537,9 @@ function factory(params)
   end)
   local function command_list()
     local values=array();for command,_ in pairs(handlers) do
-      if Editor or (command~='create_midi_region' and command~='undo' and command~='redo') then values[#values+1]=command end
+      local available=Editor or (command~='create_midi_region' and command~='undo' and command~='redo')
+      if command=='create_midi_region' and (not Editor or not ArdourUI or not ArdourUI.MidiTimeAxisView) then available=false end
+      if available then values[#values+1]=command end
     end;table.sort(values);return values
   end
   local function heartbeat()
@@ -553,6 +560,7 @@ function factory(params)
       if type(request.expires)~='number' or request.expires<=os.time() or request.expires>os.time()+3600 then fail("IPC_TIMEOUT","Request deadline expired or invalid.") end
       local handler=handlers[request.command];if not handler then fail("OPERATION_NOT_SUPPORTED","Command not allowlisted.") end
       if type(request.arguments)~='table' or type(request.options)~='table' then fail("VALIDATION_ERROR","Invalid command envelope.") end
+      for k,v in pairs(request.arguments) do if v==NULL then request.arguments[k]=nil end end
       session();observe()
       local options=request.options;local dry=options.dry_run==true
       if options.expected_revision and options.expected_revision~=NULL and options.expected_revision~=revision() then fail("CONFLICT","Observed session revision changed.") end
@@ -565,14 +573,14 @@ function factory(params)
       if mutations[request.command] and not dry then
         generation=generation+1;last_signature=nil
         if payload.object_id and payload.property then changes[#changes+1]={object_id=payload.object_id,property=payload.property,before=payload.before,after=payload.after}
-        else changes[#changes+1]={object_id=request.arguments.region_id or request.arguments.processor_id or request.arguments.track_id or ('session:'..epoch),property=request.command,before=NULL,after=payload} end
+        else changes[#changes+1]={object_id=payload.id or payload.processor_id or request.arguments.region_id or request.arguments.processor_id or request.arguments.track_id or ('session:'..epoch),property=request.command,before=NULL,after=payload} end
       end
       return {success=true,data=dry and {valid=true,preview=payload} or payload,revision_before=before,revision_after=revision(),changed_objects=changes,warnings=array()}
     end)
     if not status then
       local err=type(result)=='table' and result or {code='OUTCOME_UNCERTAIN',message='Bridge API call failed; inspect state before retrying.',action='Check Ardour Lua console and affected objects.',details={}}
       -- Error messages never include the private nonce or request contents.
-      if type(result)~='table' then print('Ultra MCP API error: '..tostring(result)) end
+      if type(result)~='table' then print('Ultra MCP API error: '..tostring(result));err.details.native_error=tostring(result) end
       result={success=false,data={},revision_after=revision(),changed_objects=array(),warnings=array(),error=err}
     end
     local reply={protocol=1,id=request and request.id or 'invalid',epoch=epoch,result=result}

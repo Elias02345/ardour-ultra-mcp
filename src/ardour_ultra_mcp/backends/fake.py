@@ -131,6 +131,12 @@ class FakeBackend:
             spec = CATALOG.get(command)
             if spec is None:
                 raise DomainError(ErrorCode.OPERATION_NOT_SUPPORTED, "Unknown simulator command.")
+            if (
+                spec.mutates
+                and self.transport["actively_recording"]
+                and command not in {"stop", "stop_recording"}
+            ):
+                raise DomainError(ErrorCode.BUSY, "Editing is blocked while actively recording.")
             before_rev = self.revision
             if options.expected_revision is not None and options.expected_revision != before_rev:
                 raise DomainError(
@@ -141,13 +147,29 @@ class FakeBackend:
                 )
             if spec.destructive and not options.confirm_delete and not options.dry_run:
                 raise DomainError(ErrorCode.VALIDATION_ERROR, "Explicit confirm_delete required.")
+            if not spec.mutates:
+                return Result(
+                    data=self.dispatch(command, dict(arguments), options),
+                    revision_before=before_rev,
+                    revision_after=before_rev,
+                    warnings=["Simulated backend; no Ardour audio engine or plugin executes."],
+                )
             old = self.snapshot()
             old_transport = copy.deepcopy(self.transport)
             old_counter = self.counter
-            old_undo, old_redo = copy.deepcopy(self.undo_stack), copy.deepcopy(self.redo_stack)
+            old_undo, old_redo = list(self.undo_stack), list(self.redo_stack)
             try:
                 data = self.dispatch(command, dict(arguments), options)
                 changes = self.changes(old, self.snapshot()) if spec.mutates else []
+                if spec.mutates and old_transport != self.transport:
+                    changes.append(
+                        Change(
+                            object_id="fake-transport",
+                            property="transport",
+                            before=old_transport,
+                            after=copy.deepcopy(self.transport),
+                        )
+                    )
                 if options.dry_run:
                     self.restore(old)
                     self.transport = old_transport
@@ -168,6 +190,7 @@ class FakeBackend:
                     and command not in {"undo", "redo", "save_session", "create_snapshot"}
                 ):
                     self.undo_stack.append(old)
+                    self.undo_stack = self.undo_stack[-64:]
                     self.redo_stack.clear()
                 return Result(
                     data=data,

@@ -109,7 +109,12 @@ def client_configuration(args: argparse.Namespace) -> str:
     if args.client == "claude-code":
         # JSON avoids shell-specific quoting/escaping, including Windows/PowerShell.
         return json.dumps(
-            {"ardour-ultra": {"type": "stdio", "command": command, "args": arguments}}, indent=2
+            {
+                "mcpServers": {
+                    "ardour-ultra": {"type": "stdio", "command": command, "args": arguments}
+                }
+            },
+            indent=2,
         )
     return json.dumps(
         {"mcpServers": {"ardour-ultra": {"command": command, "args": arguments}}}, indent=2
