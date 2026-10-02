@@ -60,3 +60,40 @@ def find_ardour() -> list[str]:
             if program_base:
                 found.extend(str(p) for p in Path(program_base).glob("Ardour*/bin/Ardour.exe"))
     return found
+
+
+def detect_versions(
+    candidates: list[str] | None = None,
+) -> list[dict[str, str | int | bool | None]]:
+    """Run only discovered Ardour binaries with their official version flag."""
+    import re
+
+    # Fixed version probe of OS-discovered Ardour, not an MCP command or shell.
+    import subprocess  # nosec B404
+
+    results: list[dict[str, str | int | bool | None]] = []
+    for executable in (find_ardour() if candidates is None else candidates)[:8]:
+        try:
+            completed = subprocess.run(  # nosec B603
+                [executable, "--version"],
+                capture_output=True,
+                text=True,
+                encoding="utf-8",
+                errors="replace",
+                timeout=3,
+                check=False,
+            )
+            match = re.search(r"Ardour\s*(\d+)\.(\d+)(?:\.(\d+))?", completed.stdout, re.I)
+            results.append(
+                {
+                    "executable": executable,
+                    "verified": bool(match),
+                    "version": match.group(0) if match else None,
+                    "major": int(match.group(1)) if match else None,
+                }
+            )
+        except (OSError, subprocess.TimeoutExpired):
+            results.append(
+                {"executable": executable, "verified": False, "version": None, "major": None}
+            )
+    return results

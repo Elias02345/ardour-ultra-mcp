@@ -16,7 +16,7 @@ from .backends.fake import FakeBackend
 from .backends.mailbox import MailboxBackend
 from .backends.osc import OSCBackend
 from .installers.install import install, uninstall
-from .installers.platforms import mailbox_directory
+from .installers.platforms import detect_versions, mailbox_directory
 from .logging import configure_logging
 from .models.base import DomainError, Options, Result
 from .security.paths import PathPolicy
@@ -78,7 +78,7 @@ def parser() -> argparse.ArgumentParser:
         sub.add_parser(name, parents=[common])
     installer = sub.add_parser("install", parents=[common])
     installer.add_argument("--ardour-config", type=Path)
-    installer.add_argument("--ardour-major", type=int, choices=range(8, 20), default=9)
+    installer.add_argument("--ardour-major", type=int, choices=range(8, 20), default=None)
     sub.add_parser("uninstall", parents=[common])
     configure = sub.add_parser("configure", parents=[common])
     configure.add_argument("client", choices=["claude", "claude-code", "codex", "generic"])
@@ -150,8 +150,18 @@ def main(argv: list[str] | None = None) -> int:
             print(client_configuration(args))
             return 0
         if args.command == "install":
-            value: Any = install(
-                args.mailbox, args.ardour_config, args.ardour_major, tuple(args.export_root)
+            versions = detect_versions()
+            detected = [v["major"] for v in versions if isinstance(v["major"], int)]
+            major = args.ardour_major or (max(detected) if detected else 9)
+            value: Any = install(args.mailbox, args.ardour_config, major, tuple(args.export_root))
+            value["ardour_versions"] = versions
+            value["selected_major"] = major
+            value["version_selection"] = (
+                "explicit"
+                if args.ardour_major
+                else "detected"
+                if detected
+                else "fallback_9_unverified"
             )
             print(json.dumps(value, indent=2))
             return 0

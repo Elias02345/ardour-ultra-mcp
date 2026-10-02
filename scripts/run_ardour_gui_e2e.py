@@ -167,6 +167,18 @@ async def main() -> None:
             track = await check("create_track", {"name": "Bass", "kind": "midi"})
             track_id = track.data["id"]
             await check("rename_track", {"track_id": track_id, "name": "Bass verified"})
+            inventory = await check(
+                "list_available_plugins", {"instruments_only": True, "limit": 1000}
+            )
+            instrument = next(p for p in inventory.data["items"] if p["format"] == "LV2")
+            await check(
+                "add_plugin",
+                {
+                    "track_id": track_id,
+                    "plugin_id": instrument["plugin_id"],
+                    "format": instrument["format"],
+                },
+            )
             region = await check(
                 "create_midi_region",
                 {
@@ -190,6 +202,19 @@ async def main() -> None:
             await check("insert_midi_notes", {**ref, "notes": notes})
             listed = await check("list_midi_notes", {**ref, "limit": 1000})
             assert listed.data["total"] == 100
+            await check(
+                "insert_midi_notes",
+                {
+                    **ref,
+                    "notes": [
+                        dict(n, start_ticks=(i % 128) * 240) for i, n in enumerate(notes * 100)
+                    ],
+                },
+            )
+            dense = await check("list_midi_notes", {**ref, "limit": 1000})
+            assert dense.data["total"] == 10100
+            # Use current guarded snapshot after the dense insertion.
+            listed = dense
             first = listed.data["items"][0]
             assert first["pitch"] == 48 and first["velocity"] == 104
             await check(
@@ -202,13 +227,13 @@ async def main() -> None:
                     ],
                 },
             )
-            listed = await check("list_midi_notes", ref)
-            assert listed.data["items"][0]["pitch"] == 36
+            listed = await check("list_midi_notes", {**ref, "limit": 1000})
+            assert any(n["pitch"] == 36 for n in listed.data["items"])
             await check("undo", {})
-            listed = await check("list_midi_notes", ref)
-            assert listed.data["items"][0]["pitch"] == 48
+            listed = await check("list_midi_notes", {**ref, "limit": 1000})
+            assert all(n["pitch"] != 36 for n in listed.data["items"])
             await check("redo", {})
-            listed = await check("list_midi_notes", ref)
+            listed = await check("list_midi_notes", {**ref, "limit": 1000})
             await check(
                 "delete_midi_notes",
                 {

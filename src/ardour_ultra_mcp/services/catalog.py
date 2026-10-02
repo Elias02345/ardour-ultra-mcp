@@ -271,7 +271,7 @@ SPECS: tuple[ToolSpec, ...] = (
     ),
     ToolSpec(
         "list_available_plugins",
-        r.Page,
+        r.PluginInventory,
         "plugins",
         "Query Ardour inventory; filter names/categories; formats are runtime dependent.",
     ),

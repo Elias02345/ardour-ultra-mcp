@@ -17,7 +17,7 @@ from pydantic import JsonValue, ValidationError
 from .. import __version__
 from ..analysis.audio import analyze, compare
 from ..backends.base import Backend
-from ..installers.platforms import config_directory, find_ardour, mailbox_directory
+from ..installers.platforms import config_directory, detect_versions, find_ardour, mailbox_directory
 from ..models.base import DomainError, ErrorCode, Options, Result
 from ..security.paths import PathPolicy
 from .catalog import CATALOG, COMPENSABLE, UNSUPPORTED
@@ -194,11 +194,14 @@ class ControlService:
             )
 
     async def doctor(self) -> Result:
+        versions = await asyncio.to_thread(detect_versions)
         checks: dict[str, JsonValue] = {
             "python": sys.version.split()[0],
             "platform": platform.system(),
             "package": __version__,
             "ardour_candidates": [str(p) for p in find_ardour()],
+            "ardour_versions": [dict(v) for v in versions],
+            "mcp_sdk": importlib.metadata.version("mcp"),
             "default_ardour_config": str(config_directory()),
             "default_mailbox": str(mailbox_directory()),
             "analysis_dependencies": {

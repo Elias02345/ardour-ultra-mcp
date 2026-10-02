@@ -152,6 +152,10 @@ class DeleteNotes(RegionRef):
     note_refs: Annotated[list[str], Field(min_length=1, max_length=10000)]
 
 
+class PluginInventory(Page):
+    instruments_only: bool = False
+
+
 class PluginRef(TrackRef):
     processor_id: ObjectId
 

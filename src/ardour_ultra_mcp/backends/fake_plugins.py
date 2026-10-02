@@ -34,7 +34,9 @@ def plugin_command(
     from .fake import paginate
 
     if command == "list_available_plugins":
-        return paginate(INVENTORY, a)
+        return paginate(
+            [p for p in INVENTORY if not a.get("instruments_only") or p["is_instrument"]], a
+        )
     if command == "list_track_plugins":
         return paginate(list(b.track(a)["plugins"].values()), a)
     if command == "add_plugin":

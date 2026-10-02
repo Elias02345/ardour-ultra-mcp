@@ -107,7 +107,7 @@ function factory(params)
   local config=decode(assert(read('bridge-config.json',16384),'Run installer first'))
   assert(config.protocol==1 and type(config.token)=='string' and #config.token==64)
   local epoch=tostring(os.time())..'-'..tostring(ARDOUR.LuaAPI.monotonic_time())
-  local generation=0;local last_signature=nil;local session_key=nil;local busy=false;local last_heartbeat=0
+  local generation=0;local session_sequence=0;local last_signature=nil;local session_key=nil;local busy=false;local last_heartbeat=0
   local snapshots={};local snapshot_sequence=0
   local handlers={};local mutations={};local destructive={};local compensable={}
   local function session()
@@ -200,7 +200,7 @@ function factory(params)
   end
   -- Revision observes route mixer and region properties only. MIDI has exact model guards.
   local function observe()
-    local key=Session:path();if session_key~=key then generation=generation+1;last_signature=nil;session_key=key;snapshots={} end
+    local key=Session:path();if session_key~=key then generation=generation+1;session_sequence=session_sequence+1;last_signature=nil;session_key=key;snapshots={} end
     local state=array()
     for r in Session:get_routes():iter() do
       local s=route_state(r);local t=r:to_track();s.regions=array()
@@ -214,17 +214,18 @@ function factory(params)
   register('ping',false,function(a,dry) return {connected=true,session_open=true,epoch=epoch} end)
   register('get_session_info',false,function(a,dry)
     local uuid=Session.uuid and Session:uuid() or nil
-    return {session_id=uuid or ('bridge-session:'..epoch),persistent_session_id=uuid~=nil,name=Session:name(),sample_rate=Session:nominal_sample_rate(),snapshot=Session:snap_name(),revision_scope='route mixer and region properties; MIDI uses exact model guard; excludes plugin/automation/ports/tempo human edits'}
+    return {session_id=uuid or ('bridge-session:'..epoch..':'..session_sequence),persistent_session_id=uuid~=nil,name=Session:name(),sample_rate=Session:nominal_sample_rate(),snapshot=Session:snap_name(),revision_scope='route mixer and region properties; MIDI uses exact model guard; excludes plugin/automation/ports/tempo human edits'}
   end)
   register('list_tracks',false,function(a,dry) local values=array();for r in Session:get_routes():iter() do if not r:is_monitor() and not r:is_auditioner() then values[#values+1]=route_state(r) end end;return page(values,a) end)
   register('get_track',false,function(a,dry) return route_state(route(a.track_id)) end)
+  local function empty_group() local ok,g=pcall(function() return ARDOUR.RouteGroup() end);if ok then return g end;return nil end
   register('create_track',true,function(a,dry)
     name(a.name);number(a.channels,1,64,true);if a.kind~='audio' and a.kind~='midi' and a.kind~='bus' then fail("VALIDATION_ERROR","Unknown route kind.") end
     if dry then return {name=a.name,kind=a.kind} end
     local routes
-    if a.kind=='audio' then routes=Session:new_audio_track(a.channels,a.channels,nil,1,a.name,-1,ARDOUR.TrackMode.Normal,true)
-    elseif a.kind=='bus' then routes=Session:new_audio_route(a.channels,a.channels,nil,1,a.name,ARDOUR.PresentationInfo.Flag.AudioBus,-1)
-    else local c=ARDOUR.ChanCount(ARDOUR.DataType('midi'),1);routes=Session:new_midi_track(c,c,true,ARDOUR.PluginInfo(),nil,nil,1,a.name,-1,ARDOUR.TrackMode.Normal,true) end
+    if a.kind=='audio' then routes=Session:new_audio_track(a.channels,a.channels,empty_group(),1,a.name,-1,ARDOUR.TrackMode.Normal,true,false)
+    elseif a.kind=='bus' then routes=Session:new_audio_route(a.channels,a.channels,empty_group(),1,a.name,ARDOUR.PresentationInfo.Flag.AudioBus,-1)
+    else local c=ARDOUR.ChanCount(ARDOUR.DataType('midi'),1);routes=Session:new_midi_track(c,c,true,ARDOUR.PluginInfo(),nil,empty_group(),1,a.name,-1,ARDOUR.TrackMode.Normal,true,false) end
     if routes:empty() then fail("BACKEND_ERROR","Ardour did not create route.") end;return route_state(routes:front())
   end)
   register('delete_track',true,function(a,dry) local r=route(a.track_id);if singleton(r) then fail("PERMISSION_DENIED","Cannot delete singleton/master route.") end;if not dry then Session:remove_route(r) end;return {deleted_id=a.track_id,undoable=false} end,true)
@@ -338,7 +339,7 @@ function factory(params)
   register('edit_midi_notes',true,function(a,dry) return edit_notes(a,dry,false) end)
   register('delete_midi_notes',true,function(a,dry) return edit_notes(a,dry,true) end,true)
   register('list_available_plugins',false,function(a,dry)
-    local values=array();local seen={};for p in ARDOUR.LuaAPI.list_plugins():iter() do local format=ARDOUR.PluginType.name(p.type);local key=format..':'..p.unique_id;if not seen[key] then values[#values+1]={plugin_id=p.unique_id,name=p.name,format=format,category=p.category,creator=p.creator,is_instrument=p:is_instrument()};seen[key]=true end end;return page(values,a)
+    local values=array();local seen={};for p in ARDOUR.LuaAPI.list_plugins():iter() do local format=ARDOUR.PluginType.name(p.type);local key=format..':'..p.unique_id;if not seen[key] and (not a.instruments_only or p:is_instrument()) then values[#values+1]={plugin_id=p.unique_id,name=p.name,format=format,category=p.category,creator=p.creator,is_instrument=p:is_instrument()};seen[key]=true end end;return page(values,a)
   end)
   register('list_track_plugins',false,function(a,dry)
     local r=route(a.track_id);local values=array();local i=0;while true do local proc=r:nth_plugin(i);if not present(proc) then break end;local pi=proc:to_insert();local p=pi:plugin(0);values[#values+1]={id=oid(proc),name=proc:name(),plugin_id=p:unique_id(),format=ARDOUR.PluginType.name(pi:type()),enabled=proc:active(),is_instrument=pi:is_instrument(),plugin_index=i};i=i+1 end;return page(values,a)

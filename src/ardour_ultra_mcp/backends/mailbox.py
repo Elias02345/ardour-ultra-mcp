@@ -198,7 +198,8 @@ class MailboxBackend:
             "backend": self.name,
             "commands": features,
             "unsupported": UNSUPPORTED,
-            "revision_scope": "observed route/region/plugin/note/automation state, not complete human edits",
+            "revision_scope": "observed route mixer and region properties; MIDI guards exact model; excludes human plugin/automation/ports/tempo edits",
+            "experimental_commands": ["render_range"],
             "native_undo": ["midi_diffs", "region_diffs", "automation_points"],
             "heartbeat": heart,
         }
