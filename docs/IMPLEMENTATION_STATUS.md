@@ -1,28 +1,31 @@
 # Implementation status
 
-Development release 0.1.0. Status describes executable code and validation, not an assurance of production readiness. Final measured evidence will be recorded in TESTING.md and FINAL_GAP_ANALYSIS.md.
+Development release 0.1.0, evidence dated 2026-10-02. Status refers to delivered code within its stated scope, not full production readiness. Exact final counts/results are in TESTING.md and artifacts; broader gaps are in FINAL_GAP_ANALYSIS.md.
 
 | Area | Status | Scope |
 |---|---|---|
-| Research / architecture | DONE | Current stable/development source, official SDK v2, named peers; source inventories and transport benchmark |
-| MCP tools/resources/prompts | PARTIAL | 71 typed tools, seven resources, one prompt registered; protocol validation in progress |
-| Tracks / transport / mixer | PARTIAL | Native Lua handlers and OSC subset; real Ardour integration in progress |
-| MIDI internal editing | PARTIAL | Exact note diffs and dense batches; guarded references, source-relative time; real Editor E2E pending |
-| Plugins | PARTIAL | Inventory, instances, generic parameter batches/presets; runtime validation in progress |
-| Regions | PARTIAL | Active-playlist move/trim/split/delete, gain/mute/lock/fade durations; source-backed handlers |
-| Automation | PARTIAL | Native curves/mementos and modes; bounded reads; runtime validation in progress |
-| Routing | PARTIAL | Sends and physical/backend ports; raw internal connections fail closed |
-| Recording | PARTIAL | Arm/monitor/start/stop, active recording mutation guard; punch adapter pending |
-| Analysis | PARTIAL | Optional bounded offline mono/stereo metrics, numerical validation in progress; estimated true peak labelled |
-| Export | EXPERIMENTAL | SimpleExport master/preset/range only, isolated new directory; stems unavailable |
-| Transactions | PARTIAL | Native edit diffs; compensated control batches; no general ACID/grouped control undo |
-| State/concurrency | PARTIAL | Explicit queries; observed route/region revisions; exact MIDI model guards; no full human-edit generation |
-| Installation | PARTIAL | Portable paths/script install/backups/config snippets; hook activation manual; external platform checks pending |
-| Tests/CI/package | PARTIAL | Verification in progress |
-| Linux | PARTIAL | Ardour 8.12 standalone runtime acquired; current 9.8 binary incompatible with host libc |
-| macOS / Windows DAW | BLOCKED | No platform execution environment; pure Python CI configured but not run here |
-| CC/bend/pressure/program/SysEx/MPE | UNSUPPORTED | No enabled mutation adapter with verified persistence |
-| Groups/markers/metadata/session opening | UNSUPPORTED | Native primitives researched, complete safe adapters pending |
-| Stretch/shift/crossfades/import/stems | UNSUPPORTED | Safe job/source/format adapters not yet validated |
+| Research / architecture | DONE | Stable 9.8 and development source/manual; official MCP v2/spec; named peers/licenses; transport prototypes and evidence matrix |
+| MCP foundation | DONE | 80 typed tools, seven resources, one prompt; actual official-client STDIO/schema/progress tests |
+| Tracks / transport / mixer | PARTIAL | Exact stable-ID route controls and async transport; native Linux subset; clone/reorder/IO gaps |
+| Internal MIDI | PARTIAL | Native 9.8 region creation, 100/10,000-note batches, guarded edit/delete, independent copy and undo/redo tested; controller-event adapters missing |
+| Plugins | PARTIAL | Generic native inventory/instruments, parameters, presets, activation/insertion/removal; tested LV2; format/reorder/state gaps |
+| Regions | PARTIAL | Native fixture verifies gain/fades/mute/lock/move/trim/split/copy/delete and undo; audio import/advanced processing incomplete |
+| Automation | PARTIAL | Native curves/memento undo, explicit units/modes, 10,000-point batching; bounded reads and limited lane enumeration |
+| Routing | PARTIAL | Native sends and backend ports, loop checks; sidechain pins and raw internal routing disabled |
+| Groups | PARTIAL | 9.8 native IDs/membership/properties verified; 8.12 mutation gated, empty-group API limitation explicit |
+| Recording | PARTIAL | Arm/monitor/start/stop and active-recording editing guard; hardware/punch E2E pending |
+| Local analysis | DONE | Implemented bounded offline metrics numerically tested; estimated true peak explicitly labelled; optional dependencies |
+| Master export | EXPERIMENTAL | Real 9.8 preset/range/master export and analysis loop; no stems/format setter claims |
+| Transactions / safety | PARTIAL | Native note/region/automation undo; prevalidated compensated controls, explicit destructive intent/preflight; no general ACID |
+| State / concurrency | PARTIAL | Fresh actual reads, scoped route/region/group revisions and exact MIDI guards; complete human-edit generation/cache missing |
+| Install / CLI / clients | PARTIAL | Portable paths/backups/version probes/doctor/config printing; manual hook activation; client applications not launched |
+| Tests / package / CI | PARTIAL | 112 tests on each of Python 3.12/3.14; 39/47 native common checks and 74 native EditorHook checks; 84.44% combined Python branch/statement coverage; hosted OS matrix not executed |
+| Linux | PARTIAL | Real 8.12 common and 9.8 common/editor on x86_64 Dummy; hardware/other distributions/ARM external |
+| macOS / Windows DAW | BLOCKED | No native platform environment; code paths/pure Python CI require external execution |
+| MIDI CC/bend/pressure/program/SysEx/MPE | UNSUPPORTED | No enabled persistence-verified mutation adapter |
+| Markers/ranges | UNSUPPORTED | Native Location ID probe unreliable; safe identity and undo adapter pending |
+| Metadata/session opening/save-as/timecode | UNSUPPORTED | Safe lifecycle/binding/conversion adapters pending |
+| Stretch/shift/crossfades/import/stems | UNSUPPORTED | Safe jobs/source/export adapters pending; not claimed impossible in Ardour |
+| Production workflows | PARTIAL | ensure_bus and render_and_analyze with explicit outcomes; deeper chains/sidechain helpers pending |
 
-Every disabled function remains in the capability gap manifest. The simulator does not render or execute real plugins. Unsupported calls return structured errors.
+The simulator cannot execute actual plugins or render audio. A registered tool can be unavailable on a running backend; discovery and calls fail explicitly. No unsupported feature is represented by a fake success.

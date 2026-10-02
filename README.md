@@ -1,27 +1,58 @@
 # Ardour Ultra MCP
 
-Local, open source, typed production primitives for Ardour through Model Context Protocol. Uses the official MCP Python SDK v2, Ardour Lua APIs and optional native OSC. No cloud APIs, proprietary model dependency or GUI automation.
+A local, free, open source programmable control layer for Ardour over Model Context Protocol. It gives an MCP agent typed inspection and precise editing primitives through Ardour's real Lua APIs, with optional native OSC. No paid APIs, cloud services, proprietary models or GUI input automation.
 
-**Development release — platform and feature verification is still in progress.** Read [implementation status](docs/IMPLEMENTATION_STATUS.md) and [compatibility](docs/COMPATIBILITY.md). The simulator is not evidence of real DAW support.
+**Working development release 0.1.0 — the complete production/cross-platform brief is not yet fulfilled.** Real Linux Ardour 9.8 editor tests cover internal MIDI editing, plugins, native undo, region copying/editing and master export with offline analysis. Ardour 8.12 common bindings are separately tested. macOS Apple Silicon and Windows 11 code paths require native verification. See [compatibility](docs/COMPATIBILITY.md), [test evidence](docs/TESTING.md) and [remaining gaps](docs/FINAL_GAP_ANALYSIS.md).
 
-Install from this checkout (the package is not published to PyPI):
+The server registers **80 typed tools**, **7 read-only resources** and **1 workflow prompt** using the current official Python MCP SDK 2.3.0 and specification 2026-07-28. Runtime capabilities tell the agent which operations the installed Ardour build actually supports. Persistent route/region/playlist/processor/group IDs, explicit units, source-relative 1920-quarter MIDI ticks, guarded note references, dense batches, preflight and structured change/error results make edits inspectable.
+
+Install from this checkout; the package has **not been published to PyPI**:
 
 ```sh
+cd /path/to/ardour-ultra-mcp
 uv tool install '.[analysis]'
+# alternative: pipx install '.[analysis]'
 ardour-ultra-mcp install --ardour-major 9
-ardour-ultra-mcp doctor --json
 ```
 
-Activate the installed EditorHook in Ardour's Script Manager, then run `test-connection`. The installer prints the exact UI step and mailbox location. Native OSC is optional and disabled by default.
+Activate **Ardour Ultra MCP** as an Action Hook in Ardour's Script Manager. File IPC requires reviewing the installed script and disabling **Sandbox all Lua scripts** in scripting preferences. The installer prints the exact path/steps and does not change that preference. Open a disposable session first:
 
 ```sh
+ardour-ultra-mcp test-connection --json
+ardour-ultra-mcp doctor --json
+ardour-ultra-mcp capabilities --json
 ardour-ultra-mcp configure claude
 ardour-ultra-mcp configure codex
-ardour-ultra-mcp serve --backend fake  # deterministic simulator, no audio engine
 ```
 
-The server provides precise track, region, MIDI, plugin, routing, automation, transport and preset-based master export primitives. Capabilities distinguish implemented operations, runtime availability and remaining gaps. Each tool has a typed request, explicit units and structured outcomes/errors. Audio analysis is optional and runs outside Ardour.
+Configuration commands print snippets for safe merging. Current direct setup commands:
 
-Private mailbox IPC, allowlisted commands, explicit media/export roots, guarded note references, preflight and uncertain-outcome errors are integral to the design. Native undo exists only where Ardour exposes proper command objects. General ACID transactions, full human-edit revision tracking, stems and several deeper APIs are not yet available.
+```sh
+claude mcp add --transport stdio --scope user ardour-ultra -- ardour-ultra-mcp serve
+codex mcp add ardour-ultra -- ardour-ultra-mcp serve
+```
 
-See [research](docs/RESEARCH.md), [architecture decision](docs/ARCHITECTURE_DECISION.md), and [tool reference](docs/TOOL_REFERENCE.md). GPL-3.0-or-later. Original implementation; no peer project code copied.
+Claude Desktop/generic STDIO configuration:
+
+```json
+{"mcpServers":{"ardour-ultra":{"command":"ardour-ultra-mcp","args":["serve"]}}}
+```
+
+Use an absolute executable path when needed. [Installation](docs/INSTALLATION.md) gives current paths, Codex TOML, PowerShell handling and explicit audio/export roots. `serve --backend fake` runs a deterministic simulator with labelled results; it does not produce Ardour audio.
+
+Tools cover session save/snapshot, tracks/buses/groups, mixer/transport/record arm/monitor, region edits/copy, internal MIDI batches, generic plugins/parameters/presets, internal sends/ports, automation and experimental preset-based master export. Offline analysis measures peak/RMS/LUFS/estimated true peak/spectrum/stereo/silence and compares passes. [Generated tool reference](docs/TOOL_REFERENCE.md) is the exact API; arguments are wrapped in `{"request": {...}}`.
+
+```mermaid
+flowchart LR
+  Client[MCP client / STDIO] --> Typed[Typed tools and domain validation]
+  Typed --> Lua[Private mailbox / allowlisted EditorHook]
+  Lua --> Ardour[Ardour Session / Editor / model APIs]
+  Typed --> OSC[Optional loopback OSC]
+  Typed --> Analysis[Local offline analysis]
+```
+
+The security model is local STDIO, a private serialized mailbox, allowlisted commands, no arbitrary Lua/shell tools, default-deny media paths, new export directories, explicit delete intent and uncertain-outcome errors. Native undo and compensated control batches have different guarantees. Observed revisions do not cover every human edit. Windows DACL hardening, advanced MIDI events, audio import/stretch/crossfades, stems, sidechain pins, advanced workflow helpers and complete platform proof remain gaps. Read [security](docs/SECURITY.md) before enabling the hook.
+
+Documentation: [quick start](docs/QUICK_START.md), [research](docs/RESEARCH.md), [architecture decision](docs/ARCHITECTURE_DECISION.md), [MIDI](docs/MIDI.md), [plugins](docs/PLUGINS.md), [automation](docs/AUTOMATION.md), [routing](docs/ROUTING.md), [analysis](docs/AUDIO_ANALYSIS.md), [development](docs/DEVELOPMENT.md), [testing](docs/TESTING.md), [release](docs/RELEASE.md), [troubleshooting](docs/TROUBLESHOOTING.md).
+
+Python 3.11+; GPL-3.0-or-later; original implementation with no peer source copied. [Contributing](CONTRIBUTING.md), [dependency/license review](THIRD_PARTY_NOTICES.md), [implementation journal](docs/IMPLEMENTATION_STATUS.md).

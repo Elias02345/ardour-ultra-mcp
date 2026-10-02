@@ -4,7 +4,7 @@ Project source is original GPL-3.0-or-later. No code from Ardour MCP or REAPER M
 
 | Runtime dependency | Purpose | License | Essential / standard-library replacement | Maintenance evidence |
 |---|---|---|---|---|
-| mcp 2.2.x | Official MCP server/client protocol and transports | MIT | Essential; do not reimplement the protocol | Official stable 2.2.0 release 2026-09-07, inspected source/tag |
+| mcp 2.3.x | Official MCP server/client protocol and transports | MIT | Essential; do not reimplement the protocol | Official stable 2.3.0 released 2026-10-02, inspected source/tag/PyPI; 2.2.0 also tested |
 | pydantic 2.x | Typed request/result validation and JSON schemas | MIT | Essential; replacing it duplicates validation/schema maintenance | Current 2.13.5 installed and tested |
 | numpy 2.x | Offline numeric audio buffers and statistics | BSD-3-Clause | Optional analysis; standard library impractical for dense audio | 2.5.3 tested |
 | scipy 1.x | Welch spectrum, polyphase peak estimate | BSD-3-Clause and bundled third-party notices | Optional analysis; avoid custom DSP reimplementation | 1.18.1 tested |

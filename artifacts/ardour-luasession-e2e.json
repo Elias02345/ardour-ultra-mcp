@@ -1,0 +1,2206 @@
+{
+  "scope": "real Ardour LuaSession common/non_rt; no Editor GUI/OSC test; temporary Dummy engine session",
+  "executable_version": "ardour-lua version 9.8.0~ds\n\nCopyright (C) GPL 2015-2020 Robin Gareus <robin@gareus.org>",
+  "checks": [
+    {
+      "command": "ping",
+      "duration_ms": 42.68246399988129,
+      "result": {
+        "success": true,
+        "data": {
+          "connected": true,
+          "engine_running": true,
+          "epoch": "1790981768-11621445136",
+          "session_open": true
+        },
+        "revision_before": "1790981768-11621445136:1",
+        "revision_after": "1790981768-11621445136:1",
+        "changed_objects": [],
+        "warnings": [],
+        "error": null
+      }
+    },
+    {
+      "command": "get_session_info",
+      "duration_ms": 102.64403399924049,
+      "result": {
+        "success": true,
+        "data": {
+          "name": "Ultra E2E",
+          "persistent_session_id": true,
+          "revision_scope": "route mixer, region and group properties; MIDI uses exact model guard; excludes plugin/automation/ports/tempo human edits",
+          "sample_rate": 48000,
+          "session_id": "fcb429c4-bf59-428a-b69a-d937d79b8cd9",
+          "snapshot": "Ultra E2E"
+        },
+        "revision_before": "1790981768-11621445136:1",
+        "revision_after": "1790981768-11621445136:1",
+        "changed_objects": [],
+        "warnings": [],
+        "error": null
+      }
+    },
+    {
+      "command": "convert_position",
+      "duration_ms": 92.83395400052541,
+      "result": {
+        "success": false,
+        "data": {},
+        "revision_before": null,
+        "revision_after": "1790981768-11621445136:1",
+        "changed_objects": [],
+        "warnings": [],
+        "error": {
+          "code": "INVALID_TIME_POSITION",
+          "message": "Position exceeds native superclock capacity at this sample rate.",
+          "action": "Refresh state and correct the request.",
+          "details": {}
+        }
+      }
+    },
+    {
+      "command": "create_track",
+      "duration_ms": 114.50716100080172,
+      "result": {
+        "success": true,
+        "data": {
+          "armed": false,
+          "channels": 2,
+          "gain_db": 0,
+          "id": "119",
+          "kind": "audio",
+          "mute": false,
+          "name": "Audio E2E",
+          "pan": 0,
+          "playlist_id": "182",
+          "solo": false
+        },
+        "revision_before": "1790981768-11621445136:1",
+        "revision_after": "1790981768-11621445136:2",
+        "changed_objects": [
+          {
+            "object_id": "119",
+            "property": "create_track",
+            "before": null,
+            "after": {
+              "armed": false,
+              "channels": 2,
+              "gain_db": 0,
+              "id": "119",
+              "kind": "audio",
+              "mute": false,
+              "name": "Audio E2E",
+              "pan": 0,
+              "playlist_id": "182",
+              "solo": false
+            }
+          }
+        ],
+        "warnings": [],
+        "error": null
+      }
+    },
+    {
+      "command": "get_track",
+      "duration_ms": 92.9726340000343,
+      "result": {
+        "success": false,
+        "data": {},
+        "revision_before": null,
+        "revision_after": "1790981768-11621445136:2",
+        "changed_objects": [],
+        "warnings": [],
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Native object IDs must be canonical unsigned 64-bit decimal strings.",
+          "action": "Refresh state and correct the request.",
+          "details": {}
+        }
+      }
+    },
+    {
+      "command": "set_track_gain",
+      "duration_ms": 102.47375700055272,
+      "result": {
+        "success": true,
+        "data": {
+          "after": -4.249999999999999,
+          "before": 0,
+          "object_id": "119",
+          "property": "gain_db",
+          "undoable": false,
+          "unit": "dB"
+        },
+        "revision_before": "1790981768-11621445136:2",
+        "revision_after": "1790981768-11621445136:3",
+        "changed_objects": [
+          {
+            "object_id": "119",
+            "property": "gain_db",
+            "before": 0,
+            "after": -4.249999999999999
+          }
+        ],
+        "warnings": [],
+        "error": null
+      }
+    },
+    {
+      "command": "set_track_pan",
+      "duration_ms": 102.75515200009977,
+      "result": {
+        "success": true,
+        "data": {
+          "after": -0.35,
+          "before": 0,
+          "object_id": "119",
+          "property": "pan",
+          "undoable": false,
+          "unit": "signed_normalized_azimuth"
+        },
+        "revision_before": "1790981768-11621445136:3",
+        "revision_after": "1790981768-11621445136:4",
+        "changed_objects": [
+          {
+            "object_id": "119",
+            "property": "pan",
+            "before": 0,
+            "after": -0.35
+          }
+        ],
+        "warnings": [],
+        "error": null
+      }
+    },
+    {
+      "command": "get_track",
+      "duration_ms": 102.72304499994789,
+      "result": {
+        "success": true,
+        "data": {
+          "armed": false,
+          "channels": 2,
+          "gain_db": -4.249999999999999,
+          "id": "119",
+          "kind": "audio",
+          "mute": false,
+          "name": "Audio E2E",
+          "pan": -0.35,
+          "playlist_id": "182",
+          "solo": false
+        },
+        "revision_before": "1790981768-11621445136:4",
+        "revision_after": "1790981768-11621445136:4",
+        "changed_objects": [],
+        "warnings": [],
+        "error": null
+      }
+    },
+    {
+      "command": "set_track_mute",
+      "duration_ms": 102.79966900088766,
+      "result": {
+        "success": true,
+        "data": {
+          "after": false,
+          "before": false,
+          "object_id": "119",
+          "property": "enabled",
+          "undoable": false,
+          "unit": "boolean"
+        },
+        "revision_before": "1790981768-11621445136:4",
+        "revision_after": "1790981768-11621445136:5",
+        "changed_objects": [
+          {
+            "object_id": "119",
+            "property": "enabled",
+            "before": false,
+            "after": false
+          }
+        ],
+        "warnings": [],
+        "error": null
+      }
+    },
+    {
+      "command": "set_monitoring",
+      "duration_ms": 103.30969400092727,
+      "result": {
+        "success": true,
+        "data": {
+          "mode": "input",
+          "undoable": false
+        },
+        "revision_before": "1790981768-11621445136:5",
+        "revision_after": "1790981768-11621445136:6",
+        "changed_objects": [
+          {
+            "object_id": "119",
+            "property": "set_monitoring",
+            "before": null,
+            "after": {
+              "mode": "input",
+              "undoable": false
+            }
+          }
+        ],
+        "warnings": [],
+        "error": null
+      }
+    },
+    {
+      "command": "arm_track",
+      "duration_ms": 92.513150000741,
+      "result": {
+        "success": true,
+        "data": {
+          "after": false,
+          "before": false,
+          "object_id": "119",
+          "property": "enabled",
+          "undoable": false,
+          "unit": "boolean"
+        },
+        "revision_before": "1790981768-11621445136:6",
+        "revision_after": "1790981768-11621445136:7",
+        "changed_objects": [
+          {
+            "object_id": "119",
+            "property": "enabled",
+            "before": false,
+            "after": false
+          }
+        ],
+        "warnings": [],
+        "error": null
+      }
+    },
+    {
+      "command": "list_tracks",
+      "duration_ms": 102.74444000060612,
+      "result": {
+        "success": true,
+        "data": {
+          "items": [
+            {
+              "armed": true,
+              "channels": 2,
+              "gain_db": -4.249999999999999,
+              "id": "119",
+              "kind": "audio",
+              "mute": true,
+              "name": "Audio E2E",
+              "pan": -0.35,
+              "playlist_id": "182",
+              "solo": false
+            },
+            {
+              "armed": false,
+              "channels": 2,
+              "gain_db": 0,
+              "id": "26",
+              "kind": "master",
+              "mute": false,
+              "name": "Master",
+              "pan": 0,
+              "playlist_id": null,
+              "solo": false
+            }
+          ],
+          "limit": 100,
+          "next_offset": null,
+          "offset": 0,
+          "total": 2
+        },
+        "revision_before": "1790981768-11621445136:7",
+        "revision_after": "1790981768-11621445136:7",
+        "changed_objects": [],
+        "warnings": [],
+        "error": null
+      }
+    },
+    {
+      "command": "create_group",
+      "duration_ms": 102.6966489989718,
+      "result": {
+        "success": true,
+        "data": {
+          "id": "189",
+          "name": "Drums E2E",
+          "properties": {
+            "active": true,
+            "color": true,
+            "gain": true,
+            "hidden": false,
+            "monitoring": true,
+            "mute": true,
+            "recenable": true,
+            "relative": true,
+            "select": true,
+            "solo": true
+          },
+          "track_ids": [],
+          "undoable": false
+        },
+        "revision_before": "1790981768-11621445136:7",
+        "revision_after": "1790981768-11621445136:8",
+        "changed_objects": [
+          {
+            "object_id": "189",
+            "property": "create_group",
+            "before": null,
+            "after": {
+              "id": "189",
+              "name": "Drums E2E",
+              "properties": {
+                "active": true,
+                "color": true,
+                "gain": true,
+                "hidden": false,
+                "monitoring": true,
+                "mute": true,
+                "recenable": true,
+                "relative": true,
+                "select": true,
+                "solo": true
+              },
+              "track_ids": [],
+              "undoable": false
+            }
+          }
+        ],
+        "warnings": [],
+        "error": null
+      }
+    },
+    {
+      "command": "add_track_to_group",
+      "duration_ms": 102.87231300026178,
+      "result": {
+        "success": true,
+        "data": {
+          "already_member": false,
+          "group_id": "189",
+          "track_id": "119",
+          "undoable": false
+        },
+        "revision_before": "1790981768-11621445136:8",
+        "revision_after": "1790981768-11621445136:9",
+        "changed_objects": [
+          {
+            "object_id": "119",
+            "property": "add_track_to_group",
+            "before": null,
+            "after": {
+              "already_member": false,
+              "group_id": "189",
+              "track_id": "119",
+              "undoable": false
+            }
+          }
+        ],
+        "warnings": [],
+        "error": null
+      }
+    },
+    {
+      "command": "set_group_properties",
+      "duration_ms": 102.78247799942619,
+      "result": {
+        "success": true,
+        "data": {
+          "after": {
+            "active": true,
+            "color": true,
+            "gain": false,
+            "hidden": false,
+            "monitoring": true,
+            "mute": true,
+            "recenable": true,
+            "relative": true,
+            "select": true,
+            "solo": false
+          },
+          "before": {
+            "active": true,
+            "color": true,
+            "gain": true,
+            "hidden": false,
+            "monitoring": true,
+            "mute": true,
+            "recenable": true,
+            "relative": true,
+            "select": true,
+            "solo": true
+          },
+          "object_id": "189",
+          "property": "group_properties",
+          "undoable": false
+        },
+        "revision_before": "1790981768-11621445136:9",
+        "revision_after": "1790981768-11621445136:10",
+        "changed_objects": [
+          {
+            "object_id": "189",
+            "property": "group_properties",
+            "before": {
+              "active": true,
+              "color": true,
+              "gain": true,
+              "hidden": false,
+              "monitoring": true,
+              "mute": true,
+              "recenable": true,
+              "relative": true,
+              "select": true,
+              "solo": true
+            },
+            "after": {
+              "active": true,
+              "color": true,
+              "gain": false,
+              "hidden": false,
+              "monitoring": true,
+              "mute": true,
+              "recenable": true,
+              "relative": true,
+              "select": true,
+              "solo": false
+            }
+          }
+        ],
+        "warnings": [],
+        "error": null
+      }
+    },
+    {
+      "command": "list_groups",
+      "duration_ms": 92.58959599901573,
+      "result": {
+        "success": true,
+        "data": {
+          "items": [
+            {
+              "id": "189",
+              "name": "Drums E2E",
+              "properties": {
+                "active": true,
+                "color": true,
+                "gain": false,
+                "hidden": false,
+                "monitoring": true,
+                "mute": true,
+                "recenable": true,
+                "relative": true,
+                "select": true,
+                "solo": false
+              },
+              "track_ids": [
+                "119"
+              ],
+              "undoable": false
+            }
+          ],
+          "limit": 100,
+          "next_offset": null,
+          "offset": 0,
+          "total": 1
+        },
+        "revision_before": "1790981768-11621445136:10",
+        "revision_after": "1790981768-11621445136:10",
+        "changed_objects": [],
+        "warnings": [],
+        "error": null
+      }
+    },
+    {
+      "command": "remove_track_from_group",
+      "duration_ms": 102.58660200088343,
+      "result": {
+        "success": true,
+        "data": {
+          "group_deleted": true,
+          "group_id": "189",
+          "removed_track_id": "119",
+          "undoable": false
+        },
+        "revision_before": "1790981768-11621445136:10",
+        "revision_after": "1790981768-11621445136:11",
+        "changed_objects": [
+          {
+            "object_id": "119",
+            "property": "remove_track_from_group",
+            "before": null,
+            "after": {
+              "group_deleted": true,
+              "group_id": "189",
+              "removed_track_id": "119",
+              "undoable": false
+            }
+          }
+        ],
+        "warnings": [],
+        "error": null
+      }
+    },
+    {
+      "command": "create_group",
+      "duration_ms": 102.62238699942827,
+      "result": {
+        "success": true,
+        "data": {
+          "id": "190",
+          "name": "Drums E2E",
+          "properties": {
+            "active": true,
+            "color": true,
+            "gain": true,
+            "hidden": false,
+            "monitoring": true,
+            "mute": true,
+            "recenable": true,
+            "relative": true,
+            "select": true,
+            "solo": true
+          },
+          "track_ids": [],
+          "undoable": false
+        },
+        "revision_before": "1790981768-11621445136:11",
+        "revision_after": "1790981768-11621445136:12",
+        "changed_objects": [
+          {
+            "object_id": "190",
+            "property": "create_group",
+            "before": null,
+            "after": {
+              "id": "190",
+              "name": "Drums E2E",
+              "properties": {
+                "active": true,
+                "color": true,
+                "gain": true,
+                "hidden": false,
+                "monitoring": true,
+                "mute": true,
+                "recenable": true,
+                "relative": true,
+                "select": true,
+                "solo": true
+              },
+              "track_ids": [],
+              "undoable": false
+            }
+          }
+        ],
+        "warnings": [],
+        "error": null
+      }
+    },
+    {
+      "command": "add_track_to_group",
+      "duration_ms": 102.85368999939237,
+      "result": {
+        "success": true,
+        "data": {
+          "already_member": false,
+          "group_id": "190",
+          "track_id": "119",
+          "undoable": false
+        },
+        "revision_before": "1790981768-11621445136:12",
+        "revision_after": "1790981768-11621445136:13",
+        "changed_objects": [
+          {
+            "object_id": "119",
+            "property": "add_track_to_group",
+            "before": null,
+            "after": {
+              "already_member": false,
+              "group_id": "190",
+              "track_id": "119",
+              "undoable": false
+            }
+          }
+        ],
+        "warnings": [],
+        "error": null
+      }
+    },
+    {
+      "command": "delete_group",
+      "duration_ms": 102.80032999980904,
+      "result": {
+        "success": true,
+        "data": {
+          "deleted_id": "190",
+          "preserved_track_ids": [
+            "119"
+          ],
+          "undoable": false
+        },
+        "revision_before": "1790981768-11621445136:13",
+        "revision_after": "1790981768-11621445136:14",
+        "changed_objects": [
+          {
+            "object_id": "session:1790981768-11621445136",
+            "property": "delete_group",
+            "before": null,
+            "after": {
+              "deleted_id": "190",
+              "preserved_track_ids": [
+                "119"
+              ],
+              "undoable": false
+            }
+          }
+        ],
+        "warnings": [],
+        "error": null
+      }
+    },
+    {
+      "command": "list_regions",
+      "duration_ms": 102.53424300026381,
+      "result": {
+        "success": true,
+        "data": {
+          "items": [],
+          "limit": 100,
+          "next_offset": null,
+          "offset": 0,
+          "total": 0
+        },
+        "revision_before": "1790981768-11621445136:14",
+        "revision_after": "1790981768-11621445136:14",
+        "changed_objects": [],
+        "warnings": [],
+        "error": null
+      }
+    },
+    {
+      "command": "get_transport",
+      "duration_ms": 93.49787599967385,
+      "result": {
+        "success": true,
+        "data": {
+          "actively_recording": false,
+          "engine_running": true,
+          "loop_enabled": false,
+          "record_enabled": false,
+          "samples": 0,
+          "speed": 0
+        },
+        "revision_before": "1790981768-11621445136:14",
+        "revision_after": "1790981768-11621445136:14",
+        "changed_objects": [],
+        "warnings": [],
+        "error": null
+      }
+    },
+    {
+      "command": "convert_position",
+      "duration_ms": 102.98622899972543,
+      "result": {
+        "success": true,
+        "data": {
+          "bbt": {
+            "bar": 3,
+            "beat": 1,
+            "tick": 0
+          },
+          "quarter_ticks": 15360,
+          "samples": 192000,
+          "seconds": 4,
+          "ticks_per_quarter": 1920
+        },
+        "revision_before": "1790981768-11621445136:14",
+        "revision_after": "1790981768-11621445136:14",
+        "changed_objects": [],
+        "warnings": [],
+        "error": null
+      }
+    },
+    {
+      "command": "set_tempo",
+      "duration_ms": 103.34852800042427,
+      "result": {
+        "success": true,
+        "data": {
+          "bpm": 60,
+          "position_samples": 96000,
+          "undoable": false
+        },
+        "revision_before": "1790981768-11621445136:14",
+        "revision_after": "1790981768-11621445136:15",
+        "changed_objects": [
+          {
+            "object_id": "session:1790981768-11621445136",
+            "property": "set_tempo",
+            "before": null,
+            "after": {
+              "bpm": 60,
+              "position_samples": 96000,
+              "undoable": false
+            }
+          }
+        ],
+        "warnings": [],
+        "error": null
+      }
+    },
+    {
+      "command": "convert_position",
+      "duration_ms": 102.71914800068771,
+      "result": {
+        "success": true,
+        "data": {
+          "bbt": {
+            "bar": 3,
+            "beat": 1,
+            "tick": 0
+          },
+          "quarter_ticks": 15360,
+          "samples": 288000,
+          "seconds": 6,
+          "ticks_per_quarter": 1920
+        },
+        "revision_before": "1790981768-11621445136:15",
+        "revision_after": "1790981768-11621445136:15",
+        "changed_objects": [],
+        "warnings": [],
+        "error": null
+      }
+    },
+    {
+      "command": "create_automation_points",
+      "duration_ms": 102.70204200060107,
+      "result": {
+        "success": true,
+        "data": {
+          "actual_point_count": 2,
+          "anchor_at_zero_added": false,
+          "point_count": 2,
+          "undoable": true,
+          "unit": "linear_gain"
+        },
+        "revision_before": "1790981768-11621445136:15",
+        "revision_after": "1790981768-11621445136:16",
+        "changed_objects": [
+          {
+            "object_id": "119",
+            "property": "create_automation_points",
+            "before": null,
+            "after": {
+              "actual_point_count": 2,
+              "anchor_at_zero_added": false,
+              "point_count": 2,
+              "undoable": true,
+              "unit": "linear_gain"
+            }
+          }
+        ],
+        "warnings": [],
+        "error": null
+      }
+    },
+    {
+      "command": "get_automation",
+      "duration_ms": 102.62339199834969,
+      "result": {
+        "success": true,
+        "data": {
+          "control_id": "0",
+          "maximum": 2,
+          "minimum": 0,
+          "mode": "0",
+          "points": [
+            {
+              "quarter_ticks": 0,
+              "samples": 0,
+              "value": 0.5
+            },
+            {
+              "quarter_ticks": 3840,
+              "samples": 48000,
+              "value": 0.75
+            }
+          ],
+          "unit": "linear_gain"
+        },
+        "revision_before": "1790981768-11621445136:16",
+        "revision_after": "1790981768-11621445136:16",
+        "changed_objects": [],
+        "warnings": [],
+        "error": null
+      }
+    },
+    {
+      "command": "set_automation_mode",
+      "duration_ms": 92.67286700014665,
+      "result": {
+        "success": true,
+        "data": {
+          "mode": "play",
+          "undoable": false,
+          "unit": "linear_gain"
+        },
+        "revision_before": "1790981768-11621445136:16",
+        "revision_after": "1790981768-11621445136:17",
+        "changed_objects": [
+          {
+            "object_id": "119",
+            "property": "set_automation_mode",
+            "before": null,
+            "after": {
+              "mode": "play",
+              "undoable": false,
+              "unit": "linear_gain"
+            }
+          }
+        ],
+        "warnings": [],
+        "error": null
+      }
+    },
+    {
+      "command": "list_available_plugins",
+      "duration_ms": 102.65515799983405,
+      "result": {
+        "success": true,
+        "data": {
+          "items": [
+            {
+              "category": "Amplifier",
+              "creator": "Ardour Community",
+              "format": "Lua",
+              "is_instrument": false,
+              "name": "ACE 5.1 to Stereo",
+              "plugin_id": "23112129b01e73e0636f77b53e229163a074e94f"
+            },
+            {
+              "category": "Amplifier",
+              "creator": "Ardour Community",
+              "format": "Lua",
+              "is_instrument": false,
+              "name": "ACE A/B Switch",
+              "plugin_id": "fc89940f813be5d34e3de48f2e7ad680bab2d253"
+            },
+            {
+              "category": "Amplifier",
+              "creator": "Ardour Community",
+              "format": "Lua",
+              "is_instrument": false,
+              "name": "ACE Amplifier",
+              "plugin_id": "442ff8f5ae3ab4609535735fe6d7f0bd1c1683a6"
+            },
+            {
+              "category": "Amplifier",
+              "creator": "Ardour Community",
+              "format": "Lua",
+              "is_instrument": false,
+              "name": "ACE Cross Fade",
+              "plugin_id": "9b97561b717626a2974b21e87d734322f67b1bce"
+            },
+            {
+              "category": "Instrument",
+              "creator": "Ardour Team",
+              "format": "Lua",
+              "is_instrument": true,
+              "name": "ACE DTMF Phone",
+              "plugin_id": "68af97cac6ea0c2d4a72d60e61e5db73448a7e17"
+            },
+            {
+              "category": "Filter",
+              "creator": "Ardour Community",
+              "format": "Lua",
+              "is_instrument": false,
+              "name": "ACE High/Low Pass Filter",
+              "plugin_id": "cbf2433c611d0849cbb198719a5ad05d2f69d24a"
+            },
+            {
+              "category": "Visualization",
+              "creator": "Ardour Community",
+              "format": "Lua",
+              "is_instrument": false,
+              "name": "ACE Inline Scope",
+              "plugin_id": "5c1eeebd2724a73665f1f58024aff5c5a301d9ff"
+            },
+            {
+              "category": "Visualization",
+              "creator": "Ardour Community",
+              "format": "Lua",
+              "is_instrument": false,
+              "name": "ACE Inline Spectrogram",
+              "plugin_id": "38871e8bc960088a4bc7ce908c4ed30ea45323ad"
+            },
+            {
+              "category": "Visualization",
+              "creator": "Ardour Community",
+              "format": "Lua",
+              "is_instrument": false,
+              "name": "ACE MIDI Monitor",
+              "plugin_id": "918f3b991b13912d151b8f9805d96c57a0212faa"
+            },
+            {
+              "category": "Utility",
+              "creator": "Ardour Community",
+              "format": "Lua",
+              "is_instrument": false,
+              "name": "ACE Mono to Stereo Pan",
+              "plugin_id": "822f2f73f5ed8524abe450fdeb8ff269c0e150f7"
+            },
+            {
+              "category": "Amplifier",
+              "creator": "Ardour Community",
+              "format": "Lua",
+              "is_instrument": false,
+              "name": "ACE Mute",
+              "plugin_id": "0da66ffecedfbc6021462f942e7a68f0d9a30d12"
+            },
+            {
+              "category": "Utility",
+              "creator": "Ardour Community",
+              "format": "Lua",
+              "is_instrument": false,
+              "name": "ACE Noise",
+              "plugin_id": "7e5c555bd5b0c5c75d981f735808ab984804ac06"
+            },
+            {
+              "category": "Filter",
+              "creator": "Ardour Community",
+              "format": "Lua",
+              "is_instrument": false,
+              "name": "ACE Notch Bank",
+              "plugin_id": "c615c51d87feda8dc481bcd10982efeb7da8f9a9"
+            },
+            {
+              "category": "Amplifier",
+              "creator": "Ardour Community",
+              "format": "Lua",
+              "is_instrument": false,
+              "name": "ACE Slow-Mute",
+              "plugin_id": "ec35dae66a8fc8c19eddfb089d4ab564c0855b0d"
+            },
+            {
+              "category": "Utility",
+              "creator": "Ardour Community",
+              "format": "Lua",
+              "is_instrument": false,
+              "name": "ACE Stereo Routing",
+              "plugin_id": "6c5c845948c08fe34be4bd205233a623b4ec7f15"
+            },
+            {
+              "category": "Effect",
+              "creator": "Albert Gr\u00e4f",
+              "format": "Lua",
+              "is_instrument": false,
+              "name": "Arpeggiator",
+              "plugin_id": "f4f28742ff8aa005f5223f2d0249c4126c0f515b"
+            },
+            {
+              "category": "Effect",
+              "creator": "Albert Gr\u00e4f",
+              "format": "Lua",
+              "is_instrument": false,
+              "name": "Arpeggiator (Barlow)",
+              "plugin_id": "f8a6d26a490f9597d6a5e6b78668306f74198899"
+            },
+            {
+              "category": "Effect",
+              "creator": "Albert Gr\u00e4f",
+              "format": "Lua",
+              "is_instrument": false,
+              "name": "Arpeggiator (Raptor)",
+              "plugin_id": "c488487e95183ecc1648e38d8a728ed3f67f7e6c"
+            },
+            {
+              "category": "Utility",
+              "creator": "Ardour Community",
+              "format": "Lua",
+              "is_instrument": false,
+              "name": "AVL Drumkit MIDI Map",
+              "plugin_id": "34706b856e02d68bac622f93c3feb6071ff73e6f"
+            },
+            {
+              "category": "Utility",
+              "creator": "Ardour Community",
+              "format": "Lua",
+              "is_instrument": false,
+              "name": "DM10-mkII-Studio HiHat",
+              "plugin_id": "7ce1ccef0369d8cc6880dacd3c5c21e1fef753c0"
+            },
+            {
+              "category": "Utility",
+              "creator": "Ardour Team",
+              "format": "Lua",
+              "is_instrument": false,
+              "name": "LTC Reader",
+              "plugin_id": "406510faacb92b9963e836f09b3ec922b3577ed2"
+            },
+            {
+              "category": "Unknown",
+              "creator": "Ardour Team",
+              "format": "Lua",
+              "is_instrument": false,
+              "name": "Lua IR Capture",
+              "plugin_id": "2aaf18017302bd1caa3d23ea5344817c93638961"
+            },
+            {
+              "category": "Utility",
+              "creator": "Alby Musaelian",
+              "format": "Lua",
+              "is_instrument": false,
+              "name": "MIDI Note Mapper",
+              "plugin_id": "cabf66b112983d6b44d1457fa5b3ec50028db226"
+            },
+            {
+              "category": "Instrument",
+              "creator": "Ardour Team",
+              "format": "Lua",
+              "is_instrument": true,
+              "name": "SinGen",
+              "plugin_id": "04635a3a6f37239829b4ffec79803e8a863d8e61"
+            },
+            {
+              "category": "Utility",
+              "creator": "Ardour Team",
+              "format": "Lua",
+              "is_instrument": false,
+              "name": "Voice/Level Activate",
+              "plugin_id": "53decebfa01655b30ab11bf986aa83a2a6c7ade2"
+            },
+            {
+              "category": "Plugin",
+              "creator": "Ardour Community",
+              "format": "LV2",
+              "is_instrument": false,
+              "name": "ACE Compressor",
+              "plugin_id": "urn:ardour:a-comp"
+            },
+            {
+              "category": "Plugin",
+              "creator": "Ardour Community",
+              "format": "LV2",
+              "is_instrument": false,
+              "name": "ACE Compressor (stereo)",
+              "plugin_id": "urn:ardour:a-comp#stereo"
+            },
+            {
+              "category": "Plugin",
+              "creator": "Ardour Community",
+              "format": "LV2",
+              "is_instrument": false,
+              "name": "ACE Delay",
+              "plugin_id": "urn:ardour:a-delay"
+            },
+            {
+              "category": "Plugin",
+              "creator": "Ardour Community",
+              "format": "LV2",
+              "is_instrument": false,
+              "name": "ACE EQ",
+              "plugin_id": "urn:ardour:a-eq"
+            },
+            {
+              "category": "Plugin",
+              "creator": "Ardour Community",
+              "format": "LV2",
+              "is_instrument": false,
+              "name": "ACE Expander",
+              "plugin_id": "urn:ardour:a-exp"
+            },
+            {
+              "category": "Plugin",
+              "creator": "Ardour Community",
+              "format": "LV2",
+              "is_instrument": false,
+              "name": "ACE Expander (stereo)",
+              "plugin_id": "urn:ardour:a-exp#stereo"
+            },
+            {
+              "category": "Plugin",
+              "creator": "Ardour Community",
+              "format": "LV2",
+              "is_instrument": true,
+              "name": "ACE Fluid Synth",
+              "plugin_id": "urn:ardour:a-fluidsynth"
+            },
+            {
+              "category": "Plugin",
+              "creator": "Ardour Community",
+              "format": "LV2",
+              "is_instrument": true,
+              "name": "ACE Reasonable Synth",
+              "plugin_id": "https://community.ardour.org/node/7596"
+            },
+            {
+              "category": "Plugin",
+              "creator": "Ardour Community",
+              "format": "LV2",
+              "is_instrument": false,
+              "name": "ACE Reverb",
+              "plugin_id": "urn:ardour:a-reverb"
+            }
+          ],
+          "limit": 1000,
+          "next_offset": null,
+          "offset": 0,
+          "total": 34
+        },
+        "revision_before": "1790981768-11621445136:17",
+        "revision_after": "1790981768-11621445136:17",
+        "changed_objects": [],
+        "warnings": [],
+        "error": null
+      }
+    },
+    {
+      "command": "add_plugin",
+      "duration_ms": 112.58714999894437,
+      "result": {
+        "success": true,
+        "data": {
+          "plugin_id": "urn:ardour:a-comp",
+          "processor_id": "195",
+          "undoable": false
+        },
+        "revision_before": "1790981768-11621445136:17",
+        "revision_after": "1790981768-11621445136:18",
+        "changed_objects": [
+          {
+            "object_id": "195",
+            "property": "add_plugin",
+            "before": null,
+            "after": {
+              "plugin_id": "urn:ardour:a-comp",
+              "processor_id": "195",
+              "undoable": false
+            }
+          }
+        ],
+        "warnings": [],
+        "error": null
+      }
+    },
+    {
+      "command": "get_plugin_parameters",
+      "duration_ms": 92.50316599900543,
+      "result": {
+        "success": true,
+        "data": {
+          "items": [
+            {
+              "automation_capable": true,
+              "default": 10,
+              "display_format": "",
+              "integer_step": false,
+              "logarithmic": false,
+              "maximum": 100,
+              "minimum": 0.10000000149011612,
+              "name": "Attack",
+              "normalized_value": null,
+              "parameter_id": "0",
+              "parameter_index": 0,
+              "unit": "plugin_native",
+              "value": 10
+            },
+            {
+              "automation_capable": true,
+              "default": 80,
+              "display_format": "",
+              "integer_step": false,
+              "logarithmic": false,
+              "maximum": 2000,
+              "minimum": 1,
+              "name": "Release",
+              "normalized_value": null,
+              "parameter_id": "1",
+              "parameter_index": 1,
+              "unit": "plugin_native",
+              "value": 80
+            },
+            {
+              "automation_capable": true,
+              "default": 0,
+              "display_format": "",
+              "integer_step": false,
+              "logarithmic": false,
+              "maximum": 8,
+              "minimum": 0,
+              "name": "Knee",
+              "normalized_value": null,
+              "parameter_id": "2",
+              "parameter_index": 2,
+              "unit": "plugin_native",
+              "value": 0
+            },
+            {
+              "automation_capable": true,
+              "default": 4,
+              "display_format": "%.3f  ",
+              "integer_step": false,
+              "logarithmic": true,
+              "maximum": 20,
+              "minimum": 1,
+              "name": "Ratio",
+              "normalized_value": null,
+              "parameter_id": "3",
+              "parameter_index": 3,
+              "unit": "plugin_native",
+              "value": 4
+            },
+            {
+              "automation_capable": true,
+              "default": 0,
+              "display_format": "",
+              "integer_step": false,
+              "logarithmic": false,
+              "maximum": 0,
+              "minimum": -60,
+              "name": "Threshold",
+              "normalized_value": null,
+              "parameter_id": "4",
+              "parameter_index": 4,
+              "unit": "plugin_native",
+              "value": 0
+            },
+            {
+              "automation_capable": true,
+              "default": 0,
+              "display_format": "",
+              "integer_step": false,
+              "logarithmic": false,
+              "maximum": 30,
+              "minimum": 0,
+              "name": "Makeup",
+              "normalized_value": null,
+              "parameter_id": "5",
+              "parameter_index": 5,
+              "unit": "plugin_native",
+              "value": 0
+            },
+            {
+              "automation_capable": false,
+              "default": 0,
+              "display_format": "%4.1f",
+              "integer_step": false,
+              "logarithmic": false,
+              "maximum": 45,
+              "minimum": 0,
+              "name": "Gain Reduction",
+              "normalized_value": null,
+              "parameter_id": "6",
+              "parameter_index": 6,
+              "unit": "plugin_native",
+              "value": 0
+            },
+            {
+              "automation_capable": false,
+              "default": -60,
+              "display_format": "%4.1f",
+              "integer_step": false,
+              "logarithmic": false,
+              "maximum": 10,
+              "minimum": -60,
+              "name": "Input Level",
+              "normalized_value": null,
+              "parameter_id": "7",
+              "parameter_index": 7,
+              "unit": "plugin_native",
+              "value": -160
+            },
+            {
+              "automation_capable": false,
+              "default": -60,
+              "display_format": "%4.1f",
+              "integer_step": false,
+              "logarithmic": false,
+              "maximum": 10,
+              "minimum": -60,
+              "name": "Output Level",
+              "normalized_value": null,
+              "parameter_id": "8",
+              "parameter_index": 8,
+              "unit": "plugin_native",
+              "value": -60
+            },
+            {
+              "automation_capable": true,
+              "default": 0,
+              "display_format": "",
+              "integer_step": true,
+              "logarithmic": false,
+              "maximum": 1,
+              "minimum": 0,
+              "name": "Sidechain",
+              "normalized_value": null,
+              "parameter_id": "9",
+              "parameter_index": 9,
+              "unit": "plugin_native",
+              "value": 0
+            },
+            {
+              "automation_capable": true,
+              "default": 1,
+              "display_format": "",
+              "integer_step": true,
+              "logarithmic": false,
+              "maximum": 1,
+              "minimum": 0,
+              "name": "Enable",
+              "normalized_value": null,
+              "parameter_id": "10",
+              "parameter_index": 10,
+              "unit": "plugin_native",
+              "value": 1
+            }
+          ],
+          "limit": 100,
+          "next_offset": null,
+          "offset": 0,
+          "total": 11
+        },
+        "revision_before": "1790981768-11621445136:18",
+        "revision_after": "1790981768-11621445136:18",
+        "changed_objects": [],
+        "warnings": [],
+        "error": null
+      }
+    },
+    {
+      "command": "set_plugin_parameters",
+      "duration_ms": 102.584513999318,
+      "result": {
+        "success": true,
+        "data": {
+          "parameters": [
+            {
+              "after": 10,
+              "before": 10,
+              "parameter_index": 0
+            }
+          ],
+          "processor_id": "195",
+          "undoable": false
+        },
+        "revision_before": "1790981768-11621445136:18",
+        "revision_after": "1790981768-11621445136:19",
+        "changed_objects": [
+          {
+            "object_id": "195",
+            "property": "set_plugin_parameters",
+            "before": null,
+            "after": {
+              "parameters": [
+                {
+                  "after": 10,
+                  "before": 10,
+                  "parameter_index": 0
+                }
+              ],
+              "processor_id": "195",
+              "undoable": false
+            }
+          }
+        ],
+        "warnings": [],
+        "error": null
+      }
+    },
+    {
+      "command": "list_plugin_presets",
+      "duration_ms": 102.41713299910771,
+      "result": {
+        "success": true,
+        "data": {
+          "items": [
+            {
+              "label": "PoppySnare",
+              "uri": "urn:ardour:a-comp#preset002",
+              "user": false
+            },
+            {
+              "label": "VocalLeveller",
+              "uri": "urn:ardour:a-comp#preset003",
+              "user": false
+            },
+            {
+              "label": "Zero",
+              "uri": "urn:ardour:a-comp#preset001",
+              "user": false
+            }
+          ]
+        },
+        "revision_before": "1790981768-11621445136:19",
+        "revision_after": "1790981768-11621445136:19",
+        "changed_objects": [],
+        "warnings": [],
+        "error": null
+      }
+    },
+    {
+      "command": "set_plugin_enabled",
+      "duration_ms": 102.74028399908275,
+      "result": {
+        "success": true,
+        "data": {
+          "after": false,
+          "before": true,
+          "object_id": "195",
+          "property": "enabled",
+          "undoable": false
+        },
+        "revision_before": "1790981768-11621445136:19",
+        "revision_after": "1790981768-11621445136:20",
+        "changed_objects": [
+          {
+            "object_id": "195",
+            "property": "enabled",
+            "before": true,
+            "after": false
+          }
+        ],
+        "warnings": [],
+        "error": null
+      }
+    },
+    {
+      "command": "list_ports",
+      "duration_ms": 102.84795199913788,
+      "result": {
+        "success": true,
+        "data": {
+          "items": [
+            {
+              "connections": [
+                "system:capture_1"
+              ],
+              "data_type": "audio",
+              "direction": "input",
+              "id": "Unit-Test:Audio E2E/audio_in 1",
+              "internal": true,
+              "name": "Unit-Test:Audio E2E/audio_in 1"
+            },
+            {
+              "connections": [
+                "system:capture_2"
+              ],
+              "data_type": "audio",
+              "direction": "input",
+              "id": "Unit-Test:Audio E2E/audio_in 2",
+              "internal": true,
+              "name": "Unit-Test:Audio E2E/audio_in 2"
+            },
+            {
+              "connections": [],
+              "data_type": "audio",
+              "direction": "input",
+              "id": "Unit-Test:LTC in",
+              "internal": true,
+              "name": "Unit-Test:LTC in"
+            },
+            {
+              "connections": [
+                "Unit-Test:Audio E2E/audio_out 1"
+              ],
+              "data_type": "audio",
+              "direction": "input",
+              "id": "Unit-Test:Master/audio_in 1",
+              "internal": true,
+              "name": "Unit-Test:Master/audio_in 1"
+            },
+            {
+              "connections": [
+                "Unit-Test:Audio E2E/audio_out 2"
+              ],
+              "data_type": "audio",
+              "direction": "input",
+              "id": "Unit-Test:Master/audio_in 2",
+              "internal": true,
+              "name": "Unit-Test:Master/audio_in 2"
+            },
+            {
+              "connections": [
+                "Unit-Test:Click/audio_out 1",
+                "Unit-Test:Master/audio_out 1",
+                "Unit-Test:auditioner/audio_out 1"
+              ],
+              "data_type": "audio",
+              "direction": "input",
+              "id": "system:playback_1",
+              "internal": false,
+              "name": "system:playback_1"
+            },
+            {
+              "connections": [
+                "Unit-Test:Click/audio_out 1",
+                "Unit-Test:Master/audio_out 2",
+                "Unit-Test:auditioner/audio_out 2"
+              ],
+              "data_type": "audio",
+              "direction": "input",
+              "id": "system:playback_2",
+              "internal": false,
+              "name": "system:playback_2"
+            },
+            {
+              "connections": [],
+              "data_type": "audio",
+              "direction": "input",
+              "id": "system:playback_3",
+              "internal": false,
+              "name": "system:playback_3"
+            },
+            {
+              "connections": [],
+              "data_type": "audio",
+              "direction": "input",
+              "id": "system:playback_4",
+              "internal": false,
+              "name": "system:playback_4"
+            },
+            {
+              "connections": [],
+              "data_type": "audio",
+              "direction": "input",
+              "id": "system:playback_5",
+              "internal": false,
+              "name": "system:playback_5"
+            },
+            {
+              "connections": [],
+              "data_type": "audio",
+              "direction": "input",
+              "id": "system:playback_6",
+              "internal": false,
+              "name": "system:playback_6"
+            },
+            {
+              "connections": [],
+              "data_type": "audio",
+              "direction": "input",
+              "id": "system:playback_7",
+              "internal": false,
+              "name": "system:playback_7"
+            },
+            {
+              "connections": [],
+              "data_type": "audio",
+              "direction": "input",
+              "id": "system:playback_8",
+              "internal": false,
+              "name": "system:playback_8"
+            },
+            {
+              "connections": [
+                "Unit-Test:Master/audio_in 1"
+              ],
+              "data_type": "audio",
+              "direction": "output",
+              "id": "Unit-Test:Audio E2E/audio_out 1",
+              "internal": true,
+              "name": "Unit-Test:Audio E2E/audio_out 1"
+            },
+            {
+              "connections": [
+                "Unit-Test:Master/audio_in 2"
+              ],
+              "data_type": "audio",
+              "direction": "output",
+              "id": "Unit-Test:Audio E2E/audio_out 2",
+              "internal": true,
+              "name": "Unit-Test:Audio E2E/audio_out 2"
+            },
+            {
+              "connections": [
+                "system:playback_1",
+                "system:playback_2"
+              ],
+              "data_type": "audio",
+              "direction": "output",
+              "id": "Unit-Test:Click/audio_out 1",
+              "internal": true,
+              "name": "Unit-Test:Click/audio_out 1"
+            },
+            {
+              "connections": [],
+              "data_type": "audio",
+              "direction": "output",
+              "id": "Unit-Test:LTC-Out",
+              "internal": true,
+              "name": "Unit-Test:LTC-Out"
+            },
+            {
+              "connections": [
+                "system:playback_1"
+              ],
+              "data_type": "audio",
+              "direction": "output",
+              "id": "Unit-Test:Master/audio_out 1",
+              "internal": true,
+              "name": "Unit-Test:Master/audio_out 1"
+            },
+            {
+              "connections": [
+                "system:playback_2"
+              ],
+              "data_type": "audio",
+              "direction": "output",
+              "id": "Unit-Test:Master/audio_out 2",
+              "internal": true,
+              "name": "Unit-Test:Master/audio_out 2"
+            },
+            {
+              "connections": [
+                "system:playback_1"
+              ],
+              "data_type": "audio",
+              "direction": "output",
+              "id": "Unit-Test:auditioner/audio_out 1",
+              "internal": true,
+              "name": "Unit-Test:auditioner/audio_out 1"
+            },
+            {
+              "connections": [
+                "system:playback_2"
+              ],
+              "data_type": "audio",
+              "direction": "output",
+              "id": "Unit-Test:auditioner/audio_out 2",
+              "internal": true,
+              "name": "Unit-Test:auditioner/audio_out 2"
+            },
+            {
+              "connections": [
+                "Unit-Test:Audio E2E/audio_in 1"
+              ],
+              "data_type": "audio",
+              "direction": "output",
+              "id": "system:capture_1",
+              "internal": false,
+              "name": "system:capture_1"
+            },
+            {
+              "connections": [
+                "Unit-Test:Audio E2E/audio_in 2"
+              ],
+              "data_type": "audio",
+              "direction": "output",
+              "id": "system:capture_2",
+              "internal": false,
+              "name": "system:capture_2"
+            },
+            {
+              "connections": [],
+              "data_type": "audio",
+              "direction": "output",
+              "id": "system:capture_3",
+              "internal": false,
+              "name": "system:capture_3"
+            },
+            {
+              "connections": [],
+              "data_type": "audio",
+              "direction": "output",
+              "id": "system:capture_4",
+              "internal": false,
+              "name": "system:capture_4"
+            },
+            {
+              "connections": [],
+              "data_type": "audio",
+              "direction": "output",
+              "id": "system:capture_5",
+              "internal": false,
+              "name": "system:capture_5"
+            },
+            {
+              "connections": [],
+              "data_type": "audio",
+              "direction": "output",
+              "id": "system:capture_6",
+              "internal": false,
+              "name": "system:capture_6"
+            },
+            {
+              "connections": [],
+              "data_type": "audio",
+              "direction": "output",
+              "id": "system:capture_7",
+              "internal": false,
+              "name": "system:capture_7"
+            },
+            {
+              "connections": [],
+              "data_type": "audio",
+              "direction": "output",
+              "id": "system:capture_8",
+              "internal": false,
+              "name": "system:capture_8"
+            },
+            {
+              "connections": [],
+              "data_type": "midi",
+              "direction": "input",
+              "id": "Unit-Test:Cue Control in",
+              "internal": true,
+              "name": "Unit-Test:Cue Control in"
+            },
+            {
+              "connections": [],
+              "data_type": "midi",
+              "direction": "input",
+              "id": "Unit-Test:MIDI Clock in",
+              "internal": true,
+              "name": "Unit-Test:MIDI Clock in"
+            },
+            {
+              "connections": [],
+              "data_type": "midi",
+              "direction": "input",
+              "id": "Unit-Test:MMC in",
+              "internal": true,
+              "name": "Unit-Test:MMC in"
+            },
+            {
+              "connections": [],
+              "data_type": "midi",
+              "direction": "input",
+              "id": "Unit-Test:MTC in",
+              "internal": true,
+              "name": "Unit-Test:MTC in"
+            },
+            {
+              "connections": [],
+              "data_type": "midi",
+              "direction": "input",
+              "id": "Unit-Test:Scene in",
+              "internal": true,
+              "name": "Unit-Test:Scene in"
+            },
+            {
+              "connections": [],
+              "data_type": "midi",
+              "direction": "output",
+              "id": "Unit-Test:MIDI Clock out",
+              "internal": true,
+              "name": "Unit-Test:MIDI Clock out"
+            },
+            {
+              "connections": [],
+              "data_type": "midi",
+              "direction": "output",
+              "id": "Unit-Test:MMC out",
+              "internal": true,
+              "name": "Unit-Test:MMC out"
+            },
+            {
+              "connections": [],
+              "data_type": "midi",
+              "direction": "output",
+              "id": "Unit-Test:MTC out",
+              "internal": true,
+              "name": "Unit-Test:MTC out"
+            },
+            {
+              "connections": [],
+              "data_type": "midi",
+              "direction": "output",
+              "id": "Unit-Test:Scene out",
+              "internal": true,
+              "name": "Unit-Test:Scene out"
+            },
+            {
+              "connections": [],
+              "data_type": "midi",
+              "direction": "output",
+              "id": "Unit-Test:x-virtual-keyboard",
+              "internal": true,
+              "name": "Unit-Test:x-virtual-keyboard"
+            }
+          ],
+          "limit": 100,
+          "next_offset": null,
+          "offset": 0,
+          "total": 39
+        },
+        "revision_before": "1790981768-11621445136:20",
+        "revision_after": "1790981768-11621445136:20",
+        "changed_objects": [],
+        "warnings": [],
+        "error": null
+      }
+    },
+    {
+      "command": "ensure_bus",
+      "duration_ms": 205.65294900006847,
+      "result": {
+        "success": true,
+        "data": {
+          "bus": {
+            "armed": false,
+            "channels": 2,
+            "gain_db": 0,
+            "id": "217",
+            "kind": "bus",
+            "mute": false,
+            "name": "Verb E2E",
+            "pan": 0,
+            "playlist_id": null,
+            "solo": false
+          },
+          "created": true,
+          "valid": true
+        },
+        "revision_before": "1790981768-11621445136:20",
+        "revision_after": "1790981768-11621445136:21",
+        "changed_objects": [
+          {
+            "object_id": "217",
+            "property": "create_track",
+            "before": null,
+            "after": {
+              "armed": false,
+              "channels": 2,
+              "gain_db": 0,
+              "id": "217",
+              "kind": "bus",
+              "mute": false,
+              "name": "Verb E2E",
+              "pan": 0,
+              "playlist_id": null,
+              "solo": false
+            }
+          }
+        ],
+        "warnings": [],
+        "error": null
+      }
+    },
+    {
+      "command": "ensure_bus",
+      "duration_ms": 96.19286099950841,
+      "result": {
+        "success": true,
+        "data": {
+          "bus": {
+            "armed": false,
+            "channels": 2,
+            "gain_db": 0,
+            "id": "217",
+            "kind": "bus",
+            "mute": false,
+            "name": "Verb E2E",
+            "pan": 0,
+            "playlist_id": null,
+            "solo": false
+          },
+          "created": false,
+          "valid": true
+        },
+        "revision_before": "1790981768-11621445136:21",
+        "revision_after": "1790981768-11621445136:21",
+        "changed_objects": [],
+        "warnings": [],
+        "error": null
+      }
+    },
+    {
+      "command": "create_send",
+      "duration_ms": 103.09805999895616,
+      "result": {
+        "success": true,
+        "data": {
+          "gain_db": -6,
+          "id": "257",
+          "name": "Verb E2E",
+          "target_id": "217",
+          "undoable": false
+        },
+        "revision_before": "1790981768-11621445136:21",
+        "revision_after": "1790981768-11621445136:22",
+        "changed_objects": [
+          {
+            "object_id": "257",
+            "property": "create_send",
+            "before": null,
+            "after": {
+              "gain_db": -6,
+              "id": "257",
+              "name": "Verb E2E",
+              "target_id": "217",
+              "undoable": false
+            }
+          }
+        ],
+        "warnings": [],
+        "error": null
+      }
+    },
+    {
+      "command": "list_sends",
+      "duration_ms": 102.76800700012245,
+      "result": {
+        "success": true,
+        "data": {
+          "items": [
+            {
+              "gain_db": -6.000000000000001,
+              "id": "257",
+              "name": "Verb E2E",
+              "target_id": "217"
+            }
+          ],
+          "limit": 100,
+          "next_offset": null,
+          "offset": 0,
+          "total": 1
+        },
+        "revision_before": "1790981768-11621445136:22",
+        "revision_after": "1790981768-11621445136:22",
+        "changed_objects": [],
+        "warnings": [],
+        "error": null
+      }
+    },
+    {
+      "command": "set_send_gain",
+      "duration_ms": 102.66231099922152,
+      "result": {
+        "success": true,
+        "data": {
+          "after": -4.25,
+          "before": -6.000000000000001,
+          "object_id": "257",
+          "property": "gain_db",
+          "undoable": false
+        },
+        "revision_before": "1790981768-11621445136:22",
+        "revision_after": "1790981768-11621445136:23",
+        "changed_objects": [
+          {
+            "object_id": "257",
+            "property": "gain_db",
+            "before": -6.000000000000001,
+            "after": -4.25
+          }
+        ],
+        "warnings": [],
+        "error": null
+      }
+    },
+    {
+      "command": "execute_batch",
+      "duration_ms": 94.2544169993198,
+      "result": {
+        "success": true,
+        "data": {
+          "operations": [
+            {
+              "after": -6.020599913279623,
+              "before": -6.020599913279623,
+              "object_id": "119",
+              "property": "gain_db",
+              "undoable": false,
+              "unit": "dB"
+            },
+            {
+              "after": 0.25,
+              "before": -0.35,
+              "object_id": "119",
+              "property": "pan",
+              "undoable": false,
+              "unit": "signed_normalized_azimuth"
+            }
+          ],
+          "transaction_model": "compensating controls; no grouped native undo",
+          "undoable": false
+        },
+        "revision_before": "1790981768-11621445136:23",
+        "revision_after": "1790981768-11621445136:24",
+        "changed_objects": [
+          {
+            "object_id": "session:1790981768-11621445136",
+            "property": "execute_batch",
+            "before": null,
+            "after": {
+              "operations": [
+                {
+                  "after": -6.020599913279623,
+                  "before": -6.020599913279623,
+                  "object_id": "119",
+                  "property": "gain_db",
+                  "undoable": false,
+                  "unit": "dB"
+                },
+                {
+                  "after": 0.25,
+                  "before": -0.35,
+                  "object_id": "119",
+                  "property": "pan",
+                  "undoable": false,
+                  "unit": "signed_normalized_azimuth"
+                }
+              ],
+              "transaction_model": "compensating controls; no grouped native undo",
+              "undoable": false
+            }
+          }
+        ],
+        "warnings": [],
+        "error": null
+      }
+    },
+    {
+      "command": "get_meter_state",
+      "duration_ms": 102.6464170008694,
+      "result": {
+        "success": true,
+        "data": {
+          "observed_at": 1790981773,
+          "peaks_dbfs": [
+            null,
+            null
+          ],
+          "track_id": "119",
+          "unit": "dBFS"
+        },
+        "revision_before": "1790981768-11621445136:24",
+        "revision_after": "1790981768-11621445136:24",
+        "changed_objects": [],
+        "warnings": [],
+        "error": null
+      }
+    },
+    {
+      "command": "create_snapshot",
+      "duration_ms": 103.21774400108552,
+      "result": {
+        "success": true,
+        "data": {
+          "saved": true,
+          "snapshot": "Verified E2E"
+        },
+        "revision_before": "1790981768-11621445136:24",
+        "revision_after": "1790981768-11621445136:25",
+        "changed_objects": [
+          {
+            "object_id": "session:1790981768-11621445136",
+            "property": "create_snapshot",
+            "before": null,
+            "after": {
+              "saved": true,
+              "snapshot": "Verified E2E"
+            }
+          }
+        ],
+        "warnings": [],
+        "error": null
+      }
+    },
+    {
+      "command": "save_session",
+      "duration_ms": 102.96054200080107,
+      "result": {
+        "success": true,
+        "data": {
+          "saved": true
+        },
+        "revision_before": "1790981768-11621445136:25",
+        "revision_after": "1790981768-11621445136:26",
+        "changed_objects": [
+          {
+            "object_id": "session:1790981768-11621445136",
+            "property": "save_session",
+            "before": null,
+            "after": {
+              "saved": true
+            }
+          }
+        ],
+        "warnings": [],
+        "error": null
+      }
+    },
+    {
+      "command": "remove_plugin",
+      "duration_ms": 102.62178999983007,
+      "result": {
+        "success": true,
+        "data": {
+          "deleted_id": "195",
+          "undoable": false
+        },
+        "revision_before": "1790981768-11621445136:26",
+        "revision_after": "1790981768-11621445136:27",
+        "changed_objects": [
+          {
+            "object_id": "195",
+            "property": "remove_plugin",
+            "before": null,
+            "after": {
+              "deleted_id": "195",
+              "undoable": false
+            }
+          }
+        ],
+        "warnings": [],
+        "error": null
+      }
+    },
+    {
+      "command": "remove_send",
+      "duration_ms": 104.16060200077482,
+      "result": {
+        "success": true,
+        "data": {
+          "deleted_id": "257",
+          "undoable": false
+        },
+        "revision_before": "1790981768-11621445136:27",
+        "revision_after": "1790981768-11621445136:28",
+        "changed_objects": [
+          {
+            "object_id": "119",
+            "property": "remove_send",
+            "before": null,
+            "after": {
+              "deleted_id": "257",
+              "undoable": false
+            }
+          }
+        ],
+        "warnings": [],
+        "error": null
+      }
+    },
+    {
+      "command": "delete_track",
+      "duration_ms": 102.80585800137487,
+      "result": {
+        "success": true,
+        "data": {
+          "deleted_id": "119",
+          "undoable": false
+        },
+        "revision_before": "1790981768-11621445136:28",
+        "revision_after": "1790981768-11621445136:29",
+        "changed_objects": [
+          {
+            "object_id": "119",
+            "property": "delete_track",
+            "before": null,
+            "after": {
+              "deleted_id": "119",
+              "undoable": false
+            }
+          }
+        ],
+        "warnings": [],
+        "error": null
+      }
+    }
+  ]
+}

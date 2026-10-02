@@ -1,0 +1,89 @@
+{
+  "date_utc": "2026-10-02",
+  "code_commit": "b677cbf71697c28833cf9931c3fd07d187234cd8",
+  "package": "0.1.0",
+  "release_status": "development; full production brief unmet",
+  "mcp_sdk": "2.3.0",
+  "mcp_specification": "2026-07-28",
+  "tools": 80,
+  "resources": 7,
+  "prompts": 1,
+  "pytest": {
+    "python_3_12_14": {
+      "passed": 112,
+      "seconds": 11.41
+    },
+    "python_3_14_8": {
+      "passed": 112,
+      "seconds": 8.24
+    }
+  },
+  "coverage": {
+    "covered_lines": 1547,
+    "num_statements": 1752,
+    "percent_covered": 84.44070647603027,
+    "percent_covered_display": "84",
+    "missing_lines": 205,
+    "excluded_lines": 14,
+    "percent_statements_covered": 88.29908675799086,
+    "percent_statements_covered_display": "88",
+    "num_branches": 626,
+    "num_partial_branches": 113,
+    "covered_branches": 461,
+    "missing_branches": 165,
+    "percent_branches_covered": 73.64217252396166,
+    "percent_branches_covered_display": "74"
+  },
+  "checks": {
+    "ruff_lint": "passed",
+    "ruff_format": "passed",
+    "mypy": "passed; 32 source modules",
+    "generated_reference": "passed",
+    "bandit_findings": 0,
+    "bandit_fixed_version_probe_suppressions": 2,
+    "dependency_known_vulnerabilities": 0,
+    "dependency_advisory_skip": "unpublished local ardour-ultra-mcp",
+    "isolated_build": "passed",
+    "wheel_lua_license_metadata": "passed",
+    "clean_wheel_checks": 7
+  },
+  "native": {
+    "ardour_8_12_common": {
+      "checks": 39,
+      "scope": "Linux x86_64 LuaSession / Dummy"
+    },
+    "ardour_9_8_common": {
+      "checks": 47,
+      "scope": "Linux x86_64 LuaSession / Dummy"
+    },
+    "ardour_9_8_editor": {
+      "checks": 74,
+      "scope": "Linux x86_64 real EditorHook / Xvfb / Dummy",
+      "mcp_stdio_checks": 8,
+      "gain_change_comparison": {
+        "master_gain_change_db": -12,
+        "measured_peak_change_db": -11.998194478761764,
+        "measured_integrated_lufs_change": -11.999929277505256,
+        "preset_id": "75969a1c-3133-4694-864b-a1fa50e43348"
+      }
+    }
+  },
+  "platforms": {
+    "linux": "tested subsets; hardware/ARM/other distributions unverified",
+    "macos": "native DAW and hosted CI unverified",
+    "windows": "native DAW, DACL and hosted CI unverified"
+  },
+  "hosted_ci": "configured; not executed",
+  "distribution_files": [
+    {
+      "path": "dist/ardour_ultra_mcp-0.1.0-py3-none-any.whl",
+      "sha256": "7c501a3f5ad8eca2d93bf50171426d48383d120a54f0a05d12584d75a89da45a",
+      "bytes": 82238
+    },
+    {
+      "path": "dist/ardour_ultra_mcp-0.1.0.tar.gz",
+      "sha256": "09bb3db51a91a13b4dc7da618302350fe2b1b900fe706e3c2b53c0f08027675a",
+      "bytes": 184346
+    }
+  ]
+}

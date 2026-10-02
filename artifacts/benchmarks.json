@@ -1,0 +1,47 @@
+{
+  "scope": "simulator only; includes complete-content revision digest and undo snapshots; not real DAW latency",
+  "python": "3.12.14",
+  "platform": "Linux-6.18.44-x86_64-with-glibc2.41",
+  "benchmarks": {
+    "simple_state_query": {
+      "iterations": 10,
+      "median_ms": 0.02462149950588355,
+      "max_ms": 0.051748000259976834
+    },
+    "single_parameter_change": {
+      "iterations": 10,
+      "median_ms": 0.11446249936852837,
+      "max_ms": 0.24593099988123868
+    },
+    "insert_100_midi_notes": {
+      "iterations": 1,
+      "median_ms": 2.5864320014079567,
+      "max_ms": 2.5864320014079567
+    },
+    "insert_10000_midi_notes": {
+      "iterations": 1,
+      "median_ms": 191.84534200030612,
+      "max_ms": 191.84534200030612
+    },
+    "create_10000_automation_points": {
+      "iterations": 1,
+      "median_ms": 203.35979300034523,
+      "max_ms": 203.35979300034523
+    },
+    "enumerate_102_tracks": {
+      "iterations": 3,
+      "median_ms": 14.357048999954714,
+      "max_ms": 20.215626998833613
+    },
+    "state_refresh_session": {
+      "iterations": 3,
+      "median_ms": 21.870734000913217,
+      "max_ms": 24.268613000458572
+    },
+    "plugin_parameter_enumeration": {
+      "iterations": 3,
+      "median_ms": 12.647100000322098,
+      "max_ms": 12.855422999564325
+    }
+  }
+}

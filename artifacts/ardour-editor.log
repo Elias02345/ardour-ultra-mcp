@@ -1,0 +1,64 @@
+Ardour9.8.0~ds (built using 9.8.0~ds-1 and GCC version 16.2.0)
+Copyright (C) 1999-2026 Paul Davis
+Some portions Copyright (C) Steve Harris, Ari Johnson, Brett Viren, Joel Baker, Robin Gareus
+
+Ardour comes with ABSOLUTELY NO WARRANTY
+not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+This is free software, and you are welcome to redistribute it 
+under certain conditions; see the source for copying conditions.
+Ardour: [INFO]: Your system is configured to limit Ardour to 16384 open files
+Ardour: [INFO]: Loading system configuration file /etc/ardour9/system_config
+Ardour: [INFO]: Loading user configuration file /tmp/ardour-ultra-editor-e2e-4g747m7z/xdg/ardour9/config
+Ardour: [INFO]: CPU vendor: AuthenticAMD
+Ardour: [INFO]: AVX capable processor
+Ardour: [INFO]: AVX with FMA capable processor
+Ardour: [INFO]: AVX512F capable processor
+Ardour: [INFO]: CPU brand: AMD EPYC 9V74 80-Core Processor                
+Ardour: [INFO]: Using AVX512F optimized routines
+Ardour: [INFO]: Set Clip Library directory to '/home/ultra/.local/share/sounds/clips'
+Ardour: [INFO]: Loading plugin meta data file /usr/share/ardour9/plugin_metadata/plugin_tags
+Ardour: [INFO]: add_lrdf_data '/tmp/ardour-ultra-editor-e2e-4g747m7z/xdg/ardour9/rdf:/usr/share/ardour9/rdf:/usr/local/share/ladspa/rdf:/usr/share/ladspa/rdf'
+Ardour: [INFO]: read rdf_file 'file:///usr/share/ladspa/rdf/ladspa.rdfs'
+Ardour: [INFO]: Loading default ui configuration file /etc/ardour9/default_ui_config
+Ardour: [INFO]: Loading 471 MIDI patches from /usr/share/ardour9/patchfiles
+Ardour: [INFO]: Loading color file /usr/share/ardour9/themes/dark-ardour.colors
+Ardour: [INFO]: Loading ui configuration file /etc/ardour9/clearlooks.rc
+
+(ardour-9.8.0~ds:2753): Gtk-WARNING **: 22:52:09.761: Unable to locate theme engine in module_path: "clearlooks",
+
+(ardour-9.8.0~ds:2753): Gtk-WARNING **: 22:52:09.761: Unable to locate theme engine in module_path: "clearlooks",
+
+(ardour-9.8.0~ds:2753): Gtk-WARNING **: 22:52:09.762: Unable to locate theme engine in module_path: "clearlooks",
+
+(ardour-9.8.0~ds:2753): Gtk-WARNING **: 22:52:09.762: Unable to locate theme engine in module_path: "clearlooks",
+Ardour: [INFO]: Loading bindings from /etc/ardour9/ardour.keys
+Loading ui configuration file /etc/ardour9/clearlooks.rc
+
+(ardour-9.8.0~ds:2753): Gtk-WARNING **: 22:52:09.776: Unable to locate theme engine in module_path: "clearlooks",
+
+(ardour-9.8.0~ds:2753): Gtk-WARNING **: 22:52:09.776: Unable to locate theme engine in module_path: "clearlooks",
+Ardour: [INFO]: Detecting Audio/MIDI Devices
+Ardour: [INFO]: Audio/MIDI Devices detection complete. Elapsed time: 9 ms
+Ardour: [INFO]: Scanning folders for bundled LV2s: /usr/lib/ardour9/LV2
+Set cursor set to default
+Ardour: [WARNING]: Video-monitor 'xjadeo' was not found. Please install http://xjadeo.sf.net/ (a custom path to xjadeo can be specified by setting the XJREMOTE environment variable. It should point to an application compatible with xjadeo's remote-control interface 'xjremote').
+
+see also http://manual.ardour.org/video-timeline/setup/
+
+Install the 'ardour-video-timeline' Debian package!
+
+Ardour: [INFO]: Loading menus from /etc/ardour9/ardour.menus
+Ardour: [INFO]: Cannot set I/O Priority for disk read/write thread
+Ardour: [INFO]: Created region 'fixture' for source 'fixture.wav'
+Ardour: [INFO]: OSC @ osc.udp://b47c51ab2e26:3819/
+Ardour: [WARNING]: Falling back to Reasonable Synth for Midi Audition
+Ardour: [INFO]: Loading user ui scripts file /tmp/ardour-ultra-editor-e2e-4g747m7z/xdg/ardour9/ui_scripts
+Ardour: [INFO]: Loading plugin order file /tmp/ardour-ultra-editor-e2e-4g747m7z/xdg/ardour9/plugin_metadata/plugin_order
+Ardour: [INFO]: Loading history from /tmp/ardour-ultra-editor-e2e-4g747m7z/session/Ultra Editor E2E.history
+Ardour: [INFO]: Ultra Editor E2E: no history file "/tmp/ardour-ultra-editor-e2e-4g747m7z/session/Ultra Editor E2E.history" for this session.
+Vamp::HostExt::PluginLoader: No library found in Vamp path for plugin "libardourvampplugins:ebur128"
+Vamp::HostExt::PluginLoader: No library found in Vamp path for plugin "libardourvampplugins:dBTP"
+Vamp::HostExt::PluginLoader: No library found in Vamp path for plugin "libardourvampplugins:dBTP"
+Vamp::HostExt::PluginLoader: No library found in Vamp path for plugin "libardourvampplugins:ebur128"
+Vamp::HostExt::PluginLoader: No library found in Vamp path for plugin "libardourvampplugins:dBTP"
+Vamp::HostExt::PluginLoader: No library found in Vamp path for plugin "libardourvampplugins:dBTP"

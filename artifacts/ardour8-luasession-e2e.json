@@ -1,0 +1,1859 @@
+{
+  "scope": "real Ardour LuaSession common/non_rt; no Editor GUI/OSC test; temporary Dummy engine session",
+  "executable_version": "ardour-lua version 8.12.0~ds\n\nCopyright (C) GPL 2015-2020 Robin Gareus <robin@gareus.org>",
+  "checks": [
+    {
+      "command": "ping",
+      "duration_ms": 20.932707000611117,
+      "result": {
+        "success": true,
+        "data": {
+          "connected": true,
+          "engine_running": true,
+          "epoch": "1790981526-11379235934",
+          "session_open": true
+        },
+        "revision_before": "1790981526-11379235934:1",
+        "revision_after": "1790981526-11379235934:1",
+        "changed_objects": [],
+        "warnings": [],
+        "error": null
+      }
+    },
+    {
+      "command": "get_session_info",
+      "duration_ms": 100.77090199956729,
+      "result": {
+        "success": true,
+        "data": {
+          "name": "Ultra E2E",
+          "persistent_session_id": false,
+          "revision_scope": "route mixer, region and group properties; MIDI uses exact model guard; excludes plugin/automation/ports/tempo human edits",
+          "sample_rate": 48000,
+          "session_id": "bridge-session:1790981526-11379235934:1",
+          "snapshot": "Ultra E2E"
+        },
+        "revision_before": "1790981526-11379235934:1",
+        "revision_after": "1790981526-11379235934:1",
+        "changed_objects": [],
+        "warnings": [],
+        "error": null
+      }
+    },
+    {
+      "command": "convert_position",
+      "duration_ms": 100.65922299872909,
+      "result": {
+        "success": false,
+        "data": {},
+        "revision_before": null,
+        "revision_after": "1790981526-11379235934:1",
+        "changed_objects": [],
+        "warnings": [],
+        "error": {
+          "code": "INVALID_TIME_POSITION",
+          "message": "Position exceeds native superclock capacity at this sample rate.",
+          "action": "Refresh state and correct the request.",
+          "details": {}
+        }
+      }
+    },
+    {
+      "command": "create_track",
+      "duration_ms": 155.34861000014644,
+      "result": {
+        "success": true,
+        "data": {
+          "armed": false,
+          "channels": 2,
+          "gain_db": 0,
+          "id": "121",
+          "kind": "audio",
+          "mute": false,
+          "name": "Audio E2E",
+          "pan": 0,
+          "playlist_id": "183",
+          "solo": false
+        },
+        "revision_before": "1790981526-11379235934:1",
+        "revision_after": "1790981526-11379235934:2",
+        "changed_objects": [
+          {
+            "object_id": "121",
+            "property": "create_track",
+            "before": null,
+            "after": {
+              "armed": false,
+              "channels": 2,
+              "gain_db": 0,
+              "id": "121",
+              "kind": "audio",
+              "mute": false,
+              "name": "Audio E2E",
+              "pan": 0,
+              "playlist_id": "183",
+              "solo": false
+            }
+          }
+        ],
+        "warnings": [],
+        "error": null
+      }
+    },
+    {
+      "command": "get_track",
+      "duration_ms": 103.41479199996684,
+      "result": {
+        "success": false,
+        "data": {},
+        "revision_before": null,
+        "revision_after": "1790981526-11379235934:2",
+        "changed_objects": [],
+        "warnings": [],
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Native object IDs must be canonical unsigned 64-bit decimal strings.",
+          "action": "Refresh state and correct the request.",
+          "details": {}
+        }
+      }
+    },
+    {
+      "command": "set_track_gain",
+      "duration_ms": 99.90857100092398,
+      "result": {
+        "success": true,
+        "data": {
+          "after": -4.249999999999999,
+          "before": 0,
+          "object_id": "121",
+          "property": "gain_db",
+          "undoable": false,
+          "unit": "dB"
+        },
+        "revision_before": "1790981526-11379235934:2",
+        "revision_after": "1790981526-11379235934:3",
+        "changed_objects": [
+          {
+            "object_id": "121",
+            "property": "gain_db",
+            "before": 0,
+            "after": -4.249999999999999
+          }
+        ],
+        "warnings": [],
+        "error": null
+      }
+    },
+    {
+      "command": "set_track_pan",
+      "duration_ms": 99.81417800008785,
+      "result": {
+        "success": true,
+        "data": {
+          "after": -0.35,
+          "before": 0,
+          "object_id": "121",
+          "property": "pan",
+          "undoable": false,
+          "unit": "signed_normalized_azimuth"
+        },
+        "revision_before": "1790981526-11379235934:3",
+        "revision_after": "1790981526-11379235934:4",
+        "changed_objects": [
+          {
+            "object_id": "121",
+            "property": "pan",
+            "before": 0,
+            "after": -0.35
+          }
+        ],
+        "warnings": [],
+        "error": null
+      }
+    },
+    {
+      "command": "get_track",
+      "duration_ms": 100.13045499908912,
+      "result": {
+        "success": true,
+        "data": {
+          "armed": false,
+          "channels": 2,
+          "gain_db": -4.249999999999999,
+          "id": "121",
+          "kind": "audio",
+          "mute": false,
+          "name": "Audio E2E",
+          "pan": -0.35,
+          "playlist_id": "183",
+          "solo": false
+        },
+        "revision_before": "1790981526-11379235934:4",
+        "revision_after": "1790981526-11379235934:4",
+        "changed_objects": [],
+        "warnings": [],
+        "error": null
+      }
+    },
+    {
+      "command": "set_track_mute",
+      "duration_ms": 99.72105800079589,
+      "result": {
+        "success": true,
+        "data": {
+          "after": false,
+          "before": false,
+          "object_id": "121",
+          "property": "enabled",
+          "undoable": false,
+          "unit": "boolean"
+        },
+        "revision_before": "1790981526-11379235934:4",
+        "revision_after": "1790981526-11379235934:5",
+        "changed_objects": [
+          {
+            "object_id": "121",
+            "property": "enabled",
+            "before": false,
+            "after": false
+          }
+        ],
+        "warnings": [],
+        "error": null
+      }
+    },
+    {
+      "command": "set_monitoring",
+      "duration_ms": 104.11812299935264,
+      "result": {
+        "success": true,
+        "data": {
+          "mode": "input",
+          "undoable": false
+        },
+        "revision_before": "1790981526-11379235934:5",
+        "revision_after": "1790981526-11379235934:6",
+        "changed_objects": [
+          {
+            "object_id": "121",
+            "property": "set_monitoring",
+            "before": null,
+            "after": {
+              "mode": "input",
+              "undoable": false
+            }
+          }
+        ],
+        "warnings": [],
+        "error": null
+      }
+    },
+    {
+      "command": "arm_track",
+      "duration_ms": 98.87061500012351,
+      "result": {
+        "success": true,
+        "data": {
+          "after": false,
+          "before": false,
+          "object_id": "121",
+          "property": "enabled",
+          "undoable": false,
+          "unit": "boolean"
+        },
+        "revision_before": "1790981526-11379235934:6",
+        "revision_after": "1790981526-11379235934:7",
+        "changed_objects": [
+          {
+            "object_id": "121",
+            "property": "enabled",
+            "before": false,
+            "after": false
+          }
+        ],
+        "warnings": [],
+        "error": null
+      }
+    },
+    {
+      "command": "list_tracks",
+      "duration_ms": 107.28947400093602,
+      "result": {
+        "success": true,
+        "data": {
+          "items": [
+            {
+              "armed": true,
+              "channels": 2,
+              "gain_db": -4.249999999999999,
+              "id": "121",
+              "kind": "audio",
+              "mute": true,
+              "name": "Audio E2E",
+              "pan": -0.35,
+              "playlist_id": "183",
+              "solo": false
+            },
+            {
+              "armed": false,
+              "channels": 2,
+              "gain_db": 0,
+              "id": "28",
+              "kind": "master",
+              "mute": false,
+              "name": "Master",
+              "pan": 0,
+              "playlist_id": null,
+              "solo": false
+            }
+          ],
+          "limit": 100,
+          "next_offset": null,
+          "offset": 0,
+          "total": 2
+        },
+        "revision_before": "1790981526-11379235934:7",
+        "revision_after": "1790981526-11379235934:7",
+        "changed_objects": [],
+        "warnings": [],
+        "error": null
+      }
+    },
+    {
+      "command": "list_regions",
+      "duration_ms": 99.99245000108203,
+      "result": {
+        "success": true,
+        "data": {
+          "items": [],
+          "limit": 100,
+          "next_offset": null,
+          "offset": 0,
+          "total": 0
+        },
+        "revision_before": "1790981526-11379235934:7",
+        "revision_after": "1790981526-11379235934:7",
+        "changed_objects": [],
+        "warnings": [],
+        "error": null
+      }
+    },
+    {
+      "command": "get_transport",
+      "duration_ms": 99.80777300006594,
+      "result": {
+        "success": true,
+        "data": {
+          "actively_recording": false,
+          "engine_running": true,
+          "loop_enabled": false,
+          "record_enabled": false,
+          "samples": 0,
+          "speed": 0
+        },
+        "revision_before": "1790981526-11379235934:7",
+        "revision_after": "1790981526-11379235934:7",
+        "changed_objects": [],
+        "warnings": [],
+        "error": null
+      }
+    },
+    {
+      "command": "convert_position",
+      "duration_ms": 100.10845199940377,
+      "result": {
+        "success": true,
+        "data": {
+          "bbt": {
+            "bar": 3,
+            "beat": 1,
+            "tick": 0
+          },
+          "quarter_ticks": 15360,
+          "samples": 192000,
+          "seconds": 4,
+          "ticks_per_quarter": 1920
+        },
+        "revision_before": "1790981526-11379235934:7",
+        "revision_after": "1790981526-11379235934:7",
+        "changed_objects": [],
+        "warnings": [],
+        "error": null
+      }
+    },
+    {
+      "command": "set_tempo",
+      "duration_ms": 102.50900000028196,
+      "result": {
+        "success": true,
+        "data": {
+          "bpm": 60,
+          "position_samples": 96000,
+          "undoable": false
+        },
+        "revision_before": "1790981526-11379235934:7",
+        "revision_after": "1790981526-11379235934:8",
+        "changed_objects": [
+          {
+            "object_id": "session:1790981526-11379235934",
+            "property": "set_tempo",
+            "before": null,
+            "after": {
+              "bpm": 60,
+              "position_samples": 96000,
+              "undoable": false
+            }
+          }
+        ],
+        "warnings": [],
+        "error": null
+      }
+    },
+    {
+      "command": "convert_position",
+      "duration_ms": 97.82956299932266,
+      "result": {
+        "success": true,
+        "data": {
+          "bbt": {
+            "bar": 3,
+            "beat": 1,
+            "tick": 0
+          },
+          "quarter_ticks": 15360,
+          "samples": 288000,
+          "seconds": 6,
+          "ticks_per_quarter": 1920
+        },
+        "revision_before": "1790981526-11379235934:8",
+        "revision_after": "1790981526-11379235934:8",
+        "changed_objects": [],
+        "warnings": [],
+        "error": null
+      }
+    },
+    {
+      "command": "create_automation_points",
+      "duration_ms": 99.52672500003246,
+      "result": {
+        "success": true,
+        "data": {
+          "actual_point_count": 2,
+          "anchor_at_zero_added": false,
+          "point_count": 2,
+          "undoable": true,
+          "unit": "linear_gain"
+        },
+        "revision_before": "1790981526-11379235934:8",
+        "revision_after": "1790981526-11379235934:9",
+        "changed_objects": [
+          {
+            "object_id": "121",
+            "property": "create_automation_points",
+            "before": null,
+            "after": {
+              "actual_point_count": 2,
+              "anchor_at_zero_added": false,
+              "point_count": 2,
+              "undoable": true,
+              "unit": "linear_gain"
+            }
+          }
+        ],
+        "warnings": [],
+        "error": null
+      }
+    },
+    {
+      "command": "get_automation",
+      "duration_ms": 101.97504900133936,
+      "result": {
+        "success": true,
+        "data": {
+          "control_id": "142",
+          "maximum": 2,
+          "minimum": 0,
+          "mode": "0",
+          "points": [
+            {
+              "quarter_ticks": 0,
+              "samples": 0,
+              "value": 0.5
+            },
+            {
+              "quarter_ticks": 3840,
+              "samples": 48000,
+              "value": 0.75
+            }
+          ],
+          "unit": "linear_gain"
+        },
+        "revision_before": "1790981526-11379235934:9",
+        "revision_after": "1790981526-11379235934:9",
+        "changed_objects": [],
+        "warnings": [],
+        "error": null
+      }
+    },
+    {
+      "command": "set_automation_mode",
+      "duration_ms": 103.71297100027732,
+      "result": {
+        "success": true,
+        "data": {
+          "mode": "play",
+          "undoable": false,
+          "unit": "linear_gain"
+        },
+        "revision_before": "1790981526-11379235934:9",
+        "revision_after": "1790981526-11379235934:10",
+        "changed_objects": [
+          {
+            "object_id": "121",
+            "property": "set_automation_mode",
+            "before": null,
+            "after": {
+              "mode": "play",
+              "undoable": false,
+              "unit": "linear_gain"
+            }
+          }
+        ],
+        "warnings": [],
+        "error": null
+      }
+    },
+    {
+      "command": "list_available_plugins",
+      "duration_ms": 104.51767699851189,
+      "result": {
+        "success": true,
+        "data": {
+          "items": [
+            {
+              "category": "Amplifier",
+              "creator": "Ardour Community",
+              "format": "Lua",
+              "is_instrument": false,
+              "name": "ACE 5.1 to Stereo",
+              "plugin_id": "23112129b01e73e0636f77b53e229163a074e94f"
+            },
+            {
+              "category": "Amplifier",
+              "creator": "Ardour Community",
+              "format": "Lua",
+              "is_instrument": false,
+              "name": "ACE A/B Switch",
+              "plugin_id": "fc89940f813be5d34e3de48f2e7ad680bab2d253"
+            },
+            {
+              "category": "Amplifier",
+              "creator": "Ardour Community",
+              "format": "Lua",
+              "is_instrument": false,
+              "name": "ACE Amplifier",
+              "plugin_id": "ab0881f761420ca67ad08856c7daf5c2b13a0d49"
+            },
+            {
+              "category": "Amplifier",
+              "creator": "Ardour Community",
+              "format": "Lua",
+              "is_instrument": false,
+              "name": "ACE Cross Fade",
+              "plugin_id": "9b97561b717626a2974b21e87d734322f67b1bce"
+            },
+            {
+              "category": "Instrument",
+              "creator": "Ardour Team",
+              "format": "Lua",
+              "is_instrument": true,
+              "name": "ACE DTMF Phone",
+              "plugin_id": "68af97cac6ea0c2d4a72d60e61e5db73448a7e17"
+            },
+            {
+              "category": "Filter",
+              "creator": "Ardour Community",
+              "format": "Lua",
+              "is_instrument": false,
+              "name": "ACE High/Low Pass Filter",
+              "plugin_id": "cbf2433c611d0849cbb198719a5ad05d2f69d24a"
+            },
+            {
+              "category": "Visualization",
+              "creator": "Ardour Community",
+              "format": "Lua",
+              "is_instrument": false,
+              "name": "ACE Inline Scope",
+              "plugin_id": "02f12d283ec0fb28ab6f6906141bcad1a5cb9693"
+            },
+            {
+              "category": "Visualization",
+              "creator": "Ardour Community",
+              "format": "Lua",
+              "is_instrument": false,
+              "name": "ACE Inline Spectrogram",
+              "plugin_id": "1fe3436765dee6b13eafede377de4589cfe12635"
+            },
+            {
+              "category": "Visualization",
+              "creator": "Ardour Community",
+              "format": "Lua",
+              "is_instrument": false,
+              "name": "ACE MIDI Monitor",
+              "plugin_id": "918f3b991b13912d151b8f9805d96c57a0212faa"
+            },
+            {
+              "category": "Amplifier",
+              "creator": "Ardour Community",
+              "format": "Lua",
+              "is_instrument": false,
+              "name": "ACE Mute",
+              "plugin_id": "e79181490b8f2b090c77e5005b4a42a3de2744cc"
+            },
+            {
+              "category": "Utility",
+              "creator": "Ardour Community",
+              "format": "Lua",
+              "is_instrument": false,
+              "name": "ACE Noise",
+              "plugin_id": "7e5c555bd5b0c5c75d981f735808ab984804ac06"
+            },
+            {
+              "category": "Filter",
+              "creator": "Ardour Community",
+              "format": "Lua",
+              "is_instrument": false,
+              "name": "ACE Notch Bank",
+              "plugin_id": "c615c51d87feda8dc481bcd10982efeb7da8f9a9"
+            },
+            {
+              "category": "Amplifier",
+              "creator": "Ardour Community",
+              "format": "Lua",
+              "is_instrument": false,
+              "name": "ACE Slow-Mute",
+              "plugin_id": "ec35dae66a8fc8c19eddfb089d4ab564c0855b0d"
+            },
+            {
+              "category": "Utility",
+              "creator": "Ardour Community",
+              "format": "Lua",
+              "is_instrument": false,
+              "name": "ACE Stereo Routing",
+              "plugin_id": "6c5c845948c08fe34be4bd205233a623b4ec7f15"
+            },
+            {
+              "category": "Effect",
+              "creator": "Albert Gr\u00e4f",
+              "format": "Lua",
+              "is_instrument": false,
+              "name": "Arpeggiator",
+              "plugin_id": "d4c8a70056e870a4a42ae26ee6f1c3220d53e14a"
+            },
+            {
+              "category": "Effect",
+              "creator": "Albert Gr\u00e4f",
+              "format": "Lua",
+              "is_instrument": false,
+              "name": "Arpeggiator (Barlow)",
+              "plugin_id": "8511b1f90fe66fa4154b376ca4da34516d0cbf0c"
+            },
+            {
+              "category": "Effect",
+              "creator": "Albert Gr\u00e4f",
+              "format": "Lua",
+              "is_instrument": false,
+              "name": "Arpeggiator (Raptor)",
+              "plugin_id": "2ad96422c1d19d564defa0dc903690171aae1ceb"
+            },
+            {
+              "category": "Utility",
+              "creator": "Ardour Community",
+              "format": "Lua",
+              "is_instrument": false,
+              "name": "AVL Drumkit MIDI Map",
+              "plugin_id": "34706b856e02d68bac622f93c3feb6071ff73e6f"
+            },
+            {
+              "category": "Utility",
+              "creator": "Ardour Community",
+              "format": "Lua",
+              "is_instrument": false,
+              "name": "DM10-mkII-Studio HiHat",
+              "plugin_id": "7ce1ccef0369d8cc6880dacd3c5c21e1fef753c0"
+            },
+            {
+              "category": "Utility",
+              "creator": "Ardour Team",
+              "format": "Lua",
+              "is_instrument": false,
+              "name": "LTC Reader",
+              "plugin_id": "406510faacb92b9963e836f09b3ec922b3577ed2"
+            },
+            {
+              "category": "Utility",
+              "creator": "Alby Musaelian",
+              "format": "Lua",
+              "is_instrument": false,
+              "name": "MIDI Note Mapper",
+              "plugin_id": "cabf66b112983d6b44d1457fa5b3ec50028db226"
+            },
+            {
+              "category": "Instrument",
+              "creator": "Ardour Team",
+              "format": "Lua",
+              "is_instrument": true,
+              "name": "SinGen",
+              "plugin_id": "82a36cb3eaca6be5d51c1c88b72937fb98165097"
+            },
+            {
+              "category": "Utility",
+              "creator": "Ardour Team",
+              "format": "Lua",
+              "is_instrument": false,
+              "name": "Voice/Level Activate",
+              "plugin_id": "9c522480ec342da102babdaa9ec7567f40891d6e"
+            },
+            {
+              "category": "Plugin",
+              "creator": "Ardour Community",
+              "format": "LV2",
+              "is_instrument": false,
+              "name": "ACE Compressor",
+              "plugin_id": "urn:ardour:a-comp"
+            },
+            {
+              "category": "Plugin",
+              "creator": "Ardour Community",
+              "format": "LV2",
+              "is_instrument": false,
+              "name": "ACE Compressor (stereo)",
+              "plugin_id": "urn:ardour:a-comp#stereo"
+            },
+            {
+              "category": "Plugin",
+              "creator": "Ardour Community",
+              "format": "LV2",
+              "is_instrument": false,
+              "name": "ACE Delay",
+              "plugin_id": "urn:ardour:a-delay"
+            },
+            {
+              "category": "Plugin",
+              "creator": "Ardour Community",
+              "format": "LV2",
+              "is_instrument": false,
+              "name": "ACE EQ",
+              "plugin_id": "urn:ardour:a-eq"
+            },
+            {
+              "category": "Plugin",
+              "creator": "Ardour Community",
+              "format": "LV2",
+              "is_instrument": false,
+              "name": "ACE Expander",
+              "plugin_id": "urn:ardour:a-exp"
+            },
+            {
+              "category": "Plugin",
+              "creator": "Ardour Community",
+              "format": "LV2",
+              "is_instrument": false,
+              "name": "ACE Expander (stereo)",
+              "plugin_id": "urn:ardour:a-exp#stereo"
+            },
+            {
+              "category": "Plugin",
+              "creator": "Ardour Community",
+              "format": "LV2",
+              "is_instrument": true,
+              "name": "ACE Fluid Synth",
+              "plugin_id": "urn:ardour:a-fluidsynth"
+            },
+            {
+              "category": "Plugin",
+              "creator": "Ardour Community",
+              "format": "LV2",
+              "is_instrument": true,
+              "name": "ACE Reasonable Synth",
+              "plugin_id": "https://community.ardour.org/node/7596"
+            },
+            {
+              "category": "Plugin",
+              "creator": "Ardour Community",
+              "format": "LV2",
+              "is_instrument": false,
+              "name": "ACE Reverb",
+              "plugin_id": "urn:ardour:a-reverb"
+            }
+          ],
+          "limit": 1000,
+          "next_offset": null,
+          "offset": 0,
+          "total": 32
+        },
+        "revision_before": "1790981526-11379235934:10",
+        "revision_after": "1790981526-11379235934:10",
+        "changed_objects": [],
+        "warnings": [],
+        "error": null
+      }
+    },
+    {
+      "command": "add_plugin",
+      "duration_ms": 100.44297600143182,
+      "result": {
+        "success": true,
+        "data": {
+          "plugin_id": "urn:ardour:a-comp",
+          "processor_id": "194",
+          "undoable": false
+        },
+        "revision_before": "1790981526-11379235934:10",
+        "revision_after": "1790981526-11379235934:11",
+        "changed_objects": [
+          {
+            "object_id": "194",
+            "property": "add_plugin",
+            "before": null,
+            "after": {
+              "plugin_id": "urn:ardour:a-comp",
+              "processor_id": "194",
+              "undoable": false
+            }
+          }
+        ],
+        "warnings": [],
+        "error": null
+      }
+    },
+    {
+      "command": "get_plugin_parameters",
+      "duration_ms": 101.2471000012738,
+      "result": {
+        "success": true,
+        "data": {
+          "items": [
+            {
+              "automation_capable": true,
+              "default": 10,
+              "display_format": "",
+              "integer_step": false,
+              "logarithmic": false,
+              "maximum": 100,
+              "minimum": 0.10000000149011612,
+              "name": "Attack",
+              "normalized_value": null,
+              "parameter_id": "0",
+              "parameter_index": 0,
+              "unit": "plugin_native",
+              "value": 10
+            },
+            {
+              "automation_capable": true,
+              "default": 80,
+              "display_format": "",
+              "integer_step": false,
+              "logarithmic": false,
+              "maximum": 2000,
+              "minimum": 1,
+              "name": "Release",
+              "normalized_value": null,
+              "parameter_id": "1",
+              "parameter_index": 1,
+              "unit": "plugin_native",
+              "value": 80
+            },
+            {
+              "automation_capable": true,
+              "default": 0,
+              "display_format": "",
+              "integer_step": false,
+              "logarithmic": false,
+              "maximum": 8,
+              "minimum": 0,
+              "name": "Knee",
+              "normalized_value": null,
+              "parameter_id": "2",
+              "parameter_index": 2,
+              "unit": "plugin_native",
+              "value": 0
+            },
+            {
+              "automation_capable": true,
+              "default": 4,
+              "display_format": "%.3f  ",
+              "integer_step": false,
+              "logarithmic": true,
+              "maximum": 20,
+              "minimum": 1,
+              "name": "Ratio",
+              "normalized_value": null,
+              "parameter_id": "3",
+              "parameter_index": 3,
+              "unit": "plugin_native",
+              "value": 4
+            },
+            {
+              "automation_capable": true,
+              "default": 0,
+              "display_format": "",
+              "integer_step": false,
+              "logarithmic": false,
+              "maximum": 0,
+              "minimum": -60,
+              "name": "Threshold",
+              "normalized_value": null,
+              "parameter_id": "4",
+              "parameter_index": 4,
+              "unit": "plugin_native",
+              "value": 0
+            },
+            {
+              "automation_capable": true,
+              "default": 0,
+              "display_format": "",
+              "integer_step": false,
+              "logarithmic": false,
+              "maximum": 30,
+              "minimum": 0,
+              "name": "Makeup",
+              "normalized_value": null,
+              "parameter_id": "5",
+              "parameter_index": 5,
+              "unit": "plugin_native",
+              "value": 0
+            },
+            {
+              "automation_capable": false,
+              "default": 0,
+              "display_format": "%4.1f",
+              "integer_step": false,
+              "logarithmic": false,
+              "maximum": 45,
+              "minimum": 0,
+              "name": "Gain Reduction",
+              "normalized_value": null,
+              "parameter_id": "6",
+              "parameter_index": 6,
+              "unit": "plugin_native",
+              "value": 0
+            },
+            {
+              "automation_capable": false,
+              "default": -60,
+              "display_format": "%4.1f",
+              "integer_step": false,
+              "logarithmic": false,
+              "maximum": 10,
+              "minimum": -60,
+              "name": "Input Level",
+              "normalized_value": null,
+              "parameter_id": "7",
+              "parameter_index": 7,
+              "unit": "plugin_native",
+              "value": -160
+            },
+            {
+              "automation_capable": false,
+              "default": -60,
+              "display_format": "%4.1f",
+              "integer_step": false,
+              "logarithmic": false,
+              "maximum": 10,
+              "minimum": -60,
+              "name": "Output Level",
+              "normalized_value": null,
+              "parameter_id": "8",
+              "parameter_index": 8,
+              "unit": "plugin_native",
+              "value": -60
+            },
+            {
+              "automation_capable": true,
+              "default": 0,
+              "display_format": "",
+              "integer_step": true,
+              "logarithmic": false,
+              "maximum": 1,
+              "minimum": 0,
+              "name": "Sidechain",
+              "normalized_value": null,
+              "parameter_id": "9",
+              "parameter_index": 9,
+              "unit": "plugin_native",
+              "value": 0
+            },
+            {
+              "automation_capable": true,
+              "default": 1,
+              "display_format": "",
+              "integer_step": true,
+              "logarithmic": false,
+              "maximum": 1,
+              "minimum": 0,
+              "name": "Enable",
+              "normalized_value": null,
+              "parameter_id": "10",
+              "parameter_index": 10,
+              "unit": "plugin_native",
+              "value": 1
+            }
+          ],
+          "limit": 100,
+          "next_offset": null,
+          "offset": 0,
+          "total": 11
+        },
+        "revision_before": "1790981526-11379235934:11",
+        "revision_after": "1790981526-11379235934:11",
+        "changed_objects": [],
+        "warnings": [],
+        "error": null
+      }
+    },
+    {
+      "command": "set_plugin_parameters",
+      "duration_ms": 102.47097599858535,
+      "result": {
+        "success": true,
+        "data": {
+          "parameters": [
+            {
+              "after": 10,
+              "before": 10,
+              "parameter_index": 0
+            }
+          ],
+          "processor_id": "194",
+          "undoable": false
+        },
+        "revision_before": "1790981526-11379235934:11",
+        "revision_after": "1790981526-11379235934:12",
+        "changed_objects": [
+          {
+            "object_id": "194",
+            "property": "set_plugin_parameters",
+            "before": null,
+            "after": {
+              "parameters": [
+                {
+                  "after": 10,
+                  "before": 10,
+                  "parameter_index": 0
+                }
+              ],
+              "processor_id": "194",
+              "undoable": false
+            }
+          }
+        ],
+        "warnings": [],
+        "error": null
+      }
+    },
+    {
+      "command": "list_plugin_presets",
+      "duration_ms": 105.48070000004373,
+      "result": {
+        "success": true,
+        "data": {
+          "items": [
+            {
+              "label": "PoppySnare",
+              "uri": "urn:ardour:a-comp#preset002",
+              "user": false
+            },
+            {
+              "label": "VocalLeveller",
+              "uri": "urn:ardour:a-comp#preset003",
+              "user": false
+            },
+            {
+              "label": "Zero",
+              "uri": "urn:ardour:a-comp#preset001",
+              "user": false
+            }
+          ]
+        },
+        "revision_before": "1790981526-11379235934:12",
+        "revision_after": "1790981526-11379235934:12",
+        "changed_objects": [],
+        "warnings": [],
+        "error": null
+      }
+    },
+    {
+      "command": "set_plugin_enabled",
+      "duration_ms": 94.47037099926092,
+      "result": {
+        "success": true,
+        "data": {
+          "after": false,
+          "before": true,
+          "object_id": "194",
+          "property": "enabled",
+          "undoable": false
+        },
+        "revision_before": "1790981526-11379235934:12",
+        "revision_after": "1790981526-11379235934:13",
+        "changed_objects": [
+          {
+            "object_id": "194",
+            "property": "enabled",
+            "before": true,
+            "after": false
+          }
+        ],
+        "warnings": [],
+        "error": null
+      }
+    },
+    {
+      "command": "list_ports",
+      "duration_ms": 102.87495600096008,
+      "result": {
+        "success": true,
+        "data": {
+          "items": [
+            {
+              "connections": [
+                "system:capture_1"
+              ],
+              "data_type": "audio",
+              "direction": "input",
+              "id": "Unit-Test:Audio E2E/audio_in 1",
+              "internal": true,
+              "name": "Unit-Test:Audio E2E/audio_in 1"
+            },
+            {
+              "connections": [
+                "system:capture_2"
+              ],
+              "data_type": "audio",
+              "direction": "input",
+              "id": "Unit-Test:Audio E2E/audio_in 2",
+              "internal": true,
+              "name": "Unit-Test:Audio E2E/audio_in 2"
+            },
+            {
+              "connections": [],
+              "data_type": "audio",
+              "direction": "input",
+              "id": "Unit-Test:LTC in",
+              "internal": true,
+              "name": "Unit-Test:LTC in"
+            },
+            {
+              "connections": [
+                "Unit-Test:Audio E2E/audio_out 1"
+              ],
+              "data_type": "audio",
+              "direction": "input",
+              "id": "Unit-Test:Master/audio_in 1",
+              "internal": true,
+              "name": "Unit-Test:Master/audio_in 1"
+            },
+            {
+              "connections": [
+                "Unit-Test:Audio E2E/audio_out 2"
+              ],
+              "data_type": "audio",
+              "direction": "input",
+              "id": "Unit-Test:Master/audio_in 2",
+              "internal": true,
+              "name": "Unit-Test:Master/audio_in 2"
+            },
+            {
+              "connections": [
+                "Unit-Test:Click/audio_out 1",
+                "Unit-Test:Master/audio_out 1",
+                "Unit-Test:auditioner/audio_out 1"
+              ],
+              "data_type": "audio",
+              "direction": "input",
+              "id": "system:playback_1",
+              "internal": false,
+              "name": "system:playback_1"
+            },
+            {
+              "connections": [
+                "Unit-Test:Click/audio_out 2",
+                "Unit-Test:Master/audio_out 2",
+                "Unit-Test:auditioner/audio_out 2"
+              ],
+              "data_type": "audio",
+              "direction": "input",
+              "id": "system:playback_2",
+              "internal": false,
+              "name": "system:playback_2"
+            },
+            {
+              "connections": [],
+              "data_type": "audio",
+              "direction": "input",
+              "id": "system:playback_3",
+              "internal": false,
+              "name": "system:playback_3"
+            },
+            {
+              "connections": [],
+              "data_type": "audio",
+              "direction": "input",
+              "id": "system:playback_4",
+              "internal": false,
+              "name": "system:playback_4"
+            },
+            {
+              "connections": [],
+              "data_type": "audio",
+              "direction": "input",
+              "id": "system:playback_5",
+              "internal": false,
+              "name": "system:playback_5"
+            },
+            {
+              "connections": [],
+              "data_type": "audio",
+              "direction": "input",
+              "id": "system:playback_6",
+              "internal": false,
+              "name": "system:playback_6"
+            },
+            {
+              "connections": [],
+              "data_type": "audio",
+              "direction": "input",
+              "id": "system:playback_7",
+              "internal": false,
+              "name": "system:playback_7"
+            },
+            {
+              "connections": [],
+              "data_type": "audio",
+              "direction": "input",
+              "id": "system:playback_8",
+              "internal": false,
+              "name": "system:playback_8"
+            },
+            {
+              "connections": [
+                "Unit-Test:Master/audio_in 1"
+              ],
+              "data_type": "audio",
+              "direction": "output",
+              "id": "Unit-Test:Audio E2E/audio_out 1",
+              "internal": true,
+              "name": "Unit-Test:Audio E2E/audio_out 1"
+            },
+            {
+              "connections": [
+                "Unit-Test:Master/audio_in 2"
+              ],
+              "data_type": "audio",
+              "direction": "output",
+              "id": "Unit-Test:Audio E2E/audio_out 2",
+              "internal": true,
+              "name": "Unit-Test:Audio E2E/audio_out 2"
+            },
+            {
+              "connections": [
+                "system:playback_1"
+              ],
+              "data_type": "audio",
+              "direction": "output",
+              "id": "Unit-Test:Click/audio_out 1",
+              "internal": true,
+              "name": "Unit-Test:Click/audio_out 1"
+            },
+            {
+              "connections": [
+                "system:playback_2"
+              ],
+              "data_type": "audio",
+              "direction": "output",
+              "id": "Unit-Test:Click/audio_out 2",
+              "internal": true,
+              "name": "Unit-Test:Click/audio_out 2"
+            },
+            {
+              "connections": [],
+              "data_type": "audio",
+              "direction": "output",
+              "id": "Unit-Test:LTC-Out",
+              "internal": true,
+              "name": "Unit-Test:LTC-Out"
+            },
+            {
+              "connections": [
+                "system:playback_1"
+              ],
+              "data_type": "audio",
+              "direction": "output",
+              "id": "Unit-Test:Master/audio_out 1",
+              "internal": true,
+              "name": "Unit-Test:Master/audio_out 1"
+            },
+            {
+              "connections": [
+                "system:playback_2"
+              ],
+              "data_type": "audio",
+              "direction": "output",
+              "id": "Unit-Test:Master/audio_out 2",
+              "internal": true,
+              "name": "Unit-Test:Master/audio_out 2"
+            },
+            {
+              "connections": [
+                "system:playback_1"
+              ],
+              "data_type": "audio",
+              "direction": "output",
+              "id": "Unit-Test:auditioner/audio_out 1",
+              "internal": true,
+              "name": "Unit-Test:auditioner/audio_out 1"
+            },
+            {
+              "connections": [
+                "system:playback_2"
+              ],
+              "data_type": "audio",
+              "direction": "output",
+              "id": "Unit-Test:auditioner/audio_out 2",
+              "internal": true,
+              "name": "Unit-Test:auditioner/audio_out 2"
+            },
+            {
+              "connections": [
+                "Unit-Test:Audio E2E/audio_in 1"
+              ],
+              "data_type": "audio",
+              "direction": "output",
+              "id": "system:capture_1",
+              "internal": false,
+              "name": "system:capture_1"
+            },
+            {
+              "connections": [
+                "Unit-Test:Audio E2E/audio_in 2"
+              ],
+              "data_type": "audio",
+              "direction": "output",
+              "id": "system:capture_2",
+              "internal": false,
+              "name": "system:capture_2"
+            },
+            {
+              "connections": [],
+              "data_type": "audio",
+              "direction": "output",
+              "id": "system:capture_3",
+              "internal": false,
+              "name": "system:capture_3"
+            },
+            {
+              "connections": [],
+              "data_type": "audio",
+              "direction": "output",
+              "id": "system:capture_4",
+              "internal": false,
+              "name": "system:capture_4"
+            },
+            {
+              "connections": [],
+              "data_type": "audio",
+              "direction": "output",
+              "id": "system:capture_5",
+              "internal": false,
+              "name": "system:capture_5"
+            },
+            {
+              "connections": [],
+              "data_type": "audio",
+              "direction": "output",
+              "id": "system:capture_6",
+              "internal": false,
+              "name": "system:capture_6"
+            },
+            {
+              "connections": [],
+              "data_type": "audio",
+              "direction": "output",
+              "id": "system:capture_7",
+              "internal": false,
+              "name": "system:capture_7"
+            },
+            {
+              "connections": [],
+              "data_type": "audio",
+              "direction": "output",
+              "id": "system:capture_8",
+              "internal": false,
+              "name": "system:capture_8"
+            },
+            {
+              "connections": [],
+              "data_type": "midi",
+              "direction": "input",
+              "id": "Unit-Test:Cue Control in",
+              "internal": true,
+              "name": "Unit-Test:Cue Control in"
+            },
+            {
+              "connections": [],
+              "data_type": "midi",
+              "direction": "input",
+              "id": "Unit-Test:MIDI Clock in",
+              "internal": true,
+              "name": "Unit-Test:MIDI Clock in"
+            },
+            {
+              "connections": [],
+              "data_type": "midi",
+              "direction": "input",
+              "id": "Unit-Test:MMC in",
+              "internal": true,
+              "name": "Unit-Test:MMC in"
+            },
+            {
+              "connections": [],
+              "data_type": "midi",
+              "direction": "input",
+              "id": "Unit-Test:MTC in",
+              "internal": true,
+              "name": "Unit-Test:MTC in"
+            },
+            {
+              "connections": [],
+              "data_type": "midi",
+              "direction": "input",
+              "id": "Unit-Test:Scene in",
+              "internal": true,
+              "name": "Unit-Test:Scene in"
+            },
+            {
+              "connections": [],
+              "data_type": "midi",
+              "direction": "output",
+              "id": "Unit-Test:MIDI Clock out",
+              "internal": true,
+              "name": "Unit-Test:MIDI Clock out"
+            },
+            {
+              "connections": [],
+              "data_type": "midi",
+              "direction": "output",
+              "id": "Unit-Test:MMC out",
+              "internal": true,
+              "name": "Unit-Test:MMC out"
+            },
+            {
+              "connections": [],
+              "data_type": "midi",
+              "direction": "output",
+              "id": "Unit-Test:MTC out",
+              "internal": true,
+              "name": "Unit-Test:MTC out"
+            },
+            {
+              "connections": [],
+              "data_type": "midi",
+              "direction": "output",
+              "id": "Unit-Test:Scene out",
+              "internal": true,
+              "name": "Unit-Test:Scene out"
+            },
+            {
+              "connections": [],
+              "data_type": "midi",
+              "direction": "output",
+              "id": "Unit-Test:x-virtual-keyboard",
+              "internal": true,
+              "name": "Unit-Test:x-virtual-keyboard"
+            }
+          ],
+          "limit": 100,
+          "next_offset": null,
+          "offset": 0,
+          "total": 40
+        },
+        "revision_before": "1790981526-11379235934:13",
+        "revision_after": "1790981526-11379235934:13",
+        "changed_objects": [],
+        "warnings": [],
+        "error": null
+      }
+    },
+    {
+      "command": "ensure_bus",
+      "duration_ms": 202.35875599973951,
+      "result": {
+        "success": true,
+        "data": {
+          "bus": {
+            "armed": false,
+            "channels": 2,
+            "gain_db": 0,
+            "id": "217",
+            "kind": "bus",
+            "mute": false,
+            "name": "Verb E2E",
+            "pan": 0,
+            "playlist_id": null,
+            "solo": false
+          },
+          "created": true,
+          "valid": true
+        },
+        "revision_before": "1790981526-11379235934:13",
+        "revision_after": "1790981526-11379235934:14",
+        "changed_objects": [
+          {
+            "object_id": "217",
+            "property": "create_track",
+            "before": null,
+            "after": {
+              "armed": false,
+              "channels": 2,
+              "gain_db": 0,
+              "id": "217",
+              "kind": "bus",
+              "mute": false,
+              "name": "Verb E2E",
+              "pan": 0,
+              "playlist_id": null,
+              "solo": false
+            }
+          }
+        ],
+        "warnings": [],
+        "error": null
+      }
+    },
+    {
+      "command": "ensure_bus",
+      "duration_ms": 100.14333300023281,
+      "result": {
+        "success": true,
+        "data": {
+          "bus": {
+            "armed": false,
+            "channels": 2,
+            "gain_db": 0,
+            "id": "217",
+            "kind": "bus",
+            "mute": false,
+            "name": "Verb E2E",
+            "pan": 0,
+            "playlist_id": null,
+            "solo": false
+          },
+          "created": false,
+          "valid": true
+        },
+        "revision_before": "1790981526-11379235934:14",
+        "revision_after": "1790981526-11379235934:14",
+        "changed_objects": [],
+        "warnings": [],
+        "error": null
+      }
+    },
+    {
+      "command": "create_send",
+      "duration_ms": 99.95059299944842,
+      "result": {
+        "success": true,
+        "data": {
+          "gain_db": -6,
+          "id": "256",
+          "name": "Verb E2E",
+          "target_id": "217",
+          "undoable": false
+        },
+        "revision_before": "1790981526-11379235934:14",
+        "revision_after": "1790981526-11379235934:15",
+        "changed_objects": [
+          {
+            "object_id": "256",
+            "property": "create_send",
+            "before": null,
+            "after": {
+              "gain_db": -6,
+              "id": "256",
+              "name": "Verb E2E",
+              "target_id": "217",
+              "undoable": false
+            }
+          }
+        ],
+        "warnings": [],
+        "error": null
+      }
+    },
+    {
+      "command": "list_sends",
+      "duration_ms": 102.7606139996351,
+      "result": {
+        "success": true,
+        "data": {
+          "items": [
+            {
+              "gain_db": -6.000000000000001,
+              "id": "256",
+              "name": "Verb E2E",
+              "target_id": "217"
+            }
+          ],
+          "limit": 100,
+          "next_offset": null,
+          "offset": 0,
+          "total": 1
+        },
+        "revision_before": "1790981526-11379235934:15",
+        "revision_after": "1790981526-11379235934:15",
+        "changed_objects": [],
+        "warnings": [],
+        "error": null
+      }
+    },
+    {
+      "command": "set_send_gain",
+      "duration_ms": 97.64833799999906,
+      "result": {
+        "success": true,
+        "data": {
+          "after": -4.25,
+          "before": -6.000000000000001,
+          "object_id": "256",
+          "property": "gain_db",
+          "undoable": false
+        },
+        "revision_before": "1790981526-11379235934:15",
+        "revision_after": "1790981526-11379235934:16",
+        "changed_objects": [
+          {
+            "object_id": "256",
+            "property": "gain_db",
+            "before": -6.000000000000001,
+            "after": -4.25
+          }
+        ],
+        "warnings": [],
+        "error": null
+      }
+    },
+    {
+      "command": "execute_batch",
+      "duration_ms": 109.74303200055147,
+      "result": {
+        "success": true,
+        "data": {
+          "operations": [
+            {
+              "after": -6.020599913279623,
+              "before": -6.020599913279623,
+              "object_id": "121",
+              "property": "gain_db",
+              "undoable": false,
+              "unit": "dB"
+            },
+            {
+              "after": 0.25,
+              "before": -0.35,
+              "object_id": "121",
+              "property": "pan",
+              "undoable": false,
+              "unit": "signed_normalized_azimuth"
+            }
+          ],
+          "transaction_model": "compensating controls; no grouped native undo",
+          "undoable": false
+        },
+        "revision_before": "1790981526-11379235934:16",
+        "revision_after": "1790981526-11379235934:17",
+        "changed_objects": [
+          {
+            "object_id": "session:1790981526-11379235934",
+            "property": "execute_batch",
+            "before": null,
+            "after": {
+              "operations": [
+                {
+                  "after": -6.020599913279623,
+                  "before": -6.020599913279623,
+                  "object_id": "121",
+                  "property": "gain_db",
+                  "undoable": false,
+                  "unit": "dB"
+                },
+                {
+                  "after": 0.25,
+                  "before": -0.35,
+                  "object_id": "121",
+                  "property": "pan",
+                  "undoable": false,
+                  "unit": "signed_normalized_azimuth"
+                }
+              ],
+              "transaction_model": "compensating controls; no grouped native undo",
+              "undoable": false
+            }
+          }
+        ],
+        "warnings": [],
+        "error": null
+      }
+    },
+    {
+      "command": "get_meter_state",
+      "duration_ms": 99.61831199871085,
+      "result": {
+        "success": true,
+        "data": {
+          "observed_at": 1790981530,
+          "peaks_dbfs": [
+            null,
+            null
+          ],
+          "track_id": "121",
+          "unit": "dBFS"
+        },
+        "revision_before": "1790981526-11379235934:17",
+        "revision_after": "1790981526-11379235934:17",
+        "changed_objects": [],
+        "warnings": [],
+        "error": null
+      }
+    },
+    {
+      "command": "create_snapshot",
+      "duration_ms": 100.85175300082483,
+      "result": {
+        "success": true,
+        "data": {
+          "saved": true,
+          "snapshot": "Verified E2E"
+        },
+        "revision_before": "1790981526-11379235934:17",
+        "revision_after": "1790981526-11379235934:18",
+        "changed_objects": [
+          {
+            "object_id": "session:1790981526-11379235934",
+            "property": "create_snapshot",
+            "before": null,
+            "after": {
+              "saved": true,
+              "snapshot": "Verified E2E"
+            }
+          }
+        ],
+        "warnings": [],
+        "error": null
+      }
+    },
+    {
+      "command": "save_session",
+      "duration_ms": 99.57159100122226,
+      "result": {
+        "success": true,
+        "data": {
+          "saved": true
+        },
+        "revision_before": "1790981526-11379235934:18",
+        "revision_after": "1790981526-11379235934:19",
+        "changed_objects": [
+          {
+            "object_id": "session:1790981526-11379235934",
+            "property": "save_session",
+            "before": null,
+            "after": {
+              "saved": true
+            }
+          }
+        ],
+        "warnings": [],
+        "error": null
+      }
+    },
+    {
+      "command": "remove_plugin",
+      "duration_ms": 100.0734770004783,
+      "result": {
+        "success": true,
+        "data": {
+          "deleted_id": "194",
+          "undoable": false
+        },
+        "revision_before": "1790981526-11379235934:19",
+        "revision_after": "1790981526-11379235934:20",
+        "changed_objects": [
+          {
+            "object_id": "194",
+            "property": "remove_plugin",
+            "before": null,
+            "after": {
+              "deleted_id": "194",
+              "undoable": false
+            }
+          }
+        ],
+        "warnings": [],
+        "error": null
+      }
+    },
+    {
+      "command": "remove_send",
+      "duration_ms": 100.02534600062063,
+      "result": {
+        "success": true,
+        "data": {
+          "deleted_id": "256",
+          "undoable": false
+        },
+        "revision_before": "1790981526-11379235934:20",
+        "revision_after": "1790981526-11379235934:21",
+        "changed_objects": [
+          {
+            "object_id": "121",
+            "property": "remove_send",
+            "before": null,
+            "after": {
+              "deleted_id": "256",
+              "undoable": false
+            }
+          }
+        ],
+        "warnings": [],
+        "error": null
+      }
+    },
+    {
+      "command": "delete_track",
+      "duration_ms": 99.64711400061788,
+      "result": {
+        "success": true,
+        "data": {
+          "deleted_id": "121",
+          "undoable": false
+        },
+        "revision_before": "1790981526-11379235934:21",
+        "revision_after": "1790981526-11379235934:22",
+        "changed_objects": [
+          {
+            "object_id": "121",
+            "property": "delete_track",
+            "before": null,
+            "after": {
+              "deleted_id": "121",
+              "undoable": false
+            }
+          }
+        ],
+        "warnings": [],
+        "error": null
+      }
+    }
+  ]
+}

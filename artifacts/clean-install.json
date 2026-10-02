@@ -1,0 +1,17 @@
+{
+  "package": "0.1.0",
+  "mcp": "2.3.0",
+  "python": "3.12.14",
+  "installed_module": "/workspace/research/ultra-final-clean/lib/python3.12/site-packages/ardour_ultra_mcp/__init__.py",
+  "checks": [
+    "CLI doctor",
+    "CLI capabilities",
+    "CLI status",
+    "CLI test-connection",
+    "packaged Lua template / Unicode and spaces installation",
+    "official Client auto STDIO discovery/dense MIDI and automation/mutation/readback/error/analysis",
+    "official Client legacy STDIO discovery/dense MIDI and automation/mutation/readback/error/analysis"
+  ],
+  "passed": 7,
+  "scope": "clean Linux wheel installation; fake backend and real offline audio analysis; not native Ardour"
+}
