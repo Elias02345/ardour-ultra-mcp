@@ -108,7 +108,7 @@ function factory(params)
   assert(config.protocol==1 and type(config.token)=='string' and #config.token==64)
   local epoch=tostring(os.time())..'-'..tostring(ARDOUR.LuaAPI.monotonic_time())
   local generation=0;local session_sequence=0;local last_signature=nil;local session_key=nil;local busy=false;local last_heartbeat=0
-  local snapshots={};local snapshot_sequence=0
+  local snapshots={};local snapshot_sequence=0;local snapshot_order={};local snapshot_bytes=0;local region_snapshots={}
   local handlers={};local mutations={};local destructive={};local compensable={}
   local function session()
     if not Session then fail("SESSION_NOT_OPEN","No session open.","Open an Ardour session.") end
@@ -117,7 +117,7 @@ function factory(params)
   local function route(v)
     session();local r=Session:route_by_id(PBD.ID(id(v)));if r:isnil() then fail("OBJECT_NOT_FOUND","Route ID not found.") end;return r
   end
-  local function present(v) return v and not v:isnil() end
+  local function present(v) return v and (not v.isnil or not v:isnil()) end
   local function oid(v) if v.to_stateful then return v:to_stateful():id():to_s() end;return v:id():to_s() end
   local function db(v) if v<=0 then return -193 end;return 20*math.log(v)/math.log(10) end
   local function gain(v) return 10^(number(v,-193,24,false)/20) end
@@ -127,7 +127,7 @@ function factory(params)
     local t=r:to_track();local p=r:pan_azimuth_control();local kind='bus'
     if r:is_master() then kind='master' elseif present(t) then kind=t:data_type():to_string() end
     local playlist=present(t) and t:playlist() or nil
-    return {id=oid(r),name=r:name(),kind=kind,gain_db=db(r:gain_control():get_value()),pan=present(p) and (2*p:get_value()-1) or NULL,mute=r:muted(),solo=r:soloed(),armed=present(t) and t:rec_enable_control():get_value()>0 or false,playlist_id=present(playlist) and oid(playlist) or NULL}
+    return {id=oid(r),name=r:name(),kind=kind,channels=r:n_outputs():n_audio(),gain_db=db(r:gain_control():get_value()),pan=present(p) and (2*p:get_value()-1) or NULL,mute=r:muted(),solo=r:soloed(),armed=present(t) and t:rec_enable_control():get_value()>0 or false,playlist_id=present(playlist) and oid(playlist) or NULL}
   end
   local function page(values,a)
     local offset=number(a.offset or 0,0,10000000,true);local limit=number(a.limit or 100,1,1000,true);local filtered=array();local pattern=a.name_filter or ''
@@ -139,8 +139,14 @@ function factory(params)
   local function pos(v)
     if type(v)~='table' then fail("INVALID_TIME_POSITION","Expected typed position.") end
     local tm=Temporal.TempoMap.read()
-    if v.unit=='samples' then return Temporal.timepos_t(number(v.samples,0,9007199254740991,true)) end
-    if v.unit=='seconds' then return Temporal.timepos_t(math.floor(number(v.seconds,0,1e10,false)*Session:nominal_sample_rate()+.5)) end
+    if v.unit=='samples' or v.unit=='seconds' then
+      local rate=Session:nominal_sample_rate()
+      -- PBD::int62 reserves bit 62 for time-domain; leave a rounding margin.
+      local maximum=math.min(9007199254740991,math.floor((2^62-4096)/Temporal.superclock_ticks_per_second()*rate))
+      local sample=v.unit=='samples' and number(v.samples,0,9007199254740991,true) or math.floor(number(v.seconds,0,1e10,false)*rate+.5)
+      if sample>maximum then fail('INVALID_TIME_POSITION','Position exceeds native superclock capacity at this sample rate.') end
+      return Temporal.timepos_t(sample)
+    end
     if v.unit=='quarter_ticks' then return Temporal.timepos_t.from_ticks(number(v.ticks,0,4123168604159,true)) end
     if v.unit=='bbt' then
       local bbt=Temporal.BBT_Argument(number(v.bar,1,1000000,true),number(v.beat,1,128,true),number(v.tick or 0,0,1919,true))
@@ -198,29 +204,44 @@ function factory(params)
   local function register(command,mutates,fn,delete,compensates)
     handlers[command]=fn;mutations[command]=mutates;destructive[command]=delete or false;compensable[command]=compensates or false
   end
+  local group_keys={'active','relative','hidden','gain','mute','solo','recenable','select','color','monitoring'}
+  local function group_state(g)
+    local members=array();for r in g:route_list():iter() do members[#members+1]=oid(r) end;table.sort(members)
+    local properties={};for _,key in ipairs(group_keys) do properties[key]=g['is_'..key](g) end
+    local gid=oid(g);if gid=='0' then fail('BACKEND_UNSUPPORTED','Group does not expose a reliable native ID.') end
+    return {id=gid,name=g:name(),track_ids=members,properties=properties,undoable=false}
+  end
+  local function group(gid)
+    id(gid);for g in Session:route_groups():iter() do if oid(g)==gid then return g end end
+    fail('OBJECT_NOT_FOUND','Route group ID not found.')
+  end
+  local function member_group(rid)
+    for g in Session:route_groups():iter() do for r in g:route_list():iter() do if oid(r)==rid then return oid(g) end end end
+  end
   -- Revision observes route mixer and region properties only. MIDI has exact model guards.
   local function observe()
-    local key=Session:path();if session_key~=key then generation=generation+1;session_sequence=session_sequence+1;last_signature=nil;session_key=key;snapshots={} end
+    local key=Session:path();if session_key~=key then generation=generation+1;session_sequence=session_sequence+1;last_signature=nil;session_key=key;snapshots={};snapshot_order={};snapshot_bytes=0;region_snapshots={} end
     local state=array()
     for r in Session:get_routes():iter() do
       local s=route_state(r);local t=r:to_track();s.regions=array()
       if present(t) then for reg in t:playlist():region_list():iter() do s.regions[#s.regions+1]=region_state(reg,t:playlist(),oid(r)) end end
       state[#state+1]=s
     end
+    for g in Session:route_groups():iter() do state[#state+1]=group_state(g) end
     local signature=encode(state)
     if last_signature and last_signature~=signature then generation=generation+1 end
     last_signature=signature
   end
-  register('ping',false,function(a,dry) return {connected=true,session_open=true,epoch=epoch} end)
+  register('ping',false,function(a,dry) return {connected=true,session_open=true,epoch=epoch,engine_running=Session.engine and Session:engine():running() or false} end)
   register('get_session_info',false,function(a,dry)
     local uuid=Session.uuid and Session:uuid() or nil
-    return {session_id=uuid or ('bridge-session:'..epoch..':'..session_sequence),persistent_session_id=uuid~=nil,name=Session:name(),sample_rate=Session:nominal_sample_rate(),snapshot=Session:snap_name(),revision_scope='route mixer and region properties; MIDI uses exact model guard; excludes plugin/automation/ports/tempo human edits'}
+    return {session_id=uuid or ('bridge-session:'..epoch..':'..session_sequence),persistent_session_id=uuid~=nil,name=Session:name(),sample_rate=Session:nominal_sample_rate(),snapshot=Session:snap_name(),revision_scope='route mixer, region and group properties; MIDI uses exact model guard; excludes plugin/automation/ports/tempo human edits'}
   end)
   register('list_tracks',false,function(a,dry) local values=array();for r in Session:get_routes():iter() do if not r:is_monitor() and not r:is_auditioner() then values[#values+1]=route_state(r) end end;return page(values,a) end)
   register('get_track',false,function(a,dry) return route_state(route(a.track_id)) end)
   local function empty_group() local ok,g=pcall(function() return ARDOUR.RouteGroup() end);if ok then return g end;return nil end
   register('create_track',true,function(a,dry)
-    name(a.name);number(a.channels,1,64,true);if a.kind~='audio' and a.kind~='midi' and a.kind~='bus' then fail("VALIDATION_ERROR","Unknown route kind.") end
+    name(a.name);number(a.channels,1,64,true);if a.kind~='audio' and a.kind~='midi' and a.kind~='bus' then fail("VALIDATION_ERROR","Unknown route kind.") end;if a.kind=='midi' and a.channels~=2 then fail('VALIDATION_ERROR','MIDI audio width is managed by Ardour/instrument; default channels=2 only.') end
     if dry then return {name=a.name,kind=a.kind} end
     local routes
     if a.kind=='audio' then routes=Session:new_audio_track(a.channels,a.channels,empty_group(),1,a.name,-1,ARDOUR.TrackMode.Normal,true,false)
@@ -230,6 +251,39 @@ function factory(params)
   end)
   register('delete_track',true,function(a,dry) local r=route(a.track_id);if singleton(r) then fail("PERMISSION_DENIED","Cannot delete singleton/master route.") end;if not dry then Session:remove_route(r) end;return {deleted_id=a.track_id,undoable=false} end,true)
   register('rename_track',true,function(a,dry) local r=route(a.track_id);name(a.name);local before=r:name();if not dry and not r:set_name(a.name) then fail("BACKEND_ERROR","Rename failed.") end;return {object_id=a.track_id,property='name',before=before,after=a.name,undoable=false} end,false,true)
+  register('list_groups',false,function(a,dry) local values=array();for g in Session:route_groups():iter() do values[#values+1]=group_state(g) end;return page(values,a) end)
+  register('create_group',true,function(a,dry)
+    if not Session.add_route_group then fail('BACKEND_UNSUPPORTED','Ardour build lacks add_route_group binding; verified in 9.8.') end
+    name(a.name);for g in Session:route_groups():iter() do if g:name()==a.name then fail('CONFLICT','Group name already exists.','Inspect list_groups and use its stable ID.') end end
+    if dry then return {name=a.name,undoable=false} end;local g=Session:new_route_group(a.name);Session:add_route_group(g);return group_state(g)
+  end)
+  register('delete_group',true,function(a,dry)
+    local g=group(a.group_id);local prior=group_state(g)
+    if g:empty() then fail('OPERATION_NOT_SUPPORTED','Ardour remove_route_group does not remove empty groups.','Add a normal route member first; deletion preserves member routes.') end
+    if not dry then Session:remove_route_group(g);for x in Session:route_groups():iter() do if oid(x)==a.group_id then fail('OUTCOME_UNCERTAIN','Group still exists after removal; inspect groups.') end end end
+    return {deleted_id=a.group_id,preserved_track_ids=prior.track_ids,undoable=false}
+  end,true)
+  register('add_track_to_group',true,function(a,dry)
+    local g=group(a.group_id);local r=route(a.track_id);if singleton(r) then fail('PERMISSION_DENIED','Singleton routes cannot join a group.') end
+    local prior=member_group(a.track_id);if prior and prior~=a.group_id then fail('CONFLICT','Route already belongs to another group.','Remove existing membership explicitly first.') end
+    if not dry and not prior and g:add(r)~=0 then fail('BACKEND_ERROR','Group membership addition failed.') end
+    return {group_id=a.group_id,track_id=a.track_id,already_member=prior==a.group_id,undoable=false}
+  end)
+  register('remove_track_from_group',true,function(a,dry)
+    local g=group(a.group_id);local r=route(a.track_id);if member_group(a.track_id)~=a.group_id then fail('OBJECT_NOT_FOUND','Route is not a member of this group.') end
+    if not dry and g:remove(r)~=0 then fail('BACKEND_ERROR','Group membership removal failed.') end
+    local remains=false;for x in Session:route_groups():iter() do if oid(x)==a.group_id then remains=true end end
+    return {group_id=a.group_id,removed_track_id=a.track_id,group_deleted=not remains,undoable=false}
+  end)
+  register('set_group_properties',true,function(a,dry)
+    local g=group(a.group_id);if type(a.properties)~='table' then fail('VALIDATION_ERROR','Expected explicit group properties.') end
+    local before=group_state(g).properties;local after={};for k,v in pairs(before) do after[k]=v end;local count=0
+    local allowed={};for _,k in ipairs(group_keys) do allowed[k]=true end
+    for k,v in pairs(a.properties) do if not allowed[k] then fail('VALIDATION_ERROR','Unknown group property.') end;if v~=NULL then bool(v);after[k]=v;count=count+1 end end
+    if count==0 then fail('VALIDATION_ERROR','At least one group property required.') end
+    if not dry then for k,v in pairs(a.properties) do if v~=NULL then if k=='active' or k=='relative' or k=='hidden' then g['set_'..k](g,v,nil) else g['set_'..k](g,v) end end end end
+    return {object_id=a.group_id,property='group_properties',before=before,after=after,undoable=false}
+  end)
   local function set_control(command, getter, key, validate, convert)
     register(command,true,function(a,dry)
       local r=route(a.track_id);local c=getter(r);if not present(c) then fail("OPERATION_NOT_SUPPORTED","Control not available on route.") end
@@ -252,7 +306,7 @@ function factory(params)
     local r=route(a.track_id);local modes={auto=ARDOUR.MonitorChoice.MonitorAuto,input=ARDOUR.MonitorChoice.MonitorInput,disk=ARDOUR.MonitorChoice.MonitorDisk};local v=modes[a.mode];if not v then fail("VALIDATION_ERROR","Unknown monitoring mode.") end
     local c=r:monitoring_control();if not present(c) then fail("OPERATION_NOT_SUPPORTED","No monitoring control.") end;if not dry then c:set_value(v,PBD.GroupControlDisposition.NoGroup) end;return {mode=a.mode,undoable=false}
   end)
-  register('get_transport',false,function(a,dry) return {samples=Session:transport_sample(),speed=Session:transport_speed(),record_enabled=Session:record_status()~=ARDOUR.Session.RecordState.Disabled,actively_recording=Session:actively_recording(),loop_enabled=Session:get_play_loop()} end)
+  register('get_transport',false,function(a,dry) return {engine_running=Session:engine():running(),samples=Session:transport_sample(),speed=Session:transport_speed(),record_enabled=Session:record_status()~=ARDOUR.Session.RecordState.Disabled,actively_recording=Session:actively_recording(),loop_enabled=Session:get_play_loop()} end)
   register('play',true,function(a,dry) if not dry then Session:request_roll(ARDOUR.TransportRequestSource.TRS_UI) end;return {requested='play',asynchronous=true} end)
   register('stop',true,function(a,dry) if not dry then Session:request_stop(false,false,ARDOUR.TransportRequestSource.TRS_UI) end;return {requested='stop',asynchronous=true} end)
   register('locate',true,function(a,dry) local p=pos(a.position);if not dry then Session:request_locate(p:samples(),false,ARDOUR.LocateTransportDisposition.MustStop,ARDOUR.TransportRequestSource.TRS_UI) end;return {requested_samples=p:samples(),asynchronous=true} end)
@@ -287,6 +341,19 @@ function factory(params)
     if not present(reg) then fail("BACKEND_ERROR","Ardour did not create region.") end;reg:set_name(a.name);return region_state(reg,t:playlist(),a.track_id)
   end)
   register('move_region',true,function(a,dry) local r,pl=region(a);if r:locked() then fail("PERMISSION_DENIED","Region locked.") end;local p=pos(a.position);local before=r:position():samples();if not dry then diff(r,'Ultra move region',function() r:set_position(p) end) end;return {object_id=a.region_id,property='position_samples',before=before,after=p:samples(),undoable=true} end)
+  register('copy_region',true,function(a,dry)
+    local r=region(a);if r:locked() then fail('PERMISSION_DENIED','Region locked.') end;name(a.name);local p=pos(a.position)
+    local dest=route(a.target_track_id):to_track();local midi=present(r:to_midiregion())
+    if not present(dest) or dest:data_type():to_string()~=(midi and 'midi' or 'audio') then fail('OPERATION_NOT_SUPPORTED','Destination must be a compatible track.') end
+    if dry then return {target_track_id=a.target_track_id,position_samples=p:samples(),independent_midi_source=midi,undoable=true} end
+    local pl=dest:playlist();local clone;local prior={};for x in pl:region_list():iter() do prior[oid(x)]=true end
+    diff(pl,'Ultra copy region',function() clone=ARDOUR.RegionFactory.clone_region(r,true,true);if not present(clone) then fail('BACKEND_ERROR','Ardour did not clone region.') end;clone:set_name(a.name);pl:add_region(clone,p,1,false) end)
+    -- Whole-file regions are cloned once more inside Playlist::add_region.
+    -- Resolve the actual inserted instance instead of returning a detached clone ID.
+    local added=0;for x in pl:region_list():iter() do if not prior[oid(x)] then clone=x;added=added+1 end end
+    if added~=1 then fail('OUTCOME_UNCERTAIN','Cannot identify one newly inserted region.','Inspect destination playlist before retrying.') end
+    local result=region_state(clone,pl,a.target_track_id);result.independent_midi_source=midi;result.shared_audio_source=not midi;result.undoable=true;return result
+  end)
   register('trim_region',true,function(a,dry)
     local r=region(a);if r:locked() then fail("PERMISSION_DENIED","Region locked.") end;local s,e=pos(a.start),pos(a['end']);local old=r:position():samples();local ending=old+r:length():samples()
     if s:samples()<old or e:samples()>ending or e:samples()<=s:samples() then fail("INVALID_TIME_POSITION","Trim bounds outside original region.") end
@@ -312,10 +379,19 @@ function factory(params)
     if not dry then ar:set_fade_in_length(a.fade_in_samples);ar:set_fade_out_length(a.fade_out_samples) end;return {region_id=a.region_id,fade_in_samples=a.fade_in_samples,fade_out_samples=a.fade_out_samples,undoable=false}
   end)
   register('list_midi_notes',false,function(a,dry)
-    local mm=note_model(a);local values=notes(mm);local signature=encode(values);snapshot_sequence=snapshot_sequence+1;local token=epoch..':notes:'..snapshot_sequence
-    snapshots[token]={signature=signature,region_id=a.region_id};snapshots[epoch..':notes:'..(snapshot_sequence-128)]=nil
+    local mm=note_model(a);local values=notes(mm);local signature=encode(values);local token=region_snapshots[a.region_id]
+    if not token or not snapshots[token] or snapshots[token].signature~=signature then
+      if #signature>16777216 then fail('BACKEND_UNSUPPORTED','MIDI model exceeds guarded-reference memory budget.') end
+      while #snapshot_order>=32 or snapshot_bytes+#signature>16777216 do
+        local old=table.remove(snapshot_order,1);local snap=snapshots[old]
+        if snap then snapshot_bytes=snapshot_bytes-#snap.signature;if region_snapshots[snap.region_id]==old then region_snapshots[snap.region_id]=nil end;snapshots[old]=nil end
+      end
+      snapshot_sequence=snapshot_sequence+1;token=epoch..':notes:'..snapshot_sequence
+      snapshots[token]={signature=signature,region_id=a.region_id};region_snapshots[a.region_id]=token
+      snapshot_order[#snapshot_order+1]=token;snapshot_bytes=snapshot_bytes+#signature
+    end
     for i,v in ipairs(values) do v.note_ref=token..':'..i end
-    local result=page(values,a);result.model_fingerprint=token;result.ticks_per_quarter=1920;result.scope='source-relative, including notes outside trimmed region';return result
+    local result=page(values,a);result.model_fingerprint=token;result.ticks_per_quarter=1920;result.scope='source-relative, including notes outside trimmed region';result.guard_cache={snapshots=#snapshot_order,signature_bytes=snapshot_bytes,max_snapshots=32,max_signature_bytes=16777216};return result
   end)
   register('insert_midi_notes',true,function(a,dry)
     local mm,r=note_model(a);if r:locked() then fail("PERMISSION_DENIED","Region locked.") end;list(a.notes,10000)
@@ -374,13 +450,14 @@ function factory(params)
     if not dry then
       local applied={}
       for _,c in ipairs(changes) do
+        applied[#applied+1]=c -- A failed setter may have changed its current target.
         local ok,success=pcall(ARDOUR.LuaAPI.set_processor_param,proc,c.parameter_index,c.after)
         if not ok or not success then
           local restored=true;for i=#applied,1,-1 do local x=applied[i];local good,rv=pcall(ARDOUR.LuaAPI.set_processor_param,proc,x.parameter_index,x.before);restored=restored and good and rv end
           if not restored then fail("OUTCOME_UNCERTAIN","Parameter rollback failed.","Inspect all affected plugin parameters.") end
           fail("BACKEND_ERROR","Parameter set failed; prior values restored.")
         end
-        applied[#applied+1]=c;local port=param(p,c.parameter_index);c.after=p:get_parameter(port)
+        local port=param(p,c.parameter_index);c.after=p:get_parameter(port)
       end
     end
     return {processor_id=a.processor_id,parameters=changes,undoable=false}
@@ -453,19 +530,31 @@ function factory(params)
     return {points=values,unit=unit,mode=c and tostring(c:automation_state()) or 'not_exposed',control_id=c and oid(c) or oid(al),minimum=pd.lower,maximum=pd.upper}
   end)
   local function automation_edit(a,dry,clear)
-    local al,pd,unit=automation(a);local points={};local seen={}
+    local al,pd,unit=automation(a);local points={};local seen={};local existing={};local added=0;local anchor=false
+    if al:in_write_pass() then fail('BUSY','Automation is actively being written.','Stop automation write before editing its curve.') end
+    if al:size()>10000 then fail('BACKEND_UNSUPPORTED','Automation exceeds editing safety limit.') end
+    if not clear and not a.replace then for ev in al:events():iter() do existing[ev.when:samples()]=true end end
     if not clear then
       if a.unit~=unit then fail("VALIDATION_ERROR","Automation unit mismatch.") end;list(a.points,10000)
       if a.replace and not a._confirm_delete and not dry then fail("VALIDATION_ERROR","Automation replacement requires confirm_delete.") end
       for _,p in ipairs(a.points) do local where=pos(p.position);number(p.value,pd.lower,pd.upper,pd.integer_step);local key=where:samples();if seen[key] then fail("VALIDATION_ERROR","Duplicate automation point position.") end;seen[key]=true;points[#points+1]={position=where,value=p.value} end
       table.sort(points,function(x,y) return x.position:samples()<y.position:samples() end)
+      for _,p in ipairs(points) do if not existing[p.position:samples()] then added=added+1 end end
+      local prior=a.replace and 0 or al:size();anchor=prior==0 and #points>0 and points[1].position:samples()>0
+      if prior+added+(anchor and 1 or 0)>10000 then fail('BACKEND_UNSUPPORTED','Resulting automation exceeds 10000-point inspection limit; includes native zero anchor.') end
       if a.interpolation~='linear' and a.interpolation~='discrete' then fail("VALIDATION_ERROR","Unsupported interpolation.") end
     end
     if not dry then
       local before=al:get_state();Session:begin_reversible_command('Ultra automation edit')
       local ok,err=pcall(function()
         if clear or a.replace then al:clear_list() end
-        if not clear then al:set_interpolation(a.interpolation=='linear' and Evoral.InterpolationStyle.Linear or Evoral.InterpolationStyle.Discrete);for _,p in ipairs(points) do al:add(p.position,p.value,false,true) end end
+        if not clear then
+          al:set_interpolation(a.interpolation=='linear' and Evoral.InterpolationStyle.Linear or Evoral.InterpolationStyle.Discrete)
+          for _,p in ipairs(points) do
+            if existing[p.position:samples()] then al:add(p.position,p.value,false,false)
+            elseif not al:editor_add(p.position,p.value,false) then error('Native automation insertion refused') end
+          end
+        end
       end)
       if not ok then
         local after=al:get_state();local cmd=al:memento_command(before,after);Session:add_command(cmd);Session:commit_reversible_command(nil)
@@ -474,7 +563,7 @@ function factory(params)
       end
       Session:add_command(al:memento_command(before,al:get_state()));Session:commit_reversible_command(nil)
     end
-    return {point_count=#points,unit=unit,undoable=true}
+    return {point_count=#points,actual_point_count=dry and ((clear and 0) or (a.replace and 0 or al:size())+added+(anchor and 1 or 0)) or al:size(),anchor_at_zero_added=anchor,unit=unit,undoable=true}
   end
   register('create_automation_points',true,function(a,dry) return automation_edit(a,dry,false) end)
   register('clear_automation',true,function(a,dry) return automation_edit(a,dry,true) end,true)
@@ -540,11 +629,12 @@ function factory(params)
     local values=array();for command,_ in pairs(handlers) do
       local available=Editor or (command~='create_midi_region' and command~='undo' and command~='redo')
       if command=='create_midi_region' and (not Editor or not ArdourUI or not ArdourUI.MidiTimeAxisView) then available=false end
+      if ({create_group=true,delete_group=true,add_track_to_group=true,remove_track_from_group=true,set_group_properties=true})[command] and not Session.add_route_group then available=false end
       if available then values[#values+1]=command end
     end;table.sort(values);return values
   end
   local function heartbeat()
-    write('heartbeat.json',{protocol=1,epoch=epoch,time=os.time(),commands=command_list(),session_open=Session~=nil,revision=revision(),revision_scope='observed route mixer and region properties only',busy=busy})
+    write('heartbeat.json',{protocol=1,epoch=epoch,time=os.time(),commands=command_list(),session_open=Session~=nil,revision=revision(),revision_scope='observed route mixer, region and group properties only',busy=busy})
   end
   -- Factory bytecode is the installed entrypoint. Everything needed is in this scope.
   return function(signal,ref,...)
@@ -585,6 +675,9 @@ function factory(params)
       result={success=false,data={},revision_after=revision(),changed_objects=array(),warnings=array(),error=err}
     end
     local reply={protocol=1,id=request and request.id or 'invalid',epoch=epoch,result=result}
+    -- A long successful edit must not leave the next call seeing its old pre-edit
+    -- heartbeat. Publish completion health before publishing the correlated reply.
+    busy=false;pcall(heartbeat);last_heartbeat=os.time()
     local written=pcall(write,'response.json',reply)
     if written then os.remove(root..'/processing.json');os.remove(root..'/request.json') end
     busy=false

@@ -100,6 +100,9 @@ class OSCBackend(asyncio.DatagramProtocol):
             path, values = decode(data)
         except (ValueError, UnicodeDecodeError, struct.error):
             return
+        if path not in self.feedback and len(self.feedback) >= 256:
+            oldest = min(self.feedback, key=lambda p: self.feedback[p][1])
+            del self.feedback[oldest]
         self.feedback[path] = values, time.time()
         pending = self.pending.get(path)
         if pending and not pending.done():
@@ -152,10 +155,14 @@ class OSCBackend(asyncio.DatagramProtocol):
                         "speed": speed[0],
                         "observed_at": time.time(),
                         "backend": "osc",
-                        "confirmed": True,
+                        "reply_received": True,
+                        "connected": True,
+                        "confirmed": False,
+                        "state_verified": False,
                     },
                     warnings=[
-                        "OSC replies are uncorrelated; late UDP replies cannot be distinguished. No stable object state."
+                        "OSC replies are uncorrelated; late UDP replies cannot be distinguished. No stable object state.",
+                        "Native 9.8 Dummy OSC readback diverged from Lua in integration; reported OSC values are experimental. Use Lua to verify transport.",
                     ],
                 )
             path = {"play": "/transport_play", "stop": "/transport_stop", "locate": "/locate"}[
@@ -199,6 +206,8 @@ class OSCBackend(asyncio.DatagramProtocol):
             "commands": [str(x) for x in sorted(self.commands)],
             "stable_object_ids": False,
             "mutation_acknowledgements": False,
+            "experimental_commands": ["get_transport", "play", "stop", "locate"],
+            "mutation_validation": "Submission only; native 9.8 Dummy locate probe did not move transport with either Python or liblo sender. Use Lua for deterministic transport.",
             "listener": "loopback",
             "ardour_listener_warning": "Ardour's own OSC listener may bind all interfaces; firewall it or use Lua only.",
         }

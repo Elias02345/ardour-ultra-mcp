@@ -140,6 +140,14 @@ class MailboxBackend:
                         "A prior published request has not been reconciled.",
                         "Inspect/recover the mailbox; never retry a mutation without refreshing Ardour state.",
                     )
+                commands = heart.get("commands")
+                if not isinstance(commands, list) or command not in commands:
+                    raise DomainError(
+                        ErrorCode.BACKEND_UNSUPPORTED,
+                        "Running bridge does not advertise this command.",
+                        "Inspect get_capabilities; check Ardour bindings and reload an updated hook.",
+                        command=command,
+                    )
                 response = self.directory / "response.json"
                 response.unlink(missing_ok=True)  # late response cannot match new request ID
                 request_id = secrets.token_hex(16)
@@ -198,7 +206,7 @@ class MailboxBackend:
             "backend": self.name,
             "commands": features,
             "unsupported": UNSUPPORTED,
-            "revision_scope": "observed route mixer and region properties; MIDI guards exact model; excludes human plugin/automation/ports/tempo edits",
+            "revision_scope": "observed route mixer, region and group properties; MIDI guards exact model; excludes human plugin/automation/ports/tempo edits",
             "experimental_commands": ["render_range"],
             "native_undo": ["midi_diffs", "region_diffs", "automation_points"],
             "heartbeat": heart,

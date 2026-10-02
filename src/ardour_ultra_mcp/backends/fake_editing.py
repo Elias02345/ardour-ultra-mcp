@@ -60,6 +60,27 @@ def edit_command(
         if command == "move_region":
             r["position_samples"] = b.timeline.position(a["position"])
             return {"region_id": r["id"], "position_samples": r["position_samples"]}
+        if command == "copy_region":
+            dest = b.track({"track_id": a["target_track_id"]})
+            if dest["kind"] != r["kind"]:
+                raise DomainError(
+                    ErrorCode.OPERATION_NOT_SUPPORTED, "Destination must be a compatible track."
+                )
+            clone = copy.deepcopy(r)
+            clone.update(
+                id=b.new_id("region"),
+                name=a["name"],
+                track_id=dest["id"],
+                playlist_id=dest["playlist_id"],
+                position_samples=b.timeline.position(a["position"]),
+            )
+            dest["regions"][clone["id"]] = clone
+            return {
+                **{k: v for k, v in clone.items() if k != "notes"},
+                "independent_midi_source": r["kind"] == "midi",
+                "shared_audio_source": r["kind"] == "audio",
+                "undoable": True,
+            }
         if command == "trim_region":
             start, end = b.timeline.position(a["start"]), b.timeline.position(a["end"])
             old_start = r["position_samples"]
@@ -216,6 +237,17 @@ def edit_command(
                 raise DomainError(ErrorCode.VALIDATION_ERROR, "Duplicate point positions.")
             merged = {p["samples"]: p for p in ([] if a["replace"] else current["points"])}
             merged.update({p["samples"]: p for p in points})
+            anchor = not current["points"] or a["replace"]
+            if anchor and points and min(p["samples"] for p in points) > 0:
+                first = min(points, key=lambda p: p["samples"])
+                merged[0] = {"samples": 0, "value": first["value"]}
+                current["anchor_at_zero_added"] = True
+            else:
+                current["anchor_at_zero_added"] = False
+            if len(merged) > 10000:
+                raise DomainError(
+                    ErrorCode.BACKEND_UNSUPPORTED, "Resulting automation exceeds 10000-point limit."
+                )
             current["points"] = [merged[k] for k in sorted(merged)]
             current["interpolation"] = a["interpolation"]
         t["automation"][target] = current

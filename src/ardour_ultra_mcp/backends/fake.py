@@ -14,6 +14,7 @@ from ..models.base import Change, DomainError, ErrorCode, Options, Result
 from ..services.catalog import CATALOG, COMPENSABLE, UNSUPPORTED
 from ..state.timeline import Timeline
 from .fake_editing import edit_command
+from .fake_groups import group_command
 from .fake_plugins import plugin_command
 
 
@@ -46,6 +47,7 @@ class FakeBackend:
     def __init__(self) -> None:
         self.timeline = Timeline()
         self.tracks: dict[str, dict[str, Any]] = {}
+        self.groups: dict[str, dict[str, Any]] = {}
         self.transport: dict[str, Any] = {
             "samples": 0,
             "speed": 0.0,
@@ -72,6 +74,7 @@ class FakeBackend:
         return "fake:" + fingerprint(
             {
                 "tracks": self.tracks,
+                "groups": self.groups,
                 "timeline": self.timeline.__dict__,
                 "connections": self.connections,
                 "snapshots": sorted(self.snapshots),
@@ -82,6 +85,7 @@ class FakeBackend:
         return copy.deepcopy(
             {
                 "tracks": self.tracks,
+                "groups": self.groups,
                 "timeline": self.timeline,
                 "connections": self.connections,
                 "snapshots": self.snapshots,
@@ -232,6 +236,10 @@ class FakeBackend:
                     after=after["connections"],
                 )
             )
+        for gid in sorted(set(before["groups"]) | set(after["groups"])):
+            old, new = before["groups"].get(gid), after["groups"].get(gid)
+            if old != new:
+                result.append(Change(object_id=gid, property="group_state", before=old, after=new))
         return result
 
     def dispatch(self, command: str, a: dict[str, Any], options: Options) -> dict[str, Any]:
@@ -255,6 +263,11 @@ class FakeBackend:
             if t["kind"] == "master":
                 raise DomainError(ErrorCode.PERMISSION_DENIED, "Cannot delete master route.")
             del self.tracks[t["id"]]
+            emptied_groups = [gid for gid, g in self.groups.items() if g["track_ids"] == [t["id"]]]
+            for g in self.groups.values():
+                g["track_ids"] = [rid for rid in g["track_ids"] if rid != t["id"]]
+            for gid in emptied_groups:
+                del self.groups[gid]
             for other in self.tracks.values():
                 other["sends"] = {
                     k: v for k, v in other["sends"].items() if v["target_id"] != t["id"]
@@ -360,6 +373,9 @@ class FakeBackend:
                 "transaction_model": "simulated atomic snapshot",
                 "name": a["name"],
             }
+        result = group_command(self, command, a)
+        if result is not None:
+            return result
         result = plugin_command(self, command, a, options)
         if result is not None:
             return result

@@ -9,6 +9,7 @@ from mcp.server import MCPServer
 from mcp.server.mcpserver.context import Context
 from mcp_types import CallToolResult, TextContent, ToolAnnotations
 
+from . import __version__
 from .models.base import Options, Result
 from .services.catalog import SPECS, ToolSpec
 from .services.control import ControlService
@@ -18,12 +19,12 @@ ToolResponse = Annotated[CallToolResult, Result]
 
 def handler_for(service: ControlService, spec: ToolSpec) -> Callable[..., Awaitable[ToolResponse]]:
     async def handler(request: Options, ctx: Context) -> ToolResponse:
-        if spec.category in {"analysis", "export"}:
+        if spec.category in {"analysis", "export"} or spec.name == "render_and_analyze":
             await ctx.report_progress(
                 0, 1, "Validating and processing bounded local audio operation"
             )
         result = await service.call(spec.name, request)
-        if spec.category in {"analysis", "export"}:
+        if spec.category in {"analysis", "export"} or spec.name == "render_and_analyze":
             await ctx.report_progress(
                 1, 1, "Completed" if result.success else "Failed; inspect structured error"
             )
@@ -56,6 +57,8 @@ def create_server(service: ControlService) -> MCPServer[Any]:
         "ardour-ultra-mcp",
         instructions="Inspect ardour://capabilities and session state before editing. Units are explicit. Backend fake is simulated. Native undo and compensation have different scopes. Never retry an OUTCOME_UNCERTAIN mutation automatically.",
         lifespan=lifespan,
+        version=__version__,
+        subscriptions=False,
     )
     for spec in SPECS:
         server.add_tool(
@@ -65,7 +68,7 @@ def create_server(service: ControlService) -> MCPServer[Any]:
             annotations=ToolAnnotations(
                 read_only_hint=not spec.mutates,
                 destructive_hint=spec.destructive,
-                idempotent_hint=spec.name.startswith("set_") or not spec.mutates,
+                idempotent_hint=spec.name.startswith(("set_", "ensure_")) or not spec.mutates,
                 open_world_hint=False,
             ),
             structured_output=True,

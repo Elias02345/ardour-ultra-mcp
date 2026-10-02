@@ -69,6 +69,34 @@ async def test_plugin_automation_units(service, plugin):
             ],
         },
     )
-    assert curve.success and curve.data["points"][0]["samples"] == 288000
+    assert curve.success and curve.data["anchor_at_zero_added"]
+    assert curve.data["points"] == [
+        {"samples": 0, "value": 700},
+        {"samples": 288000, "value": 700},
+        {"samples": 672000, "value": 2400},
+    ]
     assert (await service.call("set_automation_mode", {**target, "mode": "play"})).success
     assert (await service.call("get_automation", target)).data["mode"] == "play"
+
+
+async def test_automation_anchor_limit_upsert_and_rollback(service, midi):
+    target = {"track_id": midi["track_id"], "control": "gain", "unit": "linear_gain"}
+    points = [
+        {"position": {"unit": "samples", "samples": i + 1}, "value": 0.5} for i in range(10000)
+    ]
+    denied = await service.call("create_automation_points", {**target, "points": points})
+    assert not denied.success and denied.error.code == ErrorCode.BACKEND_UNSUPPORTED
+    assert (
+        await service.call("get_automation", {"track_id": midi["track_id"], "control": "gain"})
+    ).data["points"] == []
+    made = await service.call("create_automation_points", {**target, "points": points[:-1]})
+    assert made.success and len(made.data["points"]) == 10000
+    updated = await service.call(
+        "create_automation_points",
+        {**target, "points": [{"position": {"unit": "samples", "samples": 400}, "value": 0.75}]},
+    )
+    assert updated.success and len(updated.data["points"]) == 10000
+    assert updated.data["points"][400] == {"samples": 400, "value": 0.75}
+    assert (await service.call("undo", {})).success
+    curve = await service.call("get_automation", {"track_id": midi["track_id"], "control": "gain"})
+    assert curve.data["points"][400]["value"] == 0.5

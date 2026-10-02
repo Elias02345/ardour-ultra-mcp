@@ -79,6 +79,48 @@ SPECS: tuple[ToolSpec, ...] = (
     ),
     ToolSpec("rename_track", r.RenameTrack, "tracks", "Rename a stable-ID route.", True),
     ToolSpec(
+        "list_groups",
+        r.Page,
+        "groups",
+        "Paginate native route groups, stable IDs, properties and member route IDs.",
+    ),
+    ToolSpec(
+        "create_group",
+        r.CreateGroup,
+        "groups",
+        "Create an empty route group; returns actual native linkage defaults.",
+        True,
+    ),
+    ToolSpec(
+        "delete_group",
+        r.GroupRef,
+        "groups",
+        "Remove a nonempty group without deleting its routes; explicit intent; Ardour cannot remove empty groups through this binding.",
+        True,
+        True,
+    ),
+    ToolSpec(
+        "add_track_to_group",
+        r.GroupMembership,
+        "groups",
+        "Add a route to a group; reject implicit transfer from another group.",
+        True,
+    ),
+    ToolSpec(
+        "remove_track_from_group",
+        r.GroupMembership,
+        "groups",
+        "Remove exact membership without deleting the route; Ardour automatically deletes an ordinary group when its last member leaves.",
+        True,
+    ),
+    ToolSpec(
+        "set_group_properties",
+        r.SetGroupProperties,
+        "groups",
+        "Set explicit group linkage booleans; returns before/after state; no grouped undo.",
+        True,
+    ),
+    ToolSpec(
         "set_track_gain",
         r.TrackGain,
         "mixer",
@@ -193,6 +235,13 @@ SPECS: tuple[ToolSpec, ...] = (
         r.MoveRegion,
         "regions",
         "Move a region nondestructively; named native undo.",
+        True,
+    ),
+    ToolSpec(
+        "copy_region",
+        r.CopyRegion,
+        "regions",
+        "Copy to a compatible active playlist; fork MIDI source independently; audio shares source; native playlist undo.",
         True,
     ),
     ToolSpec(
@@ -423,6 +472,22 @@ SPECS: tuple[ToolSpec, ...] = (
         "Compare two measured passes; no subjective quality score.",
         local=True,
     ),
+    ToolSpec(
+        "ensure_bus",
+        r.EnsureBus,
+        "workflows",
+        "Ensure one exact-name/channel-count audio bus exists; refuse ambiguous collisions; return creation changes and stable ID.",
+        True,
+        local=True,
+    ),
+    ToolSpec(
+        "render_and_analyze",
+        r.RenderAnalyze,
+        "workflows",
+        "Render one preset-based master file, then analyze locally; preserve export and report stage/error if analysis fails; no atomic file rollback.",
+        True,
+        local=True,
+    ),
 )
 CATALOG = {spec.name: spec for spec in SPECS}
 COMPENSABLE = frozenset(
@@ -454,7 +519,6 @@ UNSUPPORTED: dict[str, JsonValue] = {
     "general_atomic_transactions": "Ardour abort_reversible_command discards history, not edits.",
     "timecode_conversion": "Typed drop-frame/offset conversion adapter pending validation.",
     "session_metadata": "Complete metadata accessor not bound/validated.",
-    "groups": "Native bindings found; implementation and integration coverage pending.",
-    "markers": "Range primitives found; complete creation/undo adapter pending.",
+    "markers": "Range primitives found; inherited Location ID returned 0 in native 9.8 probe; safe addressing/undo adapter pending.",
     "punch_configuration": "Existing location/config bindings require additional verification.",
 }

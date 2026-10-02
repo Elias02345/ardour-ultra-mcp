@@ -21,6 +21,7 @@ from ..installers.platforms import config_directory, detect_versions, find_ardou
 from ..models.base import DomainError, ErrorCode, Options, Result
 from ..security.paths import PathPolicy
 from .catalog import CATALOG, COMPENSABLE, UNSUPPORTED
+from .workflows import ensure_bus, render_and_analyze
 
 LOG = logging.getLogger(__name__)
 
@@ -95,6 +96,10 @@ class ControlService:
                 )
             if command == "doctor":
                 return await self.doctor()
+            if command == "ensure_bus":
+                return await ensure_bus(self.call, args, options)
+            if command == "render_and_analyze":
+                return await render_and_analyze(self.call, args, options)
             if command in {"analyze_audio_file", "compare_audio_files"}:
                 paths = (
                     [self.policy.audio(args["path"])]
@@ -137,7 +142,7 @@ class ControlService:
             result = await self.backend.execute(command, args, options)
             if export_path is not None and result.success:
                 export_files = [str(p) for p in sorted(export_path.iterdir()) if p.is_file()]
-                result.data["files"] = export_files
+                result.data["files"] = [x for x in export_files]
                 if importlib.util.find_spec("soundfile") is not None:
                     import soundfile as sf
 

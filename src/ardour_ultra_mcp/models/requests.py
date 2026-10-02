@@ -31,9 +31,57 @@ class CreateTrack(Options):
     kind: Literal["audio", "midi", "bus"]
     channels: Annotated[int, Field(ge=1, le=64)] = 2
 
+    @model_validator(mode="after")
+    def midi_width(self) -> CreateTrack:
+        if self.kind == "midi" and self.channels != 2:
+            raise ValueError(
+                "MIDI audio width is managed by Ardour/instrument; only default channels=2 accepted"
+            )
+        return self
+
+
+class EnsureBus(Options):
+    name: Name
+    channels: Annotated[int, Field(ge=1, le=64)] = 2
+
 
 class RenameTrack(TrackRef):
     name: Name
+
+
+class CreateGroup(Options):
+    name: Name
+
+
+class GroupRef(Options):
+    group_id: ObjectId
+
+
+class GroupMembership(GroupRef):
+    track_id: ObjectId
+
+
+class GroupProperties(Model):
+    active: bool | None = None
+    relative: bool | None = None
+    hidden: bool | None = None
+    gain: bool | None = None
+    mute: bool | None = None
+    solo: bool | None = None
+    recenable: bool | None = None
+    select: bool | None = None
+    color: bool | None = None
+    monitoring: bool | None = None
+
+    @model_validator(mode="after")
+    def require_change(self) -> GroupProperties:
+        if not any(v is not None for v in self.model_dump().values()):
+            raise ValueError("At least one group property is required")
+        return self
+
+
+class SetGroupProperties(GroupRef):
+    properties: GroupProperties
 
 
 class TrackGain(TrackRef):
@@ -94,6 +142,11 @@ class CreateMidiRegion(TrackRef):
 
 class MoveRegion(RegionRef):
     position: Position
+
+
+class CopyRegion(MoveRegion):
+    target_track_id: ObjectId
+    name: Name
 
 
 class TrimRegion(RegionRef):
@@ -272,6 +325,7 @@ class Render(TimeRange):
         max_length=4000,
         description="New empty directory under an explicitly allowed export root",
     )
+
     name: Name
     preset_id: str = Field(
         default="",
@@ -279,6 +333,10 @@ class Render(TimeRange):
         pattern=r"^[A-Za-z0-9-]*$",
         description="Existing Ardour export preset UUID; empty uses SimpleExport default; format defined by preset",
     )
+
+
+class RenderAnalyze(Render):
+    max_seconds: Annotated[Finite, Field(gt=0, le=3600)] = 600
 
 
 class BatchItem(Model):
