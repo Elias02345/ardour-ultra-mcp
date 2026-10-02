@@ -1,0 +1,42 @@
+[build-system]
+requires = ["hatchling>=1.27,<2"]
+build-backend = "hatchling.build"
+
+[project]
+name = "ardour-ultra-mcp"
+version = "0.1.0"
+description = "Local, typed production primitives for Ardour through MCP"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "GPL-3.0-or-later"
+authors = [{name = "Ardour Ultra MCP contributors"}]
+dependencies = ["mcp>=2.2,<3", "pydantic>=2.11,<3"]
+classifiers = ["Development Status :: 3 - Alpha", "Programming Language :: Python :: 3", "Topic :: Multimedia :: Sound/Audio"]
+
+[project.optional-dependencies]
+analysis = ["numpy>=2,<3", "scipy>=1.14,<2", "soundfile>=0.13,<1", "pyloudnorm>=0.2,<1"]
+dev = ["pytest>=8,<10", "pytest-asyncio>=1,<2", "pytest-cov>=6,<8", "ruff>=0.16,<1", "mypy>=1.15,<3", "build>=1,<2", "pip-audit>=2,<3", "bandit>=1.8,<2", "lupa>=2.4,<3"]
+
+[project.scripts]
+ardour-ultra-mcp = "ardour_ultra_mcp.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/ardour_ultra_mcp"]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM"]
+ignore = ["E501"]
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+markers = ["ardour: requires actual Ardour runtime", "performance: reproducible measurements"]
+[tool.mypy]
+python_version = "3.11"
+strict = true
+files = ["src/ardour_ultra_mcp"]
+[[tool.mypy.overrides]]
+module = ["numpy.*", "scipy.*", "soundfile.*", "pyloudnorm.*"]
+ignore_missing_imports = true
