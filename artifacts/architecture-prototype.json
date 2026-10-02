@@ -1,0 +1,12 @@
+{
+  "scope": "synthetic transport only; no Ardour",
+  "osc_udp_echo_ms": {
+    "median": 0.018287000045802415,
+    "max": 0.09962100000393548
+  },
+  "mailbox_100ms_hook_ms": {
+    "median": 102.82112700002699,
+    "max": 103.16448200001105
+  },
+  "hybrid": "OSC realtime telemetry, mailbox acknowledged deep editing"
+}
