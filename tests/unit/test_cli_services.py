@@ -160,3 +160,27 @@ async def test_export_empty_result_is_failure(tmp_path):
         },
     )
     assert result.error.code == ErrorCode.BACKEND_ERROR
+
+
+def test_discovered_ardour_version_probe(monkeypatch):
+    import subprocess
+
+    from ardour_ultra_mcp.installers.platforms import detect_versions
+
+    calls = []
+
+    def run(arguments, **kwargs):
+        calls.append((arguments, kwargs))
+        if arguments[0] == "missing":
+            raise FileNotFoundError
+        if arguments[0] == "slow":
+            raise subprocess.TimeoutExpired(arguments, 3)
+        return subprocess.CompletedProcess(
+            arguments, 0, stdout="Ardour9.8.0~ds (build info)", stderr=""
+        )
+
+    monkeypatch.setattr(subprocess, "run", run)
+    results = detect_versions(["ardour with spaces", "missing", "slow"])
+    assert results[0]["major"] == 9 and results[0]["verified"]
+    assert not results[1]["verified"] and not results[2]["verified"]
+    assert calls[0][0] == ["ardour with spaces", "--version"] and not calls[0][1].get("shell")

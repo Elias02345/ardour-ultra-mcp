@@ -133,3 +133,30 @@ def test_meter_changes_and_beat_units():
         t.bbt_to_ticks(2, 1, 1000)
     with pytest.raises(DomainError):
         t.set_meter(500, 3, 4)
+
+
+async def test_note_constructor_integer_overflow_rejected(service, midi, backend):
+    from ardour_ultra_mcp.models.time import MAX_QUARTER_TICKS
+
+    before = backend.revision
+    for start, duration in [
+        (MAX_QUARTER_TICKS + 1, 1),
+        (MAX_QUARTER_TICKS, 1),
+        (0, MAX_QUARTER_TICKS + 1),
+    ]:
+        result = await service.call(
+            "insert_midi_notes",
+            {
+                **midi,
+                "notes": [
+                    {
+                        "pitch": 60,
+                        "velocity": 100,
+                        "channel": 1,
+                        "start_ticks": start,
+                        "duration_ticks": duration,
+                    }
+                ],
+            },
+        )
+        assert not result.success and backend.revision == before

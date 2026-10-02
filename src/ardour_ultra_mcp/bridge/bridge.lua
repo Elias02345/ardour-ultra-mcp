@@ -141,7 +141,7 @@ function factory(params)
     local tm=Temporal.TempoMap.read()
     if v.unit=='samples' then return Temporal.timepos_t(number(v.samples,0,9007199254740991,true)) end
     if v.unit=='seconds' then return Temporal.timepos_t(math.floor(number(v.seconds,0,1e10,false)*Session:nominal_sample_rate()+.5)) end
-    if v.unit=='quarter_ticks' then return Temporal.timepos_t.from_ticks(number(v.ticks,0,9007199254740991,true)) end
+    if v.unit=='quarter_ticks' then return Temporal.timepos_t.from_ticks(number(v.ticks,0,4123168604159,true)) end
     if v.unit=='bbt' then
       local bbt=Temporal.BBT_Argument(number(v.bar,1,1000000,true),number(v.beat,1,128,true),number(v.tick or 0,0,1919,true))
       local p=Temporal.timepos_t(tm:sample_at_beats(tm:quarters_at_bbt(bbt)))
@@ -186,7 +186,7 @@ function factory(params)
     local r=region(a);local mr=r:to_midiregion();if not present(mr) then fail("OPERATION_NOT_SUPPORTED","Requires MIDI region.") end;return mr:midi_source(0):model(),r
   end
   local function new_note(n)
-    number(n.pitch,0,127,true);number(n.velocity,1,127,true);number(n.channel,1,16,true);number(n.start_ticks,0,9007199254740991,true);number(n.duration_ticks,1,9007199254740991,true)
+    number(n.pitch,0,127,true);number(n.velocity,1,127,true);number(n.channel,1,16,true);number(n.start_ticks,0,4123168604159,true);number(n.duration_ticks,1,4123168604159,true);number(n.start_ticks+n.duration_ticks,1,4123168604159,true)
     return ARDOUR.LuaAPI.new_noteptr(n.channel-1,Temporal.Beats(math.floor(n.start_ticks/1920),n.start_ticks%1920),Temporal.Beats(math.floor(n.duration_ticks/1920),n.duration_ticks%1920),n.pitch,n.velocity)
   end
   local function diff(target,label,fn)
@@ -534,7 +534,7 @@ function factory(params)
     if a.preset_id and a.preset_id~='' then if type(a.preset_id)~='string' or not a.preset_id:match('^[%w%-]+$') or not ex:set_preset(a.preset_id) then fail("OBJECT_NOT_FOUND","Export preset not found.") end end
     if not ex:check_outputs() then fail("BACKEND_ERROR","Export master has no configured channels.") end
     if not ex:run_export() then fail("BACKEND_ERROR","Ardour export failed.","Inspect Ardour logs and the new output directory.") end
-    return {output_directory=a.output_directory,start_samples=s:samples(),end_samples=e:samples(),format_source='Ardour export preset',undoable=false}
+    return {output_directory=a.output_directory,session_sample_rate_hz=Session:nominal_sample_rate(),start_samples=s:samples(),end_samples=e:samples(),format_source='Ardour export preset',undoable=false}
   end)
   local function command_list()
     local values=array();for command,_ in pairs(handlers) do

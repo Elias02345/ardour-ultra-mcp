@@ -162,3 +162,18 @@ async def test_transport_record_and_dryrun(service, midi):
     assert (await service.call("get_transport", {})).data["actively_recording"]
     assert (await service.call("stop_recording", {})).success
     assert not (await service.call("get_transport", {})).data["actively_recording"]
+
+
+async def test_instrument_inventory_filter(service):
+    result = await service.call("list_available_plugins", {"instruments_only": True})
+    assert result.success and result.data["total"] == 1
+    assert all(p["is_instrument"] for p in result.data["items"])
+
+
+async def test_recording_guard_preserves_session(service, midi, backend):
+    await service.call("arm_track", {"track_id": midi["track_id"], "enabled": True})
+    await service.call("start_recording", {})
+    before = backend.revision
+    denied = await service.call("set_track_gain", {"track_id": midi["track_id"], "gain_db": -6})
+    assert denied.error.code == ErrorCode.BUSY and backend.revision == before
+    assert (await service.call("stop_recording", {})).success

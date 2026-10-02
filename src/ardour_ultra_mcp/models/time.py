@@ -7,6 +7,10 @@ from .base import Finite, Model, Samples
 TICKS_PER_QUARTER = 1920  # Temporal::ticks_per_beat, verified in Ardour 9.8 source
 
 
+MAX_QUARTER_TICKS = 2147483647 * TICKS_PER_QUARTER + (TICKS_PER_QUARTER - 1)
+QuarterTicks = Annotated[int, Field(strict=True, ge=0, le=MAX_QUARTER_TICKS)]
+
+
 class SamplePosition(Model):
     unit: Literal["samples"] = "samples"
     samples: Samples
@@ -26,7 +30,7 @@ class MusicalPosition(Model):
 
 class TickPosition(Model):
     unit: Literal["quarter_ticks"] = "quarter_ticks"
-    ticks: Samples
+    ticks: QuarterTicks
 
 
 Position = Annotated[

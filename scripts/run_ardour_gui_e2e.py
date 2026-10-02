@@ -170,7 +170,11 @@ async def main() -> None:
             inventory = await check(
                 "list_available_plugins", {"instruments_only": True, "limit": 1000}
             )
-            instrument = next(p for p in inventory.data["items"] if p["format"] == "LV2")
+            instrument = next(
+                p
+                for p in inventory.data["items"]
+                if p["format"] == "LV2" and "Reasonable Synth" in p["name"]
+            )
             await check(
                 "add_plugin",
                 {
@@ -259,14 +263,23 @@ async def main() -> None:
             )
             await check("undo", {})
             await check("save_session", {})
-            await check(
+            rendered = await check(
                 "render_range",
                 {
-                    "start": {"unit": "samples", "samples": 0},
-                    "end": {"unit": "samples", "samples": 48000},
+                    "start": {"unit": "bbt", "bar": 2, "beat": 1},
+                    "end": {"unit": "bbt", "bar": 3, "beat": 1},
                     "output_directory": str(root / "export"),
                     "name": "verified",
                 },
+            )
+            analysis = await check("analyze_audio_file", {"path": rendered.data["files"][0]})
+            assert (
+                analysis.data["peak_dbfs"] is not None
+                and analysis.data["integrated_lufs"] is not None
+            )
+            await check(
+                "compare_audio_files",
+                {"first": rendered.data["files"][0], "second": rendered.data["files"][0]},
             )
             print(
                 json.dumps(

@@ -5,7 +5,7 @@ from typing import Annotated, Literal
 from pydantic import Field, model_validator
 
 from .base import Finite, Model, Name, ObjectId, Options, Samples
-from .time import Position
+from .time import MAX_QUARTER_TICKS, Position, QuarterTicks
 
 
 class Empty(Options):
@@ -122,10 +122,16 @@ class MidiNote(Model):
     pitch: Annotated[int, Field(strict=True, ge=0, le=127)]
     velocity: Annotated[int, Field(strict=True, ge=1, le=127)]
     channel: Annotated[int, Field(strict=True, ge=1, le=16)] = 1
-    start_ticks: Samples = Field(
+    start_ticks: QuarterTicks = Field(
         description="Source-relative quarter-note ticks; 1920 ticks per quarter; get region source offset before editing trimmed regions"
     )
-    duration_ticks: Annotated[int, Field(strict=True, ge=1, le=9007199254740991)]
+    duration_ticks: Annotated[int, Field(strict=True, ge=1, le=MAX_QUARTER_TICKS)]
+
+    @model_validator(mode="after")
+    def check_note_end(self) -> MidiNote:
+        if self.start_ticks + self.duration_ticks > MAX_QUARTER_TICKS:
+            raise ValueError("Note end exceeds Ardour signed 32-bit beat constructor range")
+        return self
 
 
 class InsertNotes(RegionRef):

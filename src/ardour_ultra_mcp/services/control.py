@@ -136,9 +136,45 @@ class ControlService:
                 args["output_directory"] = str(export_path)
             result = await self.backend.execute(command, args, options)
             if export_path is not None and result.success:
-                result.data["files"] = [
-                    str(p) for p in sorted(export_path.iterdir()) if p.is_file()
-                ]
+                export_files = [str(p) for p in sorted(export_path.iterdir()) if p.is_file()]
+                result.data["files"] = export_files
+                if importlib.util.find_spec("soundfile") is not None:
+                    import soundfile as sf
+
+                    metadata: list[JsonValue] = []
+                    for filename in export_files:
+                        if not isinstance(filename, str):
+                            continue
+                        try:
+                            info = await asyncio.to_thread(sf.info, filename)
+                        except (RuntimeError, OSError):
+                            result.warnings.append(
+                                "Export exists but decoder could not read its metadata; inspect file format."
+                            )
+                            continue
+                        metadata.append(
+                            {
+                                "path": filename,
+                                "sample_rate_hz": info.samplerate,
+                                "channels": info.channels,
+                                "frames": info.frames,
+                                "duration_seconds": info.duration,
+                                "format": info.format,
+                                "subtype": info.subtype,
+                            }
+                        )
+                        if (
+                            result.data.get("session_sample_rate_hz") is not None
+                            and result.data.get("session_sample_rate_hz") != info.samplerate
+                        ):
+                            result.warnings.append(
+                                "Export preset sample rate differs from session; see file_metadata."
+                            )
+                    result.data["file_metadata"] = metadata
+                else:
+                    result.warnings.append(
+                        "Install [analysis] for decoded export metadata; format/rate come from Ardour's preset."
+                    )
                 if not result.data["files"]:
                     raise DomainError(
                         ErrorCode.BACKEND_ERROR,
