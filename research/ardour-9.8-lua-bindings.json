@@ -1,0 +1,6257 @@
+[
+  {
+    "binding": "open_uri",
+    "context": "",
+    "line": 515
+  },
+  {
+    "binding": "open_uri",
+    "context": "",
+    "line": 516
+  },
+  {
+    "binding": "to_s",
+    "context": ".beginClass <PBD::ID> (\"ID\")",
+    "line": 520
+  },
+  {
+    "binding": "name",
+    "context": ".beginClass <XMLNode> (\"XMLNode\")",
+    "line": 526
+  },
+  {
+    "binding": "begin_reversible_command",
+    "context": ".beginClass <PBD::HistoryOwner> (\"HistoryOwner\")",
+    "line": 533
+  },
+  {
+    "binding": "commit_reversible_command",
+    "context": ".beginClass <PBD::HistoryOwner> (\"HistoryOwner\")",
+    "line": 534
+  },
+  {
+    "binding": "abort_reversible_command",
+    "context": ".beginClass <PBD::HistoryOwner> (\"HistoryOwner\")",
+    "line": 535
+  },
+  {
+    "binding": "collected_undo_commands",
+    "context": ".beginClass <PBD::HistoryOwner> (\"HistoryOwner\")",
+    "line": 536
+  },
+  {
+    "binding": "abort_empty_reversible_command",
+    "context": ".beginClass <PBD::HistoryOwner> (\"HistoryOwner\")",
+    "line": 537
+  },
+  {
+    "binding": "add_command",
+    "context": ".beginClass <PBD::HistoryOwner> (\"HistoryOwner\")",
+    "line": 538
+  },
+  {
+    "binding": "add_stateful_diff_command",
+    "context": ".beginClass <PBD::HistoryOwner> (\"HistoryOwner\")",
+    "line": 539
+  },
+  {
+    "binding": "id",
+    "context": ".beginClass <PBD::Stateful> (\"Stateful\")",
+    "line": 543
+  },
+  {
+    "binding": "properties",
+    "context": ".beginClass <PBD::Stateful> (\"Stateful\")",
+    "line": 544
+  },
+  {
+    "binding": "clear_changes",
+    "context": ".beginClass <PBD::Stateful> (\"Stateful\")",
+    "line": 545
+  },
+  {
+    "binding": "id",
+    "context": ".beginWSPtrClass <PBD::Stateful> (\"StatefulPtr\")",
+    "line": 549
+  },
+  {
+    "binding": "properties",
+    "context": ".beginWSPtrClass <PBD::Stateful> (\"StatefulPtr\")",
+    "line": 550
+  },
+  {
+    "binding": "clear_changes",
+    "context": ".beginWSPtrClass <PBD::Stateful> (\"StatefulPtr\")",
+    "line": 551
+  },
+  {
+    "binding": "set_name",
+    "context": ".deriveClass <PBD::Command, PBD::StatefulDestructible> (\"Command\")",
+    "line": 564
+  },
+  {
+    "binding": "name",
+    "context": ".deriveClass <PBD::Command, PBD::StatefulDestructible> (\"Command\")",
+    "line": 565
+  },
+  {
+    "binding": "undo",
+    "context": ".deriveClass <PBD::StatefulDiffCommand, PBD::Command> (\"StatefulDiffCommand\")",
+    "line": 578
+  },
+  {
+    "binding": "empty",
+    "context": ".deriveClass <PBD::StatefulDiffCommand, PBD::Command> (\"StatefulDiffCommand\")",
+    "line": 579
+  },
+  {
+    "binding": "name",
+    "context": ".deriveWSPtrClass <PBD::Controllable, PBD::StatefulDestructible> (\"Controllable\")",
+    "line": 586
+  },
+  {
+    "binding": "get_value",
+    "context": ".deriveWSPtrClass <PBD::Controllable, PBD::StatefulDestructible> (\"Controllable\")",
+    "line": 587
+  },
+  {
+    "binding": "registered_controllables",
+    "context": ".deriveWSPtrClass <PBD::Controllable, PBD::StatefulDestructible> (\"Controllable\")",
+    "line": 588
+  },
+  {
+    "binding": "dump_registry",
+    "context": ".deriveWSPtrClass <PBD::Controllable, PBD::StatefulDestructible> (\"Controllable\")",
+    "line": 589
+  },
+  {
+    "binding": "reset",
+    "context": ".beginClass <PBD::RingBufferNPT <uint8_t> > (\"RingBuffer8\")",
+    "line": 594
+  },
+  {
+    "binding": "read",
+    "context": ".beginClass <PBD::RingBufferNPT <uint8_t> > (\"RingBuffer8\")",
+    "line": 595
+  },
+  {
+    "binding": "write",
+    "context": ".beginClass <PBD::RingBufferNPT <uint8_t> > (\"RingBuffer8\")",
+    "line": 596
+  },
+  {
+    "binding": "write_one",
+    "context": ".beginClass <PBD::RingBufferNPT <uint8_t> > (\"RingBuffer8\")",
+    "line": 597
+  },
+  {
+    "binding": "write_space",
+    "context": ".beginClass <PBD::RingBufferNPT <uint8_t> > (\"RingBuffer8\")",
+    "line": 598
+  },
+  {
+    "binding": "read_space",
+    "context": ".beginClass <PBD::RingBufferNPT <uint8_t> > (\"RingBuffer8\")",
+    "line": 599
+  },
+  {
+    "binding": "increment_read_ptr",
+    "context": ".beginClass <PBD::RingBufferNPT <uint8_t> > (\"RingBuffer8\")",
+    "line": 600
+  },
+  {
+    "binding": "increment_write_ptr",
+    "context": ".beginClass <PBD::RingBufferNPT <uint8_t> > (\"RingBuffer8\")",
+    "line": 601
+  },
+  {
+    "binding": "reset",
+    "context": ".beginClass <PBD::RingBufferNPT <float> > (\"RingBufferF\")",
+    "line": 606
+  },
+  {
+    "binding": "read",
+    "context": ".beginClass <PBD::RingBufferNPT <float> > (\"RingBufferF\")",
+    "line": 607
+  },
+  {
+    "binding": "write",
+    "context": ".beginClass <PBD::RingBufferNPT <float> > (\"RingBufferF\")",
+    "line": 608
+  },
+  {
+    "binding": "write_one",
+    "context": ".beginClass <PBD::RingBufferNPT <float> > (\"RingBufferF\")",
+    "line": 609
+  },
+  {
+    "binding": "write_space",
+    "context": ".beginClass <PBD::RingBufferNPT <float> > (\"RingBufferF\")",
+    "line": 610
+  },
+  {
+    "binding": "read_space",
+    "context": ".beginClass <PBD::RingBufferNPT <float> > (\"RingBufferF\")",
+    "line": 611
+  },
+  {
+    "binding": "increment_read_ptr",
+    "context": ".beginClass <PBD::RingBufferNPT <float> > (\"RingBufferF\")",
+    "line": 612
+  },
+  {
+    "binding": "increment_write_ptr",
+    "context": ".beginClass <PBD::RingBufferNPT <float> > (\"RingBufferF\")",
+    "line": 613
+  },
+  {
+    "binding": "reset",
+    "context": ".beginClass <PBD::RingBufferNPT <int> > (\"RingBufferI\")",
+    "line": 618
+  },
+  {
+    "binding": "read",
+    "context": ".beginClass <PBD::RingBufferNPT <int> > (\"RingBufferI\")",
+    "line": 619
+  },
+  {
+    "binding": "write",
+    "context": ".beginClass <PBD::RingBufferNPT <int> > (\"RingBufferI\")",
+    "line": 620
+  },
+  {
+    "binding": "write_one",
+    "context": ".beginClass <PBD::RingBufferNPT <int> > (\"RingBufferI\")",
+    "line": 621
+  },
+  {
+    "binding": "write_space",
+    "context": ".beginClass <PBD::RingBufferNPT <int> > (\"RingBufferI\")",
+    "line": 622
+  },
+  {
+    "binding": "read_space",
+    "context": ".beginClass <PBD::RingBufferNPT <int> > (\"RingBufferI\")",
+    "line": 623
+  },
+  {
+    "binding": "increment_read_ptr",
+    "context": ".beginClass <PBD::RingBufferNPT <int> > (\"RingBufferI\")",
+    "line": 624
+  },
+  {
+    "binding": "increment_write_ptr",
+    "context": ".beginClass <PBD::RingBufferNPT <int> > (\"RingBufferI\")",
+    "line": 625
+  },
+  {
+    "binding": "hardware_concurrency",
+    "context": ".beginClass <PBD::RingBufferNPT <int> > (\"RingBufferI\")",
+    "line": 635
+  },
+  {
+    "binding": "max_mmcss_threads_per_process",
+    "context": ".beginClass <PBD::RingBufferNPT <int> > (\"RingBufferI\")",
+    "line": 636
+  },
+  {
+    "binding": "superclock_ticks_per_second",
+    "context": ".beginClass <Timecode::Time> (\"Time\")",
+    "line": 678
+  },
+  {
+    "binding": "is_unity",
+    "context": ".beginClass <Temporal::ratio_t> (\"ratio\")",
+    "line": 683
+  },
+  {
+    "binding": "is_zero",
+    "context": ".beginClass <Temporal::ratio_t> (\"ratio\")",
+    "line": 684
+  },
+  {
+    "binding": "from_double",
+    "context": ".beginClass <Temporal::Beats> (\"Beats\")",
+    "line": 697
+  },
+  {
+    "binding": "beats",
+    "context": ".beginClass <Temporal::Beats> (\"Beats\")",
+    "line": 698
+  },
+  {
+    "binding": "ticks",
+    "context": ".beginClass <Temporal::Beats> (\"Beats\")",
+    "line": 699
+  },
+  {
+    "binding": "get_beats",
+    "context": ".beginClass <Temporal::Beats> (\"Beats\")",
+    "line": 700
+  },
+  {
+    "binding": "get_ticks",
+    "context": ".beginClass <Temporal::Beats> (\"Beats\")",
+    "line": 701
+  },
+  {
+    "binding": "to_ticks",
+    "context": ".beginClass <Temporal::Beats> (\"Beats\")",
+    "line": 702
+  },
+  {
+    "binding": "diff",
+    "context": ".beginClass <Temporal::Beats> (\"Beats\")",
+    "line": 703
+  },
+  {
+    "binding": "prev_beat",
+    "context": ".beginClass <Temporal::Beats> (\"Beats\")",
+    "line": 704
+  },
+  {
+    "binding": "next_beat",
+    "context": ".beginClass <Temporal::Beats> (\"Beats\")",
+    "line": 705
+  },
+  {
+    "binding": "round_to_beat",
+    "context": ".beginClass <Temporal::Beats> (\"Beats\")",
+    "line": 706
+  },
+  {
+    "binding": "round_up_to_beat",
+    "context": ".beginClass <Temporal::Beats> (\"Beats\")",
+    "line": 707
+  },
+  {
+    "binding": "round_down_to_beat",
+    "context": ".beginClass <Temporal::Beats> (\"Beats\")",
+    "line": 708
+  },
+  {
+    "binding": "str",
+    "context": ".beginClass <Temporal::Beats> (\"Beats\")",
+    "line": 709
+  },
+  {
+    "binding": "zero",
+    "context": ".beginClass <Temporal::timepos_t> (\"timepos_t\")",
+    "line": 721
+  },
+  {
+    "binding": "max",
+    "context": ".beginClass <Temporal::timepos_t> (\"timepos_t\")",
+    "line": 722
+  },
+  {
+    "binding": "smallest_step",
+    "context": ".beginClass <Temporal::timepos_t> (\"timepos_t\")",
+    "line": 723
+  },
+  {
+    "binding": "from_ticks",
+    "context": ".beginClass <Temporal::timepos_t> (\"timepos_t\")",
+    "line": 724
+  },
+  {
+    "binding": "from_superclock",
+    "context": ".beginClass <Temporal::timepos_t> (\"timepos_t\")",
+    "line": 726
+  },
+  {
+    "binding": "is_superclock",
+    "context": ".beginClass <Temporal::timepos_t> (\"timepos_t\")",
+    "line": 727
+  },
+  {
+    "binding": "superclocks",
+    "context": ".beginClass <Temporal::timepos_t> (\"timepos_t\")",
+    "line": 728
+  },
+  {
+    "binding": "is_positive",
+    "context": ".beginClass <Temporal::timepos_t> (\"timepos_t\")",
+    "line": 730
+  },
+  {
+    "binding": "is_negative",
+    "context": ".beginClass <Temporal::timepos_t> (\"timepos_t\")",
+    "line": 731
+  },
+  {
+    "binding": "is_zero",
+    "context": ".beginClass <Temporal::timepos_t> (\"timepos_t\")",
+    "line": 732
+  },
+  {
+    "binding": "is_beats",
+    "context": ".beginClass <Temporal::timepos_t> (\"timepos_t\")",
+    "line": 733
+  },
+  {
+    "binding": "samples",
+    "context": ".beginClass <Temporal::timepos_t> (\"timepos_t\")",
+    "line": 734
+  },
+  {
+    "binding": "time_domain",
+    "context": ".beginClass <Temporal::timepos_t> (\"timepos_t\")",
+    "line": 735
+  },
+  {
+    "binding": "ticks",
+    "context": ".beginClass <Temporal::timepos_t> (\"timepos_t\")",
+    "line": 736
+  },
+  {
+    "binding": "beats",
+    "context": ".beginClass <Temporal::timepos_t> (\"timepos_t\")",
+    "line": 737
+  },
+  {
+    "binding": "str",
+    "context": ".beginClass <Temporal::timepos_t> (\"timepos_t\")",
+    "line": 738
+  },
+  {
+    "binding": "scale",
+    "context": ".beginClass <Temporal::timepos_t> (\"timepos_t\")",
+    "line": 739
+  },
+  {
+    "binding": "distance",
+    "context": ".beginClass <Temporal::timepos_t> (\"timepos_t\")",
+    "line": 740
+  },
+  {
+    "binding": "increment",
+    "context": ".beginClass <Temporal::timepos_t> (\"timepos_t\")",
+    "line": 741
+  },
+  {
+    "binding": "decrement",
+    "context": ".beginClass <Temporal::timepos_t> (\"timepos_t\")",
+    "line": 742
+  },
+  {
+    "binding": "zero",
+    "context": ".beginClass <timecnt_t> (\"timecnt_t\")",
+    "line": 754
+  },
+  {
+    "binding": "max",
+    "context": ".beginClass <timecnt_t> (\"timecnt_t\")",
+    "line": 755
+  },
+  {
+    "binding": "from_samples",
+    "context": ".beginClass <timecnt_t> (\"timecnt_t\")",
+    "line": 756
+  },
+  {
+    "binding": "from_ticks",
+    "context": ".beginClass <timecnt_t> (\"timecnt_t\")",
+    "line": 757
+  },
+  {
+    "binding": "from_superclock",
+    "context": ".beginClass <timecnt_t> (\"timecnt_t\")",
+    "line": 759
+  },
+  {
+    "binding": "superclocks",
+    "context": ".beginClass <timecnt_t> (\"timecnt_t\")",
+    "line": 760
+  },
+  {
+    "binding": "magnitude",
+    "context": ".beginClass <timecnt_t> (\"timecnt_t\")",
+    "line": 762
+  },
+  {
+    "binding": "position",
+    "context": ".beginClass <timecnt_t> (\"timecnt_t\")",
+    "line": 763
+  },
+  {
+    "binding": "set_position",
+    "context": ".beginClass <timecnt_t> (\"timecnt_t\")",
+    "line": 764
+  },
+  {
+    "binding": "is_positive",
+    "context": ".beginClass <timecnt_t> (\"timecnt_t\")",
+    "line": 765
+  },
+  {
+    "binding": "is_negative",
+    "context": ".beginClass <timecnt_t> (\"timecnt_t\")",
+    "line": 766
+  },
+  {
+    "binding": "is_zero",
+    "context": ".beginClass <timecnt_t> (\"timecnt_t\")",
+    "line": 767
+  },
+  {
+    "binding": "abs",
+    "context": ".beginClass <timecnt_t> (\"timecnt_t\")",
+    "line": 768
+  },
+  {
+    "binding": "time_domain",
+    "context": ".beginClass <timecnt_t> (\"timecnt_t\")",
+    "line": 769
+  },
+  {
+    "binding": "set_time_domain",
+    "context": ".beginClass <timecnt_t> (\"timecnt_t\")",
+    "line": 770
+  },
+  {
+    "binding": "samples",
+    "context": ".beginClass <timecnt_t> (\"timecnt_t\")",
+    "line": 771
+  },
+  {
+    "binding": "scale",
+    "context": ".beginClass <timecnt_t> (\"timecnt_t\")",
+    "line": 772
+  },
+  {
+    "binding": "beats",
+    "context": ".beginClass <timecnt_t> (\"timecnt_t\")",
+    "line": 773
+  },
+  {
+    "binding": "ticks",
+    "context": ".beginClass <timecnt_t> (\"timecnt_t\")",
+    "line": 774
+  },
+  {
+    "binding": "str",
+    "context": ".beginClass <timecnt_t> (\"timecnt_t\")",
+    "line": 775
+  },
+  {
+    "binding": "scale",
+    "context": ".beginClass <timecnt_t> (\"timecnt_t\")",
+    "line": 776
+  },
+  {
+    "binding": "decrement",
+    "context": ".beginClass <timecnt_t> (\"timecnt_t\")",
+    "line": 777
+  },
+  {
+    "binding": "str",
+    "context": ".beginClass <Temporal::BBT_Time> (\"BBT_TIME\")",
+    "line": 789
+  },
+  {
+    "binding": "str",
+    "context": ".beginClass <Temporal::BBT_Offset> (\"BBT_Offset\")",
+    "line": 812
+  },
+  {
+    "binding": "note_type",
+    "context": ".beginClass <Temporal::Tempo> (\"Tempo\")",
+    "line": 818
+  },
+  {
+    "binding": "note_types_per_minute",
+    "context": ".beginClass <Temporal::Tempo> (\"Tempo\")",
+    "line": 819
+  },
+  {
+    "binding": "quarter_notes_per_minute",
+    "context": ".beginClass <Temporal::Tempo> (\"Tempo\")",
+    "line": 820
+  },
+  {
+    "binding": "samples_per_quarter_note",
+    "context": ".beginClass <Temporal::Tempo> (\"Tempo\")",
+    "line": 821
+  },
+  {
+    "binding": "samples_per_note_type",
+    "context": ".beginClass <Temporal::Tempo> (\"Tempo\")",
+    "line": 822
+  },
+  {
+    "binding": "superclocks_per_note_type",
+    "context": ".beginClass <Temporal::Tempo> (\"Tempo\")",
+    "line": 824
+  },
+  {
+    "binding": "divisions_per_bar",
+    "context": ".beginClass <Temporal::Meter> (\"Meter\")",
+    "line": 830
+  },
+  {
+    "binding": "note_value",
+    "context": ".beginClass <Temporal::Meter> (\"Meter\")",
+    "line": 831
+  },
+  {
+    "binding": "sclock",
+    "context": ".beginClass <Temporal::Point> (\"Point\")",
+    "line": 835
+  },
+  {
+    "binding": "beats",
+    "context": ".beginClass <Temporal::Point> (\"Point\")",
+    "line": 836
+  },
+  {
+    "binding": "sample",
+    "context": ".beginClass <Temporal::Point> (\"Point\")",
+    "line": 837
+  },
+  {
+    "binding": "bbt",
+    "context": ".beginClass <Temporal::Point> (\"Point\")",
+    "line": 838
+  },
+  {
+    "binding": "time",
+    "context": ".beginClass <Temporal::Point> (\"Point\")",
+    "line": 839
+  },
+  {
+    "binding": "quarters_at_sample",
+    "context": ".deriveClass <Temporal::TempoPoint, Temporal::Tempo> (\"TempoPoint\")",
+    "line": 847
+  },
+  {
+    "binding": "time",
+    "context": ".deriveClass <Temporal::TempoPoint, Temporal::Tempo> (\"TempoPoint\")",
+    "line": 848
+  },
+  {
+    "binding": "tempo",
+    "context": ".beginClass <Temporal::TempoMetric> (\"TempoMetric\")",
+    "line": 856
+  },
+  {
+    "binding": "meter",
+    "context": ".beginClass <Temporal::TempoMetric> (\"TempoMetric\")",
+    "line": 857
+  },
+  {
+    "binding": "sample_at",
+    "context": ".beginClass <Temporal::TempoMetric> (\"TempoMetric\")",
+    "line": 858
+  },
+  {
+    "binding": "quarters_at",
+    "context": ".beginClass <Temporal::TempoMetric> (\"TempoMetric\")",
+    "line": 859
+  },
+  {
+    "binding": "note_type",
+    "context": ".beginClass <Temporal::TempoMetric> (\"TempoMetric\")",
+    "line": 860
+  },
+  {
+    "binding": "note_value",
+    "context": ".beginClass <Temporal::TempoMetric> (\"TempoMetric\")",
+    "line": 861
+  },
+  {
+    "binding": "divisions_per_bar",
+    "context": ".beginClass <Temporal::TempoMetric> (\"TempoMetric\")",
+    "line": 862
+  },
+  {
+    "binding": "time",
+    "context": ".deriveClass <Temporal::TempoMapPoint, Temporal::Point> (\"TempoMapPoint\")",
+    "line": 867
+  },
+  {
+    "binding": "read",
+    "context": ".beginWSPtrClass <Temporal::TempoMap> (\"TempoMap\")",
+    "line": 877
+  },
+  {
+    "binding": "write_copy",
+    "context": ".beginWSPtrClass <Temporal::TempoMap> (\"TempoMap\")",
+    "line": 878
+  },
+  {
+    "binding": "update",
+    "context": ".beginWSPtrClass <Temporal::TempoMap> (\"TempoMap\")",
+    "line": 879
+  },
+  {
+    "binding": "abort_update",
+    "context": ".beginWSPtrClass <Temporal::TempoMap> (\"TempoMap\")",
+    "line": 880
+  },
+  {
+    "binding": "set_tempo",
+    "context": ".beginWSPtrClass <Temporal::TempoMap> (\"TempoMap\")",
+    "line": 881
+  },
+  {
+    "binding": "set_meter",
+    "context": ".beginWSPtrClass <Temporal::TempoMap> (\"TempoMap\")",
+    "line": 882
+  },
+  {
+    "binding": "set_ramped",
+    "context": ".beginWSPtrClass <Temporal::TempoMap> (\"TempoMap\")",
+    "line": 883
+  },
+  {
+    "binding": "set_continuing",
+    "context": ".beginWSPtrClass <Temporal::TempoMap> (\"TempoMap\")",
+    "line": 884
+  },
+  {
+    "binding": "tempo_at",
+    "context": ".beginWSPtrClass <Temporal::TempoMap> (\"TempoMap\")",
+    "line": 886
+  },
+  {
+    "binding": "tempo_at_bbt",
+    "context": ".beginWSPtrClass <Temporal::TempoMap> (\"TempoMap\")",
+    "line": 887
+  },
+  {
+    "binding": "tempo_at_beats",
+    "context": ".beginWSPtrClass <Temporal::TempoMap> (\"TempoMap\")",
+    "line": 888
+  },
+  {
+    "binding": "meter_at",
+    "context": ".beginWSPtrClass <Temporal::TempoMap> (\"TempoMap\")",
+    "line": 890
+  },
+  {
+    "binding": "meter_at_bbt",
+    "context": ".beginWSPtrClass <Temporal::TempoMap> (\"TempoMap\")",
+    "line": 891
+  },
+  {
+    "binding": "meter_at_beats",
+    "context": ".beginWSPtrClass <Temporal::TempoMap> (\"TempoMap\")",
+    "line": 892
+  },
+  {
+    "binding": "bbt_at",
+    "context": ".beginWSPtrClass <Temporal::TempoMap> (\"TempoMap\")",
+    "line": 894
+  },
+  {
+    "binding": "bbt_at_beats",
+    "context": ".beginWSPtrClass <Temporal::TempoMap> (\"TempoMap\")",
+    "line": 895
+  },
+  {
+    "binding": "tempo_at_sc",
+    "context": ".beginWSPtrClass <Temporal::TempoMap> (\"TempoMap\")",
+    "line": 898
+  },
+  {
+    "binding": "meter_at_sc",
+    "context": ".beginWSPtrClass <Temporal::TempoMap> (\"TempoMap\")",
+    "line": 899
+  },
+  {
+    "binding": "superclock_at",
+    "context": ".beginWSPtrClass <Temporal::TempoMap> (\"TempoMap\")",
+    "line": 900
+  },
+  {
+    "binding": "superclock_at_bbt",
+    "context": ".beginWSPtrClass <Temporal::TempoMap> (\"TempoMap\")",
+    "line": 901
+  },
+  {
+    "binding": "superclock_at_beats",
+    "context": ".beginWSPtrClass <Temporal::TempoMap> (\"TempoMap\")",
+    "line": 902
+  },
+  {
+    "binding": "quarters_at",
+    "context": ".beginWSPtrClass <Temporal::TempoMap> (\"TempoMap\")",
+    "line": 905
+  },
+  {
+    "binding": "quarters_at_bbt",
+    "context": ".beginWSPtrClass <Temporal::TempoMap> (\"TempoMap\")",
+    "line": 906
+  },
+  {
+    "binding": "quarters_at_sample",
+    "context": ".beginWSPtrClass <Temporal::TempoMap> (\"TempoMap\")",
+    "line": 907
+  },
+  {
+    "binding": "sample_at",
+    "context": ".beginWSPtrClass <Temporal::TempoMap> (\"TempoMap\")",
+    "line": 909
+  },
+  {
+    "binding": "sample_at_bbt",
+    "context": ".beginWSPtrClass <Temporal::TempoMap> (\"TempoMap\")",
+    "line": 910
+  },
+  {
+    "binding": "sample_at_beats",
+    "context": ".beginWSPtrClass <Temporal::TempoMap> (\"TempoMap\")",
+    "line": 911
+  },
+  {
+    "binding": "bbt_duration_at",
+    "context": ".beginWSPtrClass <Temporal::TempoMap> (\"TempoMap\")",
+    "line": 913
+  },
+  {
+    "binding": "bbtwalk_to_quarters",
+    "context": ".beginWSPtrClass <Temporal::TempoMap> (\"TempoMap\")",
+    "line": 914
+  },
+  {
+    "binding": "bbtwalk_to_quarters_bbt",
+    "context": ".beginWSPtrClass <Temporal::TempoMap> (\"TempoMap\")",
+    "line": 915
+  },
+  {
+    "binding": "convert_duration",
+    "context": ".beginWSPtrClass <Temporal::TempoMap> (\"TempoMap\")",
+    "line": 917
+  },
+  {
+    "binding": "bbt_walk",
+    "context": ".beginWSPtrClass <Temporal::TempoMap> (\"TempoMap\")",
+    "line": 918
+  },
+  {
+    "binding": "grid",
+    "context": ".beginWSPtrClass <Temporal::TempoMap> (\"TempoMap\")",
+    "line": 920
+  },
+  {
+    "binding": "quarters_per_minute_at",
+    "context": ".beginWSPtrClass <Temporal::TempoMap> (\"TempoMap\")",
+    "line": 923
+  },
+  {
+    "binding": "round_to_bar",
+    "context": ".beginWSPtrClass <Temporal::TempoMap> (\"TempoMap\")",
+    "line": 924
+  },
+  {
+    "binding": "midi_clock_beat_at_or_after",
+    "context": ".beginWSPtrClass <Temporal::TempoMap> (\"TempoMap\")",
+    "line": 925
+  },
+  {
+    "binding": "clear",
+    "context": ".beginClass <Evoral::Event<samplepos_t> > (\"Event\")",
+    "line": 945
+  },
+  {
+    "binding": "size",
+    "context": ".beginClass <Evoral::Event<samplepos_t> > (\"Event\")",
+    "line": 946
+  },
+  {
+    "binding": "set_buffer",
+    "context": ".beginClass <Evoral::Event<samplepos_t> > (\"Event\")",
+    "line": 947
+  },
+  {
+    "binding": "buffer",
+    "context": ".beginClass <Evoral::Event<samplepos_t> > (\"Event\")",
+    "line": 948
+  },
+  {
+    "binding": "time",
+    "context": ".beginClass <Evoral::Event<samplepos_t> > (\"Event\")",
+    "line": 949
+  },
+  {
+    "binding": "type",
+    "context": ".beginClass <Evoral::Parameter> (\"Parameter\")",
+    "line": 954
+  },
+  {
+    "binding": "channel",
+    "context": ".beginClass <Evoral::Parameter> (\"Parameter\")",
+    "line": 955
+  },
+  {
+    "binding": "id",
+    "context": ".beginClass <Evoral::Parameter> (\"Parameter\")",
+    "line": 956
+  },
+  {
+    "binding": "add",
+    "context": ".beginWSPtrClass <Evoral::ControlList> (\"ControlList\")",
+    "line": 966
+  },
+  {
+    "binding": "editor_add",
+    "context": ".beginWSPtrClass <Evoral::ControlList> (\"ControlList\")",
+    "line": 967
+  },
+  {
+    "binding": "thin",
+    "context": ".beginWSPtrClass <Evoral::ControlList> (\"ControlList\")",
+    "line": 968
+  },
+  {
+    "binding": "eval",
+    "context": ".beginWSPtrClass <Evoral::ControlList> (\"ControlList\")",
+    "line": 969
+  },
+  {
+    "binding": "rt_safe_eval",
+    "context": ".beginWSPtrClass <Evoral::ControlList> (\"ControlList\")",
+    "line": 970
+  },
+  {
+    "binding": "interpolation",
+    "context": ".beginWSPtrClass <Evoral::ControlList> (\"ControlList\")",
+    "line": 971
+  },
+  {
+    "binding": "set_interpolation",
+    "context": ".beginWSPtrClass <Evoral::ControlList> (\"ControlList\")",
+    "line": 972
+  },
+  {
+    "binding": "truncate_end",
+    "context": ".beginWSPtrClass <Evoral::ControlList> (\"ControlList\")",
+    "line": 973
+  },
+  {
+    "binding": "truncate_start",
+    "context": ".beginWSPtrClass <Evoral::ControlList> (\"ControlList\")",
+    "line": 974
+  },
+  {
+    "binding": "clear",
+    "context": ".beginWSPtrClass <Evoral::ControlList> (\"ControlList\")",
+    "line": 975
+  },
+  {
+    "binding": "clear_list",
+    "context": ".beginWSPtrClass <Evoral::ControlList> (\"ControlList\")",
+    "line": 976
+  },
+  {
+    "binding": "in_write_pass",
+    "context": ".beginWSPtrClass <Evoral::ControlList> (\"ControlList\")",
+    "line": 977
+  },
+  {
+    "binding": "events",
+    "context": ".beginWSPtrClass <Evoral::ControlList> (\"ControlList\")",
+    "line": 978
+  },
+  {
+    "binding": "size",
+    "context": ".beginWSPtrClass <Evoral::ControlList> (\"ControlList\")",
+    "line": 979
+  },
+  {
+    "binding": "list",
+    "context": ".beginWSPtrClass <Evoral::Control> (\"Control\")",
+    "line": 986
+  },
+  {
+    "binding": "start",
+    "context": ".beginClass <Temporal::Range> (\"Range\")",
+    "line": 1001
+  },
+  {
+    "binding": "_end",
+    "context": ".beginClass <Temporal::Range> (\"Range\")",
+    "line": 1003
+  },
+  {
+    "binding": "time",
+    "context": ".beginWSPtrClass <Evoral::Note<Temporal::Beats> > (\"NotePtr\")",
+    "line": 1010
+  },
+  {
+    "binding": "note",
+    "context": ".beginWSPtrClass <Evoral::Note<Temporal::Beats> > (\"NotePtr\")",
+    "line": 1011
+  },
+  {
+    "binding": "velocity",
+    "context": ".beginWSPtrClass <Evoral::Note<Temporal::Beats> > (\"NotePtr\")",
+    "line": 1012
+  },
+  {
+    "binding": "off_velocity",
+    "context": ".beginWSPtrClass <Evoral::Note<Temporal::Beats> > (\"NotePtr\")",
+    "line": 1013
+  },
+  {
+    "binding": "length",
+    "context": ".beginWSPtrClass <Evoral::Note<Temporal::Beats> > (\"NotePtr\")",
+    "line": 1014
+  },
+  {
+    "binding": "channel",
+    "context": ".beginWSPtrClass <Evoral::Note<Temporal::Beats> > (\"NotePtr\")",
+    "line": 1015
+  },
+  {
+    "binding": "time",
+    "context": ".beginWSPtrClass <Evoral::Event<Temporal::Beats> > (\"EventPtr\")",
+    "line": 1019
+  },
+  {
+    "binding": "size",
+    "context": ".beginWSPtrClass <Evoral::Event<Temporal::Beats> > (\"EventPtr\")",
+    "line": 1020
+  },
+  {
+    "binding": "buffer",
+    "context": ".beginWSPtrClass <Evoral::Event<Temporal::Beats> > (\"EventPtr\")",
+    "line": 1021
+  },
+  {
+    "binding": "time",
+    "context": ".beginWSPtrClass <Evoral::PatchChange<Temporal::Beats> > (\"PatchChangePtr\")",
+    "line": 1025
+  },
+  {
+    "binding": "bank",
+    "context": ".beginWSPtrClass <Evoral::PatchChange<Temporal::Beats> > (\"PatchChangePtr\")",
+    "line": 1026
+  },
+  {
+    "binding": "program",
+    "context": ".beginWSPtrClass <Evoral::PatchChange<Temporal::Beats> > (\"PatchChangePtr\")",
+    "line": 1027
+  },
+  {
+    "binding": "usec",
+    "context": ".beginClass<Vamp::RealTime> (\"RealTime\")",
+    "line": 1054
+  },
+  {
+    "binding": "msec",
+    "context": ".beginClass<Vamp::RealTime> (\"RealTime\")",
+    "line": 1055
+  },
+  {
+    "binding": "toString",
+    "context": ".beginClass<Vamp::RealTime> (\"RealTime\")",
+    "line": 1056
+  },
+  {
+    "binding": "realTime2Frame",
+    "context": ".beginClass<Vamp::RealTime> (\"RealTime\")",
+    "line": 1057
+  },
+  {
+    "binding": "frame2RealTime",
+    "context": ".beginClass<Vamp::RealTime> (\"RealTime\")",
+    "line": 1058
+  },
+  {
+    "binding": "getIdentifier",
+    "context": ".beginClass<Vamp::PluginBase> (\"PluginBase\")",
+    "line": 1062
+  },
+  {
+    "binding": "getName",
+    "context": ".beginClass<Vamp::PluginBase> (\"PluginBase\")",
+    "line": 1063
+  },
+  {
+    "binding": "getDescription",
+    "context": ".beginClass<Vamp::PluginBase> (\"PluginBase\")",
+    "line": 1064
+  },
+  {
+    "binding": "getMaker",
+    "context": ".beginClass<Vamp::PluginBase> (\"PluginBase\")",
+    "line": 1065
+  },
+  {
+    "binding": "getCopyright",
+    "context": ".beginClass<Vamp::PluginBase> (\"PluginBase\")",
+    "line": 1066
+  },
+  {
+    "binding": "getPluginVersion",
+    "context": ".beginClass<Vamp::PluginBase> (\"PluginBase\")",
+    "line": 1067
+  },
+  {
+    "binding": "getParameterDescriptors",
+    "context": ".beginClass<Vamp::PluginBase> (\"PluginBase\")",
+    "line": 1068
+  },
+  {
+    "binding": "getParameter",
+    "context": ".beginClass<Vamp::PluginBase> (\"PluginBase\")",
+    "line": 1069
+  },
+  {
+    "binding": "setParameter",
+    "context": ".beginClass<Vamp::PluginBase> (\"PluginBase\")",
+    "line": 1070
+  },
+  {
+    "binding": "getPrograms",
+    "context": ".beginClass<Vamp::PluginBase> (\"PluginBase\")",
+    "line": 1071
+  },
+  {
+    "binding": "getCurrentProgram",
+    "context": ".beginClass<Vamp::PluginBase> (\"PluginBase\")",
+    "line": 1072
+  },
+  {
+    "binding": "selectProgram",
+    "context": ".beginClass<Vamp::PluginBase> (\"PluginBase\")",
+    "line": 1073
+  },
+  {
+    "binding": "getType",
+    "context": ".beginClass<Vamp::PluginBase> (\"PluginBase\")",
+    "line": 1074
+  },
+  {
+    "binding": "process",
+    "context": ".deriveClass<Vamp::Plugin, Vamp::PluginBase> (\"Plugin\")",
+    "line": 1096
+  },
+  {
+    "binding": "initialise",
+    "context": ".deriveClass<Vamp::Plugin, Vamp::PluginBase> (\"Plugin\")",
+    "line": 1097
+  },
+  {
+    "binding": "reset",
+    "context": ".deriveClass<Vamp::Plugin, Vamp::PluginBase> (\"Plugin\")",
+    "line": 1098
+  },
+  {
+    "binding": "getInputDomain",
+    "context": ".deriveClass<Vamp::Plugin, Vamp::PluginBase> (\"Plugin\")",
+    "line": 1099
+  },
+  {
+    "binding": "getPreferredBlockSize",
+    "context": ".deriveClass<Vamp::Plugin, Vamp::PluginBase> (\"Plugin\")",
+    "line": 1100
+  },
+  {
+    "binding": "getPreferredStepSize",
+    "context": ".deriveClass<Vamp::Plugin, Vamp::PluginBase> (\"Plugin\")",
+    "line": 1101
+  },
+  {
+    "binding": "getMinChannelCount",
+    "context": ".deriveClass<Vamp::Plugin, Vamp::PluginBase> (\"Plugin\")",
+    "line": 1102
+  },
+  {
+    "binding": "getMaxChannelCount",
+    "context": ".deriveClass<Vamp::Plugin, Vamp::PluginBase> (\"Plugin\")",
+    "line": 1103
+  },
+  {
+    "binding": "getOutputDescriptors",
+    "context": ".deriveClass<Vamp::Plugin, Vamp::PluginBase> (\"Plugin\")",
+    "line": 1104
+  },
+  {
+    "binding": "getRemainingFeatures",
+    "context": ".deriveClass<Vamp::Plugin, Vamp::PluginBase> (\"Plugin\")",
+    "line": 1105
+  },
+  {
+    "binding": "getType",
+    "context": ".deriveClass<Vamp::Plugin, Vamp::PluginBase> (\"Plugin\")",
+    "line": 1106
+  },
+  {
+    "binding": "length",
+    "context": ".beginClass <TimelineRange> (\"TimelineRange\")",
+    "line": 1179
+  },
+  {
+    "binding": "equal",
+    "context": ".beginClass <TimelineRange> (\"TimelineRange\")",
+    "line": 1180
+  },
+  {
+    "binding": "start",
+    "context": ".beginClass <TimelineRange> (\"TimelineRange\")",
+    "line": 1181
+  },
+  {
+    "binding": "_end",
+    "context": ".beginClass <TimelineRange> (\"TimelineRange\")",
+    "line": 1182
+  },
+  {
+    "binding": "is_instrument",
+    "context": ".beginWSPtrClass <PluginInfo> (\"PluginInfo\")",
+    "line": 1196
+  },
+  {
+    "binding": "get_presets",
+    "context": ".beginWSPtrClass <PluginInfo> (\"PluginInfo\")",
+    "line": 1197
+  },
+  {
+    "binding": "get",
+    "context": ".beginClass <ChanMapping> (\"ChanMapping\")",
+    "line": 1208
+  },
+  {
+    "binding": "set",
+    "context": ".beginClass <ChanMapping> (\"ChanMapping\")",
+    "line": 1209
+  },
+  {
+    "binding": "count",
+    "context": ".beginClass <ChanMapping> (\"ChanMapping\")",
+    "line": 1210
+  },
+  {
+    "binding": "n_total",
+    "context": ".beginClass <ChanMapping> (\"ChanMapping\")",
+    "line": 1211
+  },
+  {
+    "binding": "is_monotonic",
+    "context": ".beginClass <ChanMapping> (\"ChanMapping\")",
+    "line": 1212
+  },
+  {
+    "binding": "containsBool",
+    "context": ".beginClass <PBD::PropertyChange> (\"PropertyChange\")",
+    "line": 1238
+  },
+  {
+    "binding": "containsFloat",
+    "context": ".beginClass <PBD::PropertyChange> (\"PropertyChange\")",
+    "line": 1239
+  },
+  {
+    "binding": "containsString",
+    "context": ".beginClass <PBD::PropertyChange> (\"PropertyChange\")",
+    "line": 1240
+  },
+  {
+    "binding": "containsSamplePos",
+    "context": ".beginClass <PBD::PropertyChange> (\"PropertyChange\")",
+    "line": 1241
+  },
+  {
+    "binding": "containsTimePos",
+    "context": ".beginClass <PBD::PropertyChange> (\"PropertyChange\")",
+    "line": 1242
+  },
+  {
+    "binding": "containsTimeCnt",
+    "context": ".beginClass <PBD::PropertyChange> (\"PropertyChange\")",
+    "line": 1243
+  },
+  {
+    "binding": "get_state",
+    "context": ".deriveWSPtrClass <AutomationList, Evoral::ControlList> (\"AutomationList\")",
+    "line": 1257
+  },
+  {
+    "binding": "memento_command",
+    "context": ".deriveWSPtrClass <AutomationList, Evoral::ControlList> (\"AutomationList\")",
+    "line": 1258
+  },
+  {
+    "binding": "touching",
+    "context": ".deriveWSPtrClass <AutomationList, Evoral::ControlList> (\"AutomationList\")",
+    "line": 1259
+  },
+  {
+    "binding": "writing",
+    "context": ".deriveWSPtrClass <AutomationList, Evoral::ControlList> (\"AutomationList\")",
+    "line": 1260
+  },
+  {
+    "binding": "touch_enabled",
+    "context": ".deriveWSPtrClass <AutomationList, Evoral::ControlList> (\"AutomationList\")",
+    "line": 1261
+  },
+  {
+    "binding": "name",
+    "context": ".deriveClass <Location, PBD::StatefulDestructible> (\"Location\")",
+    "line": 1265
+  },
+  {
+    "binding": "locked",
+    "context": ".deriveClass <Location, PBD::StatefulDestructible> (\"Location\")",
+    "line": 1266
+  },
+  {
+    "binding": "lock",
+    "context": ".deriveClass <Location, PBD::StatefulDestructible> (\"Location\")",
+    "line": 1267
+  },
+  {
+    "binding": "unlock",
+    "context": ".deriveClass <Location, PBD::StatefulDestructible> (\"Location\")",
+    "line": 1268
+  },
+  {
+    "binding": "start",
+    "context": ".deriveClass <Location, PBD::StatefulDestructible> (\"Location\")",
+    "line": 1269
+  },
+  {
+    "binding": "_end",
+    "context": ".deriveClass <Location, PBD::StatefulDestructible> (\"Location\")",
+    "line": 1270
+  },
+  {
+    "binding": "length",
+    "context": ".deriveClass <Location, PBD::StatefulDestructible> (\"Location\")",
+    "line": 1271
+  },
+  {
+    "binding": "set_start",
+    "context": ".deriveClass <Location, PBD::StatefulDestructible> (\"Location\")",
+    "line": 1272
+  },
+  {
+    "binding": "set_end",
+    "context": ".deriveClass <Location, PBD::StatefulDestructible> (\"Location\")",
+    "line": 1273
+  },
+  {
+    "binding": "set",
+    "context": ".deriveClass <Location, PBD::StatefulDestructible> (\"Location\")",
+    "line": 1274
+  },
+  {
+    "binding": "set_length",
+    "context": ".deriveClass <Location, PBD::StatefulDestructible> (\"Location\")",
+    "line": 1275
+  },
+  {
+    "binding": "set_name",
+    "context": ".deriveClass <Location, PBD::StatefulDestructible> (\"Location\")",
+    "line": 1276
+  },
+  {
+    "binding": "move_to",
+    "context": ".deriveClass <Location, PBD::StatefulDestructible> (\"Location\")",
+    "line": 1277
+  },
+  {
+    "binding": "matches",
+    "context": ".deriveClass <Location, PBD::StatefulDestructible> (\"Location\")",
+    "line": 1278
+  },
+  {
+    "binding": "flags",
+    "context": ".deriveClass <Location, PBD::StatefulDestructible> (\"Location\")",
+    "line": 1279
+  },
+  {
+    "binding": "is_auto_punch",
+    "context": ".deriveClass <Location, PBD::StatefulDestructible> (\"Location\")",
+    "line": 1280
+  },
+  {
+    "binding": "is_auto_loop",
+    "context": ".deriveClass <Location, PBD::StatefulDestructible> (\"Location\")",
+    "line": 1281
+  },
+  {
+    "binding": "is_mark",
+    "context": ".deriveClass <Location, PBD::StatefulDestructible> (\"Location\")",
+    "line": 1282
+  },
+  {
+    "binding": "is_hidden",
+    "context": ".deriveClass <Location, PBD::StatefulDestructible> (\"Location\")",
+    "line": 1283
+  },
+  {
+    "binding": "is_cd_marker",
+    "context": ".deriveClass <Location, PBD::StatefulDestructible> (\"Location\")",
+    "line": 1284
+  },
+  {
+    "binding": "is_cue_marker",
+    "context": ".deriveClass <Location, PBD::StatefulDestructible> (\"Location\")",
+    "line": 1285
+  },
+  {
+    "binding": "is_session_range",
+    "context": ".deriveClass <Location, PBD::StatefulDestructible> (\"Location\")",
+    "line": 1286
+  },
+  {
+    "binding": "is_range_marker",
+    "context": ".deriveClass <Location, PBD::StatefulDestructible> (\"Location\")",
+    "line": 1287
+  },
+  {
+    "binding": "is_skip",
+    "context": ".deriveClass <Location, PBD::StatefulDestructible> (\"Location\")",
+    "line": 1288
+  },
+  {
+    "binding": "is_clock_origin",
+    "context": ".deriveClass <Location, PBD::StatefulDestructible> (\"Location\")",
+    "line": 1289
+  },
+  {
+    "binding": "is_skipping",
+    "context": ".deriveClass <Location, PBD::StatefulDestructible> (\"Location\")",
+    "line": 1290
+  },
+  {
+    "binding": "is_xrun",
+    "context": ".deriveClass <Location, PBD::StatefulDestructible> (\"Location\")",
+    "line": 1291
+  },
+  {
+    "binding": "is_section",
+    "context": ".deriveClass <Location, PBD::StatefulDestructible> (\"Location\")",
+    "line": 1292
+  },
+  {
+    "binding": "is_scene",
+    "context": ".deriveClass <Location, PBD::StatefulDestructible> (\"Location\")",
+    "line": 1293
+  },
+  {
+    "binding": "list",
+    "context": ".deriveClass <Locations, PBD::StatefulDestructible> (\"Locations\")",
+    "line": 1297
+  },
+  {
+    "binding": "auto_loop_location",
+    "context": ".deriveClass <Locations, PBD::StatefulDestructible> (\"Locations\")",
+    "line": 1298
+  },
+  {
+    "binding": "auto_punch_location",
+    "context": ".deriveClass <Locations, PBD::StatefulDestructible> (\"Locations\")",
+    "line": 1299
+  },
+  {
+    "binding": "session_range_location",
+    "context": ".deriveClass <Locations, PBD::StatefulDestructible> (\"Locations\")",
+    "line": 1300
+  },
+  {
+    "binding": "first_mark_after",
+    "context": ".deriveClass <Locations, PBD::StatefulDestructible> (\"Locations\")",
+    "line": 1301
+  },
+  {
+    "binding": "first_mark_before",
+    "context": ".deriveClass <Locations, PBD::StatefulDestructible> (\"Locations\")",
+    "line": 1302
+  },
+  {
+    "binding": "first_mark_at",
+    "context": ".deriveClass <Locations, PBD::StatefulDestructible> (\"Locations\")",
+    "line": 1303
+  },
+  {
+    "binding": "mark_at",
+    "context": ".deriveClass <Locations, PBD::StatefulDestructible> (\"Locations\")",
+    "line": 1304
+  },
+  {
+    "binding": "range_starts_at",
+    "context": ".deriveClass <Locations, PBD::StatefulDestructible> (\"Locations\")",
+    "line": 1305
+  },
+  {
+    "binding": "add_range",
+    "context": ".deriveClass <Locations, PBD::StatefulDestructible> (\"Locations\")",
+    "line": 1306
+  },
+  {
+    "binding": "remove",
+    "context": ".deriveClass <Locations, PBD::StatefulDestructible> (\"Locations\")",
+    "line": 1307
+  },
+  {
+    "binding": "marks_either_side",
+    "context": ".deriveClass <Locations, PBD::StatefulDestructible> (\"Locations\")",
+    "line": 1308
+  },
+  {
+    "binding": "find_all_between",
+    "context": ".deriveClass <Locations, PBD::StatefulDestructible> (\"Locations\")",
+    "line": 1309
+  },
+  {
+    "binding": "next_section",
+    "context": ".deriveClass <Locations, PBD::StatefulDestructible> (\"Locations\")",
+    "line": 1310
+  },
+  {
+    "binding": "name",
+    "context": ".beginWSPtrClass <SessionObject> (\"SessionObjectPtr\")",
+    "line": 1319
+  },
+  {
+    "binding": "name",
+    "context": ".beginClass <SessionObject> (\"SessionObject\")",
+    "line": 1323
+  },
+  {
+    "binding": "name",
+    "context": ".beginWSPtrClass <Port> (\"Port\")",
+    "line": 1331
+  },
+  {
+    "binding": "pretty_name",
+    "context": ".beginWSPtrClass <Port> (\"Port\")",
+    "line": 1332
+  },
+  {
+    "binding": "flags",
+    "context": ".beginWSPtrClass <Port> (\"Port\")",
+    "line": 1333
+  },
+  {
+    "binding": "receives_input",
+    "context": ".beginWSPtrClass <Port> (\"Port\")",
+    "line": 1334
+  },
+  {
+    "binding": "sends_output",
+    "context": ".beginWSPtrClass <Port> (\"Port\")",
+    "line": 1335
+  },
+  {
+    "binding": "connected",
+    "context": ".beginWSPtrClass <Port> (\"Port\")",
+    "line": 1336
+  },
+  {
+    "binding": "disconnect_all",
+    "context": ".beginWSPtrClass <Port> (\"Port\")",
+    "line": 1337
+  },
+  {
+    "binding": "connected_to",
+    "context": ".beginWSPtrClass <Port> (\"Port\")",
+    "line": 1338
+  },
+  {
+    "binding": "connect",
+    "context": ".beginWSPtrClass <Port> (\"Port\")",
+    "line": 1339
+  },
+  {
+    "binding": "disconnect",
+    "context": ".beginWSPtrClass <Port> (\"Port\")",
+    "line": 1340
+  },
+  {
+    "binding": "physically_connected",
+    "context": ".beginWSPtrClass <Port> (\"Port\")",
+    "line": 1341
+  },
+  {
+    "binding": "private_latency_range",
+    "context": ".beginWSPtrClass <Port> (\"Port\")",
+    "line": 1342
+  },
+  {
+    "binding": "public_latency_range",
+    "context": ".beginWSPtrClass <Port> (\"Port\")",
+    "line": 1343
+  },
+  {
+    "binding": "get_connected_latency_range",
+    "context": ".beginWSPtrClass <Port> (\"Port\")",
+    "line": 1344
+  },
+  {
+    "binding": "port_offset",
+    "context": ".beginWSPtrClass <Port> (\"Port\")",
+    "line": 1345
+  },
+  {
+    "binding": "input_active",
+    "context": ".deriveWSPtrClass <MidiPort, Port> (\"MidiPort\")",
+    "line": 1353
+  },
+  {
+    "binding": "set_input_active",
+    "context": ".deriveWSPtrClass <MidiPort, Port> (\"MidiPort\")",
+    "line": 1354
+  },
+  {
+    "binding": "get_midi_buffer",
+    "context": ".deriveWSPtrClass <MidiPort, Port> (\"MidiPort\")",
+    "line": 1355
+  },
+  {
+    "binding": "write",
+    "context": ".deriveWSPtrClass <AsyncMIDIPort, MidiPort> (\"AsyncMIDIPort\")",
+    "line": 1359
+  },
+  {
+    "binding": "num_ports",
+    "context": ".beginWSPtrClass <PortSet> (\"PortSet\")",
+    "line": 1363
+  },
+  {
+    "binding": "add",
+    "context": ".beginWSPtrClass <PortSet> (\"PortSet\")",
+    "line": 1364
+  },
+  {
+    "binding": "remove",
+    "context": ".beginWSPtrClass <PortSet> (\"PortSet\")",
+    "line": 1365
+  },
+  {
+    "binding": "port",
+    "context": ".beginWSPtrClass <PortSet> (\"PortSet\")",
+    "line": 1366
+  },
+  {
+    "binding": "contains",
+    "context": ".beginWSPtrClass <PortSet> (\"PortSet\")",
+    "line": 1367
+  },
+  {
+    "binding": "clear",
+    "context": ".beginWSPtrClass <PortSet> (\"PortSet\")",
+    "line": 1368
+  },
+  {
+    "binding": "empty",
+    "context": ".beginWSPtrClass <PortSet> (\"PortSet\")",
+    "line": 1369
+  },
+  {
+    "binding": "active",
+    "context": ".deriveWSPtrClass <IO, SessionObject> (\"IO\")",
+    "line": 1373
+  },
+  {
+    "binding": "add_port",
+    "context": ".deriveWSPtrClass <IO, SessionObject> (\"IO\")",
+    "line": 1374
+  },
+  {
+    "binding": "remove_port",
+    "context": ".deriveWSPtrClass <IO, SessionObject> (\"IO\")",
+    "line": 1375
+  },
+  {
+    "binding": "connect",
+    "context": ".deriveWSPtrClass <IO, SessionObject> (\"IO\")",
+    "line": 1376
+  },
+  {
+    "binding": "disconnect",
+    "context": ".deriveWSPtrClass <IO, SessionObject> (\"IO\")",
+    "line": 1377
+  },
+  {
+    "binding": "disconnect_all",
+    "context": ".deriveWSPtrClass <IO, SessionObject> (\"IO\")",
+    "line": 1378
+  },
+  {
+    "binding": "physically_connected",
+    "context": ".deriveWSPtrClass <IO, SessionObject> (\"IO\")",
+    "line": 1379
+  },
+  {
+    "binding": "has_port",
+    "context": ".deriveWSPtrClass <IO, SessionObject> (\"IO\")",
+    "line": 1380
+  },
+  {
+    "binding": "nth",
+    "context": ".deriveWSPtrClass <IO, SessionObject> (\"IO\")",
+    "line": 1381
+  },
+  {
+    "binding": "audio",
+    "context": ".deriveWSPtrClass <IO, SessionObject> (\"IO\")",
+    "line": 1382
+  },
+  {
+    "binding": "midi",
+    "context": ".deriveWSPtrClass <IO, SessionObject> (\"IO\")",
+    "line": 1383
+  },
+  {
+    "binding": "port_by_name",
+    "context": ".deriveWSPtrClass <IO, SessionObject> (\"IO\")",
+    "line": 1384
+  },
+  {
+    "binding": "n_ports",
+    "context": ".deriveWSPtrClass <IO, SessionObject> (\"IO\")",
+    "line": 1385
+  },
+  {
+    "binding": "latency",
+    "context": ".deriveWSPtrClass <IO, SessionObject> (\"IO\")",
+    "line": 1386
+  },
+  {
+    "binding": "public_latency",
+    "context": ".deriveWSPtrClass <IO, SessionObject> (\"IO\")",
+    "line": 1387
+  },
+  {
+    "binding": "bypassed",
+    "context": ".deriveWSPtrClass <PannerShell, SessionObject> (\"PannerShell\")",
+    "line": 1391
+  },
+  {
+    "binding": "set_bypassed",
+    "context": ".deriveWSPtrClass <PannerShell, SessionObject> (\"PannerShell\")",
+    "line": 1392
+  },
+  {
+    "binding": "is_active",
+    "context": ".deriveWSPtrClass <RouteGroup, SessionObject> (\"RouteGroup\")",
+    "line": 1397
+  },
+  {
+    "binding": "is_relative",
+    "context": ".deriveWSPtrClass <RouteGroup, SessionObject> (\"RouteGroup\")",
+    "line": 1398
+  },
+  {
+    "binding": "is_hidden",
+    "context": ".deriveWSPtrClass <RouteGroup, SessionObject> (\"RouteGroup\")",
+    "line": 1399
+  },
+  {
+    "binding": "is_gain",
+    "context": ".deriveWSPtrClass <RouteGroup, SessionObject> (\"RouteGroup\")",
+    "line": 1400
+  },
+  {
+    "binding": "is_mute",
+    "context": ".deriveWSPtrClass <RouteGroup, SessionObject> (\"RouteGroup\")",
+    "line": 1401
+  },
+  {
+    "binding": "is_solo",
+    "context": ".deriveWSPtrClass <RouteGroup, SessionObject> (\"RouteGroup\")",
+    "line": 1402
+  },
+  {
+    "binding": "is_recenable",
+    "context": ".deriveWSPtrClass <RouteGroup, SessionObject> (\"RouteGroup\")",
+    "line": 1403
+  },
+  {
+    "binding": "is_select",
+    "context": ".deriveWSPtrClass <RouteGroup, SessionObject> (\"RouteGroup\")",
+    "line": 1404
+  },
+  {
+    "binding": "is_route_active",
+    "context": ".deriveWSPtrClass <RouteGroup, SessionObject> (\"RouteGroup\")",
+    "line": 1405
+  },
+  {
+    "binding": "is_color",
+    "context": ".deriveWSPtrClass <RouteGroup, SessionObject> (\"RouteGroup\")",
+    "line": 1406
+  },
+  {
+    "binding": "is_monitoring",
+    "context": ".deriveWSPtrClass <RouteGroup, SessionObject> (\"RouteGroup\")",
+    "line": 1407
+  },
+  {
+    "binding": "group_master_number",
+    "context": ".deriveWSPtrClass <RouteGroup, SessionObject> (\"RouteGroup\")",
+    "line": 1408
+  },
+  {
+    "binding": "empty",
+    "context": ".deriveWSPtrClass <RouteGroup, SessionObject> (\"RouteGroup\")",
+    "line": 1409
+  },
+  {
+    "binding": "size",
+    "context": ".deriveWSPtrClass <RouteGroup, SessionObject> (\"RouteGroup\")",
+    "line": 1410
+  },
+  {
+    "binding": "set_active",
+    "context": ".deriveWSPtrClass <RouteGroup, SessionObject> (\"RouteGroup\")",
+    "line": 1411
+  },
+  {
+    "binding": "set_relative",
+    "context": ".deriveWSPtrClass <RouteGroup, SessionObject> (\"RouteGroup\")",
+    "line": 1412
+  },
+  {
+    "binding": "set_hidden",
+    "context": ".deriveWSPtrClass <RouteGroup, SessionObject> (\"RouteGroup\")",
+    "line": 1413
+  },
+  {
+    "binding": "set_gain",
+    "context": ".deriveWSPtrClass <RouteGroup, SessionObject> (\"RouteGroup\")",
+    "line": 1414
+  },
+  {
+    "binding": "set_mute",
+    "context": ".deriveWSPtrClass <RouteGroup, SessionObject> (\"RouteGroup\")",
+    "line": 1415
+  },
+  {
+    "binding": "set_solo",
+    "context": ".deriveWSPtrClass <RouteGroup, SessionObject> (\"RouteGroup\")",
+    "line": 1416
+  },
+  {
+    "binding": "set_recenable",
+    "context": ".deriveWSPtrClass <RouteGroup, SessionObject> (\"RouteGroup\")",
+    "line": 1417
+  },
+  {
+    "binding": "set_select",
+    "context": ".deriveWSPtrClass <RouteGroup, SessionObject> (\"RouteGroup\")",
+    "line": 1418
+  },
+  {
+    "binding": "set_route_active",
+    "context": ".deriveWSPtrClass <RouteGroup, SessionObject> (\"RouteGroup\")",
+    "line": 1419
+  },
+  {
+    "binding": "set_color",
+    "context": ".deriveWSPtrClass <RouteGroup, SessionObject> (\"RouteGroup\")",
+    "line": 1420
+  },
+  {
+    "binding": "set_monitoring",
+    "context": ".deriveWSPtrClass <RouteGroup, SessionObject> (\"RouteGroup\")",
+    "line": 1421
+  },
+  {
+    "binding": "add",
+    "context": ".deriveWSPtrClass <RouteGroup, SessionObject> (\"RouteGroup\")",
+    "line": 1422
+  },
+  {
+    "binding": "remove",
+    "context": ".deriveWSPtrClass <RouteGroup, SessionObject> (\"RouteGroup\")",
+    "line": 1423
+  },
+  {
+    "binding": "clear",
+    "context": ".deriveWSPtrClass <RouteGroup, SessionObject> (\"RouteGroup\")",
+    "line": 1424
+  },
+  {
+    "binding": "set_rgba",
+    "context": ".deriveWSPtrClass <RouteGroup, SessionObject> (\"RouteGroup\")",
+    "line": 1425
+  },
+  {
+    "binding": "rgba",
+    "context": ".deriveWSPtrClass <RouteGroup, SessionObject> (\"RouteGroup\")",
+    "line": 1426
+  },
+  {
+    "binding": "has_subgroup",
+    "context": ".deriveWSPtrClass <RouteGroup, SessionObject> (\"RouteGroup\")",
+    "line": 1427
+  },
+  {
+    "binding": "make_subgroup",
+    "context": ".deriveWSPtrClass <RouteGroup, SessionObject> (\"RouteGroup\")",
+    "line": 1428
+  },
+  {
+    "binding": "destroy_subgroup",
+    "context": ".deriveWSPtrClass <RouteGroup, SessionObject> (\"RouteGroup\")",
+    "line": 1429
+  },
+  {
+    "binding": "route_list",
+    "context": ".deriveWSPtrClass <RouteGroup, SessionObject> (\"RouteGroup\")",
+    "line": 1430
+  },
+  {
+    "binding": "color",
+    "context": ".deriveClass <PresentationInfo, PBD::Stateful> (\"PresentationInfo\")",
+    "line": 1434
+  },
+  {
+    "binding": "set_color",
+    "context": ".deriveClass <PresentationInfo, PBD::Stateful> (\"PresentationInfo\")",
+    "line": 1435
+  },
+  {
+    "binding": "order",
+    "context": ".deriveClass <PresentationInfo, PBD::Stateful> (\"PresentationInfo\")",
+    "line": 1436
+  },
+  {
+    "binding": "special",
+    "context": ".deriveClass <PresentationInfo, PBD::Stateful> (\"PresentationInfo\")",
+    "line": 1437
+  },
+  {
+    "binding": "flags",
+    "context": ".deriveClass <PresentationInfo, PBD::Stateful> (\"PresentationInfo\")",
+    "line": 1438
+  },
+  {
+    "binding": "assign",
+    "context": ".beginWSPtrClass <Slavable> (\"Slavable\")",
+    "line": 1443
+  },
+  {
+    "binding": "unassign",
+    "context": ".beginWSPtrClass <Slavable> (\"Slavable\")",
+    "line": 1444
+  },
+  {
+    "binding": "masters",
+    "context": ".beginWSPtrClass <Slavable> (\"Slavable\")",
+    "line": 1445
+  },
+  {
+    "binding": "assigned_to",
+    "context": ".beginWSPtrClass <Slavable> (\"Slavable\")",
+    "line": 1446
+  },
+  {
+    "binding": "is_auditioner",
+    "context": ".deriveWSPtrClass <Stripable, SessionObject> (\"Stripable\")",
+    "line": 1454
+  },
+  {
+    "binding": "is_private_route",
+    "context": ".deriveWSPtrClass <Stripable, SessionObject> (\"Stripable\")",
+    "line": 1455
+  },
+  {
+    "binding": "is_master",
+    "context": ".deriveWSPtrClass <Stripable, SessionObject> (\"Stripable\")",
+    "line": 1456
+  },
+  {
+    "binding": "is_monitor",
+    "context": ".deriveWSPtrClass <Stripable, SessionObject> (\"Stripable\")",
+    "line": 1457
+  },
+  {
+    "binding": "is_surround_master",
+    "context": ".deriveWSPtrClass <Stripable, SessionObject> (\"Stripable\")",
+    "line": 1458
+  },
+  {
+    "binding": "is_hidden",
+    "context": ".deriveWSPtrClass <Stripable, SessionObject> (\"Stripable\")",
+    "line": 1459
+  },
+  {
+    "binding": "is_selected",
+    "context": ".deriveWSPtrClass <Stripable, SessionObject> (\"Stripable\")",
+    "line": 1460
+  },
+  {
+    "binding": "gain_control",
+    "context": ".deriveWSPtrClass <Stripable, SessionObject> (\"Stripable\")",
+    "line": 1461
+  },
+  {
+    "binding": "solo_control",
+    "context": ".deriveWSPtrClass <Stripable, SessionObject> (\"Stripable\")",
+    "line": 1462
+  },
+  {
+    "binding": "solo_isolate_control",
+    "context": ".deriveWSPtrClass <Stripable, SessionObject> (\"Stripable\")",
+    "line": 1463
+  },
+  {
+    "binding": "solo_safe_control",
+    "context": ".deriveWSPtrClass <Stripable, SessionObject> (\"Stripable\")",
+    "line": 1464
+  },
+  {
+    "binding": "mute_control",
+    "context": ".deriveWSPtrClass <Stripable, SessionObject> (\"Stripable\")",
+    "line": 1465
+  },
+  {
+    "binding": "phase_control",
+    "context": ".deriveWSPtrClass <Stripable, SessionObject> (\"Stripable\")",
+    "line": 1466
+  },
+  {
+    "binding": "trim_control",
+    "context": ".deriveWSPtrClass <Stripable, SessionObject> (\"Stripable\")",
+    "line": 1467
+  },
+  {
+    "binding": "rec_enable_control",
+    "context": ".deriveWSPtrClass <Stripable, SessionObject> (\"Stripable\")",
+    "line": 1468
+  },
+  {
+    "binding": "rec_safe_control",
+    "context": ".deriveWSPtrClass <Stripable, SessionObject> (\"Stripable\")",
+    "line": 1469
+  },
+  {
+    "binding": "mapped_control",
+    "context": ".deriveWSPtrClass <Stripable, SessionObject> (\"Stripable\")",
+    "line": 1470
+  },
+  {
+    "binding": "mapped_output",
+    "context": ".deriveWSPtrClass <Stripable, SessionObject> (\"Stripable\")",
+    "line": 1471
+  },
+  {
+    "binding": "pan_azimuth_control",
+    "context": ".deriveWSPtrClass <Stripable, SessionObject> (\"Stripable\")",
+    "line": 1472
+  },
+  {
+    "binding": "pan_elevation_control",
+    "context": ".deriveWSPtrClass <Stripable, SessionObject> (\"Stripable\")",
+    "line": 1473
+  },
+  {
+    "binding": "pan_width_control",
+    "context": ".deriveWSPtrClass <Stripable, SessionObject> (\"Stripable\")",
+    "line": 1474
+  },
+  {
+    "binding": "pan_frontback_control",
+    "context": ".deriveWSPtrClass <Stripable, SessionObject> (\"Stripable\")",
+    "line": 1475
+  },
+  {
+    "binding": "pan_lfe_control",
+    "context": ".deriveWSPtrClass <Stripable, SessionObject> (\"Stripable\")",
+    "line": 1476
+  },
+  {
+    "binding": "send_level_controllable",
+    "context": ".deriveWSPtrClass <Stripable, SessionObject> (\"Stripable\")",
+    "line": 1477
+  },
+  {
+    "binding": "send_enable_controllable",
+    "context": ".deriveWSPtrClass <Stripable, SessionObject> (\"Stripable\")",
+    "line": 1478
+  },
+  {
+    "binding": "send_pan_azimuth_controllable",
+    "context": ".deriveWSPtrClass <Stripable, SessionObject> (\"Stripable\")",
+    "line": 1479
+  },
+  {
+    "binding": "send_pan_azimuth_enable_controllable",
+    "context": ".deriveWSPtrClass <Stripable, SessionObject> (\"Stripable\")",
+    "line": 1480
+  },
+  {
+    "binding": "send_name",
+    "context": ".deriveWSPtrClass <Stripable, SessionObject> (\"Stripable\")",
+    "line": 1481
+  },
+  {
+    "binding": "monitor_control",
+    "context": ".deriveWSPtrClass <Stripable, SessionObject> (\"Stripable\")",
+    "line": 1482
+  },
+  {
+    "binding": "master_send_enable_controllable",
+    "context": ".deriveWSPtrClass <Stripable, SessionObject> (\"Stripable\")",
+    "line": 1483
+  },
+  {
+    "binding": "eq_band_cnt",
+    "context": ".deriveWSPtrClass <Stripable, SessionObject> (\"Stripable\")",
+    "line": 1484
+  },
+  {
+    "binding": "eq_band_name",
+    "context": ".deriveWSPtrClass <Stripable, SessionObject> (\"Stripable\")",
+    "line": 1485
+  },
+  {
+    "binding": "set_presentation_order",
+    "context": ".deriveWSPtrClass <Stripable, SessionObject> (\"Stripable\")",
+    "line": 1486
+  },
+  {
+    "binding": "presentation_info_ptr",
+    "context": ".deriveWSPtrClass <Stripable, SessionObject> (\"Stripable\")",
+    "line": 1487
+  },
+  {
+    "binding": "slaved_to",
+    "context": ".deriveWSPtrClass <Stripable, SessionObject> (\"Stripable\")",
+    "line": 1488
+  },
+  {
+    "binding": "slaved",
+    "context": ".deriveWSPtrClass <Stripable, SessionObject> (\"Stripable\")",
+    "line": 1489
+  },
+  {
+    "binding": "full_name",
+    "context": ".deriveWSPtrClass <VCA, Stripable> (\"VCA\")",
+    "line": 1494
+  },
+  {
+    "binding": "number",
+    "context": ".deriveWSPtrClass <VCA, Stripable> (\"VCA\")",
+    "line": 1495
+  },
+  {
+    "binding": "gain_control",
+    "context": ".deriveWSPtrClass <VCA, Stripable> (\"VCA\")",
+    "line": 1496
+  },
+  {
+    "binding": "solo_control",
+    "context": ".deriveWSPtrClass <VCA, Stripable> (\"VCA\")",
+    "line": 1497
+  },
+  {
+    "binding": "mute_control",
+    "context": ".deriveWSPtrClass <VCA, Stripable> (\"VCA\")",
+    "line": 1498
+  },
+  {
+    "binding": "set_name",
+    "context": ".deriveWSPtrClass <Route, Stripable> (\"Route\")",
+    "line": 1503
+  },
+  {
+    "binding": "comment",
+    "context": ".deriveWSPtrClass <Route, Stripable> (\"Route\")",
+    "line": 1504
+  },
+  {
+    "binding": "active",
+    "context": ".deriveWSPtrClass <Route, Stripable> (\"Route\")",
+    "line": 1505
+  },
+  {
+    "binding": "data_type",
+    "context": ".deriveWSPtrClass <Route, Stripable> (\"Route\")",
+    "line": 1506
+  },
+  {
+    "binding": "set_active",
+    "context": ".deriveWSPtrClass <Route, Stripable> (\"Route\")",
+    "line": 1507
+  },
+  {
+    "binding": "nth_plugin",
+    "context": ".deriveWSPtrClass <Route, Stripable> (\"Route\")",
+    "line": 1508
+  },
+  {
+    "binding": "nth_processor",
+    "context": ".deriveWSPtrClass <Route, Stripable> (\"Route\")",
+    "line": 1509
+  },
+  {
+    "binding": "nth_send",
+    "context": ".deriveWSPtrClass <Route, Stripable> (\"Route\")",
+    "line": 1510
+  },
+  {
+    "binding": "add_foldback_send",
+    "context": ".deriveWSPtrClass <Route, Stripable> (\"Route\")",
+    "line": 1511
+  },
+  {
+    "binding": "add_processor_by_index",
+    "context": ".deriveWSPtrClass <Route, Stripable> (\"Route\")",
+    "line": 1512
+  },
+  {
+    "binding": "remove_processor",
+    "context": ".deriveWSPtrClass <Route, Stripable> (\"Route\")",
+    "line": 1513
+  },
+  {
+    "binding": "remove_processors",
+    "context": ".deriveWSPtrClass <Route, Stripable> (\"Route\")",
+    "line": 1514
+  },
+  {
+    "binding": "replace_processor",
+    "context": ".deriveWSPtrClass <Route, Stripable> (\"Route\")",
+    "line": 1515
+  },
+  {
+    "binding": "reorder_processors",
+    "context": ".deriveWSPtrClass <Route, Stripable> (\"Route\")",
+    "line": 1516
+  },
+  {
+    "binding": "the_instrument",
+    "context": ".deriveWSPtrClass <Route, Stripable> (\"Route\")",
+    "line": 1517
+  },
+  {
+    "binding": "n_inputs",
+    "context": ".deriveWSPtrClass <Route, Stripable> (\"Route\")",
+    "line": 1518
+  },
+  {
+    "binding": "n_outputs",
+    "context": ".deriveWSPtrClass <Route, Stripable> (\"Route\")",
+    "line": 1519
+  },
+  {
+    "binding": "input",
+    "context": ".deriveWSPtrClass <Route, Stripable> (\"Route\")",
+    "line": 1520
+  },
+  {
+    "binding": "output",
+    "context": ".deriveWSPtrClass <Route, Stripable> (\"Route\")",
+    "line": 1521
+  },
+  {
+    "binding": "panner_shell",
+    "context": ".deriveWSPtrClass <Route, Stripable> (\"Route\")",
+    "line": 1522
+  },
+  {
+    "binding": "set_comment",
+    "context": ".deriveWSPtrClass <Route, Stripable> (\"Route\")",
+    "line": 1523
+  },
+  {
+    "binding": "strict_io",
+    "context": ".deriveWSPtrClass <Route, Stripable> (\"Route\")",
+    "line": 1524
+  },
+  {
+    "binding": "set_strict_io",
+    "context": ".deriveWSPtrClass <Route, Stripable> (\"Route\")",
+    "line": 1525
+  },
+  {
+    "binding": "reset_plugin_insert",
+    "context": ".deriveWSPtrClass <Route, Stripable> (\"Route\")",
+    "line": 1526
+  },
+  {
+    "binding": "customize_plugin_insert",
+    "context": ".deriveWSPtrClass <Route, Stripable> (\"Route\")",
+    "line": 1527
+  },
+  {
+    "binding": "add_aux_send",
+    "context": ".deriveWSPtrClass <Route, Stripable> (\"Route\")",
+    "line": 1528
+  },
+  {
+    "binding": "main_outs",
+    "context": ".deriveWSPtrClass <Route, Stripable> (\"Route\")",
+    "line": 1529
+  },
+  {
+    "binding": "muted",
+    "context": ".deriveWSPtrClass <Route, Stripable> (\"Route\")",
+    "line": 1530
+  },
+  {
+    "binding": "soloed",
+    "context": ".deriveWSPtrClass <Route, Stripable> (\"Route\")",
+    "line": 1531
+  },
+  {
+    "binding": "amp",
+    "context": ".deriveWSPtrClass <Route, Stripable> (\"Route\")",
+    "line": 1532
+  },
+  {
+    "binding": "trim",
+    "context": ".deriveWSPtrClass <Route, Stripable> (\"Route\")",
+    "line": 1533
+  },
+  {
+    "binding": "peak_meter",
+    "context": ".deriveWSPtrClass <Route, Stripable> (\"Route\")",
+    "line": 1534
+  },
+  {
+    "binding": "set_meter_point",
+    "context": ".deriveWSPtrClass <Route, Stripable> (\"Route\")",
+    "line": 1535
+  },
+  {
+    "binding": "signal_latency",
+    "context": ".deriveWSPtrClass <Route, Stripable> (\"Route\")",
+    "line": 1536
+  },
+  {
+    "binding": "playback_latency",
+    "context": ".deriveWSPtrClass <Route, Stripable> (\"Route\")",
+    "line": 1537
+  },
+  {
+    "binding": "monitoring_state",
+    "context": ".deriveWSPtrClass <Route, Stripable> (\"Route\")",
+    "line": 1538
+  },
+  {
+    "binding": "monitoring_control",
+    "context": ".deriveWSPtrClass <Route, Stripable> (\"Route\")",
+    "line": 1539
+  },
+  {
+    "binding": "surround_send",
+    "context": ".deriveWSPtrClass <Route, Stripable> (\"Route\")",
+    "line": 1540
+  },
+  {
+    "binding": "surround_return",
+    "context": ".deriveWSPtrClass <Route, Stripable> (\"Route\")",
+    "line": 1541
+  },
+  {
+    "binding": "set_name",
+    "context": ".deriveWSPtrClass <Playlist, SessionObject> (\"Playlist\")",
+    "line": 1547
+  },
+  {
+    "binding": "region_by_id",
+    "context": ".deriveWSPtrClass <Playlist, SessionObject> (\"Playlist\")",
+    "line": 1548
+  },
+  {
+    "binding": "data_type",
+    "context": ".deriveWSPtrClass <Playlist, SessionObject> (\"Playlist\")",
+    "line": 1549
+  },
+  {
+    "binding": "n_regions",
+    "context": ".deriveWSPtrClass <Playlist, SessionObject> (\"Playlist\")",
+    "line": 1550
+  },
+  {
+    "binding": "get_extent",
+    "context": ".deriveWSPtrClass <Playlist, SessionObject> (\"Playlist\")",
+    "line": 1551
+  },
+  {
+    "binding": "region_list",
+    "context": ".deriveWSPtrClass <Playlist, SessionObject> (\"Playlist\")",
+    "line": 1552
+  },
+  {
+    "binding": "add_region",
+    "context": ".deriveWSPtrClass <Playlist, SessionObject> (\"Playlist\")",
+    "line": 1553
+  },
+  {
+    "binding": "remove_region",
+    "context": ".deriveWSPtrClass <Playlist, SessionObject> (\"Playlist\")",
+    "line": 1554
+  },
+  {
+    "binding": "regions_at",
+    "context": ".deriveWSPtrClass <Playlist, SessionObject> (\"Playlist\")",
+    "line": 1555
+  },
+  {
+    "binding": "top_region_at",
+    "context": ".deriveWSPtrClass <Playlist, SessionObject> (\"Playlist\")",
+    "line": 1556
+  },
+  {
+    "binding": "top_unmuted_region_at",
+    "context": ".deriveWSPtrClass <Playlist, SessionObject> (\"Playlist\")",
+    "line": 1557
+  },
+  {
+    "binding": "find_next_transient",
+    "context": ".deriveWSPtrClass <Playlist, SessionObject> (\"Playlist\")",
+    "line": 1558
+  },
+  {
+    "binding": "find_next_region",
+    "context": ".deriveWSPtrClass <Playlist, SessionObject> (\"Playlist\")",
+    "line": 1559
+  },
+  {
+    "binding": "find_next_region_boundary",
+    "context": ".deriveWSPtrClass <Playlist, SessionObject> (\"Playlist\")",
+    "line": 1560
+  },
+  {
+    "binding": "count_regions_at",
+    "context": ".deriveWSPtrClass <Playlist, SessionObject> (\"Playlist\")",
+    "line": 1561
+  },
+  {
+    "binding": "regions_touched",
+    "context": ".deriveWSPtrClass <Playlist, SessionObject> (\"Playlist\")",
+    "line": 1562
+  },
+  {
+    "binding": "regions_with_start_within",
+    "context": ".deriveWSPtrClass <Playlist, SessionObject> (\"Playlist\")",
+    "line": 1563
+  },
+  {
+    "binding": "regions_with_end_within",
+    "context": ".deriveWSPtrClass <Playlist, SessionObject> (\"Playlist\")",
+    "line": 1564
+  },
+  {
+    "binding": "raise_region",
+    "context": ".deriveWSPtrClass <Playlist, SessionObject> (\"Playlist\")",
+    "line": 1565
+  },
+  {
+    "binding": "lower_region",
+    "context": ".deriveWSPtrClass <Playlist, SessionObject> (\"Playlist\")",
+    "line": 1566
+  },
+  {
+    "binding": "raise_region_to_top",
+    "context": ".deriveWSPtrClass <Playlist, SessionObject> (\"Playlist\")",
+    "line": 1567
+  },
+  {
+    "binding": "lower_region_to_bottom",
+    "context": ".deriveWSPtrClass <Playlist, SessionObject> (\"Playlist\")",
+    "line": 1568
+  },
+  {
+    "binding": "duplicate",
+    "context": ".deriveWSPtrClass <Playlist, SessionObject> (\"Playlist\")",
+    "line": 1569
+  },
+  {
+    "binding": "duplicate_until",
+    "context": ".deriveWSPtrClass <Playlist, SessionObject> (\"Playlist\")",
+    "line": 1570
+  },
+  {
+    "binding": "duplicate_range",
+    "context": ".deriveWSPtrClass <Playlist, SessionObject> (\"Playlist\")",
+    "line": 1571
+  },
+  {
+    "binding": "combine",
+    "context": ".deriveWSPtrClass <Playlist, SessionObject> (\"Playlist\")",
+    "line": 1572
+  },
+  {
+    "binding": "uncombine",
+    "context": ".deriveWSPtrClass <Playlist, SessionObject> (\"Playlist\")",
+    "line": 1573
+  },
+  {
+    "binding": "used",
+    "context": ".deriveWSPtrClass <Playlist, SessionObject> (\"Playlist\")",
+    "line": 1574
+  },
+  {
+    "binding": "hidden",
+    "context": ".deriveWSPtrClass <Playlist, SessionObject> (\"Playlist\")",
+    "line": 1575
+  },
+  {
+    "binding": "empty",
+    "context": ".deriveWSPtrClass <Playlist, SessionObject> (\"Playlist\")",
+    "line": 1576
+  },
+  {
+    "binding": "shared",
+    "context": ".deriveWSPtrClass <Playlist, SessionObject> (\"Playlist\")",
+    "line": 1577
+  },
+  {
+    "binding": "split_region",
+    "context": ".deriveWSPtrClass <Playlist, SessionObject> (\"Playlist\")",
+    "line": 1578
+  },
+  {
+    "binding": "get_orig_track_id",
+    "context": ".deriveWSPtrClass <Playlist, SessionObject> (\"Playlist\")",
+    "line": 1579
+  },
+  {
+    "binding": "split",
+    "context": ".deriveWSPtrClass <Playlist, SessionObject> (\"Playlist\")",
+    "line": 1580
+  },
+  {
+    "binding": "cut",
+    "context": ".deriveWSPtrClass <Playlist, SessionObject> (\"Playlist\")",
+    "line": 1581
+  },
+  {
+    "binding": "copy",
+    "context": ".deriveWSPtrClass <Playlist, SessionObject> (\"Playlist\")",
+    "line": 1583
+  },
+  {
+    "binding": "paste",
+    "context": ".deriveWSPtrClass <Playlist, SessionObject> (\"Playlist\")",
+    "line": 1584
+  },
+  {
+    "binding": "name",
+    "context": ".beginWSPtrClass <Bundle> (\"Bundle\")",
+    "line": 1590
+  },
+  {
+    "binding": "n_total",
+    "context": ".beginWSPtrClass <Bundle> (\"Bundle\")",
+    "line": 1591
+  },
+  {
+    "binding": "nchannels",
+    "context": ".beginWSPtrClass <Bundle> (\"Bundle\")",
+    "line": 1592
+  },
+  {
+    "binding": "channel_name",
+    "context": ".beginWSPtrClass <Bundle> (\"Bundle\")",
+    "line": 1593
+  },
+  {
+    "binding": "ports_are_inputs",
+    "context": ".beginWSPtrClass <Bundle> (\"Bundle\")",
+    "line": 1594
+  },
+  {
+    "binding": "ports_are_outputs",
+    "context": ".beginWSPtrClass <Bundle> (\"Bundle\")",
+    "line": 1595
+  },
+  {
+    "binding": "read",
+    "context": ".deriveWSPtrClass <AudioPlaylist, Playlist> (\"AudioPlaylist\")",
+    "line": 1602
+  },
+  {
+    "binding": "set_note_mode",
+    "context": ".deriveWSPtrClass <MidiPlaylist, Playlist> (\"MidiPlaylist\")",
+    "line": 1606
+  },
+  {
+    "binding": "by_name",
+    "context": ".beginWSPtrClass <SessionPlaylists> (\"SessionPlaylists\")",
+    "line": 1610
+  },
+  {
+    "binding": "by_id",
+    "context": ".beginWSPtrClass <SessionPlaylists> (\"SessionPlaylists\")",
+    "line": 1611
+  },
+  {
+    "binding": "source_use_count",
+    "context": ".beginWSPtrClass <SessionPlaylists> (\"SessionPlaylists\")",
+    "line": 1612
+  },
+  {
+    "binding": "region_use_count",
+    "context": ".beginWSPtrClass <SessionPlaylists> (\"SessionPlaylists\")",
+    "line": 1613
+  },
+  {
+    "binding": "playlists_for_track",
+    "context": ".beginWSPtrClass <SessionPlaylists> (\"SessionPlaylists\")",
+    "line": 1614
+  },
+  {
+    "binding": "get_used",
+    "context": ".beginWSPtrClass <SessionPlaylists> (\"SessionPlaylists\")",
+    "line": 1615
+  },
+  {
+    "binding": "get_unused",
+    "context": ".beginWSPtrClass <SessionPlaylists> (\"SessionPlaylists\")",
+    "line": 1616
+  },
+  {
+    "binding": "n_playlists",
+    "context": ".beginWSPtrClass <SessionPlaylists> (\"SessionPlaylists\")",
+    "line": 1617
+  },
+  {
+    "binding": "set_name",
+    "context": ".deriveWSPtrClass <Track, Route> (\"Track\")",
+    "line": 1624
+  },
+  {
+    "binding": "can_record",
+    "context": ".deriveWSPtrClass <Track, Route> (\"Track\")",
+    "line": 1625
+  },
+  {
+    "binding": "bounceable",
+    "context": ".deriveWSPtrClass <Track, Route> (\"Track\")",
+    "line": 1626
+  },
+  {
+    "binding": "bounce",
+    "context": ".deriveWSPtrClass <Track, Route> (\"Track\")",
+    "line": 1627
+  },
+  {
+    "binding": "bounce_range",
+    "context": ".deriveWSPtrClass <Track, Route> (\"Track\")",
+    "line": 1628
+  },
+  {
+    "binding": "playlist",
+    "context": ".deriveWSPtrClass <Track, Route> (\"Track\")",
+    "line": 1629
+  },
+  {
+    "binding": "use_playlist",
+    "context": ".deriveWSPtrClass <Track, Route> (\"Track\")",
+    "line": 1630
+  },
+  {
+    "binding": "use_copy_playlist",
+    "context": ".deriveWSPtrClass <Track, Route> (\"Track\")",
+    "line": 1631
+  },
+  {
+    "binding": "use_new_playlist",
+    "context": ".deriveWSPtrClass <Track, Route> (\"Track\")",
+    "line": 1632
+  },
+  {
+    "binding": "find_and_use_playlist",
+    "context": ".deriveWSPtrClass <Track, Route> (\"Track\")",
+    "line": 1633
+  },
+  {
+    "binding": "write_immediate_event",
+    "context": ".deriveWSPtrClass <MidiTrack, Track> (\"MidiTrack\")",
+    "line": 1640
+  },
+  {
+    "binding": "set_input_active",
+    "context": ".deriveWSPtrClass <MidiTrack, Track> (\"MidiTrack\")",
+    "line": 1641
+  },
+  {
+    "binding": "input_active",
+    "context": ".deriveWSPtrClass <MidiTrack, Track> (\"MidiTrack\")",
+    "line": 1642
+  },
+  {
+    "binding": "set_capture_channel_mode",
+    "context": ".deriveWSPtrClass <MidiTrack, Track> (\"MidiTrack\")",
+    "line": 1643
+  },
+  {
+    "binding": "set_playback_channel_mode",
+    "context": ".deriveWSPtrClass <MidiTrack, Track> (\"MidiTrack\")",
+    "line": 1644
+  },
+  {
+    "binding": "set_playback_channel_mask",
+    "context": ".deriveWSPtrClass <MidiTrack, Track> (\"MidiTrack\")",
+    "line": 1645
+  },
+  {
+    "binding": "set_capture_channel_mask",
+    "context": ".deriveWSPtrClass <MidiTrack, Track> (\"MidiTrack\")",
+    "line": 1646
+  },
+  {
+    "binding": "get_playback_channel_mode",
+    "context": ".deriveWSPtrClass <MidiTrack, Track> (\"MidiTrack\")",
+    "line": 1647
+  },
+  {
+    "binding": "get_capture_channel_mode",
+    "context": ".deriveWSPtrClass <MidiTrack, Track> (\"MidiTrack\")",
+    "line": 1648
+  },
+  {
+    "binding": "get_playback_channel_mask",
+    "context": ".deriveWSPtrClass <MidiTrack, Track> (\"MidiTrack\")",
+    "line": 1649
+  },
+  {
+    "binding": "get_capture_channel_mask",
+    "context": ".deriveWSPtrClass <MidiTrack, Track> (\"MidiTrack\")",
+    "line": 1650
+  },
+  {
+    "binding": "read",
+    "context": ".beginWSPtrClass <AudioReadable> (\"Readable\")",
+    "line": 1654
+  },
+  {
+    "binding": "readable_length",
+    "context": ".beginWSPtrClass <AudioReadable> (\"Readable\")",
+    "line": 1655
+  },
+  {
+    "binding": "n_channels",
+    "context": ".beginWSPtrClass <AudioReadable> (\"Readable\")",
+    "line": 1656
+  },
+  {
+    "binding": "load",
+    "context": ".beginWSPtrClass <AudioReadable> (\"Readable\")",
+    "line": 1657
+  },
+  {
+    "binding": "new_rom",
+    "context": ".deriveWSPtrClass <AudioRom, AudioReadable> (\"AudioRom\")",
+    "line": 1661
+  },
+  {
+    "binding": "playlist",
+    "context": ".deriveWSPtrClass <Region, SessionObject> (\"Region\")",
+    "line": 1668
+  },
+  {
+    "binding": "set_name",
+    "context": ".deriveWSPtrClass <Region, SessionObject> (\"Region\")",
+    "line": 1669
+  },
+  {
+    "binding": "position",
+    "context": ".deriveWSPtrClass <Region, SessionObject> (\"Region\")",
+    "line": 1671
+  },
+  {
+    "binding": "start",
+    "context": ".deriveWSPtrClass <Region, SessionObject> (\"Region\")",
+    "line": 1672
+  },
+  {
+    "binding": "length",
+    "context": ".deriveWSPtrClass <Region, SessionObject> (\"Region\")",
+    "line": 1673
+  },
+  {
+    "binding": "layer",
+    "context": ".deriveWSPtrClass <Region, SessionObject> (\"Region\")",
+    "line": 1674
+  },
+  {
+    "binding": "data_type",
+    "context": ".deriveWSPtrClass <Region, SessionObject> (\"Region\")",
+    "line": 1675
+  },
+  {
+    "binding": "stretch",
+    "context": ".deriveWSPtrClass <Region, SessionObject> (\"Region\")",
+    "line": 1676
+  },
+  {
+    "binding": "shift",
+    "context": ".deriveWSPtrClass <Region, SessionObject> (\"Region\")",
+    "line": 1677
+  },
+  {
+    "binding": "sync_offset",
+    "context": ".deriveWSPtrClass <Region, SessionObject> (\"Region\")",
+    "line": 1678
+  },
+  {
+    "binding": "sync_position",
+    "context": ".deriveWSPtrClass <Region, SessionObject> (\"Region\")",
+    "line": 1679
+  },
+  {
+    "binding": "hidden",
+    "context": ".deriveWSPtrClass <Region, SessionObject> (\"Region\")",
+    "line": 1680
+  },
+  {
+    "binding": "muted",
+    "context": ".deriveWSPtrClass <Region, SessionObject> (\"Region\")",
+    "line": 1681
+  },
+  {
+    "binding": "opaque",
+    "context": ".deriveWSPtrClass <Region, SessionObject> (\"Region\")",
+    "line": 1682
+  },
+  {
+    "binding": "locked",
+    "context": ".deriveWSPtrClass <Region, SessionObject> (\"Region\")",
+    "line": 1683
+  },
+  {
+    "binding": "position_locked",
+    "context": ".deriveWSPtrClass <Region, SessionObject> (\"Region\")",
+    "line": 1684
+  },
+  {
+    "binding": "video_locked",
+    "context": ".deriveWSPtrClass <Region, SessionObject> (\"Region\")",
+    "line": 1685
+  },
+  {
+    "binding": "automatic",
+    "context": ".deriveWSPtrClass <Region, SessionObject> (\"Region\")",
+    "line": 1686
+  },
+  {
+    "binding": "whole_file",
+    "context": ".deriveWSPtrClass <Region, SessionObject> (\"Region\")",
+    "line": 1687
+  },
+  {
+    "binding": "captured",
+    "context": ".deriveWSPtrClass <Region, SessionObject> (\"Region\")",
+    "line": 1688
+  },
+  {
+    "binding": "can_move",
+    "context": ".deriveWSPtrClass <Region, SessionObject> (\"Region\")",
+    "line": 1689
+  },
+  {
+    "binding": "sync_marked",
+    "context": ".deriveWSPtrClass <Region, SessionObject> (\"Region\")",
+    "line": 1690
+  },
+  {
+    "binding": "external",
+    "context": ".deriveWSPtrClass <Region, SessionObject> (\"Region\")",
+    "line": 1691
+  },
+  {
+    "binding": "import",
+    "context": ".deriveWSPtrClass <Region, SessionObject> (\"Region\")",
+    "line": 1692
+  },
+  {
+    "binding": "covers",
+    "context": ".deriveWSPtrClass <Region, SessionObject> (\"Region\")",
+    "line": 1693
+  },
+  {
+    "binding": "at_natural_position",
+    "context": ".deriveWSPtrClass <Region, SessionObject> (\"Region\")",
+    "line": 1694
+  },
+  {
+    "binding": "is_compound",
+    "context": ".deriveWSPtrClass <Region, SessionObject> (\"Region\")",
+    "line": 1695
+  },
+  {
+    "binding": "captured_xruns",
+    "context": ".deriveWSPtrClass <Region, SessionObject> (\"Region\")",
+    "line": 1696
+  },
+  {
+    "binding": "has_transients",
+    "context": ".deriveWSPtrClass <Region, SessionObject> (\"Region\")",
+    "line": 1698
+  },
+  {
+    "binding": "transients",
+    "context": ".deriveWSPtrClass <Region, SessionObject> (\"Region\")",
+    "line": 1699
+  },
+  {
+    "binding": "load_plugin",
+    "context": ".deriveWSPtrClass <Region, SessionObject> (\"Region\")",
+    "line": 1701
+  },
+  {
+    "binding": "add_plugin",
+    "context": ".deriveWSPtrClass <Region, SessionObject> (\"Region\")",
+    "line": 1702
+  },
+  {
+    "binding": "remove_plugin",
+    "context": ".deriveWSPtrClass <Region, SessionObject> (\"Region\")",
+    "line": 1703
+  },
+  {
+    "binding": "nth_plugin",
+    "context": ".deriveWSPtrClass <Region, SessionObject> (\"Region\")",
+    "line": 1704
+  },
+  {
+    "binding": "set_length",
+    "context": ".deriveWSPtrClass <Region, SessionObject> (\"Region\")",
+    "line": 1707
+  },
+  {
+    "binding": "set_start",
+    "context": ".deriveWSPtrClass <Region, SessionObject> (\"Region\")",
+    "line": 1708
+  },
+  {
+    "binding": "set_position",
+    "context": ".deriveWSPtrClass <Region, SessionObject> (\"Region\")",
+    "line": 1709
+  },
+  {
+    "binding": "set_initial_position",
+    "context": ".deriveWSPtrClass <Region, SessionObject> (\"Region\")",
+    "line": 1710
+  },
+  {
+    "binding": "nudge_position",
+    "context": ".deriveWSPtrClass <Region, SessionObject> (\"Region\")",
+    "line": 1711
+  },
+  {
+    "binding": "move_to_natural_position",
+    "context": ".deriveWSPtrClass <Region, SessionObject> (\"Region\")",
+    "line": 1712
+  },
+  {
+    "binding": "move_start",
+    "context": ".deriveWSPtrClass <Region, SessionObject> (\"Region\")",
+    "line": 1713
+  },
+  {
+    "binding": "master_sources",
+    "context": ".deriveWSPtrClass <Region, SessionObject> (\"Region\")",
+    "line": 1714
+  },
+  {
+    "binding": "master_source_names",
+    "context": ".deriveWSPtrClass <Region, SessionObject> (\"Region\")",
+    "line": 1715
+  },
+  {
+    "binding": "trim_front",
+    "context": ".deriveWSPtrClass <Region, SessionObject> (\"Region\")",
+    "line": 1716
+  },
+  {
+    "binding": "trim_end",
+    "context": ".deriveWSPtrClass <Region, SessionObject> (\"Region\")",
+    "line": 1717
+  },
+  {
+    "binding": "trim_to",
+    "context": ".deriveWSPtrClass <Region, SessionObject> (\"Region\")",
+    "line": 1718
+  },
+  {
+    "binding": "cut_front",
+    "context": ".deriveWSPtrClass <Region, SessionObject> (\"Region\")",
+    "line": 1719
+  },
+  {
+    "binding": "cut_end",
+    "context": ".deriveWSPtrClass <Region, SessionObject> (\"Region\")",
+    "line": 1720
+  },
+  {
+    "binding": "raise",
+    "context": ".deriveWSPtrClass <Region, SessionObject> (\"Region\")",
+    "line": 1721
+  },
+  {
+    "binding": "lower",
+    "context": ".deriveWSPtrClass <Region, SessionObject> (\"Region\")",
+    "line": 1722
+  },
+  {
+    "binding": "raise_to_top",
+    "context": ".deriveWSPtrClass <Region, SessionObject> (\"Region\")",
+    "line": 1723
+  },
+  {
+    "binding": "lower_to_bottom",
+    "context": ".deriveWSPtrClass <Region, SessionObject> (\"Region\")",
+    "line": 1724
+  },
+  {
+    "binding": "set_sync_position",
+    "context": ".deriveWSPtrClass <Region, SessionObject> (\"Region\")",
+    "line": 1725
+  },
+  {
+    "binding": "clear_sync_position",
+    "context": ".deriveWSPtrClass <Region, SessionObject> (\"Region\")",
+    "line": 1726
+  },
+  {
+    "binding": "set_hidden",
+    "context": ".deriveWSPtrClass <Region, SessionObject> (\"Region\")",
+    "line": 1727
+  },
+  {
+    "binding": "set_muted",
+    "context": ".deriveWSPtrClass <Region, SessionObject> (\"Region\")",
+    "line": 1728
+  },
+  {
+    "binding": "set_opaque",
+    "context": ".deriveWSPtrClass <Region, SessionObject> (\"Region\")",
+    "line": 1729
+  },
+  {
+    "binding": "set_locked",
+    "context": ".deriveWSPtrClass <Region, SessionObject> (\"Region\")",
+    "line": 1730
+  },
+  {
+    "binding": "set_video_locked",
+    "context": ".deriveWSPtrClass <Region, SessionObject> (\"Region\")",
+    "line": 1731
+  },
+  {
+    "binding": "set_position_locked",
+    "context": ".deriveWSPtrClass <Region, SessionObject> (\"Region\")",
+    "line": 1732
+  },
+  {
+    "binding": "source",
+    "context": ".deriveWSPtrClass <Region, SessionObject> (\"Region\")",
+    "line": 1733
+  },
+  {
+    "binding": "control",
+    "context": ".deriveWSPtrClass <Region, SessionObject> (\"Region\")",
+    "line": 1734
+  },
+  {
+    "binding": "do_export",
+    "context": ".deriveWSPtrClass <MidiRegion, Region> (\"MidiRegion\")",
+    "line": 1738
+  },
+  {
+    "binding": "midi_source",
+    "context": ".deriveWSPtrClass <MidiRegion, Region> (\"MidiRegion\")",
+    "line": 1739
+  },
+  {
+    "binding": "model",
+    "context": ".deriveWSPtrClass <MidiRegion, Region> (\"MidiRegion\")",
+    "line": 1740
+  },
+  {
+    "binding": "n_channels",
+    "context": ".deriveWSPtrClass <AudioRegion, Region> (\"AudioRegion\")",
+    "line": 1745
+  },
+  {
+    "binding": "audio_source",
+    "context": ".deriveWSPtrClass <AudioRegion, Region> (\"AudioRegion\")",
+    "line": 1746
+  },
+  {
+    "binding": "set_scale_amplitude",
+    "context": ".deriveWSPtrClass <AudioRegion, Region> (\"AudioRegion\")",
+    "line": 1747
+  },
+  {
+    "binding": "scale_amplitude",
+    "context": ".deriveWSPtrClass <AudioRegion, Region> (\"AudioRegion\")",
+    "line": 1748
+  },
+  {
+    "binding": "maximum_amplitude",
+    "context": ".deriveWSPtrClass <AudioRegion, Region> (\"AudioRegion\")",
+    "line": 1749
+  },
+  {
+    "binding": "rms",
+    "context": ".deriveWSPtrClass <AudioRegion, Region> (\"AudioRegion\")",
+    "line": 1750
+  },
+  {
+    "binding": "envelope",
+    "context": ".deriveWSPtrClass <AudioRegion, Region> (\"AudioRegion\")",
+    "line": 1751
+  },
+  {
+    "binding": "envelope_active",
+    "context": ".deriveWSPtrClass <AudioRegion, Region> (\"AudioRegion\")",
+    "line": 1752
+  },
+  {
+    "binding": "fade_in_active",
+    "context": ".deriveWSPtrClass <AudioRegion, Region> (\"AudioRegion\")",
+    "line": 1753
+  },
+  {
+    "binding": "fade_out_active",
+    "context": ".deriveWSPtrClass <AudioRegion, Region> (\"AudioRegion\")",
+    "line": 1754
+  },
+  {
+    "binding": "fade_in_length",
+    "context": ".deriveWSPtrClass <AudioRegion, Region> (\"AudioRegion\")",
+    "line": 1755
+  },
+  {
+    "binding": "fade_out_length",
+    "context": ".deriveWSPtrClass <AudioRegion, Region> (\"AudioRegion\")",
+    "line": 1756
+  },
+  {
+    "binding": "fade_before_fx",
+    "context": ".deriveWSPtrClass <AudioRegion, Region> (\"AudioRegion\")",
+    "line": 1757
+  },
+  {
+    "binding": "set_envelope_active",
+    "context": ".deriveWSPtrClass <AudioRegion, Region> (\"AudioRegion\")",
+    "line": 1758
+  },
+  {
+    "binding": "set_fade_before_fx",
+    "context": ".deriveWSPtrClass <AudioRegion, Region> (\"AudioRegion\")",
+    "line": 1759
+  },
+  {
+    "binding": "set_fade_in_active",
+    "context": ".deriveWSPtrClass <AudioRegion, Region> (\"AudioRegion\")",
+    "line": 1760
+  },
+  {
+    "binding": "set_fade_in_shape",
+    "context": ".deriveWSPtrClass <AudioRegion, Region> (\"AudioRegion\")",
+    "line": 1761
+  },
+  {
+    "binding": "set_fade_in_length",
+    "context": ".deriveWSPtrClass <AudioRegion, Region> (\"AudioRegion\")",
+    "line": 1762
+  },
+  {
+    "binding": "set_fade_out_active",
+    "context": ".deriveWSPtrClass <AudioRegion, Region> (\"AudioRegion\")",
+    "line": 1763
+  },
+  {
+    "binding": "set_fade_out_shape",
+    "context": ".deriveWSPtrClass <AudioRegion, Region> (\"AudioRegion\")",
+    "line": 1764
+  },
+  {
+    "binding": "set_fade_out_length",
+    "context": ".deriveWSPtrClass <AudioRegion, Region> (\"AudioRegion\")",
+    "line": 1765
+  },
+  {
+    "binding": "separate_by_channel",
+    "context": ".deriveWSPtrClass <AudioRegion, Region> (\"AudioRegion\")",
+    "line": 1766
+  },
+  {
+    "binding": "timestamp",
+    "context": ".deriveWSPtrClass <Source, SessionObject> (\"Source\")",
+    "line": 1773
+  },
+  {
+    "binding": "empty",
+    "context": ".deriveWSPtrClass <Source, SessionObject> (\"Source\")",
+    "line": 1774
+  },
+  {
+    "binding": "length",
+    "context": ".deriveWSPtrClass <Source, SessionObject> (\"Source\")",
+    "line": 1775
+  },
+  {
+    "binding": "natural_position",
+    "context": ".deriveWSPtrClass <Source, SessionObject> (\"Source\")",
+    "line": 1776
+  },
+  {
+    "binding": "writable",
+    "context": ".deriveWSPtrClass <Source, SessionObject> (\"Source\")",
+    "line": 1777
+  },
+  {
+    "binding": "has_been_analysed",
+    "context": ".deriveWSPtrClass <Source, SessionObject> (\"Source\")",
+    "line": 1778
+  },
+  {
+    "binding": "can_be_analysed",
+    "context": ".deriveWSPtrClass <Source, SessionObject> (\"Source\")",
+    "line": 1779
+  },
+  {
+    "binding": "timeline_position",
+    "context": ".deriveWSPtrClass <Source, SessionObject> (\"Source\")",
+    "line": 1780
+  },
+  {
+    "binding": "use_count",
+    "context": ".deriveWSPtrClass <Source, SessionObject> (\"Source\")",
+    "line": 1781
+  },
+  {
+    "binding": "used",
+    "context": ".deriveWSPtrClass <Source, SessionObject> (\"Source\")",
+    "line": 1782
+  },
+  {
+    "binding": "ancestor_name",
+    "context": ".deriveWSPtrClass <Source, SessionObject> (\"Source\")",
+    "line": 1783
+  },
+  {
+    "binding": "captured_xruns",
+    "context": ".deriveWSPtrClass <Source, SessionObject> (\"Source\")",
+    "line": 1784
+  },
+  {
+    "binding": "path",
+    "context": ".deriveWSPtrClass <FileSource, Source> (\"FileSource\")",
+    "line": 1788
+  },
+  {
+    "binding": "within_session",
+    "context": ".deriveWSPtrClass <FileSource, Source> (\"FileSource\")",
+    "line": 1789
+  },
+  {
+    "binding": "channel",
+    "context": ".deriveWSPtrClass <FileSource, Source> (\"FileSource\")",
+    "line": 1790
+  },
+  {
+    "binding": "origin",
+    "context": ".deriveWSPtrClass <FileSource, Source> (\"FileSource\")",
+    "line": 1791
+  },
+  {
+    "binding": "take_id",
+    "context": ".deriveWSPtrClass <FileSource, Source> (\"FileSource\")",
+    "line": 1792
+  },
+  {
+    "binding": "gain",
+    "context": ".deriveWSPtrClass <FileSource, Source> (\"FileSource\")",
+    "line": 1793
+  },
+  {
+    "binding": "empty",
+    "context": ".deriveWSPtrClass <MidiSource, Source> (\"MidiSource\")",
+    "line": 1797
+  },
+  {
+    "binding": "length",
+    "context": ".deriveWSPtrClass <MidiSource, Source> (\"MidiSource\")",
+    "line": 1798
+  },
+  {
+    "binding": "model",
+    "context": ".deriveWSPtrClass <MidiSource, Source> (\"MidiSource\")",
+    "line": 1799
+  },
+  {
+    "binding": "readable_length",
+    "context": ".deriveWSPtrClass <AudioSource, Source> (\"AudioSource\")",
+    "line": 1804
+  },
+  {
+    "binding": "n_channels",
+    "context": ".deriveWSPtrClass <AudioSource, Source> (\"AudioSource\")",
+    "line": 1805
+  },
+  {
+    "binding": "empty",
+    "context": ".deriveWSPtrClass <AudioSource, Source> (\"AudioSource\")",
+    "line": 1806
+  },
+  {
+    "binding": "length",
+    "context": ".deriveWSPtrClass <AudioSource, Source> (\"AudioSource\")",
+    "line": 1807
+  },
+  {
+    "binding": "read",
+    "context": ".deriveWSPtrClass <AudioSource, Source> (\"AudioSource\")",
+    "line": 1808
+  },
+  {
+    "binding": "sample_rate",
+    "context": ".deriveWSPtrClass <AudioSource, Source> (\"AudioSource\")",
+    "line": 1809
+  },
+  {
+    "binding": "captured_for",
+    "context": ".deriveWSPtrClass <AudioSource, Source> (\"AudioSource\")",
+    "line": 1810
+  },
+  {
+    "binding": "effective_latency",
+    "context": ".beginWSPtrClass <Latent> (\"Latent\")",
+    "line": 1814
+  },
+  {
+    "binding": "user_latency",
+    "context": ".beginWSPtrClass <Latent> (\"Latent\")",
+    "line": 1815
+  },
+  {
+    "binding": "unset_user_latency",
+    "context": ".beginWSPtrClass <Latent> (\"Latent\")",
+    "line": 1816
+  },
+  {
+    "binding": "set_user_latency",
+    "context": ".beginWSPtrClass <Latent> (\"Latent\")",
+    "line": 1817
+  },
+  {
+    "binding": "first_selected_stripable",
+    "context": ".deriveClass <CoreSelection, PBD::Stateful> (\"Route\")",
+    "line": 1821
+  },
+  {
+    "binding": "select_next_stripable",
+    "context": ".deriveClass <CoreSelection, PBD::Stateful> (\"Route\")",
+    "line": 1822
+  },
+  {
+    "binding": "select_prev_stripable",
+    "context": ".deriveClass <CoreSelection, PBD::Stateful> (\"Route\")",
+    "line": 1823
+  },
+  {
+    "binding": "clear_stripables",
+    "context": ".deriveClass <CoreSelection, PBD::Stateful> (\"Route\")",
+    "line": 1824
+  },
+  {
+    "binding": "zero_latency",
+    "context": ".beginClass <Latent> (\"PDC\")",
+    "line": 1829
+  },
+  {
+    "binding": "force_zero_latency",
+    "context": ".beginClass <Latent> (\"PDC\")",
+    "line": 1830
+  },
+  {
+    "binding": "run_export",
+    "context": ".beginClass <SimpleExport> (\"SimpleExport\")",
+    "line": 1834
+  },
+  {
+    "binding": "set_name",
+    "context": ".beginClass <SimpleExport> (\"SimpleExport\")",
+    "line": 1835
+  },
+  {
+    "binding": "set_folder",
+    "context": ".beginClass <SimpleExport> (\"SimpleExport\")",
+    "line": 1836
+  },
+  {
+    "binding": "set_range",
+    "context": ".beginClass <SimpleExport> (\"SimpleExport\")",
+    "line": 1837
+  },
+  {
+    "binding": "set_preset",
+    "context": ".beginClass <SimpleExport> (\"SimpleExport\")",
+    "line": 1838
+  },
+  {
+    "binding": "check_outputs",
+    "context": ".beginClass <SimpleExport> (\"SimpleExport\")",
+    "line": 1839
+  },
+  {
+    "binding": "automation_control",
+    "context": ".deriveWSPtrClass <Automatable, Evoral::ControlSet> (\"Automatable\")",
+    "line": 1844
+  },
+  {
+    "binding": "all_automatable_params",
+    "context": ".deriveWSPtrClass <Automatable, Evoral::ControlSet> (\"Automatable\")",
+    "line": 1845
+  },
+  {
+    "binding": "apply_command",
+    "context": ".deriveWSPtrClass <MidiModel, AutomatableSequence<Temporal::Beats> > (\"MidiModel\")",
+    "line": 1853
+  },
+  {
+    "binding": "apply_diff_command_as_commit",
+    "context": ".deriveWSPtrClass <MidiModel, AutomatableSequence<Temporal::Beats> > (\"MidiModel\")",
+    "line": 1854
+  },
+  {
+    "binding": "new_note_diff_command",
+    "context": ".deriveWSPtrClass <MidiModel, AutomatableSequence<Temporal::Beats> > (\"MidiModel\")",
+    "line": 1855
+  },
+  {
+    "binding": "new_sysex_diff_command",
+    "context": ".deriveWSPtrClass <MidiModel, AutomatableSequence<Temporal::Beats> > (\"MidiModel\")",
+    "line": 1856
+  },
+  {
+    "binding": "new_patch_change_diff_command",
+    "context": ".deriveWSPtrClass <MidiModel, AutomatableSequence<Temporal::Beats> > (\"MidiModel\")",
+    "line": 1857
+  },
+  {
+    "binding": "add",
+    "context": ".deriveClass<ARDOUR::MidiModel::NoteDiffCommand, ARDOUR::MidiModel::DiffCommand> (\"NoteDiffCommand\")",
+    "line": 1865
+  },
+  {
+    "binding": "remove",
+    "context": ".deriveClass<ARDOUR::MidiModel::NoteDiffCommand, ARDOUR::MidiModel::DiffCommand> (\"NoteDiffCommand\")",
+    "line": 1866
+  },
+  {
+    "binding": "change",
+    "context": ".deriveClass<ARDOUR::MidiModel::SysExDiffCommand, ARDOUR::MidiModel::DiffCommand> (\"NoteDiffCommand\")",
+    "line": 1870
+  },
+  {
+    "binding": "remove",
+    "context": ".deriveClass<ARDOUR::MidiModel::SysExDiffCommand, ARDOUR::MidiModel::DiffCommand> (\"NoteDiffCommand\")",
+    "line": 1871
+  },
+  {
+    "binding": "add",
+    "context": ".deriveClass<ARDOUR::MidiModel::PatchChangeDiffCommand, ARDOUR::MidiModel::DiffCommand> (\"NoteDiffCommand\")",
+    "line": 1875
+  },
+  {
+    "binding": "remove",
+    "context": ".deriveClass<ARDOUR::MidiModel::PatchChangeDiffCommand, ARDOUR::MidiModel::DiffCommand> (\"NoteDiffCommand\")",
+    "line": 1876
+  },
+  {
+    "binding": "midi_note_name",
+    "context": ".deriveClass <ParameterDescriptor, Evoral::ParameterDescriptor> (\"ParameterDescriptor\")",
+    "line": 1904
+  },
+  {
+    "binding": "display_name",
+    "context": ".deriveWSPtrClass <Processor, SessionObject> (\"Processor\")",
+    "line": 1932
+  },
+  {
+    "binding": "display_to_user",
+    "context": ".deriveWSPtrClass <Processor, SessionObject> (\"Processor\")",
+    "line": 1933
+  },
+  {
+    "binding": "active",
+    "context": ".deriveWSPtrClass <Processor, SessionObject> (\"Processor\")",
+    "line": 1934
+  },
+  {
+    "binding": "activate",
+    "context": ".deriveWSPtrClass <Processor, SessionObject> (\"Processor\")",
+    "line": 1935
+  },
+  {
+    "binding": "deactivate",
+    "context": ".deriveWSPtrClass <Processor, SessionObject> (\"Processor\")",
+    "line": 1936
+  },
+  {
+    "binding": "input_latency",
+    "context": ".deriveWSPtrClass <Processor, SessionObject> (\"Processor\")",
+    "line": 1937
+  },
+  {
+    "binding": "output_latency",
+    "context": ".deriveWSPtrClass <Processor, SessionObject> (\"Processor\")",
+    "line": 1938
+  },
+  {
+    "binding": "capture_offset",
+    "context": ".deriveWSPtrClass <Processor, SessionObject> (\"Processor\")",
+    "line": 1939
+  },
+  {
+    "binding": "playback_offset",
+    "context": ".deriveWSPtrClass <Processor, SessionObject> (\"Processor\")",
+    "line": 1940
+  },
+  {
+    "binding": "output_streams",
+    "context": ".deriveWSPtrClass <Processor, SessionObject> (\"Processor\")",
+    "line": 1941
+  },
+  {
+    "binding": "input_streams",
+    "context": ".deriveWSPtrClass <Processor, SessionObject> (\"Processor\")",
+    "line": 1942
+  },
+  {
+    "binding": "signal_latency",
+    "context": ".deriveWSPtrClass <Processor, SessionObject> (\"Processor\")",
+    "line": 1943
+  },
+  {
+    "binding": "natural_input_streams",
+    "context": ".deriveWSPtrClass <IOProcessor, Processor> (\"IOProcessor\")",
+    "line": 1956
+  },
+  {
+    "binding": "natural_output_streams",
+    "context": ".deriveWSPtrClass <IOProcessor, Processor> (\"IOProcessor\")",
+    "line": 1957
+  },
+  {
+    "binding": "input",
+    "context": ".deriveWSPtrClass <IOProcessor, Processor> (\"IOProcessor\")",
+    "line": 1958
+  },
+  {
+    "binding": "output",
+    "context": ".deriveWSPtrClass <IOProcessor, Processor> (\"IOProcessor\")",
+    "line": 1959
+  },
+  {
+    "binding": "panner_shell",
+    "context": ".deriveWSPtrClass <Delivery, IOProcessor> (\"Delivery\")",
+    "line": 1966
+  },
+  {
+    "binding": "get_delay_in",
+    "context": ".deriveWSPtrClass <Send, Delivery> (\"Send\")",
+    "line": 1971
+  },
+  {
+    "binding": "get_delay_out",
+    "context": ".deriveWSPtrClass <Send, Delivery> (\"Send\")",
+    "line": 1972
+  },
+  {
+    "binding": "gain_control",
+    "context": ".deriveWSPtrClass <Send, Delivery> (\"Send\")",
+    "line": 1973
+  },
+  {
+    "binding": "is_foldback",
+    "context": ".deriveWSPtrClass <Send, Delivery> (\"Send\")",
+    "line": 1974
+  },
+  {
+    "binding": "set_remove_on_disconnect",
+    "context": ".deriveWSPtrClass <Send, Delivery> (\"Send\")",
+    "line": 1975
+  },
+  {
+    "binding": "set_name",
+    "context": ".deriveWSPtrClass <InternalSend, Send> (\"InternalSend\")",
+    "line": 1979
+  },
+  {
+    "binding": "display_name",
+    "context": ".deriveWSPtrClass <InternalSend, Send> (\"InternalSend\")",
+    "line": 1980
+  },
+  {
+    "binding": "source_route",
+    "context": ".deriveWSPtrClass <InternalSend, Send> (\"InternalSend\")",
+    "line": 1981
+  },
+  {
+    "binding": "target_route",
+    "context": ".deriveWSPtrClass <InternalSend, Send> (\"InternalSend\")",
+    "line": 1982
+  },
+  {
+    "binding": "allow_feedback",
+    "context": ".deriveWSPtrClass <InternalSend, Send> (\"InternalSend\")",
+    "line": 1983
+  },
+  {
+    "binding": "set_allow_feedback",
+    "context": ".deriveWSPtrClass <InternalSend, Send> (\"InternalSend\")",
+    "line": 1984
+  },
+  {
+    "binding": "feeds",
+    "context": ".deriveWSPtrClass <InternalSend, Send> (\"InternalSend\")",
+    "line": 1985
+  },
+  {
+    "binding": "get_delay_in",
+    "context": ".deriveWSPtrClass <SurroundSend, Processor> (\"SurroundSend\")",
+    "line": 2001
+  },
+  {
+    "binding": "get_delay_out",
+    "context": ".deriveWSPtrClass <SurroundSend, Processor> (\"SurroundSend\")",
+    "line": 2002
+  },
+  {
+    "binding": "gain_control",
+    "context": ".deriveWSPtrClass <SurroundSend, Processor> (\"SurroundSend\")",
+    "line": 2003
+  },
+  {
+    "binding": "n_pannables",
+    "context": ".deriveWSPtrClass <SurroundSend, Processor> (\"SurroundSend\")",
+    "line": 2004
+  },
+  {
+    "binding": "pannable",
+    "context": ".deriveWSPtrClass <SurroundSend, Processor> (\"SurroundSend\")",
+    "line": 2005
+  },
+  {
+    "binding": "set_bed_mix",
+    "context": ".deriveWSPtrClass <SurroundReturn, Processor> (\"SurroundReturn\")",
+    "line": 2009
+  },
+  {
+    "binding": "set_sync_and_align",
+    "context": ".deriveWSPtrClass <SurroundReturn, Processor> (\"SurroundReturn\")",
+    "line": 2010
+  },
+  {
+    "binding": "set_ffoa",
+    "context": ".deriveWSPtrClass <SurroundReturn, Processor> (\"SurroundReturn\")",
+    "line": 2011
+  },
+  {
+    "binding": "set_with_all_metadata",
+    "context": ".deriveWSPtrClass <SurroundReturn, Processor> (\"SurroundReturn\")",
+    "line": 2012
+  },
+  {
+    "binding": "have_au_renderer",
+    "context": ".deriveWSPtrClass <SurroundReturn, Processor> (\"SurroundReturn\")",
+    "line": 2013
+  },
+  {
+    "binding": "load_au_preset",
+    "context": ".deriveWSPtrClass <SurroundReturn, Processor> (\"SurroundReturn\")",
+    "line": 2014
+  },
+  {
+    "binding": "set_au_param",
+    "context": ".deriveWSPtrClass <SurroundReturn, Processor> (\"SurroundReturn\")",
+    "line": 2015
+  },
+  {
+    "binding": "integrated_loudness",
+    "context": ".deriveWSPtrClass <SurroundReturn, Processor> (\"SurroundReturn\")",
+    "line": 2016
+  },
+  {
+    "binding": "max_momentary",
+    "context": ".deriveWSPtrClass <SurroundReturn, Processor> (\"SurroundReturn\")",
+    "line": 2017
+  },
+  {
+    "binding": "momentary",
+    "context": ".deriveWSPtrClass <SurroundReturn, Processor> (\"SurroundReturn\")",
+    "line": 2018
+  },
+  {
+    "binding": "max_dbtp",
+    "context": ".deriveWSPtrClass <SurroundReturn, Processor> (\"SurroundReturn\")",
+    "line": 2019
+  },
+  {
+    "binding": "n_channels",
+    "context": ".deriveWSPtrClass <SurroundReturn, Processor> (\"SurroundReturn\")",
+    "line": 2020
+  },
+  {
+    "binding": "total_n_channels",
+    "context": ".deriveWSPtrClass <SurroundReturn, Processor> (\"SurroundReturn\")",
+    "line": 2021
+  },
+  {
+    "binding": "output_format_controllable",
+    "context": ".deriveWSPtrClass <SurroundReturn, Processor> (\"SurroundReturn\")",
+    "line": 2022
+  },
+  {
+    "binding": "apply",
+    "context": ".beginWSPtrClass <MixerScene> (\"MixerScene\")",
+    "line": 2032
+  },
+  {
+    "binding": "apply_to",
+    "context": ".beginWSPtrClass <MixerScene> (\"MixerScene\")",
+    "line": 2033
+  },
+  {
+    "binding": "snapshot",
+    "context": ".beginWSPtrClass <MixerScene> (\"MixerScene\")",
+    "line": 2034
+  },
+  {
+    "binding": "clear",
+    "context": ".beginWSPtrClass <MixerScene> (\"MixerScene\")",
+    "line": 2035
+  },
+  {
+    "binding": "empty",
+    "context": ".beginWSPtrClass <MixerScene> (\"MixerScene\")",
+    "line": 2036
+  },
+  {
+    "binding": "name",
+    "context": ".beginWSPtrClass <MixerScene> (\"MixerScene\")",
+    "line": 2037
+  },
+  {
+    "binding": "set_name",
+    "context": ".beginWSPtrClass <MixerScene> (\"MixerScene\")",
+    "line": 2038
+  },
+  {
+    "binding": "unique_id",
+    "context": ".deriveWSPtrClass <Plugin, PBD::StatefulDestructible> (\"Plugin\")",
+    "line": 2057
+  },
+  {
+    "binding": "label",
+    "context": ".deriveWSPtrClass <Plugin, PBD::StatefulDestructible> (\"Plugin\")",
+    "line": 2058
+  },
+  {
+    "binding": "name",
+    "context": ".deriveWSPtrClass <Plugin, PBD::StatefulDestructible> (\"Plugin\")",
+    "line": 2059
+  },
+  {
+    "binding": "maker",
+    "context": ".deriveWSPtrClass <Plugin, PBD::StatefulDestructible> (\"Plugin\")",
+    "line": 2060
+  },
+  {
+    "binding": "parameter_count",
+    "context": ".deriveWSPtrClass <Plugin, PBD::StatefulDestructible> (\"Plugin\")",
+    "line": 2061
+  },
+  {
+    "binding": "parameter_label",
+    "context": ".deriveWSPtrClass <Plugin, PBD::StatefulDestructible> (\"Plugin\")",
+    "line": 2062
+  },
+  {
+    "binding": "nth_parameter",
+    "context": ".deriveWSPtrClass <Plugin, PBD::StatefulDestructible> (\"Plugin\")",
+    "line": 2063
+  },
+  {
+    "binding": "preset_by_label",
+    "context": ".deriveWSPtrClass <Plugin, PBD::StatefulDestructible> (\"Plugin\")",
+    "line": 2064
+  },
+  {
+    "binding": "preset_by_uri",
+    "context": ".deriveWSPtrClass <Plugin, PBD::StatefulDestructible> (\"Plugin\")",
+    "line": 2065
+  },
+  {
+    "binding": "save_preset",
+    "context": ".deriveWSPtrClass <Plugin, PBD::StatefulDestructible> (\"Plugin\")",
+    "line": 2066
+  },
+  {
+    "binding": "load_preset",
+    "context": ".deriveWSPtrClass <Plugin, PBD::StatefulDestructible> (\"Plugin\")",
+    "line": 2067
+  },
+  {
+    "binding": "last_preset",
+    "context": ".deriveWSPtrClass <Plugin, PBD::StatefulDestructible> (\"Plugin\")",
+    "line": 2068
+  },
+  {
+    "binding": "remove_preset",
+    "context": ".deriveWSPtrClass <Plugin, PBD::StatefulDestructible> (\"Plugin\")",
+    "line": 2069
+  },
+  {
+    "binding": "parameter_is_input",
+    "context": ".deriveWSPtrClass <Plugin, PBD::StatefulDestructible> (\"Plugin\")",
+    "line": 2070
+  },
+  {
+    "binding": "parameter_is_output",
+    "context": ".deriveWSPtrClass <Plugin, PBD::StatefulDestructible> (\"Plugin\")",
+    "line": 2071
+  },
+  {
+    "binding": "parameter_is_control",
+    "context": ".deriveWSPtrClass <Plugin, PBD::StatefulDestructible> (\"Plugin\")",
+    "line": 2072
+  },
+  {
+    "binding": "parameter_is_audio",
+    "context": ".deriveWSPtrClass <Plugin, PBD::StatefulDestructible> (\"Plugin\")",
+    "line": 2073
+  },
+  {
+    "binding": "get_docs",
+    "context": ".deriveWSPtrClass <Plugin, PBD::StatefulDestructible> (\"Plugin\")",
+    "line": 2074
+  },
+  {
+    "binding": "get_info",
+    "context": ".deriveWSPtrClass <Plugin, PBD::StatefulDestructible> (\"Plugin\")",
+    "line": 2075
+  },
+  {
+    "binding": "get_parameter_docs",
+    "context": ".deriveWSPtrClass <Plugin, PBD::StatefulDestructible> (\"Plugin\")",
+    "line": 2076
+  },
+  {
+    "binding": "describe_io_port",
+    "context": ".deriveWSPtrClass <Plugin, PBD::StatefulDestructible> (\"Plugin\")",
+    "line": 2077
+  },
+  {
+    "binding": "get_parameter",
+    "context": ".deriveWSPtrClass <Plugin, PBD::StatefulDestructible> (\"Plugin\")",
+    "line": 2078
+  },
+  {
+    "binding": "default_value",
+    "context": ".deriveWSPtrClass <Plugin, PBD::StatefulDestructible> (\"Plugin\")",
+    "line": 2079
+  },
+  {
+    "binding": "get_parameter_descriptor",
+    "context": ".deriveWSPtrClass <Plugin, PBD::StatefulDestructible> (\"Plugin\")",
+    "line": 2080
+  },
+  {
+    "binding": "shmem",
+    "context": ".deriveWSPtrClass <LuaProc, Plugin> (\"LuaProc\")",
+    "line": 2084
+  },
+  {
+    "binding": "table",
+    "context": ".deriveWSPtrClass <LuaProc, Plugin> (\"LuaProc\")",
+    "line": 2085
+  },
+  {
+    "binding": "plugin",
+    "context": ".deriveWSPtrClass <PluginInsert, Processor> (\"PluginInsert\")",
+    "line": 2089
+  },
+  {
+    "binding": "activate",
+    "context": ".deriveWSPtrClass <PluginInsert, Processor> (\"PluginInsert\")",
+    "line": 2090
+  },
+  {
+    "binding": "deactivate",
+    "context": ".deriveWSPtrClass <PluginInsert, Processor> (\"PluginInsert\")",
+    "line": 2091
+  },
+  {
+    "binding": "enable",
+    "context": ".deriveWSPtrClass <PluginInsert, Processor> (\"PluginInsert\")",
+    "line": 2092
+  },
+  {
+    "binding": "enabled",
+    "context": ".deriveWSPtrClass <PluginInsert, Processor> (\"PluginInsert\")",
+    "line": 2093
+  },
+  {
+    "binding": "strict_io_configured",
+    "context": ".deriveWSPtrClass <PluginInsert, Processor> (\"PluginInsert\")",
+    "line": 2094
+  },
+  {
+    "binding": "write_immediate_event",
+    "context": ".deriveWSPtrClass <PluginInsert, Processor> (\"PluginInsert\")",
+    "line": 2095
+  },
+  {
+    "binding": "thru_map",
+    "context": ".deriveWSPtrClass <PluginInsert, Processor> (\"PluginInsert\")",
+    "line": 2096
+  },
+  {
+    "binding": "input_map",
+    "context": ".deriveWSPtrClass <PluginInsert, Processor> (\"PluginInsert\")",
+    "line": 2097
+  },
+  {
+    "binding": "output_map",
+    "context": ".deriveWSPtrClass <PluginInsert, Processor> (\"PluginInsert\")",
+    "line": 2098
+  },
+  {
+    "binding": "set_thru_map",
+    "context": ".deriveWSPtrClass <PluginInsert, Processor> (\"PluginInsert\")",
+    "line": 2099
+  },
+  {
+    "binding": "set_input_map",
+    "context": ".deriveWSPtrClass <PluginInsert, Processor> (\"PluginInsert\")",
+    "line": 2100
+  },
+  {
+    "binding": "set_output_map",
+    "context": ".deriveWSPtrClass <PluginInsert, Processor> (\"PluginInsert\")",
+    "line": 2101
+  },
+  {
+    "binding": "natural_output_streams",
+    "context": ".deriveWSPtrClass <PluginInsert, Processor> (\"PluginInsert\")",
+    "line": 2102
+  },
+  {
+    "binding": "natural_input_streams",
+    "context": ".deriveWSPtrClass <PluginInsert, Processor> (\"PluginInsert\")",
+    "line": 2103
+  },
+  {
+    "binding": "reset_parameters_to_default",
+    "context": ".deriveWSPtrClass <PluginInsert, Processor> (\"PluginInsert\")",
+    "line": 2104
+  },
+  {
+    "binding": "has_sidechain",
+    "context": ".deriveWSPtrClass <PluginInsert, Processor> (\"PluginInsert\")",
+    "line": 2105
+  },
+  {
+    "binding": "sidechain_input",
+    "context": ".deriveWSPtrClass <PluginInsert, Processor> (\"PluginInsert\")",
+    "line": 2106
+  },
+  {
+    "binding": "is_instrument",
+    "context": ".deriveWSPtrClass <PluginInsert, Processor> (\"PluginInsert\")",
+    "line": 2107
+  },
+  {
+    "binding": "type",
+    "context": ".deriveWSPtrClass <PluginInsert, Processor> (\"PluginInsert\")",
+    "line": 2108
+  },
+  {
+    "binding": "signal_latency",
+    "context": ".deriveWSPtrClass <PluginInsert, Processor> (\"PluginInsert\")",
+    "line": 2109
+  },
+  {
+    "binding": "get_count",
+    "context": ".deriveWSPtrClass <PluginInsert, Processor> (\"PluginInsert\")",
+    "line": 2110
+  },
+  {
+    "binding": "is_channelstrip",
+    "context": ".deriveWSPtrClass <PluginInsert, Processor> (\"PluginInsert\")",
+    "line": 2111
+  },
+  {
+    "binding": "control_output",
+    "context": ".deriveWSPtrClass <PluginInsert, Processor> (\"PluginInsert\")",
+    "line": 2112
+  },
+  {
+    "binding": "clear_stats",
+    "context": ".deriveWSPtrClass <PluginInsert, Processor> (\"PluginInsert\")",
+    "line": 2113
+  },
+  {
+    "binding": "get_stats",
+    "context": ".deriveWSPtrClass <PluginInsert, Processor> (\"PluginInsert\")",
+    "line": 2114
+  },
+  {
+    "binding": "plugin",
+    "context": ".deriveWSPtrClass <RegionFxPlugin, SessionObject> (\"RegionFxPlugin\")",
+    "line": 2118
+  },
+  {
+    "binding": "signal_latency",
+    "context": ".deriveWSPtrClass <RegionFxPlugin, SessionObject> (\"RegionFxPlugin\")",
+    "line": 2119
+  },
+  {
+    "binding": "get_count",
+    "context": ".deriveWSPtrClass <RegionFxPlugin, SessionObject> (\"RegionFxPlugin\")",
+    "line": 2120
+  },
+  {
+    "binding": "type",
+    "context": ".deriveWSPtrClass <RegionFxPlugin, SessionObject> (\"RegionFxPlugin\")",
+    "line": 2121
+  },
+  {
+    "binding": "reset_parameters_to_default",
+    "context": ".deriveWSPtrClass <RegionFxPlugin, SessionObject> (\"RegionFxPlugin\")",
+    "line": 2122
+  },
+  {
+    "binding": "set_value",
+    "context": ".deriveWSPtrClass <MPControl<gain_t>, PBD::Controllable> (\"MPGainControl\")",
+    "line": 2126
+  },
+  {
+    "binding": "get_value",
+    "context": ".deriveWSPtrClass <MPControl<gain_t>, PBD::Controllable> (\"MPGainControl\")",
+    "line": 2127
+  },
+  {
+    "binding": "get_user_string",
+    "context": ".deriveWSPtrClass <MPControl<gain_t>, PBD::Controllable> (\"MPGainControl\")",
+    "line": 2128
+  },
+  {
+    "binding": "lower",
+    "context": ".deriveWSPtrClass <MPControl<gain_t>, PBD::Controllable> (\"MPGainControl\")",
+    "line": 2129
+  },
+  {
+    "binding": "upper",
+    "context": ".deriveWSPtrClass <MPControl<gain_t>, PBD::Controllable> (\"MPGainControl\")",
+    "line": 2130
+  },
+  {
+    "binding": "normal",
+    "context": ".deriveWSPtrClass <MPControl<gain_t>, PBD::Controllable> (\"MPGainControl\")",
+    "line": 2131
+  },
+  {
+    "binding": "set_value",
+    "context": ".deriveWSPtrClass <MPControl<bool>, PBD::Controllable> (\"MPToggleControl\")",
+    "line": 2135
+  },
+  {
+    "binding": "get_value",
+    "context": ".deriveWSPtrClass <MPControl<bool>, PBD::Controllable> (\"MPToggleControl\")",
+    "line": 2136
+  },
+  {
+    "binding": "get_user_string",
+    "context": ".deriveWSPtrClass <MPControl<bool>, PBD::Controllable> (\"MPToggleControl\")",
+    "line": 2137
+  },
+  {
+    "binding": "lower",
+    "context": ".deriveWSPtrClass <MPControl<bool>, PBD::Controllable> (\"MPToggleControl\")",
+    "line": 2138
+  },
+  {
+    "binding": "upper",
+    "context": ".deriveWSPtrClass <MPControl<bool>, PBD::Controllable> (\"MPToggleControl\")",
+    "line": 2139
+  },
+  {
+    "binding": "normal",
+    "context": ".deriveWSPtrClass <MPControl<bool>, PBD::Controllable> (\"MPToggleControl\")",
+    "line": 2140
+  },
+  {
+    "binding": "get_parameter",
+    "context": ".deriveWSPtrClass <ReadOnlyControl, PBD::StatefulDestructible> (\"ReadOnlyControl\")",
+    "line": 2144
+  },
+  {
+    "binding": "describe_parameter",
+    "context": ".deriveWSPtrClass <ReadOnlyControl, PBD::StatefulDestructible> (\"ReadOnlyControl\")",
+    "line": 2145
+  },
+  {
+    "binding": "desc",
+    "context": ".deriveWSPtrClass <ReadOnlyControl, PBD::StatefulDestructible> (\"ReadOnlyControl\")",
+    "line": 2146
+  },
+  {
+    "binding": "automation_state",
+    "context": ".deriveWSPtrClass <AutomationControl, PBD::Controllable> (\"AutomationControl\")",
+    "line": 2152
+  },
+  {
+    "binding": "set_automation_state",
+    "context": ".deriveWSPtrClass <AutomationControl, PBD::Controllable> (\"AutomationControl\")",
+    "line": 2153
+  },
+  {
+    "binding": "start_touch",
+    "context": ".deriveWSPtrClass <AutomationControl, PBD::Controllable> (\"AutomationControl\")",
+    "line": 2154
+  },
+  {
+    "binding": "stop_touch",
+    "context": ".deriveWSPtrClass <AutomationControl, PBD::Controllable> (\"AutomationControl\")",
+    "line": 2155
+  },
+  {
+    "binding": "get_value",
+    "context": ".deriveWSPtrClass <AutomationControl, PBD::Controllable> (\"AutomationControl\")",
+    "line": 2156
+  },
+  {
+    "binding": "set_value",
+    "context": ".deriveWSPtrClass <AutomationControl, PBD::Controllable> (\"AutomationControl\")",
+    "line": 2157
+  },
+  {
+    "binding": "writable",
+    "context": ".deriveWSPtrClass <AutomationControl, PBD::Controllable> (\"AutomationControl\")",
+    "line": 2158
+  },
+  {
+    "binding": "alist",
+    "context": ".deriveWSPtrClass <AutomationControl, PBD::Controllable> (\"AutomationControl\")",
+    "line": 2159
+  },
+  {
+    "binding": "desc",
+    "context": ".deriveWSPtrClass <AutomationControl, PBD::Controllable> (\"AutomationControl\")",
+    "line": 2160
+  },
+  {
+    "binding": "lower",
+    "context": ".deriveWSPtrClass <AutomationControl, PBD::Controllable> (\"AutomationControl\")",
+    "line": 2161
+  },
+  {
+    "binding": "upper",
+    "context": ".deriveWSPtrClass <AutomationControl, PBD::Controllable> (\"AutomationControl\")",
+    "line": 2162
+  },
+  {
+    "binding": "normal",
+    "context": ".deriveWSPtrClass <AutomationControl, PBD::Controllable> (\"AutomationControl\")",
+    "line": 2163
+  },
+  {
+    "binding": "toggled",
+    "context": ".deriveWSPtrClass <AutomationControl, PBD::Controllable> (\"AutomationControl\")",
+    "line": 2164
+  },
+  {
+    "binding": "add_master",
+    "context": ".deriveWSPtrClass <SlavableAutomationControl, AutomationControl> (\"SlavableAutomationControl\")",
+    "line": 2168
+  },
+  {
+    "binding": "remove_master",
+    "context": ".deriveWSPtrClass <SlavableAutomationControl, AutomationControl> (\"SlavableAutomationControl\")",
+    "line": 2169
+  },
+  {
+    "binding": "clear_masters",
+    "context": ".deriveWSPtrClass <SlavableAutomationControl, AutomationControl> (\"SlavableAutomationControl\")",
+    "line": 2170
+  },
+  {
+    "binding": "slaved_to",
+    "context": ".deriveWSPtrClass <SlavableAutomationControl, AutomationControl> (\"SlavableAutomationControl\")",
+    "line": 2171
+  },
+  {
+    "binding": "slaved",
+    "context": ".deriveWSPtrClass <SlavableAutomationControl, AutomationControl> (\"SlavableAutomationControl\")",
+    "line": 2172
+  },
+  {
+    "binding": "get_masters_value",
+    "context": ".deriveWSPtrClass <SlavableAutomationControl, AutomationControl> (\"SlavableAutomationControl\")",
+    "line": 2173
+  },
+  {
+    "binding": "get_boolean_masters",
+    "context": ".deriveWSPtrClass <SlavableAutomationControl, AutomationControl> (\"SlavableAutomationControl\")",
+    "line": 2174
+  },
+  {
+    "binding": "masters",
+    "context": ".deriveWSPtrClass <SlavableAutomationControl, AutomationControl> (\"SlavableAutomationControl\")",
+    "line": 2175
+  },
+  {
+    "binding": "set_phase_invert",
+    "context": ".deriveWSPtrClass <PhaseControl, AutomationControl> (\"PhaseControl\")",
+    "line": 2179
+  },
+  {
+    "binding": "inverted",
+    "context": ".deriveWSPtrClass <PhaseControl, AutomationControl> (\"PhaseControl\")",
+    "line": 2180
+  },
+  {
+    "binding": "monitoring_choice",
+    "context": ".deriveWSPtrClass <MonitorControl, SlavableAutomationControl> (\"MonitorControl\")",
+    "line": 2187
+  },
+  {
+    "binding": "can_solo",
+    "context": ".deriveWSPtrClass <SoloControl, SlavableAutomationControl> (\"SoloControl\")",
+    "line": 2191
+  },
+  {
+    "binding": "soloed",
+    "context": ".deriveWSPtrClass <SoloControl, SlavableAutomationControl> (\"SoloControl\")",
+    "line": 2192
+  },
+  {
+    "binding": "self_soloed",
+    "context": ".deriveWSPtrClass <SoloControl, SlavableAutomationControl> (\"SoloControl\")",
+    "line": 2193
+  },
+  {
+    "binding": "muted",
+    "context": ".deriveWSPtrClass <MuteControl, SlavableAutomationControl> (\"MuteControl\")",
+    "line": 2197
+  },
+  {
+    "binding": "muted_by_self",
+    "context": ".deriveWSPtrClass <MuteControl, SlavableAutomationControl> (\"MuteControl\")",
+    "line": 2198
+  },
+  {
+    "binding": "mute_points",
+    "context": ".deriveWSPtrClass <MuteControl, SlavableAutomationControl> (\"MuteControl\")",
+    "line": 2199
+  },
+  {
+    "binding": "set_mute_points",
+    "context": ".deriveWSPtrClass <MuteControl, SlavableAutomationControl> (\"MuteControl\")",
+    "line": 2200
+  },
+  {
+    "binding": "solo_isolated",
+    "context": ".deriveWSPtrClass <SoloIsolateControl, SlavableAutomationControl> (\"SoloIsolateControl\")",
+    "line": 2204
+  },
+  {
+    "binding": "self_solo_isolated",
+    "context": ".deriveWSPtrClass <SoloIsolateControl, SlavableAutomationControl> (\"SoloIsolateControl\")",
+    "line": 2205
+  },
+  {
+    "binding": "solo_safe",
+    "context": ".deriveWSPtrClass <SoloSafeControl, SlavableAutomationControl> (\"SoloSafeControl\")",
+    "line": 2209
+  },
+  {
+    "binding": "gain_control",
+    "context": ".deriveWSPtrClass <Amp, Processor> (\"Amp\")",
+    "line": 2213
+  },
+  {
+    "binding": "apply_gain",
+    "context": ".deriveWSPtrClass <Amp, Processor> (\"Amp\")",
+    "line": 2214
+  },
+  {
+    "binding": "meter_level",
+    "context": ".deriveWSPtrClass <PeakMeter, Processor> (\"PeakMeter\")",
+    "line": 2218
+  },
+  {
+    "binding": "set_meter_type",
+    "context": ".deriveWSPtrClass <PeakMeter, Processor> (\"PeakMeter\")",
+    "line": 2219
+  },
+  {
+    "binding": "meter_type",
+    "context": ".deriveWSPtrClass <PeakMeter, Processor> (\"PeakMeter\")",
+    "line": 2220
+  },
+  {
+    "binding": "reset_max",
+    "context": ".deriveWSPtrClass <PeakMeter, Processor> (\"PeakMeter\")",
+    "line": 2221
+  },
+  {
+    "binding": "set_cut_all",
+    "context": ".deriveWSPtrClass <MonitorProcessor, Processor> (\"MonitorProcessor\")",
+    "line": 2225
+  },
+  {
+    "binding": "set_dim_all",
+    "context": ".deriveWSPtrClass <MonitorProcessor, Processor> (\"MonitorProcessor\")",
+    "line": 2226
+  },
+  {
+    "binding": "set_polarity",
+    "context": ".deriveWSPtrClass <MonitorProcessor, Processor> (\"MonitorProcessor\")",
+    "line": 2227
+  },
+  {
+    "binding": "set_cut",
+    "context": ".deriveWSPtrClass <MonitorProcessor, Processor> (\"MonitorProcessor\")",
+    "line": 2228
+  },
+  {
+    "binding": "set_dim",
+    "context": ".deriveWSPtrClass <MonitorProcessor, Processor> (\"MonitorProcessor\")",
+    "line": 2229
+  },
+  {
+    "binding": "set_solo",
+    "context": ".deriveWSPtrClass <MonitorProcessor, Processor> (\"MonitorProcessor\")",
+    "line": 2230
+  },
+  {
+    "binding": "set_mono",
+    "context": ".deriveWSPtrClass <MonitorProcessor, Processor> (\"MonitorProcessor\")",
+    "line": 2231
+  },
+  {
+    "binding": "dim_level",
+    "context": ".deriveWSPtrClass <MonitorProcessor, Processor> (\"MonitorProcessor\")",
+    "line": 2232
+  },
+  {
+    "binding": "solo_boost_level",
+    "context": ".deriveWSPtrClass <MonitorProcessor, Processor> (\"MonitorProcessor\")",
+    "line": 2233
+  },
+  {
+    "binding": "dimmed",
+    "context": ".deriveWSPtrClass <MonitorProcessor, Processor> (\"MonitorProcessor\")",
+    "line": 2234
+  },
+  {
+    "binding": "soloed",
+    "context": ".deriveWSPtrClass <MonitorProcessor, Processor> (\"MonitorProcessor\")",
+    "line": 2235
+  },
+  {
+    "binding": "inverted",
+    "context": ".deriveWSPtrClass <MonitorProcessor, Processor> (\"MonitorProcessor\")",
+    "line": 2236
+  },
+  {
+    "binding": "cut",
+    "context": ".deriveWSPtrClass <MonitorProcessor, Processor> (\"MonitorProcessor\")",
+    "line": 2237
+  },
+  {
+    "binding": "cut_all",
+    "context": ".deriveWSPtrClass <MonitorProcessor, Processor> (\"MonitorProcessor\")",
+    "line": 2238
+  },
+  {
+    "binding": "dim_all",
+    "context": ".deriveWSPtrClass <MonitorProcessor, Processor> (\"MonitorProcessor\")",
+    "line": 2239
+  },
+  {
+    "binding": "mono",
+    "context": ".deriveWSPtrClass <MonitorProcessor, Processor> (\"MonitorProcessor\")",
+    "line": 2240
+  },
+  {
+    "binding": "monitor_active",
+    "context": ".deriveWSPtrClass <MonitorProcessor, Processor> (\"MonitorProcessor\")",
+    "line": 2241
+  },
+  {
+    "binding": "channel_cut_control",
+    "context": ".deriveWSPtrClass <MonitorProcessor, Processor> (\"MonitorProcessor\")",
+    "line": 2242
+  },
+  {
+    "binding": "channel_dim_control",
+    "context": ".deriveWSPtrClass <MonitorProcessor, Processor> (\"MonitorProcessor\")",
+    "line": 2243
+  },
+  {
+    "binding": "channel_polarity_control",
+    "context": ".deriveWSPtrClass <MonitorProcessor, Processor> (\"MonitorProcessor\")",
+    "line": 2244
+  },
+  {
+    "binding": "channel_solo_control",
+    "context": ".deriveWSPtrClass <MonitorProcessor, Processor> (\"MonitorProcessor\")",
+    "line": 2245
+  },
+  {
+    "binding": "dim_control",
+    "context": ".deriveWSPtrClass <MonitorProcessor, Processor> (\"MonitorProcessor\")",
+    "line": 2246
+  },
+  {
+    "binding": "cut_control",
+    "context": ".deriveWSPtrClass <MonitorProcessor, Processor> (\"MonitorProcessor\")",
+    "line": 2247
+  },
+  {
+    "binding": "mono_control",
+    "context": ".deriveWSPtrClass <MonitorProcessor, Processor> (\"MonitorProcessor\")",
+    "line": 2248
+  },
+  {
+    "binding": "dim_level_control",
+    "context": ".deriveWSPtrClass <MonitorProcessor, Processor> (\"MonitorProcessor\")",
+    "line": 2249
+  },
+  {
+    "binding": "solo_boost_control",
+    "context": ".deriveWSPtrClass <MonitorProcessor, Processor> (\"MonitorProcessor\")",
+    "line": 2250
+  },
+  {
+    "binding": "delay",
+    "context": ".deriveWSPtrClass <DelayLine, Processor> (\"DelayLine\")",
+    "line": 2260
+  },
+  {
+    "binding": "reset",
+    "context": ".beginClass <RawMidiParser> (\"RawMidiParser\")",
+    "line": 2274
+  },
+  {
+    "binding": "process_byte",
+    "context": ".beginClass <RawMidiParser> (\"RawMidiParser\")",
+    "line": 2275
+  },
+  {
+    "binding": "buffer_size",
+    "context": ".beginClass <RawMidiParser> (\"RawMidiParser\")",
+    "line": 2276
+  },
+  {
+    "binding": "midi_buffer",
+    "context": ".beginClass <RawMidiParser> (\"RawMidiParser\")",
+    "line": 2277
+  },
+  {
+    "binding": "readable_length",
+    "context": ".deriveWSPtrClass <AudioSource, Source> (\"AudioSource\")",
+    "line": 2281
+  },
+  {
+    "binding": "n_channels",
+    "context": ".deriveWSPtrClass <AudioSource, Source> (\"AudioSource\")",
+    "line": 2282
+  },
+  {
+    "binding": "get",
+    "context": ".beginClass <ChanCount> (\"ChanCount\")",
+    "line": 2450
+  },
+  {
+    "binding": "set",
+    "context": ".beginClass <ChanCount> (\"ChanCount\")",
+    "line": 2451
+  },
+  {
+    "binding": "set_audio",
+    "context": ".beginClass <ChanCount> (\"ChanCount\")",
+    "line": 2452
+  },
+  {
+    "binding": "set_midi",
+    "context": ".beginClass <ChanCount> (\"ChanCount\")",
+    "line": 2453
+  },
+  {
+    "binding": "n_audio",
+    "context": ".beginClass <ChanCount> (\"ChanCount\")",
+    "line": 2454
+  },
+  {
+    "binding": "n_midi",
+    "context": ".beginClass <ChanCount> (\"ChanCount\")",
+    "line": 2455
+  },
+  {
+    "binding": "n_total",
+    "context": ".beginClass <ChanCount> (\"ChanCount\")",
+    "line": 2456
+  },
+  {
+    "binding": "reset",
+    "context": ".beginClass <ChanCount> (\"ChanCount\")",
+    "line": 2457
+  },
+  {
+    "binding": "to_string",
+    "context": ".beginClass <DataType> (\"DataType\")",
+    "line": 2465
+  },
+  {
+    "binding": "str",
+    "context": ".beginClass <AnyTime> (\"AnyTime\")",
+    "line": 2472
+  },
+  {
+    "binding": "not_zero",
+    "context": ".beginClass <AnyTime> (\"AnyTime\")",
+    "line": 2473
+  },
+  {
+    "binding": "name",
+    "context": ".beginClass <AnyTime> (\"AnyTime\")",
+    "line": 2479
+  },
+  {
+    "binding": "user_config_directory",
+    "context": ".beginClass <AnyTime> (\"AnyTime\")",
+    "line": 3007
+  },
+  {
+    "binding": "user_cache_directory",
+    "context": ".beginClass <AnyTime> (\"AnyTime\")",
+    "line": 3008
+  },
+  {
+    "binding": "inflate_demo_session",
+    "context": ".beginClass <AnyTime> (\"AnyTime\")",
+    "line": 3009
+  },
+  {
+    "binding": "info",
+    "context": ".beginWSPtrClass <AudioBackend> (\"AudioBackend\")",
+    "line": 3026
+  },
+  {
+    "binding": "sample_rate",
+    "context": ".beginWSPtrClass <AudioBackend> (\"AudioBackend\")",
+    "line": 3027
+  },
+  {
+    "binding": "buffer_size",
+    "context": ".beginWSPtrClass <AudioBackend> (\"AudioBackend\")",
+    "line": 3028
+  },
+  {
+    "binding": "period_size",
+    "context": ".beginWSPtrClass <AudioBackend> (\"AudioBackend\")",
+    "line": 3029
+  },
+  {
+    "binding": "dsp_load",
+    "context": ".beginWSPtrClass <AudioBackend> (\"AudioBackend\")",
+    "line": 3030
+  },
+  {
+    "binding": "set_sample_rate",
+    "context": ".beginWSPtrClass <AudioBackend> (\"AudioBackend\")",
+    "line": 3032
+  },
+  {
+    "binding": "set_buffer_size",
+    "context": ".beginWSPtrClass <AudioBackend> (\"AudioBackend\")",
+    "line": 3033
+  },
+  {
+    "binding": "set_peridod_size",
+    "context": ".beginWSPtrClass <AudioBackend> (\"AudioBackend\")",
+    "line": 3034
+  },
+  {
+    "binding": "enumerate_drivers",
+    "context": ".beginWSPtrClass <AudioBackend> (\"AudioBackend\")",
+    "line": 3036
+  },
+  {
+    "binding": "driver_name",
+    "context": ".beginWSPtrClass <AudioBackend> (\"AudioBackend\")",
+    "line": 3037
+  },
+  {
+    "binding": "set_driver",
+    "context": ".beginWSPtrClass <AudioBackend> (\"AudioBackend\")",
+    "line": 3038
+  },
+  {
+    "binding": "use_separate_input_and_output_devices",
+    "context": ".beginWSPtrClass <AudioBackend> (\"AudioBackend\")",
+    "line": 3040
+  },
+  {
+    "binding": "enumerate_devices",
+    "context": ".beginWSPtrClass <AudioBackend> (\"AudioBackend\")",
+    "line": 3041
+  },
+  {
+    "binding": "enumerate_input_devices",
+    "context": ".beginWSPtrClass <AudioBackend> (\"AudioBackend\")",
+    "line": 3042
+  },
+  {
+    "binding": "enumerate_output_devices",
+    "context": ".beginWSPtrClass <AudioBackend> (\"AudioBackend\")",
+    "line": 3043
+  },
+  {
+    "binding": "device_name",
+    "context": ".beginWSPtrClass <AudioBackend> (\"AudioBackend\")",
+    "line": 3044
+  },
+  {
+    "binding": "input_device_name",
+    "context": ".beginWSPtrClass <AudioBackend> (\"AudioBackend\")",
+    "line": 3045
+  },
+  {
+    "binding": "output_device_name",
+    "context": ".beginWSPtrClass <AudioBackend> (\"AudioBackend\")",
+    "line": 3046
+  },
+  {
+    "binding": "set_device_name",
+    "context": ".beginWSPtrClass <AudioBackend> (\"AudioBackend\")",
+    "line": 3047
+  },
+  {
+    "binding": "set_input_device_name",
+    "context": ".beginWSPtrClass <AudioBackend> (\"AudioBackend\")",
+    "line": 3048
+  },
+  {
+    "binding": "set_output_device_name",
+    "context": ".beginWSPtrClass <AudioBackend> (\"AudioBackend\")",
+    "line": 3049
+  },
+  {
+    "binding": "port_engine",
+    "context": ".beginClass <PortManager> (\"PortManager\")",
+    "line": 3062
+  },
+  {
+    "binding": "connected",
+    "context": ".beginClass <PortManager> (\"PortManager\")",
+    "line": 3063
+  },
+  {
+    "binding": "connect",
+    "context": ".beginClass <PortManager> (\"PortManager\")",
+    "line": 3064
+  },
+  {
+    "binding": "physically_connected",
+    "context": ".beginClass <PortManager> (\"PortManager\")",
+    "line": 3065
+  },
+  {
+    "binding": "disconnect",
+    "context": ".beginClass <PortManager> (\"PortManager\")",
+    "line": 3066
+  },
+  {
+    "binding": "disconnect_port",
+    "context": ".beginClass <PortManager> (\"PortManager\")",
+    "line": 3067
+  },
+  {
+    "binding": "get_port_by_name",
+    "context": ".beginClass <PortManager> (\"PortManager\")",
+    "line": 3068
+  },
+  {
+    "binding": "get_pretty_name_by_name",
+    "context": ".beginClass <PortManager> (\"PortManager\")",
+    "line": 3069
+  },
+  {
+    "binding": "port_is_physical",
+    "context": ".beginClass <PortManager> (\"PortManager\")",
+    "line": 3070
+  },
+  {
+    "binding": "get_physical_outputs",
+    "context": ".beginClass <PortManager> (\"PortManager\")",
+    "line": 3071
+  },
+  {
+    "binding": "get_physical_inputs",
+    "context": ".beginClass <PortManager> (\"PortManager\")",
+    "line": 3072
+  },
+  {
+    "binding": "n_physical_outputs",
+    "context": ".beginClass <PortManager> (\"PortManager\")",
+    "line": 3073
+  },
+  {
+    "binding": "n_physical_inputs",
+    "context": ".beginClass <PortManager> (\"PortManager\")",
+    "line": 3074
+  },
+  {
+    "binding": "reset_input_meters",
+    "context": ".beginClass <PortManager> (\"PortManager\")",
+    "line": 3075
+  },
+  {
+    "binding": "get_connections",
+    "context": ".beginClass <PortManager> (\"PortManager\")",
+    "line": 3076
+  },
+  {
+    "binding": "get_ports",
+    "context": ".beginClass <PortManager> (\"PortManager\")",
+    "line": 3077
+  },
+  {
+    "binding": "get_backend_ports",
+    "context": ".beginClass <PortManager> (\"PortManager\")",
+    "line": 3078
+  },
+  {
+    "binding": "available_backends",
+    "context": ".deriveClass <AudioEngine, PortManager> (\"AudioEngine\")",
+    "line": 3082
+  },
+  {
+    "binding": "current_backend_name",
+    "context": ".deriveClass <AudioEngine, PortManager> (\"AudioEngine\")",
+    "line": 3083
+  },
+  {
+    "binding": "set_backend",
+    "context": ".deriveClass <AudioEngine, PortManager> (\"AudioEngine\")",
+    "line": 3084
+  },
+  {
+    "binding": "setup_required",
+    "context": ".deriveClass <AudioEngine, PortManager> (\"AudioEngine\")",
+    "line": 3085
+  },
+  {
+    "binding": "start",
+    "context": ".deriveClass <AudioEngine, PortManager> (\"AudioEngine\")",
+    "line": 3086
+  },
+  {
+    "binding": "stop",
+    "context": ".deriveClass <AudioEngine, PortManager> (\"AudioEngine\")",
+    "line": 3087
+  },
+  {
+    "binding": "get_dsp_load",
+    "context": ".deriveClass <AudioEngine, PortManager> (\"AudioEngine\")",
+    "line": 3088
+  },
+  {
+    "binding": "set_device_name",
+    "context": ".deriveClass <AudioEngine, PortManager> (\"AudioEngine\")",
+    "line": 3089
+  },
+  {
+    "binding": "set_sample_rate",
+    "context": ".deriveClass <AudioEngine, PortManager> (\"AudioEngine\")",
+    "line": 3090
+  },
+  {
+    "binding": "set_buffer_size",
+    "context": ".deriveClass <AudioEngine, PortManager> (\"AudioEngine\")",
+    "line": 3091
+  },
+  {
+    "binding": "get_last_backend_error",
+    "context": ".deriveClass <AudioEngine, PortManager> (\"AudioEngine\")",
+    "line": 3092
+  },
+  {
+    "binding": "freewheeling",
+    "context": ".deriveClass <AudioEngine, PortManager> (\"AudioEngine\")",
+    "line": 3093
+  },
+  {
+    "binding": "running",
+    "context": ".deriveClass <AudioEngine, PortManager> (\"AudioEngine\")",
+    "line": 3094
+  },
+  {
+    "binding": "processed_samples",
+    "context": ".deriveClass <AudioEngine, PortManager> (\"AudioEngine\")",
+    "line": 3095
+  },
+  {
+    "binding": "create_vca",
+    "context": ".deriveClass <VCAManager, PBD::StatefulDestructible> (\"VCAManager\")",
+    "line": 3099
+  },
+  {
+    "binding": "remove_vca",
+    "context": ".deriveClass <VCAManager, PBD::StatefulDestructible> (\"VCAManager\")",
+    "line": 3100
+  },
+  {
+    "binding": "vca_by_number",
+    "context": ".deriveClass <VCAManager, PBD::StatefulDestructible> (\"VCAManager\")",
+    "line": 3101
+  },
+  {
+    "binding": "vca_by_name",
+    "context": ".deriveClass <VCAManager, PBD::StatefulDestructible> (\"VCAManager\")",
+    "line": 3102
+  },
+  {
+    "binding": "vcas",
+    "context": ".deriveClass <VCAManager, PBD::StatefulDestructible> (\"VCAManager\")",
+    "line": 3103
+  },
+  {
+    "binding": "n_vcas",
+    "context": ".deriveClass <VCAManager, PBD::StatefulDestructible> (\"VCAManager\")",
+    "line": 3104
+  },
+  {
+    "binding": "active",
+    "context": ".beginClass <ControlProtocolInfo> (\"ControlProtocolInfo\")",
+    "line": 3110
+  },
+  {
+    "binding": "manager",
+    "context": ".beginClass <ControlProtocolManager> (\"ControlProtocolManager\")",
+    "line": 3117
+  },
+  {
+    "binding": "control_protocol_infos",
+    "context": ".beginClass <ControlProtocolManager> (\"ControlProtocolManager\")",
+    "line": 3118
+  },
+  {
+    "binding": "activate",
+    "context": ".beginClass <ControlProtocolManager> (\"ControlProtocolManager\")",
+    "line": 3119
+  },
+  {
+    "binding": "deactivate",
+    "context": ".beginClass <ControlProtocolManager> (\"ControlProtocolManager\")",
+    "line": 3120
+  },
+  {
+    "binding": "get_",
+    "context": ".deriveClass <RCConfiguration, PBD::Configuration> (\"RCConfiguration\")",
+    "line": 3128
+  },
+  {
+    "binding": "set_",
+    "context": ".deriveClass <RCConfiguration, PBD::Configuration> (\"RCConfiguration\")",
+    "line": 3129
+  },
+  {
+    "binding": "get_",
+    "context": ".deriveClass <RCConfiguration, PBD::Configuration> (\"RCConfiguration\")",
+    "line": 3133
+  },
+  {
+    "binding": "set_",
+    "context": ".deriveClass <RCConfiguration, PBD::Configuration> (\"RCConfiguration\")",
+    "line": 3134
+  },
+  {
+    "binding": "get_",
+    "context": ".deriveClass <SessionConfiguration, PBD::Configuration> (\"SessionConfiguration\")",
+    "line": 3147
+  },
+  {
+    "binding": "set_",
+    "context": ".deriveClass <SessionConfiguration, PBD::Configuration> (\"SessionConfiguration\")",
+    "line": 3148
+  },
+  {
+    "binding": "get_",
+    "context": ".deriveClass <SessionConfiguration, PBD::Configuration> (\"SessionConfiguration\")",
+    "line": 3152
+  },
+  {
+    "binding": "set_",
+    "context": ".deriveClass <SessionConfiguration, PBD::Configuration> (\"SessionConfiguration\")",
+    "line": 3153
+  },
+  {
+    "binding": "config",
+    "context": ".deriveClass <SessionConfiguration, PBD::Configuration> (\"SessionConfiguration\")",
+    "line": 3163
+  },
+  {
+    "binding": "scripts_changed",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3172
+  },
+  {
+    "binding": "engine_speed",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3173
+  },
+  {
+    "binding": "actual_speed",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3174
+  },
+  {
+    "binding": "transport_speed",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3175
+  },
+  {
+    "binding": "transport_stopped",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3176
+  },
+  {
+    "binding": "transport_stopped_or_stopping",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3177
+  },
+  {
+    "binding": "transport_state_rolling",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3178
+  },
+  {
+    "binding": "transport_rolling",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3179
+  },
+  {
+    "binding": "transport_will_roll_forwards",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3180
+  },
+  {
+    "binding": "request_transport_speed",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3181
+  },
+  {
+    "binding": "transport_sample",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3182
+  },
+  {
+    "binding": "sample_rate",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3183
+  },
+  {
+    "binding": "nominal_sample_rate",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3184
+  },
+  {
+    "binding": "samples_per_timecode_frame",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3185
+  },
+  {
+    "binding": "timecode_frames_per_hour",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3186
+  },
+  {
+    "binding": "timecode_frames_per_second",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3187
+  },
+  {
+    "binding": "timecode_drop_frames",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3188
+  },
+  {
+    "binding": "request_locate",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3189
+  },
+  {
+    "binding": "request_locate_to_mark",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3190
+  },
+  {
+    "binding": "request_roll",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3191
+  },
+  {
+    "binding": "request_stop",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3192
+  },
+  {
+    "binding": "request_play_loop",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3193
+  },
+  {
+    "binding": "request_bounded_roll",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3194
+  },
+  {
+    "binding": "preroll_samples",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3195
+  },
+  {
+    "binding": "request_preroll_record_trim",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3196
+  },
+  {
+    "binding": "request_count_in_record",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3197
+  },
+  {
+    "binding": "get_play_loop",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3198
+  },
+  {
+    "binding": "get_xrun_count",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3199
+  },
+  {
+    "binding": "reset_xrun_count",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3200
+  },
+  {
+    "binding": "last_transport_start",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3201
+  },
+  {
+    "binding": "goto_start",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3202
+  },
+  {
+    "binding": "goto_end",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3203
+  },
+  {
+    "binding": "current_start_sample",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3204
+  },
+  {
+    "binding": "current_end_sample",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3205
+  },
+  {
+    "binding": "actively_recording",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3206
+  },
+  {
+    "binding": "get_routes",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3208
+  },
+  {
+    "binding": "get_tracks",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3209
+  },
+  {
+    "binding": "get_stripables",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3210
+  },
+  {
+    "binding": "get_routelist",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3211
+  },
+  {
+    "binding": "plot_process_graph",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3212
+  },
+  {
+    "binding": "bundles",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3214
+  },
+  {
+    "binding": "apply_nth_mixer_scene",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3216
+  },
+  {
+    "binding": "apply_nth_mixer_scene_to",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3217
+  },
+  {
+    "binding": "store_nth_mixer_scene",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3218
+  },
+  {
+    "binding": "nth_mixer_scene_valid",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3219
+  },
+  {
+    "binding": "nth_mixer_scene",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3220
+  },
+  {
+    "binding": "name",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3222
+  },
+  {
+    "binding": "path",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3223
+  },
+  {
+    "binding": "uuid",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3224
+  },
+  {
+    "binding": "empty",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3225
+  },
+  {
+    "binding": "nroutes",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3226
+  },
+  {
+    "binding": "ntracks",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3227
+  },
+  {
+    "binding": "naudiotracks",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3228
+  },
+  {
+    "binding": "nbusses",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3229
+  },
+  {
+    "binding": "record_status",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3230
+  },
+  {
+    "binding": "maybe_enable_record",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3231
+  },
+  {
+    "binding": "disable_record",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3232
+  },
+  {
+    "binding": "route_by_id",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3233
+  },
+  {
+    "binding": "route_by_name",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3234
+  },
+  {
+    "binding": "stripable_by_id",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3235
+  },
+  {
+    "binding": "get_remote_nth_stripable",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3236
+  },
+  {
+    "binding": "get_remote_nth_route",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3237
+  },
+  {
+    "binding": "route_by_selected_count",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3238
+  },
+  {
+    "binding": "source_by_id",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3239
+  },
+  {
+    "binding": "controllable_by_id",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3240
+  },
+  {
+    "binding": "processor_by_id",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3241
+  },
+  {
+    "binding": "snap_name",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3242
+  },
+  {
+    "binding": "monitor_out",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3243
+  },
+  {
+    "binding": "master_out",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3244
+  },
+  {
+    "binding": "master_volume",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3245
+  },
+  {
+    "binding": "surround_master",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3246
+  },
+  {
+    "binding": "add_internal_send",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3247
+  },
+  {
+    "binding": "add_internal_sends",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3248
+  },
+  {
+    "binding": "locations",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3249
+  },
+  {
+    "binding": "soloing",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3250
+  },
+  {
+    "binding": "listening",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3251
+  },
+  {
+    "binding": "solo_isolated",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3252
+  },
+  {
+    "binding": "cancel_all_solo",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3253
+  },
+  {
+    "binding": "clear_all_solo_state",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3254
+  },
+  {
+    "binding": "set_controls",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3255
+  },
+  {
+    "binding": "set_control",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3256
+  },
+  {
+    "binding": "set_exclusive_input_active",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3257
+  },
+  {
+    "binding": "playlists",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3258
+  },
+  {
+    "binding": "engine",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3259
+  },
+  {
+    "binding": "get_block_size",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3260
+  },
+  {
+    "binding": "worst_output_latency",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3261
+  },
+  {
+    "binding": "worst_input_latency",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3262
+  },
+  {
+    "binding": "worst_route_latency",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3263
+  },
+  {
+    "binding": "io_latency",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3264
+  },
+  {
+    "binding": "worst_latency_preroll",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3265
+  },
+  {
+    "binding": "worst_latency_preroll_buffer_size_ceil",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3266
+  },
+  {
+    "binding": "cfg",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3267
+  },
+  {
+    "binding": "route_groups",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3268
+  },
+  {
+    "binding": "session_range_is_free",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3269
+  },
+  {
+    "binding": "set_session_range_is_free",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3270
+  },
+  {
+    "binding": "set_session_extents",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3271
+  },
+  {
+    "binding": "maybe_update_session_range",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3272
+  },
+  {
+    "binding": "remove_route",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3273
+  },
+  {
+    "binding": "remove_routes",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3274
+  },
+  {
+    "binding": "remove_route_group",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3275
+  },
+  {
+    "binding": "cut_copy_section",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3276
+  },
+  {
+    "binding": "vca_manager",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3277
+  },
+  {
+    "binding": "timecode_to_sample_lua",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3278
+  },
+  {
+    "binding": "sample_to_timecode_lua",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3279
+  },
+  {
+    "binding": "simple_export",
+    "context": ".deriveClass <Session, PBD::HistoryOwner> (\"Session\")",
+    "line": 3280
+  },
+  {
+    "binding": "region_by_id",
+    "context": ".beginClass <RegionFactory> (\"RegionFactory\")",
+    "line": 3284
+  },
+  {
+    "binding": "regions",
+    "context": ".beginClass <RegionFactory> (\"RegionFactory\")",
+    "line": 3285
+  },
+  {
+    "binding": "clone_region",
+    "context": ".beginClass <RegionFactory> (\"RegionFactory\")",
+    "line": 3286
+  },
+  {
+    "binding": "nil_proc",
+    "context": ".beginClass <RegionFactory> (\"RegionFactory\")",
+    "line": 3319
+  },
+  {
+    "binding": "new_luaproc",
+    "context": ".beginClass <RegionFactory> (\"RegionFactory\")",
+    "line": 3320
+  },
+  {
+    "binding": "new_send",
+    "context": ".beginClass <RegionFactory> (\"RegionFactory\")",
+    "line": 3321
+  },
+  {
+    "binding": "new_luaproc_with_time_domain",
+    "context": ".beginClass <RegionFactory> (\"RegionFactory\")",
+    "line": 3322
+  },
+  {
+    "binding": "list_plugins",
+    "context": ".beginClass <RegionFactory> (\"RegionFactory\")",
+    "line": 3323
+  },
+  {
+    "binding": "dump_untagged_plugins",
+    "context": ".beginClass <RegionFactory> (\"RegionFactory\")",
+    "line": 3324
+  },
+  {
+    "binding": "new_plugin_info",
+    "context": ".beginClass <RegionFactory> (\"RegionFactory\")",
+    "line": 3325
+  },
+  {
+    "binding": "new_plugin",
+    "context": ".beginClass <RegionFactory> (\"RegionFactory\")",
+    "line": 3326
+  },
+  {
+    "binding": "new_plugin_with_time_domain",
+    "context": ".beginClass <RegionFactory> (\"RegionFactory\")",
+    "line": 3327
+  },
+  {
+    "binding": "set_processor_param",
+    "context": ".beginClass <RegionFactory> (\"RegionFactory\")",
+    "line": 3328
+  },
+  {
+    "binding": "set_plugin_insert_param",
+    "context": ".beginClass <RegionFactory> (\"RegionFactory\")",
+    "line": 3329
+  },
+  {
+    "binding": "set_plugin_insert_property",
+    "context": ".beginClass <RegionFactory> (\"RegionFactory\")",
+    "line": 3330
+  },
+  {
+    "binding": "get_plugin_insert_property",
+    "context": ".beginClass <RegionFactory> (\"RegionFactory\")",
+    "line": 3331
+  },
+  {
+    "binding": "reset_processor_to_default",
+    "context": ".beginClass <RegionFactory> (\"RegionFactory\")",
+    "line": 3332
+  },
+  {
+    "binding": "set_automation_data",
+    "context": ".beginClass <RegionFactory> (\"RegionFactory\")",
+    "line": 3333
+  },
+  {
+    "binding": "get_processor_param",
+    "context": ".beginClass <RegionFactory> (\"RegionFactory\")",
+    "line": 3334
+  },
+  {
+    "binding": "get_plugin_insert_param",
+    "context": ".beginClass <RegionFactory> (\"RegionFactory\")",
+    "line": 3335
+  },
+  {
+    "binding": "desc_scale_points",
+    "context": ".beginClass <RegionFactory> (\"RegionFactory\")",
+    "line": 3336
+  },
+  {
+    "binding": "plugin_automation",
+    "context": ".beginClass <RegionFactory> (\"RegionFactory\")",
+    "line": 3337
+  },
+  {
+    "binding": "hsla_to_rgba",
+    "context": ".beginClass <RegionFactory> (\"RegionFactory\")",
+    "line": 3338
+  },
+  {
+    "binding": "color_to_rgba",
+    "context": ".beginClass <RegionFactory> (\"RegionFactory\")",
+    "line": 3339
+  },
+  {
+    "binding": "ascii_dtostr",
+    "context": ".beginClass <RegionFactory> (\"RegionFactory\")",
+    "line": 3340
+  },
+  {
+    "binding": "usleep",
+    "context": ".beginClass <RegionFactory> (\"RegionFactory\")",
+    "line": 3341
+  },
+  {
+    "binding": "file_test",
+    "context": ".beginClass <RegionFactory> (\"RegionFactory\")",
+    "line": 3342
+  },
+  {
+    "binding": "file_get_contents",
+    "context": ".beginClass <RegionFactory> (\"RegionFactory\")",
+    "line": 3343
+  },
+  {
+    "binding": "path_get_basename",
+    "context": ".beginClass <RegionFactory> (\"RegionFactory\")",
+    "line": 3344
+  },
+  {
+    "binding": "monotonic_time",
+    "context": ".beginClass <RegionFactory> (\"RegionFactory\")",
+    "line": 3345
+  },
+  {
+    "binding": "build_filename",
+    "context": ".beginClass <RegionFactory> (\"RegionFactory\")",
+    "line": 3346
+  },
+  {
+    "binding": "new_noteptr",
+    "context": ".beginClass <RegionFactory> (\"RegionFactory\")",
+    "line": 3347
+  },
+  {
+    "binding": "note_list",
+    "context": ".beginClass <RegionFactory> (\"RegionFactory\")",
+    "line": 3348
+  },
+  {
+    "binding": "sysex_list",
+    "context": ".beginClass <RegionFactory> (\"RegionFactory\")",
+    "line": 3349
+  },
+  {
+    "binding": "patch_change_list",
+    "context": ".beginClass <RegionFactory> (\"RegionFactory\")",
+    "line": 3350
+  },
+  {
+    "binding": "sample_to_timecode",
+    "context": ".beginClass <RegionFactory> (\"RegionFactory\")",
+    "line": 3351
+  },
+  {
+    "binding": "timecode_to_sample",
+    "context": ".beginClass <RegionFactory> (\"RegionFactory\")",
+    "line": 3352
+  },
+  {
+    "binding": "wait_for_process_callback",
+    "context": ".beginClass <RegionFactory> (\"RegionFactory\")",
+    "line": 3353
+  },
+  {
+    "binding": "segfault",
+    "context": ".beginClass <RegionFactory> (\"RegionFactory\")",
+    "line": 3354
+  },
+  {
+    "binding": "env",
+    "context": ".beginClass <RegionFactory> (\"RegionFactory\")",
+    "line": 3355
+  },
+  {
+    "binding": "list_plugins",
+    "context": ".beginClass <ARDOUR::LuaAPI::Vamp> (\"Vamp\")",
+    "line": 3367
+  },
+  {
+    "binding": "plugin",
+    "context": ".beginClass <ARDOUR::LuaAPI::Vamp> (\"Vamp\")",
+    "line": 3368
+  },
+  {
+    "binding": "analyze",
+    "context": ".beginClass <ARDOUR::LuaAPI::Vamp> (\"Vamp\")",
+    "line": 3369
+  },
+  {
+    "binding": "reset",
+    "context": ".beginClass <ARDOUR::LuaAPI::Vamp> (\"Vamp\")",
+    "line": 3370
+  },
+  {
+    "binding": "initialize",
+    "context": ".beginClass <ARDOUR::LuaAPI::Vamp> (\"Vamp\")",
+    "line": 3371
+  },
+  {
+    "binding": "process",
+    "context": ".beginClass <ARDOUR::LuaAPI::Vamp> (\"Vamp\")",
+    "line": 3372
+  },
+  {
+    "binding": "set_strech_and_pitch",
+    "context": ".beginClass <ARDOUR::LuaAPI::Rubberband> (\"Rubberband\")",
+    "line": 3377
+  },
+  {
+    "binding": "set_mapping",
+    "context": ".beginClass <ARDOUR::LuaAPI::Rubberband> (\"Rubberband\")",
+    "line": 3378
+  },
+  {
+    "binding": "process",
+    "context": ".beginClass <ARDOUR::LuaAPI::Rubberband> (\"Rubberband\")",
+    "line": 3379
+  },
+  {
+    "binding": "readable_length",
+    "context": ".beginClass <ARDOUR::LuaAPI::Rubberband> (\"Rubberband\")",
+    "line": 3380
+  },
+  {
+    "binding": "n_channels",
+    "context": ".beginClass <ARDOUR::LuaAPI::Rubberband> (\"Rubberband\")",
+    "line": 3381
+  },
+  {
+    "binding": "readable",
+    "context": ".beginClass <ARDOUR::LuaAPI::Rubberband> (\"Rubberband\")",
+    "line": 3382
+  },
+  {
+    "binding": "compute_peak",
+    "context": ".beginClass <ARDOUR::LuaAPI::Rubberband> (\"Rubberband\")",
+    "line": 3392
+  },
+  {
+    "binding": "find_peaks",
+    "context": ".beginClass <ARDOUR::LuaAPI::Rubberband> (\"Rubberband\")",
+    "line": 3393
+  },
+  {
+    "binding": "apply_gain_to_buffer",
+    "context": ".beginClass <ARDOUR::LuaAPI::Rubberband> (\"Rubberband\")",
+    "line": 3394
+  },
+  {
+    "binding": "mix_buffers_no_gain",
+    "context": ".beginClass <ARDOUR::LuaAPI::Rubberband> (\"Rubberband\")",
+    "line": 3395
+  },
+  {
+    "binding": "mix_buffers_with_gain",
+    "context": ".beginClass <ARDOUR::LuaAPI::Rubberband> (\"Rubberband\")",
+    "line": 3396
+  },
+  {
+    "binding": "copy_vector",
+    "context": ".beginClass <ARDOUR::LuaAPI::Rubberband> (\"Rubberband\")",
+    "line": 3397
+  },
+  {
+    "binding": "dB_to_coefficient",
+    "context": ".beginClass <ARDOUR::LuaAPI::Rubberband> (\"Rubberband\")",
+    "line": 3398
+  },
+  {
+    "binding": "fast_coefficient_to_dB",
+    "context": ".beginClass <ARDOUR::LuaAPI::Rubberband> (\"Rubberband\")",
+    "line": 3399
+  },
+  {
+    "binding": "accurate_coefficient_to_dB",
+    "context": ".beginClass <ARDOUR::LuaAPI::Rubberband> (\"Rubberband\")",
+    "line": 3400
+  },
+  {
+    "binding": "memset",
+    "context": ".beginClass <ARDOUR::LuaAPI::Rubberband> (\"Rubberband\")",
+    "line": 3401
+  },
+  {
+    "binding": "mmult",
+    "context": ".beginClass <ARDOUR::LuaAPI::Rubberband> (\"Rubberband\")",
+    "line": 3402
+  },
+  {
+    "binding": "log_meter",
+    "context": ".beginClass <ARDOUR::LuaAPI::Rubberband> (\"Rubberband\")",
+    "line": 3403
+  },
+  {
+    "binding": "log_meter_coeff",
+    "context": ".beginClass <ARDOUR::LuaAPI::Rubberband> (\"Rubberband\")",
+    "line": 3404
+  },
+  {
+    "binding": "process_map",
+    "context": ".beginClass <ARDOUR::LuaAPI::Rubberband> (\"Rubberband\")",
+    "line": 3405
+  },
+  {
+    "binding": "peaks",
+    "context": ".beginClass <ARDOUR::LuaAPI::Rubberband> (\"Rubberband\")",
+    "line": 3406
+  },
+  {
+    "binding": "proc",
+    "context": ".beginClass <DSP::LowPass> (\"LowPass\")",
+    "line": 3410
+  },
+  {
+    "binding": "ctrl",
+    "context": ".beginClass <DSP::LowPass> (\"LowPass\")",
+    "line": 3411
+  },
+  {
+    "binding": "set_cutoff",
+    "context": ".beginClass <DSP::LowPass> (\"LowPass\")",
+    "line": 3412
+  },
+  {
+    "binding": "reset",
+    "context": ".beginClass <DSP::LowPass> (\"LowPass\")",
+    "line": 3413
+  },
+  {
+    "binding": "run",
+    "context": ".beginClass <DSP::Biquad> (\"Biquad\")",
+    "line": 3417
+  },
+  {
+    "binding": "compute",
+    "context": ".beginClass <DSP::Biquad> (\"Biquad\")",
+    "line": 3418
+  },
+  {
+    "binding": "configure",
+    "context": ".beginClass <DSP::Biquad> (\"Biquad\")",
+    "line": 3419
+  },
+  {
+    "binding": "set_coefficients",
+    "context": ".beginClass <DSP::Biquad> (\"Biquad\")",
+    "line": 3420
+  },
+  {
+    "binding": "reset",
+    "context": ".beginClass <DSP::Biquad> (\"Biquad\")",
+    "line": 3421
+  },
+  {
+    "binding": "dB_at_freq",
+    "context": ".beginClass <DSP::Biquad> (\"Biquad\")",
+    "line": 3422
+  },
+  {
+    "binding": "set_data_hann",
+    "context": ".beginClass <DSP::FFTSpectrum> (\"FFTSpectrum\")",
+    "line": 3426
+  },
+  {
+    "binding": "execute",
+    "context": ".beginClass <DSP::FFTSpectrum> (\"FFTSpectrum\")",
+    "line": 3427
+  },
+  {
+    "binding": "power_at_bin",
+    "context": ".beginClass <DSP::FFTSpectrum> (\"FFTSpectrum\")",
+    "line": 3428
+  },
+  {
+    "binding": "freq_at_bin",
+    "context": ".beginClass <DSP::FFTSpectrum> (\"FFTSpectrum\")",
+    "line": 3429
+  },
+  {
+    "binding": "process",
+    "context": ".beginClass <DSP::StereoCorrelation> (\"StereoCorrelation\")",
+    "line": 3433
+  },
+  {
+    "binding": "read",
+    "context": ".beginClass <DSP::StereoCorrelation> (\"StereoCorrelation\")",
+    "line": 3434
+  },
+  {
+    "binding": "reset",
+    "context": ".beginClass <DSP::StereoCorrelation> (\"StereoCorrelation\")",
+    "line": 3435
+  },
+  {
+    "binding": "run",
+    "context": ".beginClass <DSP::Generator> (\"Generator\")",
+    "line": 3439
+  },
+  {
+    "binding": "set_type",
+    "context": ".beginClass <DSP::Generator> (\"Generator\")",
+    "line": 3440
+  },
+  {
+    "binding": "write",
+    "context": ".beginClass <ARDOUR::LTCReader> (\"LTCReader\")",
+    "line": 3445
+  },
+  {
+    "binding": "read",
+    "context": ".beginClass <ARDOUR::LTCReader> (\"LTCReader\")",
+    "line": 3446
+  },
+  {
+    "binding": "add_impdata",
+    "context": ".beginClass <DSP::Convolution> (\"Convolution\")",
+    "line": 3451
+  },
+  {
+    "binding": "clear_impdata",
+    "context": ".beginClass <DSP::Convolution> (\"Convolution\")",
+    "line": 3452
+  },
+  {
+    "binding": "run",
+    "context": ".beginClass <DSP::Convolution> (\"Convolution\")",
+    "line": 3453
+  },
+  {
+    "binding": "run_mono_buffered",
+    "context": ".beginClass <DSP::Convolution> (\"Convolution\")",
+    "line": 3454
+  },
+  {
+    "binding": "run_mono_no_latency",
+    "context": ".beginClass <DSP::Convolution> (\"Convolution\")",
+    "line": 3455
+  },
+  {
+    "binding": "restart",
+    "context": ".beginClass <DSP::Convolution> (\"Convolution\")",
+    "line": 3456
+  },
+  {
+    "binding": "ready",
+    "context": ".beginClass <DSP::Convolution> (\"Convolution\")",
+    "line": 3457
+  },
+  {
+    "binding": "latency",
+    "context": ".beginClass <DSP::Convolution> (\"Convolution\")",
+    "line": 3458
+  },
+  {
+    "binding": "n_inputs",
+    "context": ".beginClass <DSP::Convolution> (\"Convolution\")",
+    "line": 3459
+  },
+  {
+    "binding": "n_outputs",
+    "context": ".beginClass <DSP::Convolution> (\"Convolution\")",
+    "line": 3460
+  },
+  {
+    "binding": "get_channel_gain",
+    "context": ".beginClass <DSP::Convolver::IRSettings> (\"IRSettings\")",
+    "line": 3467
+  },
+  {
+    "binding": "set_channel_gain",
+    "context": ".beginClass <DSP::Convolver::IRSettings> (\"IRSettings\")",
+    "line": 3468
+  },
+  {
+    "binding": "get_channel_delay",
+    "context": ".beginClass <DSP::Convolver::IRSettings> (\"IRSettings\")",
+    "line": 3469
+  },
+  {
+    "binding": "set_channel_delay",
+    "context": ".beginClass <DSP::Convolver::IRSettings> (\"IRSettings\")",
+    "line": 3470
+  },
+  {
+    "binding": "run_stereo_buffered",
+    "context": ".deriveClass <DSP::Convolver, DSP::Convolution> (\"Convolver\")",
+    "line": 3475
+  },
+  {
+    "binding": "run_stereo_no_latency",
+    "context": ".deriveClass <DSP::Convolver, DSP::Convolution> (\"Convolver\")",
+    "line": 3476
+  },
+  {
+    "binding": "allocate",
+    "context": ".beginClass <DSP::DspShm> (\"DspShm\")",
+    "line": 3517
+  },
+  {
+    "binding": "clear",
+    "context": ".beginClass <DSP::DspShm> (\"DspShm\")",
+    "line": 3518
+  },
+  {
+    "binding": "to_float",
+    "context": ".beginClass <DSP::DspShm> (\"DspShm\")",
+    "line": 3519
+  },
+  {
+    "binding": "to_int",
+    "context": ".beginClass <DSP::DspShm> (\"DspShm\")",
+    "line": 3520
+  },
+  {
+    "binding": "atomic_set_int",
+    "context": ".beginClass <DSP::DspShm> (\"DspShm\")",
+    "line": 3521
+  },
+  {
+    "binding": "atomic_get_int",
+    "context": ".beginClass <DSP::DspShm> (\"DspShm\")",
+    "line": 3522
+  },
+  {
+    "binding": "data",
+    "context": ".beginClass <AudioBuffer> (\"AudioBuffer\")",
+    "line": 3537
+  },
+  {
+    "binding": "silence",
+    "context": ".beginClass <AudioBuffer> (\"AudioBuffer\")",
+    "line": 3538
+  },
+  {
+    "binding": "apply_gain",
+    "context": ".beginClass <AudioBuffer> (\"AudioBuffer\")",
+    "line": 3539
+  },
+  {
+    "binding": "check_silence",
+    "context": ".beginClass <AudioBuffer> (\"AudioBuffer\")",
+    "line": 3540
+  },
+  {
+    "binding": "read_from",
+    "context": ".beginClass <AudioBuffer> (\"AudioBuffer\")",
+    "line": 3541
+  },
+  {
+    "binding": "silence",
+    "context": ".beginClass <MidiBuffer> (\"MidiBuffer\")",
+    "line": 3546
+  },
+  {
+    "binding": "size",
+    "context": ".beginClass <MidiBuffer> (\"MidiBuffer\")",
+    "line": 3547
+  },
+  {
+    "binding": "empty",
+    "context": ".beginClass <MidiBuffer> (\"MidiBuffer\")",
+    "line": 3548
+  },
+  {
+    "binding": "resize",
+    "context": ".beginClass <MidiBuffer> (\"MidiBuffer\")",
+    "line": 3549
+  },
+  {
+    "binding": "copy",
+    "context": ".beginClass <MidiBuffer> (\"MidiBuffer\")",
+    "line": 3550
+  },
+  {
+    "binding": "push_event",
+    "context": ".beginClass <MidiBuffer> (\"MidiBuffer\")",
+    "line": 3551
+  },
+  {
+    "binding": "push_back",
+    "context": ".beginClass <MidiBuffer> (\"MidiBuffer\")",
+    "line": 3552
+  },
+  {
+    "binding": "table",
+    "context": ".beginClass <MidiBuffer> (\"MidiBuffer\")",
+    "line": 3554
+  },
+  {
+    "binding": "get_audio",
+    "context": ".beginClass <BufferSet> (\"BufferSet\")",
+    "line": 3559
+  },
+  {
+    "binding": "get_midi",
+    "context": ".beginClass <BufferSet> (\"BufferSet\")",
+    "line": 3560
+  },
+  {
+    "binding": "count",
+    "context": ".beginClass <BufferSet> (\"BufferSet\")",
+    "line": 3561
+  },
+  {
+    "binding": "available",
+    "context": ".beginClass <BufferSet> (\"BufferSet\")",
+    "line": 3562
+  },
+  {
+    "binding": "type",
+    "context": ".deriveClass <Evoral::Event<samplepos_t>, Evoral::Event<samplepos_t> > (\"Event\")",
+    "line": 3570
+  },
+  {
+    "binding": "channel",
+    "context": ".deriveClass <Evoral::Event<samplepos_t>, Evoral::Event<samplepos_t> > (\"Event\")",
+    "line": 3571
+  },
+  {
+    "binding": "set_type",
+    "context": ".deriveClass <Evoral::Event<samplepos_t>, Evoral::Event<samplepos_t> > (\"Event\")",
+    "line": 3572
+  },
+  {
+    "binding": "set_channel",
+    "context": ".deriveClass <Evoral::Event<samplepos_t>, Evoral::Event<samplepos_t> > (\"Event\")",
+    "line": 3573
+  },
+  {
+    "binding": "get_scratch_buffers",
+    "context": ".beginClass <Session> (\"Session\")",
+    "line": 3581
+  },
+  {
+    "binding": "get_silent_buffers",
+    "context": ".beginClass <Session> (\"Session\")",
+    "line": 3582
+  },
+  {
+    "binding": "load_sf2",
+    "context": ".beginClass <FluidSynth> (\"FluidSynth\")",
+    "line": 3590
+  },
+  {
+    "binding": "synth",
+    "context": ".beginClass <FluidSynth> (\"FluidSynth\")",
+    "line": 3591
+  },
+  {
+    "binding": "midi_event",
+    "context": ".beginClass <FluidSynth> (\"FluidSynth\")",
+    "line": 3592
+  },
+  {
+    "binding": "panic",
+    "context": ".beginClass <FluidSynth> (\"FluidSynth\")",
+    "line": 3593
+  },
+  {
+    "binding": "select_program",
+    "context": ".beginClass <FluidSynth> (\"FluidSynth\")",
+    "line": 3594
+  },
+  {
+    "binding": "program_count",
+    "context": ".beginClass <FluidSynth> (\"FluidSynth\")",
+    "line": 3595
+  },
+  {
+    "binding": "program_name",
+    "context": ".beginClass <FluidSynth> (\"FluidSynth\")",
+    "line": 3596
+  },
+  {
+    "binding": "get",
+    "context": ".beginClass <LuaTableRef> (\"LuaTableRef\")",
+    "line": 3604
+  },
+  {
+    "binding": "set",
+    "context": ".beginClass <LuaTableRef> (\"LuaTableRef\")",
+    "line": 3605
+  },
+  {
+    "binding": "save_state",
+    "context": ".beginClass <Session> (\"Session\")",
+    "line": 3620
+  },
+  {
+    "binding": "rename",
+    "context": ".beginClass <Session> (\"Session\")",
+    "line": 3621
+  },
+  {
+    "binding": "set_dirty",
+    "context": ".beginClass <Session> (\"Session\")",
+    "line": 3622
+  },
+  {
+    "binding": "unknown_processors",
+    "context": ".beginClass <Session> (\"Session\")",
+    "line": 3623
+  },
+  {
+    "binding": "export_route_state",
+    "context": ".beginClass <Session> (\"Session\")",
+    "line": 3624
+  },
+  {
+    "binding": "import_route_state",
+    "context": ".beginClass <Session> (\"Session\")",
+    "line": 3625
+  },
+  {
+    "binding": "parse_route_state",
+    "context": ".beginClass <Session> (\"Session\")",
+    "line": 3626
+  },
+  {
+    "binding": "selection",
+    "context": ".beginClass <Session> (\"Session\")",
+    "line": 3627
+  },
+  {
+    "binding": "have_external_connections_for_current_backend",
+    "context": ".beginClass <Session> (\"Session\")",
+    "line": 3628
+  },
+  {
+    "binding": "unnamed",
+    "context": ".beginClass <Session> (\"Session\")",
+    "line": 3629
+  },
+  {
+    "binding": "writable",
+    "context": ".beginClass <Session> (\"Session\")",
+    "line": 3630
+  },
+  {
+    "binding": "new_audio_track",
+    "context": ".beginClass <Session> (\"Session\")",
+    "line": 3633
+  },
+  {
+    "binding": "new_audio_route",
+    "context": ".beginClass <Session> (\"Session\")",
+    "line": 3634
+  },
+  {
+    "binding": "new_midi_track",
+    "context": ".beginClass <Session> (\"Session\")",
+    "line": 3635
+  },
+  {
+    "binding": "new_midi_route",
+    "context": ".beginClass <Session> (\"Session\")",
+    "line": 3636
+  },
+  {
+    "binding": "new_route_group",
+    "context": ".beginClass <Session> (\"Session\")",
+    "line": 3637
+  },
+  {
+    "binding": "add_route_group",
+    "context": ".beginClass <Session> (\"Session\")",
+    "line": 3638
+  },
+  {
+    "binding": "add_master_bus",
+    "context": ".beginClass <Session> (\"Session\")",
+    "line": 3639
+  },
+  {
+    "binding": "save_as_template",
+    "context": ".beginWSPtrClass <Route> (\"Route\")",
+    "line": 3643
+  },
+  {
+    "binding": "add_sidechain",
+    "context": ".beginWSPtrClass <Route> (\"Route\")",
+    "line": 3644
+  },
+  {
+    "binding": "remove_sidechain",
+    "context": ".beginWSPtrClass <Route> (\"Route\")",
+    "line": 3645
+  },
+  {
+    "binding": "rt_set_controls",
+    "context": ".beginClass <Session> (\"Session\")",
+    "line": 3659
+  },
+  {
+    "binding": "rt_clear_all_solo_state",
+    "context": ".beginClass <Session> (\"Session\")",
+    "line": 3660
+  },
+  {
+    "binding": "send",
+    "context": ".beginClass<LuaOSC::Address> (\"Address\")",
+    "line": 3673
+  }
+]

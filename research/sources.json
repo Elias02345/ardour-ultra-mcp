@@ -1,0 +1,86 @@
+[
+  {
+    "repository": "https://github.com/JuzzyDee/audio-analyzer-rs.git",
+    "commit": "0387fe1630ff0fc7f71bf656be81f3b1f400dda8",
+    "commit_date": "2026-03-15T20:26:52+10:00",
+    "checkout": "JuzzyDee_audio-analyzer-rs"
+  },
+  {
+    "repository": "https://github.com/TwelveTake-Studios/reaper-mcp.git",
+    "commit": "3c26e2e91f9d28ce58034edb8f53ef0cc82225e6",
+    "commit_date": "2026-09-29T16:07:21-04:00",
+    "checkout": "TwelveTake-Studios_reaper-mcp"
+  },
+  {
+    "repository": "https://github.com/ZipseLu/lmms-mcp.git",
+    "commit": "e57d9fe7752b73b7b18e77442d996f7ebc269d60",
+    "commit_date": "2026-08-21T14:58:13+02:00",
+    "checkout": "ZipseLu_lmms-mcp"
+  },
+  {
+    "repository": "https://github.com/Ardour/ardour.git",
+    "commit": "ca219b24382bf3ed05fae89f85c84d13b7cd2bb8",
+    "commit_date": "2026-10-02T19:51:08+02:00",
+    "checkout": "ardour"
+  },
+  {
+    "repository": "https://github.com/Ardour/ardour.git",
+    "commit": "22ed8656c2533e325322ff11831448e5123e0d4b",
+    "commit_date": "2026-08-19T21:31:04-06:00",
+    "checkout": "ardour-9.8"
+  },
+  {
+    "repository": "https://github.com/danishaft/reaper-mcp.git",
+    "commit": "b4c0487010ff5d5033ce37484da6a56b9c6a8f27",
+    "commit_date": "2026-08-05T16:45:27+01:00",
+    "checkout": "danishaft_reaper-mcp"
+  },
+  {
+    "repository": "https://github.com/ericjsolis/reaper-mcp.git",
+    "commit": "a14297d0447e0d0b5442824d23e50e5bfb192064",
+    "commit_date": "2026-04-17T14:36:00+12:00",
+    "checkout": "ericjsolis_reaper-mcp"
+  },
+  {
+    "repository": "https://github.com/Ardour/manual.git",
+    "commit": "9628c8bad094537fddd967ef137e8a692e2b1503",
+    "commit_date": "2026-09-15T18:12:20+02:00",
+    "checkout": "manual"
+  },
+  {
+    "repository": "https://github.com/modelcontextprotocol/python-sdk.git",
+    "commit": "c15566c9dd4828b8082fb7693060e3a0fd67e657",
+    "commit_date": "2026-10-02T18:51:17+01:00",
+    "checkout": "modelcontextprotocol_python-sdk"
+  },
+  {
+    "repository": "https://github.com/modelcontextprotocol/specification.git",
+    "commit": "db788e34ffc0c7253f099f647a5e25e0396fadfe",
+    "commit_date": "2026-10-02T09:54:37-07:00",
+    "checkout": "modelcontextprotocol_specification"
+  },
+  {
+    "repository": "https://github.com/raibid-entertainment/ardour-mcp.git",
+    "commit": "9cc19e0a090725a4666ecd945999b6787d250d43",
+    "commit_date": "2025-11-20T01:30:49-05:00",
+    "checkout": "raibid-entertainment_ardour-mcp"
+  },
+  {
+    "repository": "https://github.com/tubone24/midi-mcp-server.git",
+    "commit": "fdde5a98b5adb0efc2beffceff9485f089a08f34",
+    "commit_date": "2026-04-12T21:51:47+09:00",
+    "checkout": "tubone24_midi-mcp-server"
+  },
+  {
+    "repository": "https://github.com/xDarkzx/Audacity-MCP.git",
+    "commit": "ef7612eb6766ee96d630783d64c1ce94d602dc9e",
+    "commit_date": "2026-09-28T09:19:43+13:00",
+    "checkout": "xDarkzx_Audacity-MCP"
+  },
+  {
+    "repository": "https://github.com/xDarkzx/Reaper-MCP.git",
+    "commit": "78b57fc5f9bd10ae523b7c419c8f36ffb4c38e38",
+    "commit_date": "2026-09-23T15:35:08+12:00",
+    "checkout": "xDarkzx_Reaper-MCP"
+  }
+]
