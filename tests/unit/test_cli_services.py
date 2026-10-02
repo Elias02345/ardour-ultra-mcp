@@ -162,6 +162,37 @@ async def test_export_empty_result_is_failure(tmp_path):
     assert result.error.code == ErrorCode.BACKEND_ERROR
 
 
+async def test_render_and_analyze_preserves_completed_export_on_failure(tmp_path, monkeypatch):
+    service = ControlService(ExportBackend(), PathPolicy((), (tmp_path,)))
+    request = {
+        "start": {"unit": "seconds", "seconds": 0},
+        "end": {"unit": "seconds", "seconds": 1},
+        "name": "mix",
+        "output_directory": str(tmp_path / "loop"),
+    }
+    dry = await service.call("render_and_analyze", {**request, "dry_run": True})
+    assert dry.success and not (tmp_path / "loop").exists()
+    result = await service.call("render_and_analyze", request)
+    assert result.success and result.data["analysis_completed"] and result.data["atomic"] is False
+    assert result.data["analysis"]["metadata"]["sample_rate_hz"] == 48000
+    failed = await service.call(
+        "render_and_analyze",
+        {**request, "output_directory": str(tmp_path / "failed-analysis"), "max_seconds": 0.1},
+    )
+    assert not failed.success and failed.data["analysis_completed"] is False
+    assert Path(failed.data["render"]["files"][0]).exists()
+    assert failed.warnings
+    monkeypatch.setattr(
+        "ardour_ultra_mcp.services.workflows.importlib.util.find_spec", lambda name: None
+    )
+    missing = await service.call(
+        "render_and_analyze",
+        {**request, "output_directory": str(tmp_path / "missing-dependencies")},
+    )
+    assert missing.error.code == ErrorCode.BACKEND_UNSUPPORTED
+    assert not (tmp_path / "missing-dependencies").exists()
+
+
 def test_discovered_ardour_version_probe(monkeypatch):
     import subprocess
 

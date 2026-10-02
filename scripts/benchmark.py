@@ -78,6 +78,7 @@ async def main() -> None:
     for i in range(100):
         backend._new_track(f"Track {i}", "audio", 2)  # fixture construction is outside measurement
     await measure("enumerate_102_tracks", "list_tracks", {"limit": 1000}, iterations=3)
+    await measure("state_refresh_session", "get_session_info", {}, iterations=3)
     plugin = await service.call(
         "add_plugin", {"track_id": tid, "plugin_id": "urn:ultra:simulated:filter", "format": "LV2"}
     )

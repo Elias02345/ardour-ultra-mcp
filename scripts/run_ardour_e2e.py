@@ -7,6 +7,7 @@ cross-platform DAW support. A temporary session is created; no user project is o
 import asyncio
 import json
 import os
+import re
 import subprocess
 import tempfile
 import time
@@ -51,7 +52,7 @@ async def main():
                 )
                 results = []
 
-                async def check(command, args):
+                async def check(command, args, error=None):
                     t = time.perf_counter()
                     result = await service.call(command, args)
                     results.append(
@@ -61,6 +62,9 @@ async def main():
                             "result": result.model_dump(mode="json"),
                         }
                     )
+                    if error:
+                        assert not result.success and result.error.code == error
+                        return result
                     if not result.success:
                         reply = root / "mailbox" / "response.json"
                         if reply.exists():
@@ -70,6 +74,11 @@ async def main():
 
                 await check("ping", {})
                 await check("get_session_info", {})
+                await check(
+                    "convert_position",
+                    {"position": {"unit": "samples", "samples": 9007199254740991}},
+                    error="INVALID_TIME_POSITION",
+                )
                 track = await check("create_track", {"name": "Audio E2E", "kind": "audio"})
                 track_id = track.data["id"]
                 await check("set_track_gain", {"track_id": track_id, "gain_db": -4.25})
@@ -82,6 +91,25 @@ async def main():
                 await check("set_monitoring", {"track_id": track_id, "mode": "input"})
                 await check("arm_track", {"track_id": track_id, "enabled": True})
                 await check("list_tracks", {})
+                if "create_group" in (await service.backend.capabilities())["commands"]:
+                    group = await check("create_group", {"name": "Drums E2E"})
+                    group_id = group.data["id"]
+                    assert group_id != "0"
+                    await check("add_track_to_group", {"group_id": group_id, "track_id": track_id})
+                    await check(
+                        "set_group_properties",
+                        {"group_id": group_id, "properties": {"gain": False, "solo": False}},
+                    )
+                    groups = await check("list_groups", {})
+                    assert groups.data["items"][0]["track_ids"] == [track_id]
+                    assert groups.data["items"][0]["properties"]["gain"] is False
+                    await check(
+                        "remove_track_from_group", {"group_id": group_id, "track_id": track_id}
+                    )
+                    group = await check("create_group", {"name": "Drums E2E"})
+                    group_id = group.data["id"]
+                    await check("add_track_to_group", {"group_id": group_id, "track_id": track_id})
+                    await check("delete_group", {"group_id": group_id, "confirm_delete": True})
                 await check("list_regions", {"track_id": track_id})
                 await check("get_transport", {})
                 await check("convert_position", {"position": {"unit": "bbt", "bar": 3, "beat": 1}})
@@ -137,10 +165,13 @@ async def main():
                 await check("list_plugin_presets", ref)
                 await check("set_plugin_enabled", {**ref, "enabled": False})
                 await check("list_ports", {})
-                bus = await check("create_track", {"name": "Verb E2E", "kind": "bus"})
+                ensured = await check("ensure_bus", {"name": "Verb E2E"})
+                bus = ensured.data["bus"]
+                again = await check("ensure_bus", {"name": "Verb E2E"})
+                assert not again.data["created"] and again.data["bus"]["id"] == bus["id"]
                 send = await check(
                     "create_send",
-                    {"track_id": track_id, "target_id": bus.data["id"], "gain_db": -6},
+                    {"track_id": track_id, "target_id": bus["id"], "gain_db": -6},
                 )
                 await check("list_sends", {"track_id": track_id})
                 await check(
@@ -171,19 +202,23 @@ async def main():
                     {"track_id": track_id, "send_id": send.data["id"], "confirm_delete": True},
                 )
                 await check("delete_track", {"track_id": track_id, "confirm_delete": True})
+                version = subprocess.check_output([executable, "-V"], text=True).strip()
                 Path("artifacts/ardour-luasession-e2e.json").write_text(
                     json.dumps(
                         {
                             "scope": "real Ardour LuaSession common/non_rt; no Editor GUI/OSC test; temporary Dummy engine session",
-                            "executable_version": subprocess.check_output(
-                                [executable, "-V"], text=True
-                            ).strip(),
+                            "executable_version": version,
                             "checks": results,
                         },
                         indent=2,
                     )
                     + "\n"
                 )
+                major = re.search(r"(?:Ardour|ardour-lua version) (\d+)", version)
+                if major:
+                    Path(f"artifacts/ardour{major[1]}-luasession-e2e.json").write_text(
+                        Path("artifacts/ardour-luasession-e2e.json").read_text()
+                    )
                 print(
                     json.dumps(
                         {"passed": len(results), "scope": "real Ardour LuaSession common/non_rt"}

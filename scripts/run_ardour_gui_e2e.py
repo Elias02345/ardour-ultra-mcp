@@ -18,7 +18,10 @@ import time
 from pathlib import Path
 from xml.etree import ElementTree as ET
 
+from audio_fixture import add_audio_fixture
+
 from ardour_ultra_mcp.backends.mailbox import MailboxBackend
+from ardour_ultra_mcp.backends.osc import OSCBackend
 from ardour_ultra_mcp.installers.install import install, lua_string
 from ardour_ultra_mcp.security.paths import PathPolicy
 from ardour_ultra_mcp.services.control import ControlService
@@ -29,7 +32,7 @@ async def main() -> None:
         os.environ[k]
         for k in ["ARDOUR_GUI_PATH", "ARDOUR_LUA_PATH", "XVFB_PATH", "ARDOUR_SIGNALS_PATH"]
     ]
-    major = int(os.environ.get("ARDOUR_MAJOR", "8"))
+    major = int(os.environ.get("ARDOUR_MAJOR", "9"))
     with tempfile.TemporaryDirectory(prefix="ardour-ultra-editor-e2e-") as directory:
         root = Path(directory)
         cfg = root / "xdg" / f"ardour{major}"
@@ -40,7 +43,7 @@ async def main() -> None:
         script.write_text(
             "local s=create_session("
             + lua_string(str(root / "session"))
-            + ',"Ultra Editor E2E",48000)\nassert(s)\nSession:save_state("",false,false,false)\nardour=function(x) end\ndofile('
+            + ',"Ultra Editor E2E",48000)\nassert(s)\nSession:new_audio_track(1,1,ARDOUR.RouteGroup(),1,"Audio Fixture",-1,ARDOUR.TrackMode.Normal,true,false)\nSession:save_state("",false,false,false)\nardour=function(x) end\ndofile('
             + lua_string(installed["script"])
             + ")\nlocal out=assert(io.open("
             + lua_string(str(root / "state"))
@@ -51,6 +54,7 @@ async def main() -> None:
         prep = subprocess.run([lua, str(script)], capture_output=True, text=True, timeout=30)
         if prep.returncode:
             raise RuntimeError(prep.stdout + prep.stderr)
+        add_audio_fixture(root / "session" / "Ultra Editor E2E.ardour", root / "fixture.wav")
         text = Path(symbols).read_text()
         text = re.sub(r"#if 0.*?#endif", "", text, flags=re.S)
         names = re.findall(r"^(?:STATIC|ENGINE|SESSION)\((\w+)", text, re.M)
@@ -76,6 +80,19 @@ async def main() -> None:
         settings = ET.SubElement(config, "Config")
         ET.SubElement(settings, "Option", {"name": "try-autostart-engine", "value": "1"})
         ET.SubElement(settings, "Option", {"name": "hide-dummy-backend", "value": "0"})
+        ET.SubElement(settings, "Option", {"name": "osc-port", "value": "3819"})
+        protocols = ET.SubElement(config, "ControlProtocols")
+        ET.SubElement(
+            protocols,
+            "Protocol",
+            {
+                "name": "Open Sound Control (OSC)",
+                "active": "1",
+                "config": "",
+                "address-only": "0",
+                "debugmode": "2",
+            },
+        )
         extra = ET.SubElement(config, "Extra")
         setup = ET.SubElement(extra, "AudioMIDISetup")
         states = ET.SubElement(setup, "EngineStates")
@@ -116,6 +133,7 @@ async def main() -> None:
         process = None
         results = []
         service = None
+        osc = OSCBackend()
         try:
             await asyncio.sleep(0.5)
             process = subprocess.Popen(
@@ -149,9 +167,9 @@ async def main() -> None:
                 MailboxBackend(root / "mailbox", timeout=120), PathPolicy((root,), (root,))
             )
 
-            async def check(command, arguments):
+            async def check(command, arguments, target=None):
                 start = time.perf_counter()
-                result = await service.call(command, arguments)
+                result = await (target or service).call(command, arguments)
                 results.append(
                     {
                         "command": command,
@@ -164,6 +182,77 @@ async def main() -> None:
                 return result
 
             await check("ping", {})
+            audio_tracks = await check("list_tracks", {"name_filter": "Audio Fixture"})
+            audio_id = audio_tracks.data["items"][0]["id"]
+            audio_regions = await check("list_regions", {"track_id": audio_id, "kind": "audio"})
+            assert audio_regions.data["total"] == 1
+            audio_ref = {"track_id": audio_id, "region_id": audio_regions.data["items"][0]["id"]}
+            await check("set_region_gain", {**audio_ref, "gain_db": -4.25})
+            inspected = await check("get_region", audio_ref)
+            assert abs(inspected.data["gain_db"] + 4.25) < 1e-5
+            await check(
+                "set_region_fades", {**audio_ref, "fade_in_samples": 128, "fade_out_samples": 256}
+            )
+            await check("set_region_mute", {**audio_ref, "enabled": True})
+            await check("undo", {})
+            assert (await check("get_region", audio_ref)).data["muted"] is False
+            await check(
+                "move_region", {**audio_ref, "position": {"unit": "samples", "samples": 24000}}
+            )
+            await check(
+                "trim_region",
+                {
+                    **audio_ref,
+                    "start": {"unit": "samples", "samples": 30000},
+                    "end": {"unit": "samples", "samples": 48000},
+                },
+            )
+            await check("set_region_lock", {**audio_ref, "enabled": True})
+            denied = await service.call(
+                "move_region", {**audio_ref, "position": {"unit": "samples", "samples": 0}}
+            )
+            assert not denied.success and denied.error.code == "PERMISSION_DENIED"
+            await check("set_region_lock", {**audio_ref, "enabled": False})
+            copied_audio = await check(
+                "copy_region",
+                {
+                    **audio_ref,
+                    "target_track_id": audio_id,
+                    "name": "Audio copy",
+                    "position": {"unit": "samples", "samples": 96000},
+                },
+            )
+            assert (
+                copied_audio.data["shared_audio_source"]
+                and not copied_audio.data["independent_midi_source"]
+            )
+            await check(
+                "delete_region",
+                {
+                    "track_id": audio_id,
+                    "region_id": copied_audio.data["id"],
+                    "confirm_delete": True,
+                },
+            )
+            await check("undo", {})
+            await check(
+                "split_region", {**audio_ref, "position": {"unit": "samples", "samples": 36000}}
+            )
+            anchored = await check(
+                "create_automation_points",
+                {
+                    "track_id": audio_id,
+                    "control": "gain",
+                    "unit": "linear_gain",
+                    "points": [{"position": {"unit": "samples", "samples": 48000}, "value": 0.5}],
+                },
+            )
+            assert (
+                anchored.data["anchor_at_zero_added"] and anchored.data["actual_point_count"] == 2
+            )
+            anchor_curve = await check("get_automation", {"track_id": audio_id, "control": "gain"})
+            assert [p["samples"] for p in anchor_curve.data["points"]] == [0, 48000]
+            await check("undo", {})
             track = await check("create_track", {"name": "Bass", "kind": "midi"})
             track_id = track.data["id"]
             await check("rename_track", {"track_id": track_id, "name": "Bass verified"})
@@ -193,6 +282,26 @@ async def main() -> None:
                 },
             )
             ref = {"track_id": track_id, "region_id": region.data["id"]}
+            native_status = await check("get_transport", {})
+            assert native_status.data["engine_running"], native_status.data
+            osc_service = ControlService(osc)
+            await check("get_transport", {}, osc_service)
+            await check("locate", {"position": {"unit": "samples", "samples": 48000}})
+            await asyncio.sleep(0.5)
+            native = await check("get_transport", {})
+            observed = await check("get_transport", {}, osc_service)
+            assert native.data["samples"] == 48000
+            # OSC readback divergence is preserved in the dedicated native probe.
+            # The optional adapter reports received values as unverified.
+            await check("play", {})
+            await asyncio.sleep(0.5)
+            observed = await check("get_transport", {})
+            assert observed.data["speed"] == 1
+            await check("stop", {})
+            await check("locate", {"position": {"unit": "samples", "samples": 0}})
+            await asyncio.sleep(0.5)
+            observed = await check("get_transport", {})
+            assert observed.data["samples"] == 0 and observed.data["speed"] == 0
             notes = [
                 {
                     "pitch": 48 + i % 12,
@@ -206,6 +315,12 @@ async def main() -> None:
             await check("insert_midi_notes", {**ref, "notes": notes})
             listed = await check("list_midi_notes", {**ref, "limit": 1000})
             assert listed.data["total"] == 100
+            next_page = await check("list_midi_notes", {**ref, "offset": 1, "limit": 1})
+            assert next_page.data["model_fingerprint"] == listed.data["model_fingerprint"]
+            assert (
+                next_page.data["guard_cache"]["snapshots"]
+                == listed.data["guard_cache"]["snapshots"]
+            )
             await check(
                 "insert_midi_notes",
                 {
@@ -248,6 +363,26 @@ async def main() -> None:
                 },
             )
             await check("move_region", {**ref, "position": {"unit": "bbt", "bar": 2, "beat": 1}})
+            copied = await check(
+                "copy_region",
+                {
+                    **ref,
+                    "target_track_id": track_id,
+                    "name": "Independent copy",
+                    "position": {"unit": "bbt", "bar": 10, "beat": 1},
+                },
+            )
+            copy_ref = {"track_id": track_id, "region_id": copied.data["id"]}
+            assert copied.data["independent_midi_source"] is True
+            copy_notes = await check("list_midi_notes", {**copy_ref, "limit": 1})
+            assert copy_notes.data["total"] == 10099
+            await check("undo", {})
+            regions = await check("list_regions", {"track_id": track_id})
+            assert all(r["id"] != copy_ref["region_id"] for r in regions.data["items"])
+            await check("redo", {})
+            await check("insert_midi_notes", {**copy_ref, "notes": [{**notes[0], "pitch": 37}]})
+            original_notes = await check("list_midi_notes", {**ref, "limit": 1})
+            assert original_notes.data["total"] == 10099
             await check("split_region", {**ref, "position": {"unit": "bbt", "bar": 5, "beat": 1}})
             await check(
                 "create_automation_points",
@@ -261,6 +396,25 @@ async def main() -> None:
                     ],
                 },
             )
+            await check(
+                "create_automation_points",
+                {
+                    "track_id": track_id,
+                    "control": "gain",
+                    "unit": "linear_gain",
+                    "replace": True,
+                    "confirm_delete": True,
+                    "points": [
+                        {"position": {"unit": "samples", "samples": i * 100}, "value": 0.55}
+                        for i in range(10000)
+                    ],
+                },
+            )
+            dense_curve = await check("get_automation", {"track_id": track_id, "control": "gain"})
+            assert len(dense_curve.data["points"]) == 10000
+            await check("undo", {})
+            restored = await check("get_automation", {"track_id": track_id, "control": "gain"})
+            assert len(restored.data["points"]) == 2
             await check("undo", {})
             await check("save_session", {})
             rendered = await check(
@@ -281,12 +435,26 @@ async def main() -> None:
                 "compare_audio_files",
                 {"first": rendered.data["files"][0], "second": rendered.data["files"][0]},
             )
+            combined = await check(
+                "render_and_analyze",
+                {
+                    "start": {"unit": "bbt", "bar": 2, "beat": 1},
+                    "end": {"unit": "bbt", "bar": 3, "beat": 1},
+                    "output_directory": str(root / "combined-export"),
+                    "name": "combined",
+                },
+            )
+            assert (
+                combined.data["analysis_completed"]
+                and combined.data["analysis"]["peak_dbfs"] is not None
+            )
             print(
                 json.dumps(
                     {"passed": len(results), "scope": "real EditorHook, no GUI input automation"}
                 )
             )
         finally:
+            await osc.close()
             if service:
                 await service.backend.close()
             if process:
@@ -304,6 +472,9 @@ async def main() -> None:
                 json.dumps(
                     {
                         "scope": "real Linux Ardour EditorHook on Dummy engine; no GUI input automation",
+                        "executable_version": subprocess.check_output(
+                            [lua, "-V"], text=True
+                        ).strip(),
                         "checks": results,
                     },
                     indent=2,

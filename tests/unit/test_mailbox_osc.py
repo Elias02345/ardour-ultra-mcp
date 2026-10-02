@@ -17,7 +17,12 @@ def mailbox(tmp_path):
     install(root, tmp_path / "config")
     atomic_json(
         root / "heartbeat.json",
-        {"protocol": 1, "epoch": "test", "time": time.time(), "commands": ["ping"]},
+        {
+            "protocol": 1,
+            "epoch": "test",
+            "time": time.time(),
+            "commands": ["ping", "set_track_gain"],
+        },
     )
     return MailboxBackend(root, timeout=0.08)
 
@@ -54,6 +59,13 @@ async def test_timeout_does_not_allow_blind_retry(mailbox):
     with pytest.raises(DomainError) as again:
         await mailbox.execute("ping", {}, Options())
     assert again.value.detail.code == ErrorCode.OUTCOME_UNCERTAIN
+
+
+async def test_bridge_missing_capability_is_not_published(mailbox):
+    with pytest.raises(DomainError) as error:
+        await mailbox.execute("create_group", {"name": "Unavailable"}, Options())
+    assert error.value.detail.code == ErrorCode.BACKEND_UNSUPPORTED
+    assert not (mailbox.directory / "request.json").exists()
 
 
 async def test_read_timeout_and_stale_heartbeat(mailbox):
@@ -113,7 +125,11 @@ async def test_loopback_udp_query_and_truthful_mutation():
     backend = OSCBackend(port=transport.get_extra_info("sockname")[1], timeout=0.05)
     try:
         result = await backend.execute("get_transport", {}, Options())
-        assert result.data["samples"] == 48000 and result.data["confirmed"]
+        assert (
+            result.data["samples"] == 48000
+            and result.data["reply_received"]
+            and not result.data["confirmed"]
+        )
         changed = await backend.execute("play", {}, Options())
         assert changed.success and changed.data["confirmed"] is False and changed.warnings
         with pytest.raises(DomainError):

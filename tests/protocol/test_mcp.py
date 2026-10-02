@@ -11,6 +11,8 @@ from ardour_ultra_mcp.services.catalog import SPECS
 
 async def test_official_sdk_tool_schemas_structured_errors_resources(service):
     async with Client(create_server(service)) as client:
+        assert client.server_info.version == "0.1.0"
+        assert not client.server_capabilities.resources.subscribe
         listing = await client.list_tools()
         assert len(listing.tools) == len(SPECS)
         tool = next(t for t in listing.tools if t.name == "insert_midi_notes")
@@ -43,4 +45,4 @@ async def test_real_stdio_subprocess_no_protocol_log_corruption(mode):
             "fake-route-"
         )
         listing = await client.list_tools()
-        assert len(listing.tools) == 71
+        assert len(listing.tools) == len(SPECS)

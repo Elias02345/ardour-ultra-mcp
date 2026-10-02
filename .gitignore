@@ -11,3 +11,4 @@ dist/
 artifacts/*.xml
 artifacts/*.html
 artifacts/coverage.json
+artifacts/coverage-html/
