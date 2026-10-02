@@ -23,7 +23,7 @@ jobs:
       - run: ruff format --check src tests scripts
       - run: mypy src
       - run: python scripts/generate_reference.py --check
-      - run: pytest --cov=ardour_ultra_mcp --cov-branch --cov-report=xml --junitxml=tests.xml
+      - run: pytest --cov=ardour_ultra_mcp --cov-branch --cov-fail-under=80 --cov-report=xml --junitxml=tests.xml
       - run: bandit -r src
       - run: pip-audit
       - run: python -m build

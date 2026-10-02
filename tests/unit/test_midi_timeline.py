@@ -11,7 +11,7 @@ async def test_dense_notes_guarded_references_and_native_undo(service, midi):
         {**NOTE, "start_ticks": i * 240, "velocity": 94 if i % 2 else 108} for i in range(10000)
     ]
     result = await service.call("insert_midi_notes", {**midi, "notes": notes})
-    assert result.success and result.data["note_count"] == 10000
+    assert result.success and result.data["note_count"] == result.data["inserted_count"] == 10000
     first = await service.call("list_midi_notes", {**midi, "limit": 2})
     assert first.data["total"] == 10000 and len(first.data["items"]) == 2
     n = first.data["items"][1]

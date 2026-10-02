@@ -135,12 +135,19 @@ class ControlService:
                     args,
                     Options(dry_run=True, expected_revision=options.expected_revision),
                 )
+                if preflight.success:
+                    preflight.warnings.append(
+                        "Ardour export preset controls normalization/rate/encoding/dither; normalization may mask gain changes. Inspect the selected preset."
+                    )
                 if not preflight.success or options.dry_run:
                     return preflight
                 export_path = self.policy.new_export_directory(args["output_directory"])
                 args["output_directory"] = str(export_path)
             result = await self.backend.execute(command, args, options)
             if export_path is not None and result.success:
+                result.warnings.append(
+                    "Ardour export preset controls normalization/rate/encoding/dither; normalization may mask gain changes. Inspect the selected preset."
+                )
                 export_files = [str(p) for p in sorted(export_path.iterdir()) if p.is_file()]
                 result.data["files"] = [x for x in export_files]
                 if importlib.util.find_spec("soundfile") is not None:

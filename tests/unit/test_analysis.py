@@ -61,3 +61,18 @@ def test_fullscale_count_and_fail_closed_limits(tmp_path):
     sf.write(path, np.array([np.nan, 1]), 48000, subtype="FLOAT")
     with pytest.raises(DomainError):
         analyze(path)
+
+
+async def test_low_sample_rate_spectrum_has_valid_available_bands(tmp_path):
+    import numpy as np
+    import soundfile as sf
+
+    from ardour_ultra_mcp.analysis.audio import analyze
+
+    rate = 8000
+    path = tmp_path / "low-rate.wav"
+    sf.write(path, 0.25 * np.sin(2 * np.pi * 1000 * np.arange(rate) / rate), rate)
+    result = analyze(path, 600)
+    assert all(0 <= b["low_hz"] < b["high_hz"] <= rate / 2 for b in result["spectrum"]["bands"])
+    assert result["spectrum"]["bands"][-1]["high_hz"] == 4000
+    assert "sample peak" in result["silence_method"]

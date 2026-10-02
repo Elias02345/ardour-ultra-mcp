@@ -87,6 +87,8 @@ def analyze(path: Path, max_seconds: float = 600) -> dict[str, Any]:
     total = float(np.sum(energy))
     bands = []
     for low, high in [(20, 60), (60, 250), (250, 500), (500, 2000), (2000, 6000), (6000, 20000)]:
+        if low >= sample_rate / 2:
+            continue
         power = float(np.sum(energy[(frequencies >= low) & (frequencies < high)]))
         bands.append(
             {
@@ -127,6 +129,7 @@ def analyze(path: Path, max_seconds: float = 600) -> dict[str, Any]:
         "dc_offset_per_channel": [float(x) for x in np.mean(audio, axis=0)],
         "silence_seconds": silent_frames / sample_rate,
         "silence_threshold_dbfs": -60,
+        "silence_method": "20ms blocks with every channel sample peak below -60 dBFS",
         "silence_window_seconds": 0.02,
         "spectrum": {
             "method": "Welch mean channel power; fractions include DC/Nyquist in denominator",

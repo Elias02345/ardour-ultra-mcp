@@ -81,6 +81,7 @@ async def main():
                 )
                 track = await check("create_track", {"name": "Audio E2E", "kind": "audio"})
                 track_id = track.data["id"]
+                await check("get_track", {"track_id": track_id + "junk"}, error="VALIDATION_ERROR")
                 await check("set_track_gain", {"track_id": track_id, "gain_db": -4.25})
                 await check("set_track_pan", {"track_id": track_id, "pan": -0.35})
                 info = await check("get_track", {"track_id": track_id})

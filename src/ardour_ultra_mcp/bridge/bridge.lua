@@ -17,7 +17,11 @@ function factory(params)
     if type(v)~="string" or #v<1 or #v>(maxlen or 200) or v:find("[%z\1-\31]") then fail("VALIDATION_ERROR", "Invalid string.") end
     return v
   end
-  local function id(v) text(v,160); if v:find("[^%w_.:%-]") then fail("VALIDATION_ERROR","Invalid object ID.") end; return v end
+  local function id(v)
+    text(v,20)
+    if (v~='0' and not v:match('^[1-9]%d*$')) or (#v==20 and v>'18446744073709551615') then fail('VALIDATION_ERROR','Native object IDs must be canonical unsigned 64-bit decimal strings.') end
+    return v
+  end
   local function bool(v) if type(v)~="boolean" then fail("VALIDATION_ERROR","Expected boolean.") end;return v end
   local function name(v) text(v,200);if v:find("[/\\]") then fail("VALIDATION_ERROR","Names cannot contain path separators.") end;return v end
   local function list(v, limit)
@@ -618,12 +622,13 @@ function factory(params)
     if path:find('/%.%./') or path:sub(-3)=='/..' or path:find('://',1,true) then fail("PERMISSION_DENIED","Unsafe export path.") end
     for _,prefix in ipairs(config.export_roots or {}) do local p=prefix:gsub('\\','/'):gsub('/$','');if path:sub(1,#p+1)==p..'/' then allowed=true end end
     if not allowed then fail("PERMISSION_DENIED","Export path outside installed export roots.") end
-    if dry then return {start_samples=s:samples(),end_samples=e:samples(),output_directory=a.output_directory,format_source='Ardour export preset'} end
-    local ex=Session:simple_export();ex:set_folder(a.output_directory);ex:set_name(a.name);ex:set_range(s:samples(),e:samples())
+    local ex=Session:simple_export()
     if a.preset_id and a.preset_id~='' then if type(a.preset_id)~='string' or not a.preset_id:match('^[%w%-]+$') or not ex:set_preset(a.preset_id) then fail("OBJECT_NOT_FOUND","Export preset not found.") end end
     if not ex:check_outputs() then fail("BACKEND_ERROR","Export master has no configured channels.") end
+    if dry then return {start_samples=s:samples(),end_samples=e:samples(),output_directory=a.output_directory,format_source='Ardour export preset',requested_preset_id=a.preset_id or NULL,preset_settings='Normalization/rate/encoding/dither controlled by Ardour preset; not exposed in SimpleExport bindings'} end
+    ex:set_folder(a.output_directory);ex:set_name(a.name);ex:set_range(s:samples(),e:samples())
     if not ex:run_export() then fail("BACKEND_ERROR","Ardour export failed.","Inspect Ardour logs and the new output directory.") end
-    return {output_directory=a.output_directory,session_sample_rate_hz=Session:nominal_sample_rate(),start_samples=s:samples(),end_samples=e:samples(),format_source='Ardour export preset',undoable=false}
+    return {output_directory=a.output_directory,session_sample_rate_hz=Session:nominal_sample_rate(),start_samples=s:samples(),end_samples=e:samples(),format_source='Ardour export preset',requested_preset_id=a.preset_id or NULL,preset_settings='Normalization/rate/encoding/dither controlled by Ardour preset; not exposed in SimpleExport bindings',undoable=false}
   end)
   local function command_list()
     local values=array();for command,_ in pairs(handlers) do

@@ -15,6 +15,7 @@ def lua_bridge(tmp_path):
     lua = lupa.LuaRuntime()
     lua.execute("""
       ardour=function(x) end
+      PBD={ID=function() error('unsafe ID constructor invoked') end}
       ARDOUR={LuaAPI={monotonic_time=function() return 123456 end}}
       Session={route_groups=function() return {iter=function() return function() return nil end end} end, path=function() return '/test' end, get_routes=function() return {iter=function() return function() return nil end end} end, actively_recording=function() return false end}
     """)
@@ -185,3 +186,11 @@ def test_native_time_capacity_rejects_before_constructor(tmp_path, position):
         arguments={"position": position},
     )
     assert reply["result"]["error"]["code"] == "INVALID_TIME_POSITION"
+
+
+@pytest.mark.parametrize(
+    "object_id", ["1junk", "001", "-1", "1.0", "fake-route-1", "18446744073709551616", "2" * 21]
+)
+def test_native_ids_reject_truncation_aliases_before_constructor(lua_bridge, object_id):
+    reply = request(lua_bridge, command="get_track", arguments={"track_id": object_id})
+    assert reply["result"]["error"]["code"] == "VALIDATION_ERROR"

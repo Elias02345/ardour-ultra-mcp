@@ -151,6 +151,7 @@ def edit_command(
                     "scope": "source-relative; notes may lie outside trimmed region",
                 }
             if command == "insert_midi_notes":
+                affected_count = len(a["notes"])
                 notes.extend(copy.deepcopy(a["notes"]))
             else:
                 if a["model_fingerprint"] != digest:
@@ -159,6 +160,7 @@ def edit_command(
                         "MIDI model changed since note references were read.",
                     )
                 values = a["replacements"] if command == "edit_midi_notes" else a["note_refs"]
+                affected_count = len(values)
                 changes = {}
                 for value in values:
                     ref = value["note_ref"] if isinstance(value, dict) else value
@@ -180,6 +182,9 @@ def edit_command(
                 ]
             return {
                 "region_id": r["id"],
+                "inserted_count"
+                if command == "insert_midi_notes"
+                else "changed_count": affected_count,
                 "note_count": len(r["notes"]),
                 "model_fingerprint": fingerprint(r["notes"]),
                 "undoable": True,

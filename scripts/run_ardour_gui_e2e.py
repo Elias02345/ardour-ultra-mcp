@@ -13,16 +13,20 @@ import json
 import os
 import re
 import subprocess
+import sys
 import tempfile
 import time
 from pathlib import Path
 from xml.etree import ElementTree as ET
 
 from audio_fixture import add_audio_fixture
+from mcp.client import Client
+from mcp.client.stdio import StdioServerParameters
 
 from ardour_ultra_mcp.backends.mailbox import MailboxBackend
 from ardour_ultra_mcp.backends.osc import OSCBackend
 from ardour_ultra_mcp.installers.install import install, lua_string
+from ardour_ultra_mcp.models.base import Result
 from ardour_ultra_mcp.security.paths import PathPolicy
 from ardour_ultra_mcp.services.control import ControlService
 
@@ -174,6 +178,7 @@ async def main() -> None:
                     {
                         "command": command,
                         "duration_ms": (time.perf_counter() - start) * 1000,
+                        "interface": getattr(target, "protocol", "domain_service"),
                         "result": result.model_dump(mode="json"),
                     }
                 )
@@ -424,6 +429,7 @@ async def main() -> None:
                     "end": {"unit": "bbt", "bar": 3, "beat": 1},
                     "output_directory": str(root / "export"),
                     "name": "verified",
+                    "preset_id": "75969a1c-3133-4694-864b-a1fa50e43348",
                 },
             )
             analysis = await check("analyze_audio_file", {"path": rendered.data["files"][0]})
@@ -435,19 +441,60 @@ async def main() -> None:
                 "compare_audio_files",
                 {"first": rendered.data["files"][0], "second": rendered.data["files"][0]},
             )
-            combined = await check(
-                "render_and_analyze",
-                {
-                    "start": {"unit": "bbt", "bar": 2, "beat": 1},
-                    "end": {"unit": "bbt", "bar": 3, "beat": 1},
-                    "output_directory": str(root / "combined-export"),
-                    "name": "combined",
-                },
+            parameters = StdioServerParameters(
+                command=sys.executable,
+                args=[
+                    "-m",
+                    "ardour_ultra_mcp",
+                    "serve",
+                    "--mailbox",
+                    str(root / "mailbox"),
+                    "--media-root",
+                    str(root),
+                    "--export-root",
+                    str(root),
+                ],
             )
-            assert (
-                combined.data["analysis_completed"]
-                and combined.data["analysis"]["peak_dbfs"] is not None
-            )
+            async with Client(parameters) as client:
+
+                class WireCalls:
+                    protocol = "mcp_stdio"
+
+                    async def call(self, command, arguments):
+                        response = await client.call_tool(command, {"request": arguments})
+                        return Result.model_validate(response.structured_content)
+
+                wire = WireCalls()
+                await check("get_server_info", {}, wire)
+                await check("get_capabilities", {}, wire)
+                await check("get_session_info", {}, wire)
+                routes = await check("list_tracks", {}, wire)
+                master_id = next(r["id"] for r in routes.data["items"] if r["kind"] == "master")
+                await check("set_track_gain", {"track_id": master_id, "gain_db": -12}, wire)
+                master = await check("get_track", {"track_id": master_id}, wire)
+                assert abs(master.data["gain_db"] + 12) < 1e-5
+                combined = await check(
+                    "render_and_analyze",
+                    {
+                        "start": {"unit": "bbt", "bar": 2, "beat": 1},
+                        "end": {"unit": "bbt", "bar": 3, "beat": 1},
+                        "output_directory": str(root / "combined-export"),
+                        "name": "combined",
+                        "preset_id": "75969a1c-3133-4694-864b-a1fa50e43348",
+                    },
+                    wire,
+                )
+                assert combined.data["analysis_completed"]
+                assert combined.data["analysis"]["peak_dbfs"] < analysis.data["peak_dbfs"] - 6
+                compared = await check(
+                    "compare_audio_files",
+                    {
+                        "first": rendered.data["files"][0],
+                        "second": combined.data["render"]["files"][0],
+                    },
+                    wire,
+                )
+                assert compared.data["delta_second_minus_first"]["peak_dbfs"] < -6
             print(
                 json.dumps(
                     {"passed": len(results), "scope": "real EditorHook, no GUI input automation"}

@@ -69,6 +69,58 @@ async def main() -> None:
                 )
                 assert made.structured_content["success"]
                 tid = made.structured_content["data"]["id"]
+                region = await client.call_tool(
+                    "create_midi_region",
+                    {
+                        "request": {
+                            "track_id": tid,
+                            "name": "Dense wire batch",
+                            "start": {"unit": "samples", "samples": 0},
+                            "end": {"unit": "quarter_ticks", "ticks": 3200000},
+                        }
+                    },
+                )
+                inserted = await client.call_tool(
+                    "insert_midi_notes",
+                    {
+                        "request": {
+                            "track_id": tid,
+                            "region_id": region.structured_content["data"]["id"],
+                            "notes": [
+                                {
+                                    "pitch": 48 + i % 12,
+                                    "velocity": 104,
+                                    "channel": 1,
+                                    "start_ticks": i * 240,
+                                    "duration_ticks": 240,
+                                }
+                                for i in range(10000)
+                            ],
+                        }
+                    },
+                )
+                assert (
+                    not inserted.is_error
+                    and inserted.structured_content["data"]["inserted_count"] == 10000
+                )
+                points = await client.call_tool(
+                    "create_automation_points",
+                    {
+                        "request": {
+                            "track_id": tid,
+                            "control": "gain",
+                            "unit": "linear_gain",
+                            "points": [
+                                {"position": {"unit": "samples", "samples": i * 100}, "value": 0.5}
+                                for i in range(10000)
+                            ],
+                        }
+                    },
+                )
+                assert (
+                    not points.is_error
+                    and len(points.structured_content["data"]["points"]) == 10000
+                )
                 gain = await client.call_tool(
                     "set_track_gain", {"request": {"track_id": tid, "gain_db": -4.25}}
                 )
@@ -88,7 +140,7 @@ async def main() -> None:
                     and analyzed.structured_content["data"]["integrated_lufs"] is not None
                 )
                 checks.append(
-                    f"official Client {mode} STDIO discovery/mutation/readback/error/analysis"
+                    f"official Client {mode} STDIO discovery/dense MIDI and automation/mutation/readback/error/analysis"
                 )
     report = {
         "package": version("ardour-ultra-mcp"),

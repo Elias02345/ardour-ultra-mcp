@@ -44,5 +44,55 @@ async def test_real_stdio_subprocess_no_protocol_log_corruption(mode):
         assert not created.is_error and created.structured_content["data"]["id"].startswith(
             "fake-route-"
         )
+        tid = created.structured_content["data"]["id"]
+        region = await client.call_tool(
+            "create_midi_region",
+            {
+                "request": {
+                    "track_id": tid,
+                    "name": "Dense wire batch",
+                    "start": {"unit": "samples", "samples": 0},
+                    "end": {"unit": "quarter_ticks", "ticks": 3200000},
+                }
+            },
+        )
+        assert not region.is_error
+        inserted = await client.call_tool(
+            "insert_midi_notes",
+            {
+                "request": {
+                    "track_id": tid,
+                    "region_id": region.structured_content["data"]["id"],
+                    "notes": [
+                        {
+                            "pitch": 48 + i % 12,
+                            "velocity": 104,
+                            "channel": 1,
+                            "start_ticks": i * 240,
+                            "duration_ticks": 240,
+                        }
+                        for i in range(10000)
+                    ],
+                }
+            },
+        )
+        assert (
+            not inserted.is_error and inserted.structured_content["data"]["inserted_count"] == 10000
+        )
+        points = await client.call_tool(
+            "create_automation_points",
+            {
+                "request": {
+                    "track_id": tid,
+                    "control": "gain",
+                    "unit": "linear_gain",
+                    "points": [
+                        {"position": {"unit": "samples", "samples": i * 100}, "value": 0.5}
+                        for i in range(10000)
+                    ],
+                }
+            },
+        )
+        assert not points.is_error and len(points.structured_content["data"]["points"]) == 10000
         listing = await client.list_tools()
         assert len(listing.tools) == len(SPECS)
