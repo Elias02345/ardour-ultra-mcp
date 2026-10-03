@@ -10,6 +10,7 @@ uv pip install --python .venv/bin/python -e '.[analysis,dev]'
 .venv/bin/mypy src --platform darwin
 .venv/bin/pytest --cov=ardour_ultra_mcp --cov-branch
 .venv/bin/python scripts/generate_reference.py
+.venv/bin/python scripts/check_docs.py
 .venv/bin/python scripts/benchmark.py
 .venv/bin/python -m build
 ```
@@ -25,6 +26,8 @@ A new command needs: typed request with units, catalog entry, service preflight/
 Source evidence is pinned in research/sources.json; scripts/research_inventory.py reads external clones and should not alter pins casually. Runtime protocols are versioned separately from package semantic version. Prefer capability tests over scattered version comparisons. Native API additions can be isolated in adapters when actual differences justify it.
 
 Generated TOOL_REFERENCE.md/tool-schemas.json derive from the catalog; `--check` detects drift. Keep client examples and status synchronized. Tests use the official SDK in-process and over actual subprocess STDIO. Actual Ardour scripts create disposable sessions, do not attach to user work, and retain evidence in artifacts.
+
+Onboarding documentation has English and German installation paths. Keep their commands/limitations synchronized. Local Markdown file links are checked by scripts/check_docs.py in CI; it does not verify remote URLs or heading anchors. CLI diagnostics default to readable text; use --json in automation and never add human output to MCP STDIO or generated client snippets.
 
 No separate service class per requested domain is mandated prematurely; split current modules when new adapters increase responsibility. The Lua factory is intentionally self-contained for Ardour bytecode persistence. Do not move needed functions into unpersisted globals.
 

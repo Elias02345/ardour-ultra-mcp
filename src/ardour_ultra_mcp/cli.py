@@ -10,11 +10,13 @@ from typing import Any
 
 from pydantic import JsonValue
 
+from . import __version__
 from .backends.base import Backend
 from .backends.composite import CompositeBackend
 from .backends.fake import FakeBackend
 from .backends.mailbox import MailboxBackend
 from .backends.osc import OSCBackend
+from .cli_output import diagnostics, error_lines, installation, uninstallation
 from .installers.install import install, uninstall
 from .installers.platforms import detect_versions, mailbox_directory
 from .logging import configure_logging
@@ -60,27 +62,80 @@ def make_service(args: argparse.Namespace) -> ControlService:
 
 def parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(
-        prog="ardour-ultra-mcp", description="Local typed Ardour MCP; real Lua bridge by default"
+        prog="ardour-ultra-mcp",
+        description="Local Ardour control for MCP clients. Start with: ardour-ultra-mcp install",
+        epilog="Setup guide: https://github.com/Elias02345/ardour-ultra-mcp/blob/main/docs/INSTALLATION.md",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
     )
-    p.add_argument("--version", action="version", version="ardour-ultra-mcp 0.1.0")
+    p.add_argument("--version", action="version", version=f"ardour-ultra-mcp {__version__}")
     common = argparse.ArgumentParser(add_help=False)
-    common.add_argument("--backend", choices=["lua", "osc", "composite", "fake"], default="lua")
-    common.add_argument("--mailbox", type=Path, default=mailbox_directory())
-    common.add_argument("--media-root", type=Path, action="append", default=[])
-    common.add_argument("--export-root", type=Path, action="append", default=[])
+    common.add_argument(
+        "--backend",
+        choices=["lua", "osc", "composite", "fake"],
+        default="lua",
+        help="lua (default); fake is a simulator; OSC is experimental",
+    )
+    common.add_argument(
+        "--mailbox",
+        type=Path,
+        default=mailbox_directory(),
+        help="private bridge directory; use the same path for install and serve",
+    )
+    common.add_argument(
+        "--media-root",
+        type=Path,
+        action="append",
+        default=[],
+        help="allow audio analysis under this absolute directory (repeatable)",
+    )
+    common.add_argument(
+        "--export-root",
+        type=Path,
+        action="append",
+        default=[],
+        help="allow new export directories here; set on install and serve (repeatable)",
+    )
     common.add_argument("--osc-host", default="127.0.0.1")
     common.add_argument("--osc-port", type=int, default=3819)
-    common.add_argument("--timeout", type=float, default=15)
-    common.add_argument("--debug", action="store_true")
-    common.add_argument("--json", action="store_true")
+    common.add_argument(
+        "--timeout", type=float, default=15, help="bridge timeout in seconds (default: 15)"
+    )
+    common.add_argument("--debug", action="store_true", help="send diagnostic logs to stderr")
+    common.add_argument(
+        "--json",
+        action="store_true",
+        help="machine-readable diagnostics; configure always prints a client snippet",
+    )
     sub = p.add_subparsers(dest="command", required=True)
-    for name in ["serve", "doctor", "status", "capabilities", "test-connection"]:
-        sub.add_parser(name, parents=[common])
-    installer = sub.add_parser("install", parents=[common])
-    installer.add_argument("--ardour-config", type=Path)
-    installer.add_argument("--ardour-major", type=int, choices=range(8, 20), default=None)
-    sub.add_parser("uninstall", parents=[common])
-    configure = sub.add_parser("configure", parents=[common])
+    for name, help_text in {
+        "serve": "start the MCP STDIO server (normally launched by your MCP client)",
+        "doctor": "check the installation, dependencies and Ardour connection",
+        "status": "show the currently connected session",
+        "capabilities": "show the running backend's available operations",
+        "test-connection": "check whether the Ardour bridge responds",
+    }.items():
+        sub.add_parser(name, parents=[common], help=help_text, description=help_text)
+    installer = sub.add_parser(
+        "install", parents=[common], help="install the Lua bridge and print activation steps"
+    )
+    installer.add_argument(
+        "--ardour-config", type=Path, help="override the Ardour configuration directory"
+    )
+    installer.add_argument(
+        "--ardour-major",
+        type=int,
+        choices=range(8, 20),
+        default=None,
+        help="Ardour major version, e.g. 9; otherwise detect or fall back to 9",
+    )
+    sub.add_parser(
+        "uninstall", parents=[common], help="remove the unmodified bridge script, keeping backups"
+    )
+    configure = sub.add_parser(
+        "configure",
+        parents=[common],
+        help="print configuration for your MCP client without changing files",
+    )
     configure.add_argument("client", choices=["claude", "claude-code", "codex", "generic"])
     return p
 
@@ -163,34 +218,42 @@ def main(argv: list[str] | None = None) -> int:
                 if detected
                 else "fallback_9_unverified"
             )
-            print(json.dumps(value, indent=2))
+            print(json.dumps(value, indent=2) if args.json else installation(value))
             return 0
         if args.command == "uninstall":
-            print(json.dumps(uninstall(args.mailbox), indent=2))
+            value = uninstall(args.mailbox)
+            print(json.dumps(value, indent=2) if args.json else uninstallation(value))
             return 0
         result = asyncio.run(diagnose(args))
-        print(result.model_dump_json(indent=2))
+        print(
+            result.model_dump_json(indent=2)
+            if args.json
+            else diagnostics(args.command, result.model_dump(mode="json"), args.backend)
+        )
         if args.command == "doctor":
             connectivity = result.data.get("connectivity")
             if isinstance(connectivity, dict) and not connectivity.get("success"):
                 return 2
         return 0 if result.success else 2
     except DomainError as exc:
-        print(json.dumps({"success": False, "error": exc.detail.model_dump(mode="json")}, indent=2))
+        detail = exc.detail.model_dump(mode="json")
+        print(
+            json.dumps({"success": False, "error": detail}, indent=2)
+            if args.json
+            else "\n".join(error_lines(detail))
+        )
         return 2
     except OSError as exc:
+        detail = {
+            "code": "PERMISSION_DENIED",
+            "message": "Local filesystem operation failed.",
+            "action": "Check paths and permissions.",
+            "type": type(exc).__name__,
+        }
         print(
-            json.dumps(
-                {
-                    "success": False,
-                    "error": {
-                        "code": "PERMISSION_DENIED",
-                        "message": "Local filesystem operation failed.",
-                        "action": "Check paths and permissions.",
-                        "type": type(exc).__name__,
-                    },
-                }
-            )
+            json.dumps({"success": False, "error": detail})
+            if args.json
+            else "\n".join(error_lines(detail))
         )
         return 2
 
