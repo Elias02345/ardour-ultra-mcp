@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import hashlib
 import importlib.resources
 import json
 import os
@@ -62,21 +63,24 @@ def install(
     }
     atomic_json(config_file, config)
     template = (
-        importlib.resources.files("ardour_ultra_mcp.bridge").joinpath("bridge.lua").read_text()
+        importlib.resources.files("ardour_ultra_mcp.bridge")
+        .joinpath("bridge.lua")
+        .read_text(encoding="utf-8")
     )
     script = template.replace("@MAILBOX_LUA@", lua_string(str(root)))
     target = scripts / "ardour_ultra_mcp.lua"
     part = target.with_suffix(".lua.part")
     if part.is_symlink():
         raise DomainError(ErrorCode.PERMISSION_DENIED, "Installer temporary path is a symlink.")
-    part.write_text(script, encoding="utf-8")
+    script_bytes = script.encode("utf-8")
+    part.write_bytes(script_bytes)
     os.replace(part, target)
     atomic_json(
         root / "installation.json",
         {
             "protocol": 1,
             "script": str(target),
-            "script_sha256": __import__("hashlib").sha256(script.encode()).hexdigest(),
+            "script_sha256": hashlib.sha256(script_bytes).hexdigest(),
             "config": str(configuration),
         },
     )
@@ -98,8 +102,6 @@ def uninstall(directory: Path | None = None) -> dict[str, Any]:
     if path.name != "ardour_ultra_mcp.lua" or path.parent.name != "scripts":
         raise DomainError(ErrorCode.PERMISSION_DENIED, "Invalid installation manifest.")
     if path.exists():
-        import hashlib
-
         if hashlib.sha256(path.read_bytes()).hexdigest() != record["script_sha256"]:
             raise DomainError(
                 ErrorCode.CONFLICT,
