@@ -90,7 +90,7 @@ def install(
         "ardour_candidates": find_ardour(),
         "backups": backups,
         "export_roots": normalized_roots,
-        "required_ui_step": "In Ardour, Window > Scripting > Script Manager > Action Hooks, add Ardour Ultra MCP. Open a session, then run test-connection. Hook file I/O requires Preferences > Scripting > Sandbox all Lua scripts to be disabled; activate only this reviewed hook on trusted projects.",
+        "required_ui_step": "Restart Ardour if open, then open a disposable session. In Ardour 9.8, Edit > Lua Scripts > Script Manager > Action Hooks > New Hook, add Ardour Ultra MCP. For updates, remove the old hook first. Run test-connection with the same mailbox path. The hook needs file I/O; sandbox-all-lua-scripts defaults to false in Ardour 9.8. If enabled in your build/config, see docs/TROUBLESHOOTING.md; no visible Preferences control was verified. Activate only reviewed hooks on trusted projects.",
         "connectivity": "not checked until hook activated",
     }
 

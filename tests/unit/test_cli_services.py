@@ -44,14 +44,23 @@ def test_cli_diagnostics_and_safe_configuration(capsys, tmp_path):
 def test_cli_install_uninstall_and_missing_connection(capsys, tmp_path):
     mailbox = tmp_path / "mailbox"
     assert (
-        main(["install", "--mailbox", str(mailbox), "--ardour-config", str(tmp_path / "config")])
+        main(
+            [
+                "install",
+                "--mailbox",
+                str(mailbox),
+                "--ardour-config",
+                str(tmp_path / "config"),
+                "--json",
+            ]
+        )
         == 0
     )
     installed = json.loads(capsys.readouterr().out)
     assert Path(installed["script"]).is_file()
-    assert main(["doctor", "--mailbox", str(mailbox)]) == 2
+    assert main(["doctor", "--mailbox", str(mailbox), "--json"]) == 2
     assert not json.loads(capsys.readouterr().out)["data"]["connectivity"]["success"]
-    assert main(["uninstall", "--mailbox", str(mailbox)]) == 0
+    assert main(["uninstall", "--mailbox", str(mailbox), "--json"]) == 0
     assert not Path(installed["script"]).exists()
     assert json.loads(capsys.readouterr().out)["mailbox_retained"] == str(mailbox)
 

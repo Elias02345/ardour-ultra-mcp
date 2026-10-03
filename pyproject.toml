@@ -13,6 +13,12 @@ authors = [{name = "Ardour Ultra MCP contributors"}]
 dependencies = ["mcp>=2.3,<3", "pydantic>=2.12,<3"]
 classifiers = ["Development Status :: 3 - Alpha", "Programming Language :: Python :: 3", "Topic :: Multimedia :: Sound/Audio"]
 
+[project.urls]
+Homepage = "https://github.com/Elias02345/ardour-ultra-mcp"
+Documentation = "https://github.com/Elias02345/ardour-ultra-mcp/blob/main/docs/INSTALLATION.md"
+Repository = "https://github.com/Elias02345/ardour-ultra-mcp"
+Issues = "https://github.com/Elias02345/ardour-ultra-mcp/issues"
+
 [project.optional-dependencies]
 analysis = ["numpy>=2,<3", "scipy>=1.14,<2", "soundfile>=0.13,<1", "pyloudnorm>=0.2,<1"]
 dev = ["pytest>=8,<10", "pytest-asyncio>=1,<2", "pytest-cov>=6,<8", "ruff>=0.16,<1", "mypy>=1.15,<3", "build>=1,<2", "pip-audit>=2,<3", "bandit>=1.8,<2", "lupa>=2.4,<3"]
