@@ -28,8 +28,8 @@
 | Concurrency | Scoped observed revisions, exact MIDI guards, serialized cross-client mailbox | Complete human-edit generation including plugin/automation/ports/tempo, event-derived revisions, simultaneous shared-source workflow tests |
 | Efficiency | Pagination for core lists, 10,000-note/point batches, bounded IPC; simulator benchmarks and real timings | Large real 100+ track/100k note sessions, cancellable UI jobs, further range/filter/field projection and plugin bounds profiling |
 | Installation | Portable script/mailbox installation, backups, doctor/version selection, unmodified-file uninstall, printed client configs | Fully automatic hook activation deliberately omitted; post-install live check requires active hook; native macOS/Windows installation/privacy verification |
-| Platforms | Linux subsets actually executed | macOS/Windows DAW proof, hardware/audio backends, Apple Silicon, Windows DACL/Unicode IPC, complete OS CI results |
-| Quality/release | Meaningful tests, branch coverage, lint/types/security/dependency audit/build/clean wheel install, CI/release workflows, generated docs | Higher critical-path coverage, hosted CI, formal protocol conformance/realtime profiling, public repository/PyPI release and maintainer identity |
+| Platforms | Native Linux subsets and all 12 hosted Python/MCP OS/version jobs actually executed | macOS/Windows DAW proof, hardware/audio backends, Apple Silicon, Windows DACL/Unicode IPC/heartbeat replacement |
+| Quality/release | Meaningful tests, branch coverage, lint/types/security/dependency audit/build/clean wheel install, successful hosted Python/MCP CI, public source repository, release workflows, generated docs | Higher critical-path coverage, formal protocol conformance/realtime profiling, reviewed GitHub/PyPI releases and publishing configuration |
 
 ## Comparison with reviewed MCP peers
 
@@ -45,6 +45,6 @@ The strongest reviewed REAPER designs cover additional MIDI/controller events, r
 4. Verify MIDI controller/program/event persistence and integrate batch edits, including shared/trimmed-source guards; add a better musical note addressing convenience layer.
 5. Add typed canonical snapshots/events and target-specific concurrency for plugins/automation/ports/tempo; keep the current revision limitation visible.
 6. Add deterministic sidechain/plugin pin workflows and ensure_* helpers only after atomic routing/processors can compensate correctly.
-7. Raise meaningful critical-path coverage and run the supplied OS/Python hosted CI, then prepare a reviewed public development release.
+7. Raise meaningful critical-path coverage, retain the now-passing OS/Python hosted CI, and prepare a reviewed packaged development release.
 
 The free/local/open-source/vendor-neutral properties are delivered. Complete cross-platform professional unattended production remains a development objective, not a verified release claim.

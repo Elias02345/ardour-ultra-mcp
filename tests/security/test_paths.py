@@ -1,3 +1,4 @@
+import hashlib
 import json
 from pathlib import Path
 
@@ -81,6 +82,21 @@ def test_install_backup_repeat_and_uninstall_modified_guard(tmp_path):
         uninstall(root)
     install(root, config)
     assert uninstall(root)["removed_script"] == str(script) and not script.exists()
+
+
+def test_installed_script_checksum_survives_windows_text_translation(tmp_path, monkeypatch):
+    original_write_text = Path.write_text
+
+    def windows_write_text(path, text, *args, **kwargs):
+        return original_write_text(path, text.replace("\n", "\r\n"), *args, **kwargs)
+
+    monkeypatch.setattr(Path, "write_text", windows_write_text)
+    root = tmp_path / "mailbox"
+    result = install(root, tmp_path / "Ardour config")
+    script = Path(result["script"])
+    manifest = json.loads((root / "installation.json").read_bytes())
+    assert hashlib.sha256(script.read_bytes()).hexdigest() == manifest["script_sha256"]
+    assert uninstall(root)["removed_script"] == str(script)
 
 
 @pytest.mark.parametrize(

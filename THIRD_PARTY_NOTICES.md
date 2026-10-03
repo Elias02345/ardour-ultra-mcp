@@ -16,4 +16,6 @@ The official SDK brings its maintained protocol/auth/types modules and HTTP/asyn
 
 Development-only dependencies: pytest MIT, pytest-asyncio Apache-2.0, pytest-cov MIT, coverage Apache-2.0, Ruff MIT, mypy MIT, build MIT, pip-audit Apache-2.0, Bandit Apache-2.0, Lupa MIT (Lua runtimes MIT). They are not required by the core server. Exact installed distribution versions are in artifacts/environment.json; vulnerability audit is artifacts/dependency-audit.json. No peer dependency or REAPER runtime is introduced.
 
+CI runner packaging tools include setuptools (MIT), upgraded to >=83.0.0 after Python 3.11 runners supplied vulnerable 79.0.1 (PYSEC-2026-3447). This is maintained CI tooling, not an additional server runtime dependency or a replacement for the project's Hatchling build backend. No security advisory is suppressed.
+
 Optional free plugin ecosystem: Ardour bundled LV2 processors, x42 plugins (GPL), LSP Plugins (LGPL/GPL component licenses), Calf (LGPL-2.1), DISTRHO/DPlug ecosystem (individual licenses), and Surge XT (GPL-3.0). Check each actual package's license/platform before redistribution. None is mandatory. Format support comes from the Ardour build and installed inventory, not an OS promise.

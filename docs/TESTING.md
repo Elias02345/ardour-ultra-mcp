@@ -1,8 +1,8 @@
 # Testing and measured evidence
 
-Final local validation date: 2026-10-02. Development release 0.1.0. SDK 2.3.0 was published during this session; its official tag/PyPI metadata were checked and final Python/protocol tests repeated with that stable release. Native binding scripts exercise the backend directly; their results are not branded client application tests.
+Initial development-release validation date: 2026-10-02. Hosted CI follow-up: 2026-10-03, recorded below. SDK 2.3.0 was published during initial development; its official tag/PyPI metadata were checked and Python/protocol tests repeated with that stable release. Native binding scripts exercise the backend directly; their results are not branded client application tests.
 
-## Results actually executed
+## Initial local results, 2026-10-02
 
 | Check | Result / scope |
 |---|---|
@@ -26,9 +26,25 @@ The editor harness also launches the real MCP STDIO server against its live priv
 
 ## Coverage
 
-Python statements: **88.30%** (1547/1752). Branches: **73.64%** (461/626). Coverage.py's combined statement/branch figure: **84.44%**. This is not 100%, and the requested near-complete critical-path target remains unfinished. Lua is exercised through actual Lua decoder/fault tests and native binding fixtures; it is not included in Python coverage. Subprocess package startup is tested but not combined into Python coverage.
+Initial Python statements: **88.30%** (1547/1752). Branches: **73.64%** (461/626). Coverage.py's combined statement/branch figure: **84.44%**. This is not 100%, and the requested near-complete critical-path target remains unfinished. Lua is exercised through actual Lua decoder/fault tests and native binding fixtures; it is not included in Python coverage. Subprocess package startup is tested but not combined into Python coverage.
 
 Generated local reports: artifacts/coverage.json, coverage.xml, coverage-html/index.html, pytest.xml. Reports are generated outputs; only compact validation summaries/evidence are versioned. Critical tests include stale revisions, exact note guards, undo/rollback, current-operation compensation failure, symlink/traversal/count limits, conflicting mailbox slot ownership, correlation/epoch/deadline/timeouts, allowlist/malformed JSON, dense automation preservation/zero anchor, canonical native IDs before PBD conversion, idempotent bus collisions and render-analysis stage failure.
+
+## Hosted CI follow-up, 2026-10-03
+
+[Run 37113646478](https://github.com/Elias02345/ardour-ultra-mcp/actions/runs/37113646478) passed all **12** Python/MCP jobs for commit `e0ba69caa891b3a47183ae96d9edfdeec2305626`: Ubuntu, macOS and Windows, each with Python 3.11, 3.12, 3.13 and 3.14. Checks include lint, formatting, strict types, generated-reference drift, branch coverage, Bandit, dependency audit, package build and simulator CLI startup. Compact evidence is in [ci-validation.json](../artifacts/ci-validation.json).
+
+The initial hosted run exposed Windows type guards and vulnerable runner-provided setuptools 79.0.1. After those fixes, Windows tests additionally exposed installer newline/hash mismatch and a test client reusing old Lua replies. Installer publication now uses exact UTF-8 bytes. Lua test clients follow the real MailboxBackend's consumed-reply cleanup and unique correlation IDs. Regression tests simulate Windows newline conversion and non-replacing rename behavior on Linux. The native Windows heartbeat replacement gap remains open; passing these protocol fixtures does not resolve it.
+
+| Hosted platform | Python versions | Test result | Representative combined coverage, Python 3.11 |
+|---|---|---|---|
+| Ubuntu | 3.11–3.14 | 114 passed per job | 84.45% |
+| macOS | 3.11–3.14 | 114 passed per job | 84.75% |
+| Windows | 3.11–3.14 | 113 passed, 1 skipped per job | 84.71% |
+
+The Windows skip covers unprivileged symlink policy. All jobs retained security audits and the 80% coverage floor; no advisory was ignored. Setuptools was upgraded to a patched release before the audit. The unpublished local project is still skipped by the dependency advisory database.
+
+Locally, Python 3.11.16 passed the updated **114-test** suite in 10.81 seconds. Statement coverage was **88.31%** (1549/1754), branch coverage **73.64%** (461/626), combined **84.45%**. Linux/macOS/Windows target-platform mypy checks passed, as did lint/format/reference/Bandit/audit/build checks. Native Ardour checks were not repeated for these Python installer/type/test changes. The optional hosted native-Ardour job was skipped because this was a push, not workflow_dispatch. Hosted runners do not certify Windows 11, Apple Silicon DAW integration, audio hardware or branded MCP clients.
 
 ## Reproduce pure Python checks
 
@@ -46,7 +62,7 @@ python -m venv .venv
 .venv/bin/python -m build
 ```
 
-Use `.venv\Scripts\python.exe` and equivalent executables on Windows; the full OS CI matrix still requires hosted execution. Network is used for dependency installation/audit, not server operation. No paid APIs/accounts.
+Use `.venv\Scripts\python.exe` and equivalent executables on Windows. Target-platform mypy checks and runner packaging requirements are documented in DEVELOPMENT.md. Network is used for dependency installation/audit, not server operation. No paid APIs/accounts.
 
 Clean installation of the built wheel with the analysis extra:
 

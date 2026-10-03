@@ -1,6 +1,6 @@
 # Implementation status
 
-Development release 0.1.0, evidence dated 2026-10-02. Status refers to delivered code within its stated scope, not full production readiness. Exact final counts/results are in TESTING.md and artifacts; broader gaps are in FINAL_GAP_ANALYSIS.md.
+Development release 0.1.0, native evidence dated 2026-10-02; hosted Python/MCP CI follow-up dated 2026-10-03. Status refers to delivered code within its stated scope, not full production readiness. Exact counts/results are in TESTING.md and artifacts; broader gaps are in FINAL_GAP_ANALYSIS.md.
 
 | Area | Status | Scope |
 |---|---|---|
@@ -19,9 +19,9 @@ Development release 0.1.0, evidence dated 2026-10-02. Status refers to delivered
 | Transactions / safety | PARTIAL | Native note/region/automation undo; prevalidated compensated controls, explicit destructive intent/preflight; no general ACID |
 | State / concurrency | PARTIAL | Fresh actual reads, scoped route/region/group revisions and exact MIDI guards; complete human-edit generation/cache missing |
 | Install / CLI / clients | PARTIAL | Portable paths/backups/version probes/doctor/config printing; manual hook activation; client applications not launched |
-| Tests / package / CI | PARTIAL | 112 tests on each of Python 3.12/3.14; 39/47 native common checks and 74 native EditorHook checks; 84.44% combined Python branch/statement coverage; hosted OS matrix not executed |
+| Tests / package / CI | PARTIAL | All 12 hosted OS/Python jobs passed; 114 tests on Linux/macOS, 113 plus one symlink-policy skip on Windows; local combined coverage 84.45%; original 39/47 native common and 74 EditorHook checks remain separate; higher critical-path coverage/native OS proof pending |
 | Linux | PARTIAL | Real 8.12 common and 9.8 common/editor on x86_64 Dummy; hardware/other distributions/ARM external |
-| macOS / Windows DAW | BLOCKED | No native platform environment; code paths/pure Python CI require external execution |
+| macOS / Windows DAW | BLOCKED | Hosted pure Python/MCP suites passed; no native Ardour platform environment; DAW, DACL and heartbeat/file-replacement proof still external |
 | MIDI CC/bend/pressure/program/SysEx/MPE | UNSUPPORTED | No enabled persistence-verified mutation adapter |
 | Markers/ranges | UNSUPPORTED | Native Location ID probe unreliable; safe identity and undo adapter pending |
 | Metadata/session opening/save-as/timecode | UNSUPPORTED | Safe lifecycle/binding/conversion adapters pending |
