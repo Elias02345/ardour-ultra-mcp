@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import os
+import sys
 from pathlib import Path
 
 from ..models.base import DomainError, ErrorCode
@@ -73,7 +74,7 @@ def private_directory(path: Path) -> Path:
     if path.is_symlink():
         raise DomainError(ErrorCode.PERMISSION_DENIED, "Mailbox directory must not be a symlink.")
     path.mkdir(parents=True, exist_ok=True, mode=0o700)
-    if os.name != "nt":
+    if sys.platform != "win32":
         st = path.stat()
         if st.st_uid != os.getuid() or st.st_mode & 0o077:
             raise DomainError(
