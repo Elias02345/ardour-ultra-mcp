@@ -1,0 +1,990 @@
+{
+  "date": "2026-10-03",
+  "source_commit": "e0ba69caa891b3a47183ae96d9edfdeec2305626",
+  "run_url": "https://github.com/Elias02345/ardour-ultra-mcp/actions/runs/37113646478",
+  "conclusion": "success",
+  "scope": "Hosted pure Python/MCP, simulator, Lupa protocol fixtures, offline analysis, audit and package checks; not native Ardour DAW integration.",
+  "jobs": [
+    {
+      "name": "checks (ubuntu-latest, 3.11)",
+      "conclusion": "success",
+      "url": "https://github.com/Elias02345/ardour-ultra-mcp/actions/runs/37113646478/job/111176165672",
+      "checks": [
+        {
+          "name": "Set up job",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/checkout@v5",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/setup-python@v6",
+          "conclusion": "success"
+        },
+        {
+          "name": "Update runner packaging tools before dependency audit",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run python -m pip install -e \".[analysis,dev]\"",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run ruff check src tests scripts",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run ruff format --check src tests scripts",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run mypy src",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run python scripts/generate_reference.py --check",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run pytest --cov=ardour_ultra_mcp --cov-branch --cov-fail-under=80 --cov-report=xml --junitxml=tests.xml",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run bandit -r src",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run pip-audit",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run python -m build",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run ardour-ultra-mcp doctor --backend fake --json",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/setup-python@v6",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/checkout@v5",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "name": "checks (windows-latest, 3.14)",
+      "conclusion": "success",
+      "url": "https://github.com/Elias02345/ardour-ultra-mcp/actions/runs/37113646478/job/111176165727",
+      "checks": [
+        {
+          "name": "Set up job",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/checkout@v5",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/setup-python@v6",
+          "conclusion": "success"
+        },
+        {
+          "name": "Update runner packaging tools before dependency audit",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run python -m pip install -e \".[analysis,dev]\"",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run ruff check src tests scripts",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run ruff format --check src tests scripts",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run mypy src",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run python scripts/generate_reference.py --check",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run pytest --cov=ardour_ultra_mcp --cov-branch --cov-fail-under=80 --cov-report=xml --junitxml=tests.xml",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run bandit -r src",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run pip-audit",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run python -m build",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run ardour-ultra-mcp doctor --backend fake --json",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/setup-python@v6",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/checkout@v5",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "name": "checks (windows-latest, 3.11)",
+      "conclusion": "success",
+      "url": "https://github.com/Elias02345/ardour-ultra-mcp/actions/runs/37113646478/job/111176165743",
+      "checks": [
+        {
+          "name": "Set up job",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/checkout@v5",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/setup-python@v6",
+          "conclusion": "success"
+        },
+        {
+          "name": "Update runner packaging tools before dependency audit",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run python -m pip install -e \".[analysis,dev]\"",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run ruff check src tests scripts",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run ruff format --check src tests scripts",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run mypy src",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run python scripts/generate_reference.py --check",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run pytest --cov=ardour_ultra_mcp --cov-branch --cov-fail-under=80 --cov-report=xml --junitxml=tests.xml",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run bandit -r src",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run pip-audit",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run python -m build",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run ardour-ultra-mcp doctor --backend fake --json",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/setup-python@v6",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/checkout@v5",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "name": "checks (ubuntu-latest, 3.14)",
+      "conclusion": "success",
+      "url": "https://github.com/Elias02345/ardour-ultra-mcp/actions/runs/37113646478/job/111176165757",
+      "checks": [
+        {
+          "name": "Set up job",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/checkout@v5",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/setup-python@v6",
+          "conclusion": "success"
+        },
+        {
+          "name": "Update runner packaging tools before dependency audit",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run python -m pip install -e \".[analysis,dev]\"",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run ruff check src tests scripts",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run ruff format --check src tests scripts",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run mypy src",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run python scripts/generate_reference.py --check",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run pytest --cov=ardour_ultra_mcp --cov-branch --cov-fail-under=80 --cov-report=xml --junitxml=tests.xml",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run bandit -r src",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run pip-audit",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run python -m build",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run ardour-ultra-mcp doctor --backend fake --json",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/setup-python@v6",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/checkout@v5",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "name": "checks (ubuntu-latest, 3.12)",
+      "conclusion": "success",
+      "url": "https://github.com/Elias02345/ardour-ultra-mcp/actions/runs/37113646478/job/111176165771",
+      "checks": [
+        {
+          "name": "Set up job",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/checkout@v5",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/setup-python@v6",
+          "conclusion": "success"
+        },
+        {
+          "name": "Update runner packaging tools before dependency audit",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run python -m pip install -e \".[analysis,dev]\"",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run ruff check src tests scripts",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run ruff format --check src tests scripts",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run mypy src",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run python scripts/generate_reference.py --check",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run pytest --cov=ardour_ultra_mcp --cov-branch --cov-fail-under=80 --cov-report=xml --junitxml=tests.xml",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run bandit -r src",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run pip-audit",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run python -m build",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run ardour-ultra-mcp doctor --backend fake --json",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/setup-python@v6",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/checkout@v5",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "name": "checks (macos-latest, 3.11)",
+      "conclusion": "success",
+      "url": "https://github.com/Elias02345/ardour-ultra-mcp/actions/runs/37113646478/job/111176165772",
+      "checks": [
+        {
+          "name": "Set up job",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/checkout@v5",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/setup-python@v6",
+          "conclusion": "success"
+        },
+        {
+          "name": "Update runner packaging tools before dependency audit",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run python -m pip install -e \".[analysis,dev]\"",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run ruff check src tests scripts",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run ruff format --check src tests scripts",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run mypy src",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run python scripts/generate_reference.py --check",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run pytest --cov=ardour_ultra_mcp --cov-branch --cov-fail-under=80 --cov-report=xml --junitxml=tests.xml",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run bandit -r src",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run pip-audit",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run python -m build",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run ardour-ultra-mcp doctor --backend fake --json",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/setup-python@v6",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/checkout@v5",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "name": "checks (ubuntu-latest, 3.13)",
+      "conclusion": "success",
+      "url": "https://github.com/Elias02345/ardour-ultra-mcp/actions/runs/37113646478/job/111176165776",
+      "checks": [
+        {
+          "name": "Set up job",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/checkout@v5",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/setup-python@v6",
+          "conclusion": "success"
+        },
+        {
+          "name": "Update runner packaging tools before dependency audit",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run python -m pip install -e \".[analysis,dev]\"",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run ruff check src tests scripts",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run ruff format --check src tests scripts",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run mypy src",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run python scripts/generate_reference.py --check",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run pytest --cov=ardour_ultra_mcp --cov-branch --cov-fail-under=80 --cov-report=xml --junitxml=tests.xml",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run bandit -r src",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run pip-audit",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run python -m build",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run ardour-ultra-mcp doctor --backend fake --json",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/setup-python@v6",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/checkout@v5",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "name": "checks (windows-latest, 3.12)",
+      "conclusion": "success",
+      "url": "https://github.com/Elias02345/ardour-ultra-mcp/actions/runs/37113646478/job/111176165790",
+      "checks": [
+        {
+          "name": "Set up job",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/checkout@v5",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/setup-python@v6",
+          "conclusion": "success"
+        },
+        {
+          "name": "Update runner packaging tools before dependency audit",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run python -m pip install -e \".[analysis,dev]\"",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run ruff check src tests scripts",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run ruff format --check src tests scripts",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run mypy src",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run python scripts/generate_reference.py --check",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run pytest --cov=ardour_ultra_mcp --cov-branch --cov-fail-under=80 --cov-report=xml --junitxml=tests.xml",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run bandit -r src",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run pip-audit",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run python -m build",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run ardour-ultra-mcp doctor --backend fake --json",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/setup-python@v6",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/checkout@v5",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "name": "checks (macos-latest, 3.12)",
+      "conclusion": "success",
+      "url": "https://github.com/Elias02345/ardour-ultra-mcp/actions/runs/37113646478/job/111176165804",
+      "checks": [
+        {
+          "name": "Set up job",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/checkout@v5",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/setup-python@v6",
+          "conclusion": "success"
+        },
+        {
+          "name": "Update runner packaging tools before dependency audit",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run python -m pip install -e \".[analysis,dev]\"",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run ruff check src tests scripts",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run ruff format --check src tests scripts",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run mypy src",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run python scripts/generate_reference.py --check",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run pytest --cov=ardour_ultra_mcp --cov-branch --cov-fail-under=80 --cov-report=xml --junitxml=tests.xml",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run bandit -r src",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run pip-audit",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run python -m build",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run ardour-ultra-mcp doctor --backend fake --json",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/setup-python@v6",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/checkout@v5",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "name": "checks (windows-latest, 3.13)",
+      "conclusion": "success",
+      "url": "https://github.com/Elias02345/ardour-ultra-mcp/actions/runs/37113646478/job/111176165823",
+      "checks": [
+        {
+          "name": "Set up job",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/checkout@v5",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/setup-python@v6",
+          "conclusion": "success"
+        },
+        {
+          "name": "Update runner packaging tools before dependency audit",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run python -m pip install -e \".[analysis,dev]\"",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run ruff check src tests scripts",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run ruff format --check src tests scripts",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run mypy src",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run python scripts/generate_reference.py --check",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run pytest --cov=ardour_ultra_mcp --cov-branch --cov-fail-under=80 --cov-report=xml --junitxml=tests.xml",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run bandit -r src",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run pip-audit",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run python -m build",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run ardour-ultra-mcp doctor --backend fake --json",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/setup-python@v6",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/checkout@v5",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "name": "checks (macos-latest, 3.13)",
+      "conclusion": "success",
+      "url": "https://github.com/Elias02345/ardour-ultra-mcp/actions/runs/37113646478/job/111176165836",
+      "checks": [
+        {
+          "name": "Set up job",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/checkout@v5",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/setup-python@v6",
+          "conclusion": "success"
+        },
+        {
+          "name": "Update runner packaging tools before dependency audit",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run python -m pip install -e \".[analysis,dev]\"",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run ruff check src tests scripts",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run ruff format --check src tests scripts",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run mypy src",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run python scripts/generate_reference.py --check",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run pytest --cov=ardour_ultra_mcp --cov-branch --cov-fail-under=80 --cov-report=xml --junitxml=tests.xml",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run bandit -r src",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run pip-audit",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run python -m build",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run ardour-ultra-mcp doctor --backend fake --json",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/setup-python@v6",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/checkout@v5",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "name": "checks (macos-latest, 3.14)",
+      "conclusion": "success",
+      "url": "https://github.com/Elias02345/ardour-ultra-mcp/actions/runs/37113646478/job/111176165845",
+      "checks": [
+        {
+          "name": "Set up job",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/checkout@v5",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/setup-python@v6",
+          "conclusion": "success"
+        },
+        {
+          "name": "Update runner packaging tools before dependency audit",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run python -m pip install -e \".[analysis,dev]\"",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run ruff check src tests scripts",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run ruff format --check src tests scripts",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run mypy src",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run python scripts/generate_reference.py --check",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run pytest --cov=ardour_ultra_mcp --cov-branch --cov-fail-under=80 --cov-report=xml --junitxml=tests.xml",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run bandit -r src",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run pip-audit",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run python -m build",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run ardour-ultra-mcp doctor --backend fake --json",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/setup-python@v6",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/checkout@v5",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "conclusion": "success"
+        }
+      ]
+    }
+  ],
+  "native_ardour_job": "Skipped: workflow_dispatch only; run event was push.",
+  "test_counts": {
+    "ubuntu": {
+      "passed": 114,
+      "skipped": 0
+    },
+    "macos": {
+      "passed": 114,
+      "skipped": 0
+    },
+    "windows": {
+      "passed": 113,
+      "skipped": 1,
+      "reason": "unprivileged Windows symlink policy varies"
+    }
+  },
+  "representative_combined_coverage_python311": {
+    "ubuntu": 84.45,
+    "macos": 84.75,
+    "windows": 84.71
+  },
+  "local_python311": {
+    "passed": 114,
+    "duration_seconds": 10.81,
+    "combined_coverage_percent": 84.45
+  },
+  "remaining_native_platform_gaps": [
+    "macOS Ardour",
+    "Windows 11 Ardour",
+    "Windows DACL verification",
+    "Windows heartbeat replacement",
+    "Windows native Unicode Lua file access"
+  ]
+}

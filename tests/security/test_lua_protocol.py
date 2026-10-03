@@ -1,4 +1,5 @@
 import json
+import secrets
 import time
 from pathlib import Path
 
@@ -9,7 +10,7 @@ from ardour_ultra_mcp.installers.install import install
 
 
 @pytest.fixture
-def lua_bridge(tmp_path):
+def lua_bridge(tmp_path, request):
     result = install(tmp_path / "mailbox", tmp_path / "config")
     root = Path(result["mailbox"])
     lua = lupa.LuaRuntime()
@@ -20,6 +21,15 @@ def lua_bridge(tmp_path):
       Session={route_groups=function() return {iter=function() return function() return nil end end} end, path=function() return '/test' end, get_routes=function() return {iter=function() return function() return nil end end} end, actively_recording=function() return false end}
     """)
     lua.execute(Path(result["script"]).read_text())
+    if getattr(request, "param", False):
+        lua.execute("""
+          local original_rename = os.rename
+          os.rename = function(source, target)
+            local existing = io.open(target, 'rb')
+            if existing then existing:close();return nil, 'destination exists' end
+            return original_rename(source, target)
+          end
+        """)
     tick = lua.globals().factory(None)
     tick(0, None)
     heart = json.loads((root / "heartbeat.json").read_text())
@@ -31,7 +41,7 @@ def request(bridge, **updates):
     root, tick, epoch, token = bridge
     envelope = {
         "protocol": 1,
-        "id": "ab" * 16,
+        "id": secrets.token_hex(16),
         "epoch": epoch,
         "token": token,
         "expires": time.time() + 15,
@@ -40,14 +50,18 @@ def request(bridge, **updates):
         "options": {"dry_run": False, "confirm_delete": False},
     }
     envelope.update(updates)
+    # Match MailboxBackend: clear the consumed reply before publishing a new request.
+    (root / "response.json").unlink(missing_ok=True)
     (root / "request.json").write_text(json.dumps(envelope))
     tick(0, None)
-    return json.loads((root / "response.json").read_text())
+    reply = json.loads((root / "response.json").read_bytes())
+    assert reply["id"] == envelope["id"] and reply["epoch"] == envelope["epoch"]
+    return reply
 
 
 def test_actual_lua_decoder_allowlist_and_correlation(lua_bridge):
     reply = request(lua_bridge)
-    assert reply["result"]["success"] and reply["id"] == "ab" * 16
+    assert reply["result"]["success"]
     assert not (lua_bridge[0] / "request.json").exists()
     rejected = request(lua_bridge, command='os.execute("bad")')
     assert rejected["result"]["error"]["code"] == "OPERATION_NOT_SUPPORTED"
@@ -55,6 +69,15 @@ def test_actual_lua_decoder_allowlist_and_correlation(lua_bridge):
     assert wrong["result"]["error"]["code"] == "PROTOCOL_ERROR"
     expired = request(lua_bridge, expires=time.time() - 10)
     assert expired["result"]["error"]["code"] == "IPC_TIMEOUT"
+
+
+@pytest.mark.parametrize("lua_bridge", [True], indirect=True)
+def test_lua_repeated_requests_when_rename_cannot_replace(lua_bridge):
+    first = request(lua_bridge)
+    second = request(lua_bridge, command="not_allowed")
+    assert first["id"] != second["id"]
+    assert first["result"]["success"]
+    assert second["result"]["error"]["code"] == "OPERATION_NOT_SUPPORTED"
 
 
 @pytest.mark.parametrize(

@@ -3,10 +3,10 @@
 from __future__ import annotations
 
 import asyncio
-import importlib
 import json
 import os
 import secrets
+import sys
 import time
 from collections.abc import Iterator
 from contextlib import contextmanager
@@ -57,8 +57,8 @@ def slot_lock(path: Path) -> Iterator[None]:
     fd = os.open(path, os.O_RDWR | os.O_CREAT | getattr(os, "O_NOFOLLOW", 0), 0o600)
     try:
         try:
-            if os.name == "nt":
-                msvcrt: Any = importlib.import_module("msvcrt")
+            if sys.platform == "win32":
+                import msvcrt
 
                 if os.fstat(fd).st_size == 0:
                     os.write(fd, b"0")
@@ -77,7 +77,7 @@ def slot_lock(path: Path) -> Iterator[None]:
         try:
             yield
         finally:
-            if os.name == "nt":
+            if sys.platform == "win32":
                 os.lseek(fd, 0, os.SEEK_SET)
                 msvcrt.locking(fd, msvcrt.LK_UNLCK, 1)
             else:

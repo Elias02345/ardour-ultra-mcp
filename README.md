@@ -4,6 +4,8 @@ A local, free, open source programmable control layer for Ardour over Model Cont
 
 **Working development release 0.1.0 — the complete production/cross-platform brief is not yet fulfilled.** Real Linux Ardour 9.8 editor tests cover internal MIDI editing, plugins, native undo, region copying/editing and master export with offline analysis. Ardour 8.12 common bindings are separately tested. macOS Apple Silicon and Windows 11 code paths require native verification. See [compatibility](docs/COMPATIBILITY.md), [test evidence](docs/TESTING.md) and [remaining gaps](docs/FINAL_GAP_ANALYSIS.md).
 
+The Python/MCP layer passes hosted CI on Ubuntu, macOS and Windows with Python 3.11–3.14. These checks exercise the simulator, local IPC, Lua protocol fixtures and analysis; they do not establish native macOS/Windows Ardour compatibility.
+
 The server registers **80 typed tools**, **7 read-only resources** and **1 workflow prompt** using the current official Python MCP SDK 2.3.0 and specification 2026-07-28. Runtime capabilities tell the agent which operations the installed Ardour build actually supports. Persistent route/region/playlist/processor/group IDs, explicit units, source-relative 1920-quarter MIDI ticks, guarded note references, dense batches, preflight and structured change/error results make edits inspectable.
 
 Install from this checkout; the package has **not been published to PyPI**:

@@ -1,16 +1,18 @@
 # Compatibility
 
-Evidence date: 2026-10-02. This is development release 0.1.0, not a claim of complete production or cross-platform DAW certification.
+Native evidence date: 2026-10-02; hosted Python/MCP evidence date: 2026-10-03. This is development release 0.1.0, not a claim of complete production or cross-platform DAW certification.
 
 | Environment | Evidence | Status |
 |---|---|---|
 | Linux x86_64, Debian 13, Python 3.12.14 | Pure Python/MCP/security/analysis tests; extracted Debian Ardour 8.12 common/non_rt LuaSession checks | Tested subset |
 | Linux x86_64, Debian sid container, Python 3.14.8, Ardour 9.8.0~ds | Real EditorHook on Xvfb/Dummy engine, internal MIDI and export/analysis; standalone common bindings | Tested subset; consult TESTING.md for final counts |
 | Other Linux distributions, JACK/PipeWire/ALSA hardware, ARM Linux | Portable source/path handling and CI recipes; no actual execution here | Requires external verification |
-| macOS Apple Silicon | Source-backed paths and portable Python implementation; CI matrix configured | DAW integration and hosted CI unverified |
-| Windows 11 | Windows paths, locking branch, UTF-8 installer/config handling; simulated path tests and CI matrix | DAW integration, DACL protection and hosted CI unverified |
-| Python 3.11/3.13 | Declared supported dependency range; CI configured | Not executed locally |
-| Python 3.12/3.14 | Actual suite on Linux | Tested; no inference about OS support |
+| macOS / Apple Silicon DAW target | Hosted macos-latest Python/MCP suites passed on Python 3.11–3.14; source-backed paths | Native Ardour/Apple Silicon DAW integration remains unverified |
+| Windows / Windows 11 DAW target | Hosted windows-latest Python/MCP suites passed on Python 3.11–3.14, including locking and installer fixtures | Native Windows 11 Ardour, DACL protection and heartbeat replacement remain unverified |
+| Python 3.11/3.13 | Hosted suite on all three OS runners; 3.11.16 also tested locally | Python/MCP layer tested; no inference about DAW support |
+| Python 3.12/3.14 | Local Linux suites and hosted suite on all three OS runners | Python/MCP layer tested; no inference about DAW support |
+
+See TESTING.md and artifacts/ci-validation.json for the successful 12-job matrix. Hosted OS labels do not certify a specific desktop OS/hardware combination. Lua protocol fixtures run in Lupa; they do not load native Ardour on macOS or Windows. The optional hosted Linux Ardour job was not run during this push.
 
 Ardour 9.8 is the researched stable release. Current development master was inspected but not used for the production adapter. Supported commands are runtime-discovered from the running reviewed hook. Do not assume a new major is compatible. Official/repackaged builds may expose different bindings/plugins. Package metadata does not make all Ardour features available.
 
