@@ -1,60 +1,89 @@
 # Ardour Ultra MCP
 
-A local, free, open source programmable control layer for Ardour over Model Context Protocol. It gives an MCP agent typed inspection and precise editing primitives through Ardour's real Lua APIs, with optional native OSC. No paid APIs, cloud services, proprietary models or GUI input automation.
+**Precise, local control of Ardour for MCP clients.** Inspect a session, edit MIDI, adjust plugins, build automation and measure rendered audio through Ardour's real scripting APIs.
 
-**Working development release 0.1.0 — the complete production/cross-platform brief is not yet fulfilled.** Real Linux Ardour 9.8 editor tests cover internal MIDI editing, plugins, native undo, region copying/editing and master export with offline analysis. Ardour 8.12 common bindings are separately tested. macOS Apple Silicon and Windows 11 code paths require native verification. See [compatibility](docs/COMPATIBILITY.md), [test evidence](docs/TESTING.md) and [remaining gaps](docs/FINAL_GAP_ANALYSIS.md).
+[![CI](https://github.com/Elias02345/ardour-ultra-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/Elias02345/ardour-ultra-mcp/actions/workflows/ci.yml)
+[![License: GPL v3+](https://img.shields.io/badge/license-GPL--3.0--or--later-blue)](LICENSE)
+[![Python: 3.11+](https://img.shields.io/badge/python-3.11%2B-blue)](pyproject.toml)
 
-The Python/MCP layer passes hosted CI on Ubuntu, macOS and Windows with Python 3.11–3.14. These checks exercise the simulator, local IPC, Lua protocol fixtures and analysis; they do not establish native macOS/Windows Ardour compatibility.
+[**Deutsch: Installation Schritt für Schritt**](docs/INSTALLATION.de.md) · [Installation](docs/INSTALLATION.md) · [MCP client setup](docs/MCP_CLIENTS.md) · [All documentation](docs/README.md)
 
-The server registers **80 typed tools**, **7 read-only resources** and **1 workflow prompt** using the current official Python MCP SDK 2.3.0 and specification 2026-07-28. Runtime capabilities tell the agent which operations the installed Ardour build actually supports. Persistent route/region/playlist/processor/group IDs, explicit units, source-relative 1920-quarter MIDI ticks, guarded note references, dense batches, preflight and structured change/error results make edits inspectable.
+The server is free, open source and local. It needs no API key, cloud service or proprietary model. Your choice of MCP client and model is separate. Control uses a reviewed Lua hook and optional native OSC; no mouse coordinates or image recognition.
 
-Install from this checkout; the package has **not been published to PyPI**:
+**Status: development release 0.1.0.** Linux Ardour 9.8 has native integration evidence; 8.12 has a smaller tested feature set. The Python/MCP layer passes CI on Linux, macOS and Windows. Native macOS/Windows Ardour integration is **unverified**, with Windows heartbeat/file-replacement and permission hardening still open. Read [compatibility](docs/COMPATIBILITY.md) before choosing a platform. The full production brief is not yet complete.
 
-```sh
-cd /path/to/ardour-ultra-mcp
-uv tool install '.[analysis]'
-# alternative: pipx install '.[analysis]'
-ardour-ultra-mcp install --ardour-major 9
-```
+## Get connected in five steps
 
-Activate **Ardour Ultra MCP** as an Action Hook in Ardour's Script Manager. File IPC requires reviewing the installed script and disabling **Sandbox all Lua scripts** in scripting preferences. The installer prints the exact path/steps and does not change that preference. Open a disposable session first:
+Use a terminal on Linux/macOS, or PowerShell on Windows. You need Ardour installed and [uv installed](docs/INSTALLATION.md#1-install-uv). You do not need Git or a separately installed Python for this route.
 
-```sh
-ardour-ultra-mcp test-connection --json
-ardour-ultra-mcp doctor --json
-ardour-ultra-mcp capabilities --json
-ardour-ultra-mcp configure claude
-ardour-ultra-mcp configure codex
-```
-
-Configuration commands print snippets for safe merging. Current direct setup commands:
+**1. Install the server from GitHub.** There is no PyPI release yet.
 
 ```sh
-claude mcp add --transport stdio --scope user ardour-ultra -- ardour-ultra-mcp serve
-codex mcp add ardour-ultra -- ardour-ultra-mcp serve
+uv tool install --python 3.12 "ardour-ultra-mcp[analysis] @ https://github.com/Elias02345/ardour-ultra-mcp/archive/refs/heads/main.zip"
+uv tool update-shell
 ```
 
-Claude Desktop/generic STDIO configuration:
+Open a new terminal, then run `ardour-ultra-mcp --version`. The analysis extra includes local audio metrics.
 
-```json
-{"mcpServers":{"ardour-ultra":{"command":"ardour-ultra-mcp","args":["serve"]}}}
+**2. Install the Ardour bridge.**
+
+```sh
+ardour-ultra-mcp install
 ```
 
-Use an absolute executable path when needed. [Installation](docs/INSTALLATION.md) gives current paths, Codex TOML, PowerShell handling and explicit audio/export roots. `serve --backend fake` runs a deterministic simulator with labelled results; it does not produce Ardour audio.
+The command prints the script location and next steps. If it cannot detect Ardour, it selects major version 9 and says so. Use `install --ardour-major 8` for an Ardour 8 installation.
 
-Tools cover session save/snapshot, tracks/buses/groups, mixer/transport/record arm/monitor, region edits/copy, internal MIDI batches, generic plugins/parameters/presets, internal sends/ports, automation and experimental preset-based master export. Offline analysis measures peak/RMS/LUFS/estimated true peak/spectrum/stereo/silence and compares passes. [Generated tool reference](docs/TOOL_REFERENCE.md) is the exact API; arguments are wrapped in `{"request": {...}}`.
+**3. Activate the hook in Ardour.** Restart Ardour, open a disposable session, then choose **Edit → Lua Scripts → Script Manager → Action Hooks → New Hook → Ardour Ultra MCP**. These are Ardour 9.8 English labels; older versions/manuals may use **Scripted Actions → Manage**. The hook needs Lua file I/O, allowed by default in Ardour 9.8. If sandboxing was enabled, follow [troubleshooting](docs/TROUBLESHOOTING.md#lua-file-io-is-blocked).
+
+**4. Check the connection.** Keep Ardour and the session open.
+
+```sh
+ardour-ultra-mcp test-connection
+ardour-ultra-mcp doctor
+```
+
+Continue when `test-connection` reports **Connection OK** and `doctor` exits successfully. [Resolve a connection error](docs/TROUBLESHOOTING.md) before asking an agent to edit.
+
+**5. Connect your MCP client.** Choose **one** [client setup](docs/MCP_CLIENTS.md): Claude Desktop, Claude Code, Codex or generic STDIO. `configure` prints a ready-to-copy snippet with an absolute executable path. Your client launches the server; you normally do not run `serve` yourself.
+
+Try this first:
+
+> Use Ardour Ultra MCP to inspect the connection, session and capabilities. List the tracks and report unsupported features. Make no changes.
+
+The [quick start](docs/QUICK_START.md) continues with the first safe edit. [Full installation instructions](docs/INSTALLATION.md) cover updates, uninstalling and custom paths.
+
+## What it can do
+
+There are **80 typed MCP tools**, **7 read-only resources** and **1 workflow prompt**. Runtime capability discovery reports what your Ardour build supports; registration alone does not guarantee availability.
+
+| Area | Implemented scope |
+|---|---|
+| Session and mixer | Inspection, save/snapshot, tracks/buses/groups, gain/pan/mute/solo, transport and recording controls |
+| MIDI | Internal region creation on 9.8, dense note batches, guarded edit/delete, copy and native undo |
+| Plugins and routing | Generic inventory, parameters/presets, instruments, sends and backend ports |
+| Regions and automation | Move/trim/split/copy/delete, gain/fades, bounded automation curves and modes |
+| Render and analyze | Experimental preset-based master/range export; offline peak, RMS, LUFS, estimated true peak, spectrum, stereo and silence metrics |
+| Safety and verification | Stable IDs, explicit units, preflight, destructive intent, structured changes/errors and scoped revision checks |
+
+MIDI controller events, audio import/stretch/pitch shift, crossfades, stems, sidechain pins and complete session lifecycle control remain gaps. See the [generated tool reference](docs/TOOL_REFERENCE.md), [implementation status](docs/IMPLEMENTATION_STATUS.md) and [gap analysis](docs/FINAL_GAP_ANALYSIS.md).
+
+## How it works
 
 ```mermaid
 flowchart LR
-  Client[MCP client / STDIO] --> Typed[Typed tools and domain validation]
-  Typed --> Lua[Private mailbox / allowlisted EditorHook]
-  Lua --> Ardour[Ardour Session / Editor / model APIs]
-  Typed --> OSC[Optional loopback OSC]
-  Typed --> Analysis[Local offline analysis]
+  Client[MCP client / STDIO] --> Python[Typed Python control layer]
+  Python --> Lua[Private mailbox / allowlisted Lua EditorHook]
+  Lua --> Ardour[Ardour session and model APIs]
+  Python --> OSC[Optional loopback OSC]
+  Python --> Analysis[Local offline audio analysis]
 ```
 
-The security model is local STDIO, a private serialized mailbox, allowlisted commands, no arbitrary Lua/shell tools, default-deny media paths, new export directories, explicit delete intent and uncertain-outcome errors. Native undo and compensated control batches have different guarantees. Observed revisions do not cover every human edit. Windows DACL hardening, advanced MIDI events, audio import/stretch/crossfades, stems, sidechain pins, advanced workflow helpers and complete platform proof remain gaps. Read [security](docs/SECURITY.md) before enabling the hook.
+The default server uses STDIO and opens no public listening service. Media/export paths are denied until explicitly permitted. There are no arbitrary Lua or shell execution tools. Undo grouping and compensated batches have different guarantees; revision checks do not observe every human edit. Read the [security model](docs/SECURITY.md).
 
-Documentation: [quick start](docs/QUICK_START.md), [research](docs/RESEARCH.md), [architecture decision](docs/ARCHITECTURE_DECISION.md), [MIDI](docs/MIDI.md), [plugins](docs/PLUGINS.md), [automation](docs/AUTOMATION.md), [routing](docs/ROUTING.md), [analysis](docs/AUDIO_ANALYSIS.md), [development](docs/DEVELOPMENT.md), [testing](docs/TESTING.md), [release](docs/RELEASE.md), [troubleshooting](docs/TROUBLESHOOTING.md).
+You can explore without Ardour using `ardour-ultra-mcp serve --backend fake`. Results are labelled simulated; this backend cannot execute plugins or render audio.
 
-Python 3.11+; GPL-3.0-or-later; original implementation with no peer source copied. [Contributing](CONTRIBUTING.md), [dependency/license review](THIRD_PARTY_NOTICES.md), [implementation journal](docs/IMPLEMENTATION_STATUS.md).
+## Develop and contribute
+
+Start with [development](docs/DEVELOPMENT.md), [testing](docs/TESTING.md) and [contributing](CONTRIBUTING.md). CI checks Python 3.11–3.14 on Ubuntu, macOS and Windows. Native test evidence is reported separately from simulated tests.
+
+Original implementation, licensed under [GPL-3.0-or-later](LICENSE). See [dependency and license notices](THIRD_PARTY_NOTICES.md), [research](docs/RESEARCH.md) and [architecture decisions](docs/ARCHITECTURE_DECISION.md).
