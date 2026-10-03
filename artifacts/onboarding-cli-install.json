@@ -1,0 +1,11 @@
+{
+  "passed": 5,
+  "checks": [
+    "installed CLI guided setup / Unicode and spaces / private token not printed",
+    "installed CLI actionable missing-hook diagnosis / exit code 2",
+    "installed CLI readable simulator results / preserved --json diagnostics",
+    "installed configure snippet uses absolute command and exact mailbox",
+    "installed CLI uninstall preserves private config and backups"
+  ],
+  "scope": "clean Linux wheel; no native Ardour or branded client application test"
+}

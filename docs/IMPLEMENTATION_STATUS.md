@@ -18,8 +18,8 @@ Development release 0.1.0, native evidence dated 2026-10-02; hosted Python/MCP C
 | Master export | EXPERIMENTAL | Real 9.8 preset/range/master export and analysis loop; no stems/format setter claims |
 | Transactions / safety | PARTIAL | Native note/region/automation undo; prevalidated compensated controls, explicit destructive intent/preflight; no general ACID |
 | State / concurrency | PARTIAL | Fresh actual reads, scoped route/region/group revisions and exact MIDI guards; complete human-edit generation/cache missing |
-| Install / CLI / clients | PARTIAL | Portable paths/backups/version probes/doctor/config printing; manual hook activation; client applications not launched |
-| Tests / package / CI | PARTIAL | All 12 hosted OS/Python jobs passed; 114 tests on Linux/macOS, 113 plus one symlink-policy skip on Windows; local combined coverage 84.45%; original 39/47 native common and 74 EditorHook checks remain separate; higher critical-path coverage/native OS proof pending |
+| Install / CLI / clients | PARTIAL | Portable paths/backups/version probes, readable CLI and --json diagnostics, absolute-path client snippets; tested direct GitHub ZIP install with uv on Linux; English/German onboarding; manual hook activation and native/client application verification remain open |
+| Tests / package / CI | PARTIAL | All 12 hosted OS/Python jobs passed; 114 tests on Linux/macOS, 113 plus one symlink-policy skip on Windows; local combined coverage 84.45%; onboarding local suite now 126 tests with 85.07% combined coverage and clean installation checks; original 39/47 native common and 74 EditorHook checks remain separate; higher critical-path coverage/native OS proof pending |
 | Linux | PARTIAL | Real 8.12 common and 9.8 common/editor on x86_64 Dummy; hardware/other distributions/ARM external |
 | macOS / Windows DAW | BLOCKED | Hosted pure Python/MCP suites passed; no native Ardour platform environment; DAW, DACL and heartbeat/file-replacement proof still external |
 | MIDI CC/bend/pressure/program/SysEx/MPE | UNSUPPORTED | No enabled persistence-verified mutation adapter |

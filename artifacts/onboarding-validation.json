@@ -1,0 +1,31 @@
+{
+  "date": "2026-10-03",
+  "scope": "local Linux Python 3.12.14 onboarding changes; no repeated native Ardour or branded-client/macOS/Windows install tests",
+  "pytest": {
+    "passed": 126,
+    "duration_seconds": 9.58
+  },
+  "coverage": {
+    "combined_percent": 85.0709939148073,
+    "statement_percent": 89.07887479316051,
+    "branch_percent": 73.92638036809817
+  },
+  "checks": [
+    "Ruff lint/format",
+    "strict mypy Linux/win32/darwin (33 modules)",
+    "generated reference/schema drift",
+    "local Markdown file links",
+    "Bandit (zero findings)",
+    "pip-audit (zero known vulnerabilities; unpublished local package skipped)",
+    "isolated wheel and sdist build",
+    "clean wheel validation (7 groups)",
+    "installed readable CLI validation (5 groups)",
+    "public main ZIP uv tool installation with analysis extras in isolated tool directories"
+  ],
+  "limitations": [
+    "uv bootstrap installers not executed",
+    "native macOS/Windows Ardour unverified",
+    "conditional Lua sandbox manual config remedy not executed as GUI test",
+    "remote documentation URLs/heading anchors not checked by the local link checker"
+  ]
+}
