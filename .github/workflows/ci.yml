@@ -28,7 +28,7 @@ jobs:
       - run: pip-audit
       - run: python -m build
       - run: ardour-ultra-mcp doctor --backend fake --json
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: validation-${{ matrix.os }}-${{ matrix.python }}
@@ -54,7 +54,7 @@ jobs:
           ardour_lib=$(dirname "$exe")
           ardour_flavor=$(basename "$ardour_lib")
           ARDOUR_LUA_PATH="$exe" LD_LIBRARY_PATH="$ardour_lib" ARDOUR_DLL_PATH="$ardour_lib" ARDOUR_DATA_PATH="/usr/share/$ardour_flavor" ARDOUR_CONFIG_PATH="/etc/$ardour_flavor" LV2_PATH="$ardour_lib/LV2:/usr/lib/lv2" python scripts/run_ardour_e2e.py
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: actual-linux-ardour
