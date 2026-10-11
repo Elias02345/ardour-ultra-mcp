@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+Fix `add_plugin` hanging the bridge when a track already has an instrument (or the plugin offers multiple outputs): Ardour opened a modal "replace instrument" dialog that blocked the GUI thread. The bridge now suppresses both setup prompts for that call only and restores the user's preferences afterwards; the plugin is added at the requested index.
+
 Add headless Linux setup: `activate-hook` compiles the installed bridge with Ardour's LuaSession and stores it as an action hook in `ui_scripts` (optionally with a Dummy-engine autostart config), `new-session` creates an empty session without the GUI, and `save` saves the open session from the command line.
 
 Simplify onboarding with a five-step README, full English/German installation guides, separate MCP client setup, updates/uninstall instructions and a documentation index. Verify direct GitHub ZIP installation with uv; Git is no longer needed for the recommended route. Add readable default CLI guidance while keeping `--json` diagnostics and raw client snippets stable. Correct the Ardour 9.8 script-manager menu and remove the unverified sandbox-preferences instruction. Check local documentation links in CI and add package repository metadata.
