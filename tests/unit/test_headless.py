@@ -1,4 +1,5 @@
 import base64
+import sys
 from pathlib import Path
 from xml.etree import ElementTree as ET
 
@@ -74,6 +75,12 @@ def test_create_session_refuses_non_empty_directory(tmp_path: Path) -> None:
         headless.create_session("/bin/true", target, "Song")
 
 
-def test_create_session_reports_missing_result(tmp_path: Path) -> None:
+def test_create_session_reports_unfinished_script(tmp_path: Path) -> None:
+    # Python cannot run the Lua script, so the completion marker is never written.
     with pytest.raises(DomainError):
-        headless.create_session("/bin/true", tmp_path / "Song", "Song")
+        headless.create_session(sys.executable, tmp_path / "Song", "Song")
+
+
+def test_missing_luasession_is_a_domain_error(tmp_path: Path) -> None:
+    with pytest.raises(DomainError):
+        headless.create_session(str(tmp_path / "missing-lua"), tmp_path / "Song", "Song")

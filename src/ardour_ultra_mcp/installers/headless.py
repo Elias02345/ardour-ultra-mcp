@@ -76,9 +76,16 @@ def _run_lua(luasession: str, script: str, timeout: float = 60) -> None:
         path.write_text(
             script + "\nassert(io.open(" + lua_string(str(marker)) + ',"wb")):close()\n'
         )
-        done = subprocess.run(  # nosec B603
-            [luasession, str(path)], capture_output=True, text=True, timeout=timeout
-        )
+        try:
+            done = subprocess.run(  # nosec B603
+                [luasession, str(path)], capture_output=True, text=True, timeout=timeout
+            )
+        except OSError as exc:
+            raise DomainError(
+                ErrorCode.BRIDGE_NOT_RUNNING,
+                f"Cannot start LuaSession: {exc}",
+                "Pass --luasession with the ardour9-lua launcher.",
+            ) from exc
         completed = marker.exists()
     if not completed:
         raise DomainError(ErrorCode.BACKEND_ERROR, (done.stdout + done.stderr)[-2000:])
