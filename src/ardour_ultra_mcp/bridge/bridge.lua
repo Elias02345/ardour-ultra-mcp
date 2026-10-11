@@ -429,7 +429,15 @@ function factory(params)
     local info=ARDOUR.LuaAPI.new_plugin_info(a.plugin_id,format);if not present(info) then fail("PLUGIN_NOT_FOUND","Plugin ID/format not in Ardour inventory.") end
     if dry then return {plugin_id=a.plugin_id,format=a.format} end
     local p=ARDOUR.LuaAPI.new_plugin(Session,a.plugin_id,format,'');if not present(p) then fail("PLUGIN_NOT_FOUND","Ardour could not load plugin.") end
-    if r:add_processor_by_index(p,a.index,nil,true)~=0 then fail("BACKEND_ERROR","Plugin stream configuration incompatible with route.") end
+    -- Adding an instrument where one exists (or a multi-output synth) opens a modal setup dialog that
+    -- blocks the GUI thread and therefore this hook. Suppress both prompts for this call only: the
+    -- plugin is added alongside, as requested by index, and user preferences are restored afterwards.
+    local cfg=ARDOUR.config();local ask_replace=cfg:get_ask_replace_instrument();local ask_setup=cfg:get_ask_setup_instrument()
+    cfg:set_ask_replace_instrument(false);cfg:set_ask_setup_instrument(false)
+    local ok,rv=pcall(function() return r:add_processor_by_index(p,a.index,nil,true) end)
+    cfg:set_ask_replace_instrument(ask_replace);cfg:set_ask_setup_instrument(ask_setup)
+    if not ok then error(rv,0) end
+    if rv~=0 then fail("BACKEND_ERROR","Plugin stream configuration incompatible with route.") end
     return {processor_id=oid(p),plugin_id=a.plugin_id,undoable=false}
   end)
   register('remove_plugin',true,function(a,dry) local p,_,r=plugin(a);if not dry and r:remove_processor(p,nil,false)~=0 then fail("BACKEND_ERROR","Plugin removal failed.") end;return {deleted_id=a.processor_id,undoable=false} end,true)
