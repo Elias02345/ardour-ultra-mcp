@@ -17,10 +17,17 @@ from .backends.fake import FakeBackend
 from .backends.mailbox import MailboxBackend
 from .backends.osc import OSCBackend
 from .cli_output import diagnostics, error_lines, installation, uninstallation
+from .installers.headless import (
+    activate_hook,
+    create_session,
+    find_luasession,
+    timer_signal_index,
+    write_dummy_engine_config,
+)
 from .installers.install import install, uninstall
-from .installers.platforms import detect_versions, mailbox_directory
+from .installers.platforms import config_directory, detect_versions, mailbox_directory
 from .logging import configure_logging
-from .models.base import DomainError, Options, Result
+from .models.base import DomainError, ErrorCode, Options, Result
 from .security.paths import PathPolicy
 from .server import create_server
 from .services.control import ControlService
@@ -113,6 +120,7 @@ def parser() -> argparse.ArgumentParser:
         "status": "show the currently connected session",
         "capabilities": "show the running backend's available operations",
         "test-connection": "check whether the Ardour bridge responds",
+        "save": "save the open Ardour session",
     }.items():
         sub.add_parser(name, parents=[common], help=help_text, description=help_text)
     installer = sub.add_parser(
@@ -137,6 +145,34 @@ def parser() -> argparse.ArgumentParser:
         help="print configuration for your MCP client without changing files",
     )
     configure.add_argument("client", choices=["claude", "claude-code", "codex", "generic"])
+    activate = sub.add_parser(
+        "activate-hook",
+        parents=[common],
+        help="headless Linux: install the bridge and activate its action hook without the GUI",
+        description="Compile the installed bridge with Ardour's LuaSession and store it as an "
+        "action hook in ui_scripts, as Script Manager would. Restart Ardour afterwards.",
+    )
+    activate.add_argument("--ardour-config", type=Path, help="Ardour configuration directory")
+    activate.add_argument("--ardour-major", type=int, choices=range(8, 20), default=9)
+    activate.add_argument("--luasession", help="Ardour's LuaSession launcher, e.g. ardour9-lua")
+    activate.add_argument(
+        "--signals-header", type=Path, help="source-matched gtk2_ardour/luasignal_syms.inc.h"
+    )
+    activate.add_argument(
+        "--dummy-engine",
+        action="store_true",
+        help="also configure the silent Dummy audio backend with engine autostart",
+    )
+    session = sub.add_parser(
+        "new-session",
+        parents=[common],
+        help="create an empty Ardour session with LuaSession (no GUI needed)",
+    )
+    session.add_argument("directory", type=Path, help="new, empty session directory")
+    session.add_argument("--name", help="session name (default: directory name)")
+    session.add_argument("--sample-rate", type=int, default=48000)
+    session.add_argument("--ardour-major", type=int, choices=range(8, 20), default=9)
+    session.add_argument("--luasession", help="Ardour's LuaSession launcher, e.g. ardour9-lua")
     return p
 
 
@@ -185,11 +221,39 @@ async def diagnose(args: argparse.Namespace) -> Result:
                 "status": "get_session_info",
                 "capabilities": "get_capabilities",
                 "test-connection": "ping",
+                "save": "save_session",
             }[args.command],
             {},
         )
     finally:
         await service.backend.close()
+
+
+def headless_command(args: argparse.Namespace) -> dict[str, Any]:
+    luasession = args.luasession or find_luasession(args.ardour_major)
+    if not luasession:
+        raise DomainError(
+            ErrorCode.BRIDGE_NOT_RUNNING,
+            "Ardour's luasession executable was not found.",
+            "Pass --luasession with the ardour9-lua launcher (or your build's equivalent).",
+        )
+    if args.command == "new-session":
+        directory = args.directory.expanduser().resolve()
+        path = create_session(luasession, directory, args.name or directory.name, args.sample_rate)
+        return {"session": str(path)}
+    config = args.ardour_config or config_directory(args.ardour_major)
+    installed = install(args.mailbox, config, args.ardour_major, tuple(args.export_root))
+    value = activate_hook(
+        config,
+        Path(installed["script"]),
+        luasession,
+        timer_signal_index(args.ardour_major, args.signals_header),
+    )
+    value["mailbox"] = installed["mailbox"]
+    if args.dummy_engine:
+        value["engine_config"] = write_dummy_engine_config(config)
+    value["next_step"] = "Restart Ardour, open a session, then run test-connection."
+    return value
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -219,6 +283,14 @@ def main(argv: list[str] | None = None) -> int:
                 else "fallback_9_unverified"
             )
             print(json.dumps(value, indent=2) if args.json else installation(value))
+            return 0
+        if args.command in ("activate-hook", "new-session"):
+            value = headless_command(args)
+            print(
+                json.dumps(value, indent=2)
+                if args.json
+                else "\n".join(f"{k}: {v}" for k, v in value.items())
+            )
             return 0
         if args.command == "uninstall":
             value = uninstall(args.mailbox)

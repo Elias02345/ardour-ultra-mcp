@@ -81,6 +81,19 @@ English UI labels are verified against the 9.8 source. The official manual/older
 
 The hook needs Lua file I/O. Ardour 9.8's `sandbox-all-lua-scripts` defaults to `false`; a visible Preferences switch was not verified. Usually no preference change is needed. If sandboxing was explicitly enabled in your configuration, follow [the specific troubleshooting steps](TROUBLESHOOTING.md#lua-file-io-is-blocked). Changing that setting affects all Lua scripts; activate only reviewed, trusted scripts. The installer leaves the setting untouched.
 
+### Headless Linux servers (no screen)
+
+On a server without a display, Script Manager cannot be clicked. `activate-hook` installs the bridge and stores it as an action hook the same way Script Manager does, compiled by Ardour's own `luasession`:
+
+```sh
+ardour-ultra-mcp activate-hook --dummy-engine --export-root /absolute/exports
+ardour-ultra-mcp new-session /absolute/sessions/MySong   # optional: create a session without the GUI
+Xvfb :91 -screen 0 1600x1000x24 -nolisten tcp &
+DISPLAY=:91 ARDOUR_TRY_AUTOSTART_ENGINE=1 ardour9 --no-splash /absolute/sessions/MySong/MySong.ardour
+```
+
+`--dummy-engine` configures the silent Dummy backend with engine autostart, and leaves an existing Ardour `config` untouched. The signal index of the timer hook is built in for Ardour 9; for other versions pass `--signals-header` with `gtk2_ardour/luasignal_syms.inc.h` from the matching source. Pass `--luasession` with Ardour's LuaSession launcher (the packaged `ardour9-lua` wrapper, which sets the library environment) if it is not on `PATH`. `ardour-ultra-mcp save` saves the open session, which is useful before restarting Ardour. Verified with a Debian 9.8.0+ds build on Ubuntu 26.04 under Xvfb.
+
 ## 4. Verify the connection
 
 ```sh

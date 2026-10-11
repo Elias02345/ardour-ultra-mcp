@@ -88,6 +88,8 @@ def diagnostics(command: str, value: dict[str, Any], backend: str) -> str:
         lines.append(
             "Next: ardour-ultra-mcp configure CLIENT (claude, claude-code, codex or generic)."
         )
+    elif command == "save":
+        lines = ["Session saved."]
     elif command == "status":
         lines = [
             "Session: " + str(data.get("name", "unnamed")),
