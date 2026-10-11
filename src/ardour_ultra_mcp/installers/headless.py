@@ -16,7 +16,9 @@ import shutil
 import tempfile
 from pathlib import Path
 from typing import Any
-from xml.etree import ElementTree as ET
+
+# Reads/writes only Ardour's own ui_scripts in the user's config directory, never MCP input.
+from xml.etree import ElementTree as ET  # nosec B405
 
 # Index of LuaTimerDS in gtk2_ardour/luasignal_syms.inc.h (after removing #if 0 blocks).
 # The persisted hook stores its subscribed signals as a bit string with this index set.
@@ -108,7 +110,8 @@ def activate_hook(
     state = compile_hook_state(luasession, bridge_script)
     target = config_dir / "ui_scripts"
     if target.exists():
-        tree = ET.parse(target)
+        # Local file owned by the user's Ardour installation; not network or MCP-supplied XML.
+        tree = ET.parse(target)  # nosec B314
         root = tree.getroot()
     else:
         root = ET.Element("UIScripts")
