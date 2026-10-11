@@ -149,8 +149,10 @@ async def main():
                 )
                 ref = {"track_id": track_id, "processor_id": added.data["processor_id"]}
                 parameters = await check("get_plugin_parameters", ref)
-                if parameters.data["items"]:
-                    param = parameters.data["items"][0]
+                # Plugins may list read-only output ports first; pick a writable input.
+                writable = [p for p in parameters.data["items"] if p["automation_capable"]]
+                if writable:
+                    param = writable[0]
                     await check(
                         "set_plugin_parameters",
                         {

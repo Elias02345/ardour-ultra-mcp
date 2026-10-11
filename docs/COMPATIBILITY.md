@@ -6,6 +6,7 @@ Native evidence date: 2026-10-02; hosted Python/MCP evidence date: 2026-10-03. T
 |---|---|---|
 | Linux x86_64, Debian 13, Python 3.12.14 | Pure Python/MCP/security/analysis tests; extracted Debian Ardour 8.12 common/non_rt LuaSession checks | Tested subset |
 | Linux x86_64, Debian sid container, Python 3.14.8, Ardour 9.8.0~ds | Real EditorHook on Xvfb/Dummy engine, internal MIDI and export/analysis; standalone common bindings | Tested subset; consult TESTING.md for final counts |
+| Linux x86_64, Ubuntu 26.04 (i5-7500, headless), Python 3.14.4, Debian Ardour 9.8.0+ds-1 rebuilt locally | Hook activated with `activate-hook` (no GUI); LuaSession common checks 47 passed, EditorHook on Xvfb/Dummy 74 passed (2026-10-11); 4-track MIDI composition with AVL Drumkits, MDA JX10/ePiano and Surge XT LV2 rendered and analyzed over STDIO | Tested subset; LuaSession may abort on teardown after a finished script, handled by a completion marker |
 | Other Linux distributions, JACK/PipeWire/ALSA hardware, ARM Linux | Portable source/path handling and CI recipes; no actual execution here | Requires external verification |
 | macOS / Apple Silicon DAW target | Hosted macos-latest Python/MCP suites passed on Python 3.11–3.14; source-backed paths | Native Ardour/Apple Silicon DAW integration remains unverified |
 | Windows / Windows 11 DAW target | Hosted windows-latest Python/MCP suites passed on Python 3.11–3.14, including locking and installer fixtures | Native Windows 11 Ardour, DACL protection and heartbeat replacement remain unverified |
